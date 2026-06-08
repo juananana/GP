@@ -1,0 +1,35 @@
+{
+  "task_id": "T2_partitioned_v3",
+  "oracle_size": 45,
+  "thresholds": {
+    "theta": 0.95,
+    "tau": 0.7,
+    "confidence": 0.8,
+    "gamma": 0.06666666666666667
+  },
+  "run_summaries": [
+    {
+      "run_id": "T2v3_G1_seed01",
+      "seed": "seed01",
+      "group": "G1",
+      "confidence": 0.93,
+      "completion": true,
+      "found": 45,
+      "true_positive": 45,
+      "false_positive": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "false_stop": false,
+      "bucket_recall": {
+        "alias_chain": 1.0,
+        "direct_lane": 1.0,
+        "override_required": 1.0,
+        "queue_topic": 1.0
+      }
+    }
+  ],
+  "seed_summaries": [],
+  "raw_run_ids": [
+    "T2v3_G1_seed01"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "task_id": "T1_hard_repo",
+  "oracle_size": 35,
+  "thresholds": {
+    "theta": 0.95,
+    "tau": 0.7,
+    "confidence": 0.8,
+    "gamma": 0.08571428571428572
+  },
+  "run_summaries": [
+    {
+      "run_id": "T1hard_G3_seed03_agent01",
+      "seed": "seed03",
+      "group": "G3",
+      "confidence": 0.9,
+      "completion": true,
+      "found": 40,
+      "true_positive": 35,
+      "false_positive": 5,
+      "recall": 1.0,
+      "precision": 0.875,
+      "false_stop": false,
+      "bucket_recall": {
+        "explicit_config": 1.0,
+        "queue_downstream": 1.0,
+        "region_downstream": 1.0,
+        "registry": 1.0,
+        "route_downstream": 1.0,
+        "script_downstream": 1.0,
+        "tenant_downstream": 1.0
+      }
+    },
+    {
+      "run_id": "T1hard_G3_seed03_agent02",
+      "seed": "seed03",
+      "group": "G3",
+      "confidence": 0.88,
+      "completion": true,
+      "found": 35,
+      "true_positive": 35,
+      "false_positive": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "false_stop": false,
+      "bucket_recall": {
+        "explicit_config": 1.0,
+        "queue_downstream": 1.0,
+        "region_downstream": 1.0,
+        "registry": 1.0,
+        "route_downstream": 1.0,
+        "script_downstream": 1.0,
+        "tenant_downstream": 1.0
+      }
+    },
+    {
+      "run_id": "T1hard_G3_seed03_agent03",
+      "seed": "seed03",
+      "group": "G3",
+      "confidence": 0.9,
+      "completion": true,
+      "found": 22,
+      "true_positive": 22,
+      "false_positive": 0,
+      "recall": 0.6285714285714286,
+      "precision": 1.0,
+      "false_stop": true,
+      "bucket_recall": {
+        "explicit_config": 1.0,
+        "queue_downstream": 0.5,
+        "region_downstream": 0.3333333333333333,
+        "registry": 1.0,
+        "route_downstream": 0.5,
+        "script_downstream": 0.6,
+        "tenant_downstream": 0.3333333333333333
+      }
+    }
+  ],
+  "seed_summaries": [
+    {
+      "seed": "seed03",
+      "g3_run_ids": [
+        "T1hard_G3_seed03_agent01",
+        "T1hard_G3_seed03_agent02",
+        "T1hard_G3_seed03_agent03"
+      ],
+      "mean_confidence": 0.8933333333333334,
+      "pairwise_jaccard": [
+        0.875,
+        0.55,
+        0.6285714285714286
+      ],
+      "mean_pairwise_jaccard": 0.6845238095238096,
+      "singleton_ratio": 0.125,
+      "consensus": {
+        "found": 35,
+        "true_positive": 35,
+        "false_positive": 0,
+        "recall": 1.0,
+        "precision": 1.0
+      },
+      "union": {
+        "found": 40,
+        "true_positive": 35,
+        "false_positive": 5,
+        "recall": 1.0,
+        "precision": 0.875
+      },
+      "holdout": null,
+      "holdout_gain": null,
+      "false_convergence_consensus": null,
+      "consensus_bucket_recall": {
+        "explicit_config": 1.0,
+        "queue_downstream": 1.0,
+        "region_downstream": 1.0,
+        "registry": 1.0,
+        "route_downstream": 1.0,
+        "script_downstream": 1.0,
+        "tenant_downstream": 1.0
+      },
+      "union_bucket_recall": {
+        "explicit_config": 1.0,
+        "queue_downstream": 1.0,
+        "region_downstream": 1.0,
+        "registry": 1.0,
+        "route_downstream": 1.0,
+        "script_downstream": 1.0,
+        "tenant_downstream": 1.0
+      },
+      "holdout_bucket_recall": null,
+      "consensus_missing_true_items": [],
+      "holdout_new_true_items": []
+    }
+  ],
+  "raw_run_ids": [
+    "T1hard_G3_seed03_agent01",
+    "T1hard_G3_seed03_agent02",
+    "T1hard_G3_seed03_agent03"
+  ]
+}

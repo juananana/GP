@@ -1,0 +1,53 @@
+{
+  "task_id": "T2_policy_docs",
+  "oracle_size": 30,
+  "runs": [
+    {
+      "run_id": "T2_SUM_union_preserving_seed01",
+      "self_reported_completion": true,
+      "self_reported_confidence": 0.8866666666666667,
+      "items": [
+        "CASE-001::CASE-001",
+        "CASE-002::CASE-002",
+        "CASE-003::CASE-003",
+        "CASE-004::CASE-004",
+        "CASE-005::CASE-005",
+        "CASE-006::CASE-006",
+        "CASE-007::CASE-007",
+        "CASE-008::CASE-008",
+        "CASE-009::CASE-009",
+        "CASE-010::CASE-010",
+        "CASE-011::CASE-011",
+        "CASE-012::CASE-012",
+        "CASE-021::CASE-021",
+        "CASE-022::CASE-022",
+        "CASE-023::CASE-023",
+        "CASE-024::CASE-024",
+        "CASE-025::CASE-025",
+        "CASE-029::CASE-029",
+        "CASE-030::CASE-030",
+        "CASE-031::CASE-031",
+        "CASE-032::CASE-032",
+        "CASE-036::CASE-036",
+        "CASE-037::CASE-037",
+        "CASE-038::CASE-038",
+        "CASE-039::CASE-039",
+        "CASE-040::CASE-040",
+        "CASE-041::CASE-041",
+        "CASE-046::CASE-046",
+        "CASE-047::CASE-047",
+        "CASE-048::CASE-048"
+      ],
+      "singleton_items_preserved": [
+        "CASE-047::CASE-047",
+        "CASE-048::CASE-048"
+      ],
+      "malformed_or_contradicted_items_dropped": [],
+      "source_g3_run_ids": [
+        "T2_G3_seed01_agent01",
+        "T2_G3_seed01_agent02",
+        "T2_G3_seed01_agent03"
+      ]
+    }
+  ]
+}

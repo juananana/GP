@@ -27,6 +27,8 @@ For each task, seed, and aggregation rule, report:
 - `union_recall`: recall of the union of all G3 agents.
 - `holdout_gain`: true oracle items found by holdout but absent from main output.
 - `bucket_recall`: recall by item bucket or difficulty tag.
+- `aggregation_loss`: recall of raw union minus recall of the final aggregate.
+- `minority_true_drop_rate`: true singleton items dropped by the final aggregate.
 
 ## False Convergence Thresholds
 
@@ -38,8 +40,13 @@ when all conditions hold:
 - `pairwise_overlap >= 0.70`
 - `holdout_gain >= max(0.05, 3 / oracle_size)`
 
-The default main aggregation rule is `consensus >= 2 of 3`. Union aggregation is
-reported separately as an important counterfactual.
+The default main aggregation rules are now:
+
+- `majority_consensus`: items reported by at least two of three G3 agents.
+- `standard_summarizer`: a natural high-precision summary of blind G3 reports.
+
+Union aggregation is reported separately as an important counterfactual, not as
+the default production policy.
 
 ## Paper-Grade Evidence Bar
 
@@ -52,6 +59,8 @@ Minimum acceptable evidence:
 - Bucket-level evidence that missing items are systematic, not random.
 - Explicit comparison of consensus, union, summarizer, and holdout-scout
   aggregation behavior.
+- At least one union-preserving summarizer counterfactual showing whether the
+  missing mass was present in the reports but removed by aggregation.
 
 Strong evidence:
 
@@ -93,11 +102,20 @@ Seeds:
 - Holdout scouts must not inspect oracle files, previous reasoning traces, or
   hidden labels.
 - Ground truth must be line-level or item-level verifiable.
+- Task-specific constraints should not be added merely to produce a positive
+  result. If search budgets or source-access limits are used, they must be
+  declared as experimental conditions.
 
 ## Immediate Next Runs
 
-1. Complete `T1_hard_repo x G1/G3/G6 x seed01-03`.
-2. Score consensus, union, and holdout for all seeds with the same script.
-3. Build `T2_doc_search` as a second closed-world task family.
-4. Run `T2_doc_search x G1/G3/G6 x seed01-03`.
-5. Produce a Go/No-Go memo with effect sizes and caveats.
+1. Run `union_preserving_summarizer` on the existing `T1_hard_seed01` and
+   `T2_policy_docs_seed01` G3 packets.
+2. Score `majority_consensus`, `standard_summarizer`,
+   `union_preserving_summarizer`, `raw_union`, and `holdout_scout`.
+3. Repeat the aggregation comparison on every existing G3 seed with nonzero
+   report diversity.
+4. Add new seeds only after aggregation prompts are pre-registered.
+5. Add one less synthetic task family, preferably a realistic repo or document
+   snapshot with independently constructed oracle labels.
+6. Produce a Go/No-Go memo focused on effect sizes, negative cases, and
+   aggregation-policy caveats.

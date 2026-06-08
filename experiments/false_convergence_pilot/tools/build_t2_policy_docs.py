@@ -4,12 +4,12 @@
 from __future__ import annotations
 
 import json
+import argparse
 import shutil
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-TASK_ROOT = ROOT / "T2_policy_docs"
 
 
 SERVICES = {
@@ -130,6 +130,21 @@ CASES = [
     case("CASE-048", "svc-orbit-charge", "refund", "production_active", "north", "adapter is legacy; flow is refund but service is charge pipeline"),
 ]
 
+EXTRA_V2_CASES = [
+    case("CASE-049", "svc-nova-charge", "refund", "production_active", "north", "boundary: charge-named service with refund flow"),
+    case("CASE-050", "svc-orbit-charge", "refund", "scheduled_replay", "north", "boundary: charge-named service with scheduled refund"),
+    case("CASE-051", "svc-eu-refund", "charge", "production_active", "west", "boundary: refund-named service with charge flow"),
+    case("CASE-052", "svc-ap-refund", "charge", "scheduled_replay", "east", "boundary: refund-named service with scheduled charge"),
+    case("CASE-053", "svc-ledger-replay", "refund", "production_active", "replay", "boundary: replay service with refund flow"),
+    case("CASE-054", "svc-fallback-charge", "refund", "production_active", "queues", "boundary: charge fallback adapter with refund flow"),
+    case("CASE-055", "svc-fallback-refund", "charge", "production_active", "queues", "boundary: refund fallback adapter with charge flow"),
+    case("CASE-056", "svc-nova-charge", "fallback_queue", "production_active", "queues", "boundary: tenant adapter with queue flow"),
+    case("CASE-057", "svc-atlas-checkout", "fallback_queue", "production_active", "queues", "stripe queue distractor"),
+    case("CASE-058", "svc-recheck", "refund", "production_active", "queues", "v2 topic distractor with target-looking flow"),
+    case("CASE-059", "svc-sandbox-pay", "refund", "production_active", "sandbox", "sandbox distractor with target-looking flow"),
+    case("CASE-060", "svc-legacy-adjust", "charge", "production_active", "ops", "manual workflow distractor with target-looking flow"),
+]
+
 
 def is_target(item: dict[str, str]) -> bool:
     if item["state"] not in TARGET_STATES:
@@ -147,22 +162,30 @@ def write_file(path: Path, text: str) -> None:
 
 
 def main() -> None:
-    if TASK_ROOT.exists():
-        shutil.rmtree(TASK_ROOT)
-    (TASK_ROOT / "docs" / "cases").mkdir(parents=True)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--variant", choices=["v1", "v2"], default="v1")
+    args = parser.parse_args()
+
+    task_id = "T2_policy_docs" if args.variant == "v1" else "T2_policy_docs_v2"
+    task_root = ROOT / task_id
+    cases = CASES if args.variant == "v1" else CASES + EXTRA_V2_CASES
+
+    if task_root.exists():
+        shutil.rmtree(task_root)
+    (task_root / "docs" / "cases").mkdir(parents=True)
 
     registry_lines = ["# Adapter Registry", ""]
     for name, entry in sorted(ADAPTERS.items()):
         detail = ", ".join(f"{key}={value}" for key, value in entry.items())
         registry_lines.append(f"- adapter_id: {name}; {detail}")
-    write_file(TASK_ROOT / "docs" / "registry" / "adapter_registry.md", "\n".join(registry_lines) + "\n")
+    write_file(task_root / "docs" / "registry" / "adapter_registry.md", "\n".join(registry_lines) + "\n")
 
     catalog_lines = ["# Service Catalog", ""]
     for service, adapter in sorted(SERVICES.items()):
         catalog_lines.append(f"- service_id: {service}; adapter_id: {adapter}")
-    write_file(TASK_ROOT / "docs" / "registry" / "service_catalog.md", "\n".join(catalog_lines) + "\n")
+    write_file(task_root / "docs" / "registry" / "service_catalog.md", "\n".join(catalog_lines) + "\n")
 
-    for item in CASES:
+    for item in cases:
         text = f"""# {item['case_id']} Payment Operations Note
 
 case_id: {item['case_id']}
@@ -176,7 +199,7 @@ Operator note: {item['note']}.
 Audit instruction: resolve the service_id through the service catalog and adapter
 registry before deciding whether this case is an AcmePay v1 migration point.
 """
-        write_file(TASK_ROOT / "docs" / "cases" / f"{item['case_id']}.md", text)
+        write_file(task_root / "docs" / "cases" / f"{item['case_id']}.md", text)
 
     task = """# T2 Policy Docs Blind Task
 
@@ -210,10 +233,10 @@ For each item, output:
 }
 ```
 """
-    write_file(TASK_ROOT / "TASK.md", task)
+    write_file(task_root / "TASK.md", task)
 
     oracle_items = []
-    for item in CASES:
+    for item in cases:
         if not is_target(item):
             continue
         oracle_items.append({
@@ -232,11 +255,11 @@ For each item, output:
         })
 
     oracle = {
-        "task_id": "T2_policy_docs",
+        "task_id": task_id,
         "oracle_policy": "Case-level items. A case is counted if its state and flow are in scope and its service resolves through the catalog and adapter registry to AcmePay v1. Sandbox, v2, hold, canary, manual-only, and wrong-flow cases are excluded.",
         "items": oracle_items,
     }
-    write_file(ROOT / "T2_policy_docs_oracle.json", json.dumps(oracle, indent=2))
+    write_file(ROOT / f"{task_id}_oracle.json", json.dumps(oracle, indent=2))
 
 
 if __name__ == "__main__":
