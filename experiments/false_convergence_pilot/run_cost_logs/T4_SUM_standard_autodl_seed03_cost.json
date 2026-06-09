@@ -1,0 +1,14 @@
+{
+  "run_id": "T4_SUM_standard_autodl_seed03",
+  "task_id": "T4_real_repo_click_deprecation",
+  "started_at": "2026-06-08T08:48:28.505795+00:00",
+  "ended_at": "2026-06-08T08:48:44.493079+00:00",
+  "model_name": "gpt-5.3-codex",
+  "prompt_variant": "autodl_standard",
+  "input_tokens": 4808,
+  "output_tokens": 2008,
+  "tool_calls": null,
+  "wall_clock_seconds": 15.987254400009988,
+  "stop_reason": "api_response",
+  "notes": null
+}

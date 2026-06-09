@@ -1,0 +1,422 @@
+{
+  "task_id": "T4_real_repo_click_deprecation",
+  "oracle_size": 149,
+  "runs": [
+    {
+      "run_id": "T4_SUM_standard_autodl_seed03",
+      "self_reported_completion": true,
+      "self_reported_confidence": 0.93,
+      "items": [
+        {
+          "file_path": "repo/docs/commands-and-groups.md",
+          "line": 57
+        },
+        {
+          "file_path": "repo/docs/commands-and-groups.md",
+          "line": 62
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 18
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 19
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 152
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 154
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 308
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 311
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 314
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 394
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 398
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 399
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 401
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 84
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 86
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 95
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 97
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 106
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 108
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 118
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 121
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 515
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 517
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 526
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 528
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 98
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 100
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 101
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 102
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 106
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 107
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 110
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 111
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 517
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 519
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1030
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1045
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1074
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1084
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1205
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1206
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1237
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1238
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1357
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1359
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1362
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2249
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2278
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2309
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2318
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2321
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2709
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2714
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2719
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2915
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2922
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2935
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 2936
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 3041
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 3042
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 3580
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 3585
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 3586
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 3610
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 3660
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 3662
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 3669
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 3671
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 55
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 57
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 58
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 84
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 87
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 91
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 93
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 94
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 98
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 99
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 103
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 104
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 380
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 381
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 385
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 406
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 410
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 411
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 432
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 435
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 439
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 441
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 442
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 446
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 447
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 515
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 517
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 518
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 533
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 534
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 543
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 544
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 546
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 547
+        }
+      ],
+      "uncertain_or_dropped_singletons": []
+    }
+  ]
+}

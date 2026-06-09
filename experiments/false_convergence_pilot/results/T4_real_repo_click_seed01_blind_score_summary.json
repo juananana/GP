@@ -1,0 +1,191 @@
+{
+  "task_id": "T4_real_repo_click_deprecation",
+  "oracle_size": 149,
+  "thresholds": {
+    "theta": 0.95,
+    "tau": 0.7,
+    "confidence": 0.8,
+    "gamma": 0.05
+  },
+  "run_summaries": [
+    {
+      "run_id": "T4_G3_seed01_agent01",
+      "seed": "seed01",
+      "group": "G3",
+      "confidence": 0.82,
+      "completion": true,
+      "found": 149,
+      "true_positive": 148,
+      "false_positive": 1,
+      "recall": 0.9932885906040269,
+      "precision": 0.9932885906040269,
+      "false_stop": false,
+      "bucket_recall": {
+        "command_behavior": 1.0,
+        "documentation": 1.0,
+        "implementation": 0.9714285714285714,
+        "message_formatting": 1.0,
+        "parameter_behavior": 1.0,
+        "test_coverage": 1.0,
+        "warning_emission": 1.0
+      }
+    },
+    {
+      "run_id": "T4_G3_seed01_agent02",
+      "seed": "seed01",
+      "group": "G3",
+      "confidence": 0.74,
+      "completion": true,
+      "found": 149,
+      "true_positive": 142,
+      "false_positive": 7,
+      "recall": 0.9530201342281879,
+      "precision": 0.9530201342281879,
+      "false_stop": false,
+      "bucket_recall": {
+        "command_behavior": 1.0,
+        "documentation": 1.0,
+        "implementation": 0.9142857142857143,
+        "message_formatting": 1.0,
+        "parameter_behavior": 0.8888888888888888,
+        "test_coverage": 0.9701492537313433,
+        "warning_emission": 0.9166666666666666
+      }
+    },
+    {
+      "run_id": "T4_G3_seed01_agent03",
+      "seed": "seed01",
+      "group": "G3",
+      "confidence": 0.78,
+      "completion": true,
+      "found": 149,
+      "true_positive": 104,
+      "false_positive": 45,
+      "recall": 0.697986577181208,
+      "precision": 0.697986577181208,
+      "false_stop": true,
+      "bucket_recall": {
+        "command_behavior": 0.8,
+        "documentation": 1.0,
+        "implementation": 0.6857142857142857,
+        "message_formatting": 1.0,
+        "parameter_behavior": 0.3333333333333333,
+        "test_coverage": 0.6119402985074627,
+        "warning_emission": 0.9166666666666666
+      }
+    },
+    {
+      "run_id": "T4_G6_holdout_seed01",
+      "seed": "seed01",
+      "group": "G6",
+      "confidence": 0.72,
+      "completion": true,
+      "found": 149,
+      "true_positive": 140,
+      "false_positive": 9,
+      "recall": 0.9395973154362416,
+      "precision": 0.9395973154362416,
+      "false_stop": true,
+      "bucket_recall": {
+        "command_behavior": 1.0,
+        "documentation": 0.38461538461538464,
+        "implementation": 0.9714285714285714,
+        "message_formatting": 1.0,
+        "parameter_behavior": 1.0,
+        "test_coverage": 1.0,
+        "warning_emission": 1.0
+      }
+    }
+  ],
+  "seed_summaries": [
+    {
+      "seed": "seed01",
+      "g3_run_ids": [
+        "T4_G3_seed01_agent01",
+        "T4_G3_seed01_agent02",
+        "T4_G3_seed01_agent03"
+      ],
+      "mean_confidence": 0.7799999999999999,
+      "pairwise_jaccard": [
+        0.9225806451612903,
+        0.5440414507772021,
+        0.5440414507772021
+      ],
+      "mean_pairwise_jaccard": 0.6702211822385649,
+      "singleton_ratio": 0.2814070351758794,
+      "consensus": {
+        "found": 143,
+        "true_positive": 142,
+        "false_positive": 1,
+        "recall": 0.9530201342281879,
+        "precision": 0.993006993006993
+      },
+      "union": {
+        "found": 199,
+        "true_positive": 148,
+        "false_positive": 51,
+        "recall": 0.9932885906040269,
+        "precision": 0.7437185929648241
+      },
+      "holdout": {
+        "found": 149,
+        "true_positive": 140,
+        "false_positive": 9,
+        "recall": 0.9395973154362416,
+        "precision": 0.9395973154362416
+      },
+      "holdout_gain": 0.040268456375838924,
+      "false_convergence_consensus": false,
+      "consensus_bucket_recall": {
+        "command_behavior": 1.0,
+        "documentation": 1.0,
+        "implementation": 0.9142857142857143,
+        "message_formatting": 1.0,
+        "parameter_behavior": 0.8888888888888888,
+        "test_coverage": 0.9701492537313433,
+        "warning_emission": 0.9166666666666666
+      },
+      "union_bucket_recall": {
+        "command_behavior": 1.0,
+        "documentation": 1.0,
+        "implementation": 0.9714285714285714,
+        "message_formatting": 1.0,
+        "parameter_behavior": 1.0,
+        "test_coverage": 1.0,
+        "warning_emission": 1.0
+      },
+      "holdout_bucket_recall": {
+        "command_behavior": 1.0,
+        "documentation": 0.38461538461538464,
+        "implementation": 0.9714285714285714,
+        "message_formatting": 1.0,
+        "parameter_behavior": 1.0,
+        "test_coverage": 1.0,
+        "warning_emission": 1.0
+      },
+      "consensus_missing_true_items": [
+        "repo/src/click/core.py:107",
+        "repo/src/click/core.py:1084",
+        "repo/src/click/core.py:2206",
+        "repo/src/click/core.py:2685",
+        "repo/src/click/core.py:276",
+        "repo/tests/test_arguments.py:432",
+        "repo/tests/test_options.py:84"
+      ],
+      "holdout_new_true_items": [
+        "repo/src/click/core.py:107",
+        "repo/src/click/core.py:1084",
+        "repo/src/click/core.py:2685",
+        "repo/src/click/core.py:276",
+        "repo/tests/test_arguments.py:432",
+        "repo/tests/test_options.py:84"
+      ]
+    }
+  ],
+  "raw_run_ids": [
+    "T4_G3_seed01_agent01",
+    "T4_G3_seed01_agent02",
+    "T4_G3_seed01_agent03",
+    "T4_G6_holdout_seed01"
+  ]
+}

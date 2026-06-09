@@ -1,0 +1,328 @@
+\begin{thebibliography}{44}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Asai et~al.(2023)Asai, Wu, Wang, Sil, and
+  Hajishirzi}]{asai2023selfrag}
+Asai, A.; Wu, Z.; Wang, Y.; Sil, A.; and Hajishirzi, H. 2023.
+\newblock {Self-RAG}: Learning to Retrieve, Generate, and Critique through
+  Self-Reflection.
+\newblock \emph{arXiv preprint arXiv:2310.11511}.
+
+\bibitem[{Chan et~al.(2023)Chan, Chen, Su, Yu, Xue, Zhang, Fu, and
+  Liu}]{chan2023chateval}
+Chan, C.-M.; Chen, W.; Su, Y.; Yu, J.; Xue, W.; Zhang, S.; Fu, J.; and Liu, Z.
+  2023.
+\newblock {ChatEval}: Towards Better {LLM}-based Evaluators through Multi-Agent
+  Debate.
+\newblock \emph{arXiv preprint arXiv:2308.07201}.
+
+\bibitem[{Chao(1984)}]{chao1984nonparametric}
+Chao, A. 1984.
+\newblock Nonparametric Estimation of the Number of Classes in a Population.
+\newblock \emph{Scandinavian Journal of Statistics}, 11(4): 265--270.
+
+\bibitem[{Chao et~al.(2014)Chao, Gotelli, Hsieh, Sander, Ma, Colwell, and
+  Ellison}]{chao2014rarefaction}
+Chao, A.; Gotelli, N.~J.; Hsieh, T.~C.; Sander, E.~L.; Ma, K.~H.; Colwell,
+  R.~K.; and Ellison, A.~M. 2014.
+\newblock Rarefaction and Extrapolation with Hill Numbers: A Framework for
+  Sampling and Estimation in Species Diversity Studies.
+\newblock \emph{Ecological Monographs}, 84(1): 45--67.
+
+\bibitem[{Chen et~al.(2024)Chen, Lin, Han, and Sun}]{chen2024rgb}
+Chen, J.; Lin, H.; Han, X.; and Sun, L. 2024.
+\newblock {RGB}: A Benchmark for Evaluating Retrieval-Augmented Generation.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\bibitem[{Chen et~al.(2023)Chen, Su, Zuo, Yang, Yuan, Qian, Chan, Qin, Lu, Xie,
+  Liu, Sun, and Zhou}]{chen2023agentverse}
+Chen, W.; Su, Y.; Zuo, J.; Yang, C.; Yuan, C.; Qian, C.; Chan, C.-M.; Qin, Y.;
+  Lu, Y.; Xie, R.; Liu, Z.; Sun, M.; and Zhou, J. 2023.
+\newblock {AgentVerse}: Facilitating Multi-Agent Collaboration and Exploring
+  Emergent Behaviors.
+\newblock \emph{arXiv preprint arXiv:2308.10848}.
+
+\bibitem[{Cole et~al.(2023)Cole, Zhang, Gillick, Eisenschlos, and
+  Guu}]{cole2023selectively}
+Cole, J.~R.; Zhang, M. J.~Q.; Gillick, D.; Eisenschlos, J.; and Guu, K. 2023.
+\newblock Selective Generation: Controlling Abstemiousness and Fidelity in
+  Neural Text Generation.
+\newblock \emph{arXiv preprint arXiv:2205.14333}.
+
+\bibitem[{Cormack and Grossman(2021)}]{cormack2021tarstopping}
+Cormack, G.~V.; and Grossman, M.~R. 2021.
+\newblock Heuristic Stopping Rules for Technology-Assisted Review.
+\newblock \emph{arXiv preprint arXiv:2106.09871}.
+
+\bibitem[{Dhuliawala et~al.(2023)Dhuliawala, Komeili, Xu, Raileanu, Li,
+  Celikyilmaz, and Weston}]{dhuliawala2023cov}
+Dhuliawala, S.; Komeili, M.; Xu, J.; Raileanu, R.; Li, X.; Celikyilmaz, A.; and
+  Weston, J. 2023.
+\newblock Chain-of-Verification Reduces Hallucination in Large Language Models.
+\newblock \emph{arXiv preprint arXiv:2309.11495}.
+
+\bibitem[{Du et~al.(2023)Du, Li, Torralba, Tenenbaum, and
+  Mordatch}]{du2023debate}
+Du, Y.; Li, S.; Torralba, A.; Tenenbaum, J.~B.; and Mordatch, I. 2023.
+\newblock Improving Factuality and Reasoning in Language Models through
+  Multiagent Debate.
+\newblock \emph{arXiv preprint arXiv:2305.14325}.
+
+\bibitem[{Gao et~al.(2023)Gao, Xiong, Gao, Jia, Pan, Bi, Dai, Sun, Wang, and
+  Wang}]{gao2023ragsurvey}
+Gao, Y.; Xiong, Y.; Gao, X.; Jia, K.; Pan, J.; Bi, Y.; Dai, Y.; Sun, J.; Wang,
+  M.; and Wang, H. 2023.
+\newblock Retrieval-Augmented Generation for Large Language Models: A Survey.
+\newblock \emph{arXiv preprint arXiv:2312.10997}.
+
+\bibitem[{Good(1953)}]{good1953population}
+Good, I.~J. 1953.
+\newblock The Population Frequencies of Species and the Estimation of
+  Population Parameters.
+\newblock \emph{Biometrika}, 40(3/4): 237--264.
+
+\bibitem[{Gou et~al.(2023)Gou, Shao, Gong, Yang, Huang, Duan, and
+  Chen}]{gou2023critic}
+Gou, Z.; Shao, Z.; Gong, Y.; Yang, Y.; Huang, M.; Duan, N.; and Chen, W. 2023.
+\newblock {CRITIC}: Large Language Models Can Self-Correct with
+  Tool-Interactive Critiquing.
+\newblock \emph{arXiv preprint arXiv:2305.11738}.
+
+\bibitem[{Grossman, Cormack, and Roegiest(2015)}]{grossman2015trec}
+Grossman, M.~R.; Cormack, G.~V.; and Roegiest, A. 2015.
+\newblock Overview of the {TREC} 2015 Total Recall Track.
+\newblock In \emph{Proceedings of The Twenty-Fourth Text REtrieval Conference}.
+
+\bibitem[{Guu et~al.(2020)Guu, Lee, Tung, Pasupat, and Chang}]{guu2020realm}
+Guu, K.; Lee, K.; Tung, Z.; Pasupat, P.; and Chang, M.-W. 2020.
+\newblock {REALM}: Retrieval-Augmented Language Model Pre-Training.
+\newblock In \emph{International Conference on Machine Learning}, 3929--3938.
+
+\bibitem[{Hong et~al.(2023)Hong, Zheng, Chen, Cheng, Zhang, Wang, Yau, Lin,
+  Zhou, Ran, Xiao, and Wu}]{hong2023metagpt}
+Hong, S.; Zheng, X.; Chen, J.; Cheng, Y.; Zhang, J.; Wang, C.; Yau, Z.; Lin,
+  Z.; Zhou, L.; Ran, C.; Xiao, L.; and Wu, C. 2023.
+\newblock {MetaGPT}: Meta Programming for A Multi-Agent Collaborative
+  Framework.
+\newblock \emph{arXiv preprint arXiv:2308.00352}.
+
+\bibitem[{Jimenez et~al.(2023)Jimenez, Yang, Wettig, Yao, Pei, Press, and
+  Narasimhan}]{jimenez2023swebench}
+Jimenez, C.~E.; Yang, J.; Wettig, A.; Yao, S.; Pei, K.; Press, O.; and
+  Narasimhan, K. 2023.
+\newblock {SWE-bench}: Can Language Models Resolve Real-World GitHub Issues?
+\newblock \emph{arXiv preprint arXiv:2310.06770}.
+
+\bibitem[{Kadavath et~al.(2022)Kadavath, Conerly, Askell, Henighan, Drain,
+  Perez, Schiefer, Hatfield-Dodds, DasSarma, Tran-Johnson, Johnston, El-Showk,
+  Jones, Elhage, Hume, Chen, Bai, Bowman, Fort, Ganguli, Hernandez, Jacobson,
+  Kernion, Kravec, Lovitt, Ndousse, Olsson, Ringer, Amodei, Brown, Clark,
+  Joseph, Mann, McCandlish, Olah, and Kaplan}]{kadavath2022language}
+Kadavath, S.; Conerly, T.; Askell, A.; Henighan, T.; Drain, D.; Perez, E.;
+  Schiefer, N.; Hatfield-Dodds, Z.; DasSarma, N.; Tran-Johnson, E.; Johnston,
+  S.; El-Showk, S.; Jones, A.; Elhage, N.; Hume, T.; Chen, A.; Bai, Y.; Bowman,
+  S.; Fort, S.; Ganguli, D.; Hernandez, D.; Jacobson, J.; Kernion, J.; Kravec,
+  S.; Lovitt, L.; Ndousse, K.; Olsson, C.; Ringer, S.; Amodei, D.; Brown, T.;
+  Clark, J.; Joseph, N.; Mann, B.; McCandlish, S.; Olah, C.; and Kaplan, J.
+  2022.
+\newblock Language Models (Mostly) Know What They Know.
+\newblock \emph{arXiv preprint arXiv:2207.05221}.
+
+\bibitem[{Karpukhin et~al.(2020)Karpukhin, Oguz, Min, Lewis, Wu, Edunov, Chen,
+  and Yih}]{karpukhin2020dpr}
+Karpukhin, V.; Oguz, B.; Min, S.; Lewis, P.; Wu, L.; Edunov, S.; Chen, D.; and
+  Yih, W.-t. 2020.
+\newblock Dense Passage Retrieval for Open-Domain Question Answering.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing}, 6769--6781.
+
+\bibitem[{Kuhn, Gal, and Farquhar(2023)}]{kuhn2023semanticentropy}
+Kuhn, L.; Gal, Y.; and Farquhar, S. 2023.
+\newblock Semantic Uncertainty: Linguistic Invariances for Uncertainty
+  Estimation in Natural Language Generation.
+\newblock \emph{arXiv preprint arXiv:2302.09664}.
+
+\bibitem[{Lewis et~al.(2020)Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal,
+  K{\"u}ttler, Lewis, Yih, Rockt{\"a}schel, Riedel, and Kiela}]{lewis2020rag}
+Lewis, P.; Perez, E.; Piktus, A.; Petroni, F.; Karpukhin, V.; Goyal, N.;
+  K{\"u}ttler, H.; Lewis, M.; Yih, W.-t.; Rockt{\"a}schel, T.; Riedel, S.; and
+  Kiela, D. 2020.
+\newblock Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.
+\newblock \emph{Advances in Neural Information Processing Systems}, 33:
+  9459--9474.
+
+\bibitem[{Li et~al.(2023{\natexlab{a}})Li, Hammoud, Itani, Khizbullin, and
+  Ghanem}]{li2023camel}
+Li, G.; Hammoud, H. A. A.~K.; Itani, H.; Khizbullin, D.; and Ghanem, B.
+  2023{\natexlab{a}}.
+\newblock {CAMEL}: Communicative Agents for ``Mind'' Exploration of Large
+  Language Model Society.
+\newblock \emph{arXiv preprint arXiv:2303.17760}.
+
+\bibitem[{Li et~al.(2023{\natexlab{b}})Li, Cheng, Zhao, Nie, and
+  Wen}]{li2023halueval}
+Li, J.; Cheng, X.; Zhao, W.~X.; Nie, J.-Y.; and Wen, J.-R. 2023{\natexlab{b}}.
+\newblock {HaluEval}: A Large-Scale Hallucination Evaluation Benchmark for
+  Large Language Models.
+\newblock \emph{arXiv preprint arXiv:2305.11747}.
+
+\bibitem[{Li et~al.(2024)Li, Lin, Zhang, Han, and Sun}]{li2024unigen}
+Li, Y.; Lin, H.; Zhang, Y.; Han, X.; and Sun, L. 2024.
+\newblock {UniGen}: A Unified Framework for Textual Dataset Generation Using
+  Large Language Models.
+\newblock In \emph{arXiv preprint arXiv:2406.18966}.
+
+\bibitem[{Lin, Hilton, and Evans(2021)}]{lin2021truthfulqa}
+Lin, S.; Hilton, J.; and Evans, O. 2021.
+\newblock {TruthfulQA}: Measuring How Models Mimic Human Falsehoods.
+\newblock \emph{arXiv preprint arXiv:2109.07958}.
+
+\bibitem[{Liu et~al.(2024)Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni, and
+  Liang}]{liu2023lost}
+Liu, N.~F.; Lin, K.; Hewitt, J.; Paranjape, A.; Bevilacqua, M.; Petroni, F.;
+  and Liang, P. 2024.
+\newblock Lost in the Middle: How Language Models Use Long Contexts.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  12: 157--173.
+
+\bibitem[{Liu et~al.(2023)Liu, Yu, Zhang, Xu, Lei, Lai, Gu, Ding, Men, Yang,
+  Zhang, Deng, Zeng, Du, Zhang, Shen, Zhang, Su, Sun, Huang, Dong, and
+  Tang}]{liu2023agentbench}
+Liu, X.; Yu, H.; Zhang, H.; Xu, Y.; Lei, X.; Lai, H.; Gu, Y.; Ding, H.; Men,
+  K.; Yang, K.; Zhang, S.; Deng, X.; Zeng, A.; Du, Z.; Zhang, C.; Shen, S.;
+  Zhang, T.; Su, Y.; Sun, H.; Huang, M.; Dong, Y.; and Tang, J. 2023.
+\newblock {AgentBench}: Evaluating LLMs as Agents.
+\newblock \emph{arXiv preprint arXiv:2308.03688}.
+
+\bibitem[{Madaan et~al.(2023)Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe,
+  Alon, Dziri, Prabhumoye, Yang, Welleck, Majumder, Gupta, Yazdanbakhsh, and
+  Clark}]{madaan2023selfrefine}
+Madaan, A.; Tandon, N.; Gupta, P.; Hallinan, S.; Gao, L.; Wiegreffe, S.; Alon,
+  U.; Dziri, N.; Prabhumoye, S.; Yang, Y.; Welleck, S.; Majumder, B.~P.; Gupta,
+  S.; Yazdanbakhsh, A.; and Clark, P. 2023.
+\newblock {Self-Refine}: Iterative Refinement with Self-Feedback.
+\newblock \emph{arXiv preprint arXiv:2303.17651}.
+
+\bibitem[{Manakul, Liusie, and Gales(2023)}]{manakul2023selfcheckgpt}
+Manakul, P.; Liusie, A.; and Gales, M. J.~F. 2023.
+\newblock {SelfCheckGPT}: Zero-Resource Black-Box Hallucination Detection for
+  Generative Large Language Models.
+\newblock \emph{arXiv preprint arXiv:2303.08896}.
+
+\bibitem[{McAllester and Schapire(2000)}]{mcAllester2000goodturing}
+McAllester, D.~A.; and Schapire, R.~E. 2000.
+\newblock On the Convergence Rate of Good-Turing Estimators.
+\newblock \emph{Proceedings of the Thirteenth Annual Conference on
+  Computational Learning Theory}.
+
+\bibitem[{Mialon et~al.(2023)Mialon, Fourrier, Swift, Wolf, LeCun, and
+  Scialom}]{mialon2023gaia}
+Mialon, G.; Fourrier, C.; Swift, C.; Wolf, T.; LeCun, Y.; and Scialom, T. 2023.
+\newblock {GAIA}: A Benchmark for General AI Assistants.
+\newblock \emph{arXiv preprint arXiv:2311.12983}.
+
+\bibitem[{Nakano et~al.(2021)Nakano, Hilton, Balaji, Wu, Ouyang, Kim, Hesse,
+  Jain, Kosaraju, Saunders, Jiang, Cobbe, Eloundou, Krueger, Button, Knight,
+  Chess, and Schulman}]{nakano2021webgpt}
+Nakano, R.; Hilton, J.; Balaji, S.; Wu, J.; Ouyang, L.; Kim, C.; Hesse, C.;
+  Jain, S.; Kosaraju, V.; Saunders, W.; Jiang, X.; Cobbe, K.; Eloundou, T.;
+  Krueger, G.; Button, K.; Knight, M.; Chess, B.; and Schulman, J. 2021.
+\newblock {WebGPT}: Browser-Assisted Question-Answering with Human Feedback.
+\newblock \emph{arXiv preprint arXiv:2112.09332}.
+
+\bibitem[{Qin et~al.(2023)Qin, Liang, Ye, Zhu, Yan, Lu, Lin, Cong, Tang, Qian,
+  Zhao, Hong, Tian, Xie, Zhou, Gerstein, Li, Liu, and Sun}]{qin2023toolllm}
+Qin, Y.; Liang, S.; Ye, Y.; Zhu, K.; Yan, L.; Lu, Y.; Lin, Y.; Cong, X.; Tang,
+  X.; Qian, B.; Zhao, S.; Hong, L.; Tian, R.; Xie, R.; Zhou, J.; Gerstein, M.;
+  Li, D.; Liu, Z.; and Sun, M. 2023.
+\newblock {ToolLLM}: Facilitating Large Language Models to Master 16000+
+  Real-world APIs.
+\newblock \emph{arXiv preprint arXiv:2307.16789}.
+
+\bibitem[{Schick et~al.(2023)Schick, Dwivedi-Yu, Dess{\`\i}, Raileanu, Lomeli,
+  Hambro, Zettlemoyer, Cancedda, and Scialom}]{schick2023toolformer}
+Schick, T.; Dwivedi-Yu, J.; Dess{\`\i}, R.; Raileanu, R.; Lomeli, M.; Hambro,
+  E.; Zettlemoyer, L.; Cancedda, N.; and Scialom, T. 2023.
+\newblock {Toolformer}: Language Models Can Teach Themselves to Use Tools.
+\newblock \emph{arXiv preprint arXiv:2302.04761}.
+
+\bibitem[{Shinn et~al.(2023)Shinn, Cassano, Gopinath, Narasimhan, and
+  Yao}]{shinn2023reflexion}
+Shinn, N.; Cassano, F.; Gopinath, A.; Narasimhan, K.; and Yao, S. 2023.
+\newblock Reflexion: Language Agents with Verbal Reinforcement Learning.
+\newblock \emph{arXiv preprint arXiv:2303.11366}.
+
+\bibitem[{Thorne et~al.(2018)Thorne, Vlachos, Christodoulopoulos, and
+  Mittal}]{thorne2018fever}
+Thorne, J.; Vlachos, A.; Christodoulopoulos, C.; and Mittal, A. 2018.
+\newblock {FEVER}: A Large-scale Dataset for Fact Extraction and VERification.
+\newblock In \emph{Proceedings of the 2018 Conference of the North American
+  Chapter of the Association for Computational Linguistics}, 809--819.
+
+\bibitem[{Wang et~al.(2023)Wang, Xie, Jiang, Mandlekar, Xiao, Zhu, Fan, and
+  Anandkumar}]{wang2023voyager}
+Wang, G.; Xie, Y.; Jiang, Y.; Mandlekar, A.; Xiao, C.; Zhu, Y.; Fan, L.; and
+  Anandkumar, A. 2023.
+\newblock {Voyager}: An Open-Ended Embodied Agent with Large Language Models.
+\newblock \emph{arXiv preprint arXiv:2305.16291}.
+
+\bibitem[{Wang et~al.(2022)Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery,
+  and Zhou}]{wang2022selfconsistency}
+Wang, X.; Wei, J.; Schuurmans, D.; Le, Q.; Chi, E.; Narang, S.; Chowdhery, A.;
+  and Zhou, D. 2022.
+\newblock Self-Consistency Improves Chain of Thought Reasoning in Language
+  Models.
+\newblock \emph{arXiv preprint arXiv:2203.11171}.
+
+\bibitem[{Wu et~al.(2023)Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang,
+  Liu, Awadallah, White, Burger, and Wang}]{wu2023autogen}
+Wu, Q.; Bansal, G.; Zhang, J.; Wu, Y.; Li, B.; Zhu, E.; Jiang, L.; Zhang, X.;
+  Zhang, S.; Liu, J.; Awadallah, A.~H.; White, R.~W.; Burger, D.; and Wang, C.
+  2023.
+\newblock {AutoGen}: Enabling Next-Gen {LLM} Applications via Multi-Agent
+  Conversation.
+\newblock \emph{arXiv preprint arXiv:2308.08155}.
+
+\bibitem[{Yang et~al.(2018)Yang, Qi, Zhang, Bengio, Cohen, Salakhutdinov, and
+  Manning}]{yang2018hotpotqa}
+Yang, Z.; Qi, P.; Zhang, S.; Bengio, Y.; Cohen, W.~W.; Salakhutdinov, R.; and
+  Manning, C.~D. 2018.
+\newblock {HotpotQA}: A Dataset for Diverse, Explainable Multi-hop Question
+  Answering.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
+  Natural Language Processing}, 2369--2380.
+
+\bibitem[{Yao et~al.(2023{\natexlab{a}})Yao, Yu, Zhao, Shafran, Griffiths, Cao,
+  and Narasimhan}]{yao2023tot}
+Yao, S.; Yu, D.; Zhao, J.; Shafran, I.; Griffiths, T.~L.; Cao, Y.; and
+  Narasimhan, K. 2023{\natexlab{a}}.
+\newblock Tree of Thoughts: Deliberate Problem Solving with Large Language
+  Models.
+\newblock \emph{arXiv preprint arXiv:2305.10601}.
+
+\bibitem[{Yao et~al.(2023{\natexlab{b}})Yao, Zhao, Yu, Du, Shafran, Narasimhan,
+  and Cao}]{yao2023react}
+Yao, S.; Zhao, J.; Yu, D.; Du, N.; Shafran, I.; Narasimhan, K.; and Cao, Y.
+  2023{\natexlab{b}}.
+\newblock {ReAct}: Synergizing Reasoning and Acting in Language Models.
+\newblock \emph{arXiv preprint arXiv:2210.03629}.
+
+\bibitem[{Zhang et~al.(2024)Zhang, Du, Shan, Zhou, Du, Tenenbaum, Shu, and
+  Gan}]{zhang2024proagent}
+Zhang, H.; Du, W.; Shan, J.; Zhou, Q.; Du, Y.; Tenenbaum, J.~B.; Shu, T.; and
+  Gan, C. 2024.
+\newblock {ProAgent}: Building Proactive Cooperative Agents with Large Language
+  Models.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\bibitem[{Zhou et~al.(2023)Zhou, Xu, Zhu, Zhou, Lo, Sridhar, Cheng, Bisk,
+  Fried, Alon, and Neubig}]{zhou2023webarena}
+Zhou, S.; Xu, F.~F.; Zhu, H.; Zhou, X.; Lo, R.; Sridhar, A.; Cheng, X.; Bisk,
+  Y.; Fried, D.; Alon, U.; and Neubig, G. 2023.
+\newblock {WebArena}: A Realistic Web Environment for Building Autonomous
+  Agents.
+\newblock \emph{arXiv preprint arXiv:2307.13854}.
+
+\end{thebibliography}

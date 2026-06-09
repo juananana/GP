@@ -1,0 +1,221 @@
+{
+  "task_id": "T4_real_repo_click_deprecation",
+  "oracle_size": 149,
+  "thresholds": {
+    "theta": 0.95,
+    "tau": 0.7,
+    "confidence": 0.8,
+    "gamma": 0.05
+  },
+  "run_summaries": [
+    {
+      "run_id": "T4_G3_seed02_agent01",
+      "seed": "seed02",
+      "group": "G3",
+      "confidence": 0.64,
+      "completion": true,
+      "found": 149,
+      "true_positive": 79,
+      "false_positive": 70,
+      "recall": 0.5302013422818792,
+      "precision": 0.5302013422818792,
+      "false_stop": true,
+      "bucket_recall": {
+        "command_behavior": 0.8,
+        "documentation": 1.0,
+        "implementation": 0.6285714285714286,
+        "message_formatting": 0.75,
+        "parameter_behavior": 0.2222222222222222,
+        "test_coverage": 0.31343283582089554,
+        "warning_emission": 0.9166666666666666
+      }
+    },
+    {
+      "run_id": "T4_G3_seed02_agent02",
+      "seed": "seed02",
+      "group": "G3",
+      "confidence": 0.98,
+      "completion": true,
+      "found": 149,
+      "true_positive": 149,
+      "false_positive": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "false_stop": false,
+      "bucket_recall": {
+        "command_behavior": 1.0,
+        "documentation": 1.0,
+        "implementation": 1.0,
+        "message_formatting": 1.0,
+        "parameter_behavior": 1.0,
+        "test_coverage": 1.0,
+        "warning_emission": 1.0
+      }
+    },
+    {
+      "run_id": "T4_G3_seed02_agent03",
+      "seed": "seed02",
+      "group": "G3",
+      "confidence": 0.66,
+      "completion": true,
+      "found": 149,
+      "true_positive": 113,
+      "false_positive": 36,
+      "recall": 0.7583892617449665,
+      "precision": 0.7583892617449665,
+      "false_stop": true,
+      "bucket_recall": {
+        "command_behavior": 0.8,
+        "documentation": 1.0,
+        "implementation": 0.8,
+        "message_formatting": 1.0,
+        "parameter_behavior": 0.3333333333333333,
+        "test_coverage": 0.6865671641791045,
+        "warning_emission": 0.9166666666666666
+      }
+    },
+    {
+      "run_id": "T4_G6_holdout_seed02",
+      "seed": "seed02",
+      "group": "G6",
+      "confidence": 0.68,
+      "completion": true,
+      "found": 149,
+      "true_positive": 120,
+      "false_positive": 29,
+      "recall": 0.8053691275167785,
+      "precision": 0.8053691275167785,
+      "false_stop": true,
+      "bucket_recall": {
+        "command_behavior": 0.8,
+        "documentation": 1.0,
+        "implementation": 0.8857142857142857,
+        "message_formatting": 1.0,
+        "parameter_behavior": 0.3333333333333333,
+        "test_coverage": 0.746268656716418,
+        "warning_emission": 0.9166666666666666
+      }
+    }
+  ],
+  "seed_summaries": [
+    {
+      "seed": "seed02",
+      "g3_run_ids": [
+        "T4_G3_seed02_agent01",
+        "T4_G3_seed02_agent02",
+        "T4_G3_seed02_agent03"
+      ],
+      "mean_confidence": 0.7600000000000001,
+      "pairwise_jaccard": [
+        0.3607305936073059,
+        0.5126903553299492,
+        0.6108108108108108
+      ],
+      "mean_pairwise_jaccard": 0.49474391991602196,
+      "singleton_ratio": 0.4206008583690987,
+      "consensus": {
+        "found": 135,
+        "true_positive": 113,
+        "false_positive": 22,
+        "recall": 0.7583892617449665,
+        "precision": 0.837037037037037
+      },
+      "union": {
+        "found": 233,
+        "true_positive": 149,
+        "false_positive": 84,
+        "recall": 1.0,
+        "precision": 0.6394849785407726
+      },
+      "holdout": {
+        "found": 149,
+        "true_positive": 120,
+        "false_positive": 29,
+        "recall": 0.8053691275167785,
+        "precision": 0.8053691275167785
+      },
+      "holdout_gain": 0.04697986577181208,
+      "false_convergence_consensus": false,
+      "consensus_bucket_recall": {
+        "command_behavior": 0.8,
+        "documentation": 1.0,
+        "implementation": 0.8,
+        "message_formatting": 1.0,
+        "parameter_behavior": 0.3333333333333333,
+        "test_coverage": 0.6865671641791045,
+        "warning_emission": 0.9166666666666666
+      },
+      "union_bucket_recall": {
+        "command_behavior": 1.0,
+        "documentation": 1.0,
+        "implementation": 1.0,
+        "message_formatting": 1.0,
+        "parameter_behavior": 1.0,
+        "test_coverage": 1.0,
+        "warning_emission": 1.0
+      },
+      "holdout_bucket_recall": {
+        "command_behavior": 0.8,
+        "documentation": 1.0,
+        "implementation": 0.8857142857142857,
+        "message_formatting": 1.0,
+        "parameter_behavior": 0.3333333333333333,
+        "test_coverage": 0.746268656716418,
+        "warning_emission": 0.9166666666666666
+      },
+      "consensus_missing_true_items": [
+        "repo/src/click/core.py:1030",
+        "repo/src/click/core.py:107",
+        "repo/src/click/core.py:1084",
+        "repo/src/click/core.py:2181",
+        "repo/src/click/core.py:2182",
+        "repo/src/click/core.py:2184",
+        "repo/src/click/core.py:2188",
+        "repo/src/click/core.py:2206",
+        "repo/src/click/core.py:2249",
+        "repo/src/click/core.py:2685",
+        "repo/src/click/core.py:276",
+        "repo/src/click/core.py:2823",
+        "repo/src/click/core.py:979",
+        "repo/src/click/core.py:980",
+        "repo/src/click/core.py:986",
+        "repo/tests/test_arguments.py:342",
+        "repo/tests/test_arguments.py:380",
+        "repo/tests/test_arguments.py:383",
+        "repo/tests/test_arguments.py:396",
+        "repo/tests/test_arguments.py:410",
+        "repo/tests/test_arguments.py:414",
+        "repo/tests/test_arguments.py:424",
+        "repo/tests/test_arguments.py:432",
+        "repo/tests/test_arguments.py:445",
+        "repo/tests/test_commands.py:509",
+        "repo/tests/test_commands.py:523",
+        "repo/tests/test_commands.py:538",
+        "repo/tests/test_commands.py:540",
+        "repo/tests/test_commands.py:543",
+        "repo/tests/test_options.py:102",
+        "repo/tests/test_options.py:48",
+        "repo/tests/test_options.py:62",
+        "repo/tests/test_options.py:66",
+        "repo/tests/test_options.py:76",
+        "repo/tests/test_options.py:84",
+        "repo/tests/test_options.py:97"
+      ],
+      "holdout_new_true_items": [
+        "repo/src/click/core.py:1030",
+        "repo/src/click/core.py:1084",
+        "repo/src/click/core.py:2249",
+        "repo/tests/test_arguments.py:410",
+        "repo/tests/test_arguments.py:432",
+        "repo/tests/test_commands.py:543",
+        "repo/tests/test_options.py:84"
+      ]
+    }
+  ],
+  "raw_run_ids": [
+    "T4_G3_seed02_agent01",
+    "T4_G3_seed02_agent02",
+    "T4_G3_seed02_agent03",
+    "T4_G6_holdout_seed02"
+  ]
+}

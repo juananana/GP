@@ -231,7 +231,7 @@ def main() -> None:
         "oracle_policy": "Natural-language case-level items. Count cases whose state and traffic are in scope, whose service resolves to AcmePay v1 or a v1 topic, and whose lane policy is satisfied or whose cited override is migration_required.",
         "items": oracle_items,
     }
-    write_file(ROOT / f"{TASK_ID}_oracle.json", json.dumps(oracle, indent=2))
+    write_file(ROOT / "results" / f"{TASK_ID}_oracle.json", json.dumps(oracle, indent=2))
 
 
 if __name__ == "__main__":

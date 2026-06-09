@@ -77,3 +77,11 @@ T1 seed01 是阳性机制样本：standard summarizer 和 consensus 漏掉真 si
 我们已经补齐 T2 policy docs 的 seed02 和 seed03。两个新 seed 都呈现同一个模式：三个 G3 agent 自报完成、彼此输出完全一致、precision 为 `1.000`，但都漏掉 `CASE-047` 和 `CASE-048`，停在 `28/30`。独立 holdout scout 在 seed02 和 seed03 都恢复到 `30/30`，precision 仍为 `1.000`。
 
 这一步把 A 线稳定性往前推了一格。T2 不是严格阳性，因为 holdout gain 是 `2/30 = 0.067`，低于预设 `gamma = 0.100`；但它稳定证明了“共同盲点”存在：多个 agent 的高度一致和高信心，可能只是说明它们用相似方式漏掉了同一个边界区域。
+
+## 进展更新：缓解方法实验已经完成
+
+我们已经完成 Evidence-Preserving Completion Protocol 的方法对照实验。这个 protocol 不把 consensus 直接当完成，也不把 raw union 直接当最终答案；它先保留 consensus items，把 singleton evidence 放入 audit queue，并在高一致、高信心且存在边界解析风险时触发 boundary-focused holdout。
+
+结果很适合论文。T1 seed01 和 T2 seed01 中，protocol 通过审计 singleton 恢复 aggregation loss；T2 seed02/03 中，protocol 通过 holdout 恢复 common blind spot；T1 seed02/03 中，protocol 没有直接采纳 singleton 误报，而是输出 `requires_audit`，避免 raw union 的 precision cost。
+
+这说明论文现在可以有三层贡献：先定义 False Convergence，再区分 aggregation loss 与 common blind spot，最后提出一个 evidence-preserving 的缓解框架。

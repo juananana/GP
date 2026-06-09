@@ -319,7 +319,7 @@ For each item, output:
         "oracle_policy": "Case-level items. A case is counted when state and flow are in scope, service resolves to AcmePay v1, and lane policy is satisfied or a migration_required override applies. Excluded overrides, sandbox, v2, manual, hold, and canary cases are excluded.",
         "items": oracle_items,
     }
-    write_file(ROOT / f"{TASK_ID}_oracle.json", json.dumps(oracle, indent=2))
+    write_file(ROOT / "results" / f"{TASK_ID}_oracle.json", json.dumps(oracle, indent=2))
 
 
 if __name__ == "__main__":

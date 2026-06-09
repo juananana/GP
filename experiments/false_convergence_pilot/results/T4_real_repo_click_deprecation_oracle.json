@@ -1,0 +1,1051 @@
+{
+  "task_id": "T4_real_repo_click_deprecation",
+  "source_repo": "https://github.com/pallets/click",
+  "source_commit": "8a1b1a33d739be05b7e91251e3c0dde77c5e152f",
+  "oracle_policy": "Line-level items in the real Click repository that are part of the current deprecated API surface audit. Include implementation, warning emission, formatting, validation guards, tests, and direct user documentation. Exclude incidental historical mentions outside the bounded changelog window and files outside the target audit set.",
+  "items": [
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 18,
+      "bucket": "documentation",
+      "evidence_span": "- Deprecated commands and options with empty or missing help text no longer",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 19,
+      "bucket": "documentation",
+      "evidence_span": "render a stray leading space before the `(DEPRECATED)` label. {pr}`3509`",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 152,
+      "bucket": "documentation",
+      "evidence_span": "- Fix missing space between option help text and the `(DEPRECATED)`",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 154,
+      "bucket": "documentation",
+      "evidence_span": "The label and the `DeprecationWarning` reason suffix are now produced",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 308,
+      "bucket": "documentation",
+      "evidence_span": "- `BaseCommand` is deprecated. `Command` is the base class for all",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 311,
+      "bucket": "documentation",
+      "evidence_span": "- `MultiCommand` is deprecated. `Group` is the base class for all group",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 314,
+      "bucket": "documentation",
+      "evidence_span": "- The current parser and related classes and methods, are deprecated.",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 394,
+      "bucket": "documentation",
+      "evidence_span": "- `deprecated: bool | str` can now be used on options and arguments. This",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 398,
+      "bucket": "documentation",
+      "evidence_span": "- `Command.deprecated` formatting in `--help` changed from",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 399,
+      "bucket": "documentation",
+      "evidence_span": "`(Deprecated) help` to `help (DEPRECATED)`.",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 401,
+      "bucket": "documentation",
+      "evidence_span": "- A warning will be printed when something deprecated is used.",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/docs/commands-and-groups.md",
+      "line": 57,
+      "bucket": "documentation",
+      "evidence_span": "To mark a command as deprecated pass in `deprecated=True`",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/docs/commands-and-groups.md",
+      "line": 62,
+      "bucket": "documentation",
+      "evidence_span": "@click.command('say-hello', deprecated=True)",
+      "difficulty_tag": "real_repo_documentation"
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 84,
+      "bucket": "command_behavior",
+      "evidence_span": "\"'BaseCommand' is deprecated and will be removed in Click 9.0. Use\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 86,
+      "bucket": "warning_emission",
+      "evidence_span": "DeprecationWarning,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 95,
+      "bucket": "command_behavior",
+      "evidence_span": "\"'MultiCommand' is deprecated and will be removed in Click 9.0. Use\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 97,
+      "bucket": "warning_emission",
+      "evidence_span": "DeprecationWarning,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 106,
+      "bucket": "parameter_behavior",
+      "evidence_span": "\"'OptionParser' is deprecated and will be removed in Click 9.0. The\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 108,
+      "bucket": "warning_emission",
+      "evidence_span": "DeprecationWarning,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 118,
+      "bucket": "implementation",
+      "evidence_span": "\"The '__version__' attribute is deprecated and will be removed in\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 121,
+      "bucket": "warning_emission",
+      "evidence_span": "DeprecationWarning,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 98,
+      "bucket": "message_formatting",
+      "evidence_span": "def _format_deprecated_label(deprecated: bool | str) -> str:",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 100,
+      "bucket": "implementation",
+      "evidence_span": "label = _(\"deprecated\").upper()",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 101,
+      "bucket": "implementation",
+      "evidence_span": "if isinstance(deprecated, str):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 102,
+      "bucket": "implementation",
+      "evidence_span": "return f\"({label}: {deprecated})\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 106,
+      "bucket": "message_formatting",
+      "evidence_span": "def _format_deprecated_suffix(deprecated: bool | str) -> str:",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 107,
+      "bucket": "warning_emission",
+      "evidence_span": "\"\"\"Return the trailing reason for a ``DeprecationWarning`` message,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 110,
+      "bucket": "implementation",
+      "evidence_span": "if isinstance(deprecated, str):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 111,
+      "bucket": "implementation",
+      "evidence_span": "return f\" {deprecated}\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 276,
+      "bucket": "implementation",
+      "evidence_span": "The ``protected_args`` attribute is deprecated and will be removed in",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 517,
+      "bucket": "implementation",
+      "evidence_span": "\"'protected_args' is deprecated and will be removed in Click 9.0.\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 519,
+      "bucket": "warning_emission",
+      "evidence_span": "DeprecationWarning,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 979,
+      "bucket": "parameter_behavior",
+      "evidence_span": ":param deprecated: If ``True`` or non-empty string, issues a message",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 980,
+      "bucket": "command_behavior",
+      "evidence_span": "indicating that the command is deprecated and highlights",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 986,
+      "bucket": "implementation",
+      "evidence_span": "``deprecated`` can be set to a string as well to customize the",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1030,
+      "bucket": "implementation",
+      "evidence_span": "deprecated: bool | str",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1045,
+      "bucket": "implementation",
+      "evidence_span": "deprecated: bool | str = False,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1074,
+      "bucket": "implementation",
+      "evidence_span": "self.deprecated = deprecated",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1084,
+      "bucket": "implementation",
+      "evidence_span": "\"deprecated\": self.deprecated,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1205,
+      "bucket": "implementation",
+      "evidence_span": "if self.deprecated:",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1206,
+      "bucket": "message_formatting",
+      "evidence_span": "text = f\"{_(text)} {_format_deprecated_label(self.deprecated)}\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1237,
+      "bucket": "implementation",
+      "evidence_span": "if self.deprecated:",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1238,
+      "bucket": "message_formatting",
+      "evidence_span": "label = _format_deprecated_label(self.deprecated)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1357,
+      "bucket": "implementation",
+      "evidence_span": "if self.deprecated:",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1359,
+      "bucket": "warning_emission",
+      "evidence_span": "\"DeprecationWarning: The command {name!r} is deprecated.{extra_message}\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1362,
+      "bucket": "message_formatting",
+      "evidence_span": "extra_message=_format_deprecated_suffix(self.deprecated),",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1596,
+      "bucket": "implementation",
+      "evidence_span": ".. deprecated:: 8.2",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2066,
+      "bucket": "implementation",
+      "evidence_span": ".. deprecated:: 8.2",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2181,
+      "bucket": "parameter_behavior",
+      "evidence_span": ":param deprecated: If ``True`` or non-empty string, issues a message",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2182,
+      "bucket": "parameter_behavior",
+      "evidence_span": "indicating that the argument is deprecated and highlights",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2184,
+      "bucket": "parameter_behavior",
+      "evidence_span": "by using a string as the value. A deprecated parameter",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2188,
+      "bucket": "implementation",
+      "evidence_span": "Introduction of ``deprecated``.",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2206,
+      "bucket": "implementation",
+      "evidence_span": "semantics described above. The old name is deprecated and will",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2249,
+      "bucket": "implementation",
+      "evidence_span": "deprecated: bool | str",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2278,
+      "bucket": "implementation",
+      "evidence_span": "deprecated: bool | str = False,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2309,
+      "bucket": "implementation",
+      "evidence_span": "self.deprecated = deprecated",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2318,
+      "bucket": "implementation",
+      "evidence_span": "if required and deprecated:",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2321,
+      "bucket": "implementation",
+      "evidence_span": "\"is deprecated and still required. A deprecated \"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2685,
+      "bucket": "parameter_behavior",
+      "evidence_span": "If the parameter is deprecated, this method warn the user about it. But only if",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2709,
+      "bucket": "implementation",
+      "evidence_span": "self.deprecated",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2714,
+      "bucket": "warning_emission",
+      "evidence_span": "\"DeprecationWarning: The {param_type} {name!r} is deprecated.\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2719,
+      "bucket": "message_formatting",
+      "evidence_span": "extra_message=_format_deprecated_suffix(self.deprecated),",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2823,
+      "bucket": "parameter_behavior",
+      "evidence_span": "will be the option name capitalized. A deprecated option cannot be",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2915,
+      "bucket": "implementation",
+      "evidence_span": "deprecated: bool | str = False,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2922,
+      "bucket": "parameter_behavior",
+      "evidence_span": "param_decls, type=type, multiple=multiple, deprecated=deprecated, **attrs",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2935,
+      "bucket": "implementation",
+      "evidence_span": "if deprecated:",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 2936,
+      "bucket": "message_formatting",
+      "evidence_span": "label = _format_deprecated_label(deprecated)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 3041,
+      "bucket": "implementation",
+      "evidence_span": "if deprecated and prompt:",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 3042,
+      "bucket": "parameter_behavior",
+      "evidence_span": "raise ValueError(\"`deprecated` options cannot use `prompt`.\")",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 3580,
+      "bucket": "implementation",
+      "evidence_span": "deprecated = attrs.get(\"deprecated\", False)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 3585,
+      "bucket": "implementation",
+      "evidence_span": "if deprecated:",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 3586,
+      "bucket": "message_formatting",
+      "evidence_span": "label = _format_deprecated_label(deprecated)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 3610,
+      "bucket": "implementation",
+      "evidence_span": "if self.deprecated:",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 3660,
+      "bucket": "command_behavior",
+      "evidence_span": "\"'BaseCommand' is deprecated and will be removed in Click 9.0. Use\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 3662,
+      "bucket": "warning_emission",
+      "evidence_span": "DeprecationWarning,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 3669,
+      "bucket": "command_behavior",
+      "evidence_span": "\"'MultiCommand' is deprecated and will be removed in Click 9.0. Use\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 3671,
+      "bucket": "warning_emission",
+      "evidence_span": "DeprecationWarning,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/parser.py",
+      "line": 237,
+      "bucket": "implementation",
+      "evidence_span": ".. deprecated:: 8.2",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/parser.py",
+      "line": 515,
+      "bucket": "implementation",
+      "evidence_span": "f\"'parser.{name}' is deprecated and will be removed in Click 9.0.\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/parser.py",
+      "line": 517,
+      "bucket": "warning_emission",
+      "evidence_span": "DeprecationWarning,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/parser.py",
+      "line": 526,
+      "bucket": "implementation",
+      "evidence_span": "\"Importing 'parser.split_arg_string' is deprecated, it will only be\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/src/click/parser.py",
+      "line": 528,
+      "bucket": "warning_emission",
+      "evidence_span": "DeprecationWarning,",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 342,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_usage(runner):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 344,
+      "bucket": "test_coverage",
+      "evidence_span": "@click.argument(\"f\", required=False, deprecated=True)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 380,
+      "bucket": "test_coverage",
+      "evidence_span": "(\"deprecated\", \"expected_label\"),",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 381,
+      "bucket": "test_coverage",
+      "evidence_span": "[(True, \"(DEPRECATED)\"), (\"use g instead\", \"(DEPRECATED: use g instead)\")],",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 383,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_usage_help_record(runner, deprecated, expected_label):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 385,
+      "bucket": "test_coverage",
+      "evidence_span": "@click.argument(\"f\", required=False, deprecated=deprecated, help=\"path to the file\")",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 396,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_usage_help_record_without_help(runner):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 398,
+      "bucket": "test_coverage",
+      "evidence_span": "@click.argument(\"f\", required=False, deprecated=True)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 406,
+      "bucket": "test_coverage",
+      "evidence_span": "assert \"(DEPRECATED)\" in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 410,
+      "bucket": "test_coverage",
+      "evidence_span": "(\"deprecated\", \"expected\"),",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 411,
+      "bucket": "test_coverage",
+      "evidence_span": "[(True, \"(DEPRECATED)\"), (\"USE B INSTEAD\", \"(DEPRECATED: USE B INSTEAD)\")],",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 414,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_empty_help_no_leading_space(help_text, deprecated, expected):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 418,
+      "bucket": "test_coverage",
+      "evidence_span": "arg = click.Argument([\"foo\"], required=False, help=help_text, deprecated=deprecated)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 423,
+      "bucket": "test_coverage",
+      "evidence_span": "@pytest.mark.parametrize(\"deprecated\", [True, \"USE B INSTEAD\"])",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 424,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_warning(runner, deprecated):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 427,
+      "bucket": "test_coverage",
+      "evidence_span": "\"my-argument\", required=False, deprecated=deprecated, default=\"default argument\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 432,
+      "bucket": "test_coverage",
+      "evidence_span": "# defaults should not give a deprecated warning",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 435,
+      "bucket": "test_coverage",
+      "evidence_span": "assert \"is deprecated\" not in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 439,
+      "bucket": "test_coverage",
+      "evidence_span": "assert \"argument 'MY_ARGUMENT' is deprecated\" in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 441,
+      "bucket": "test_coverage",
+      "evidence_span": "if isinstance(deprecated, str):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 442,
+      "bucket": "test_coverage",
+      "evidence_span": "assert deprecated in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 445,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_required(runner):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 446,
+      "bucket": "test_coverage",
+      "evidence_span": "with pytest.raises(ValueError, match=\"is deprecated and still required\"):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_arguments.py",
+      "line": 447,
+      "bucket": "test_coverage",
+      "evidence_span": "click.Argument([\"a\"], required=True, deprecated=True)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 508,
+      "bucket": "test_coverage",
+      "evidence_span": "@pytest.mark.parametrize(\"deprecated\", [True, \"USE OTHER COMMAND INSTEAD\"])",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 509,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_in_help_messages(runner, doc, deprecated):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 510,
+      "bucket": "test_coverage",
+      "evidence_span": "@click.command(deprecated=deprecated, help=doc)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 515,
+      "bucket": "test_coverage",
+      "evidence_span": "assert \"(DEPRECATED\" in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 517,
+      "bucket": "test_coverage",
+      "evidence_span": "if isinstance(deprecated, str):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 518,
+      "bucket": "test_coverage",
+      "evidence_span": "assert deprecated in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 521,
+      "bucket": "test_coverage",
+      "evidence_span": "@pytest.mark.parametrize(\"deprecated\", [True, \"USE OTHER COMMAND INSTEAD\"])",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 523,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_empty_help_no_leading_space(runner, doc, deprecated):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 528,
+      "bucket": "test_coverage",
+      "evidence_span": "@click.command(deprecated=deprecated, help=doc)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 533,
+      "bucket": "test_coverage",
+      "evidence_span": "assert \"\\n  (DEPRECATED\" in out",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 534,
+      "bucket": "test_coverage",
+      "evidence_span": "assert \"\\n   (DEPRECATED\" not in out",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 537,
+      "bucket": "test_coverage",
+      "evidence_span": "@pytest.mark.parametrize(\"deprecated\", [True, \"USE OTHER COMMAND INSTEAD\"])",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 538,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_in_invocation(runner, deprecated):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 539,
+      "bucket": "test_coverage",
+      "evidence_span": "@click.command(deprecated=deprecated)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 540,
+      "bucket": "test_coverage",
+      "evidence_span": "def deprecated_cmd():",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 543,
+      "bucket": "test_coverage",
+      "evidence_span": "result = runner.invoke(deprecated_cmd)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 544,
+      "bucket": "test_coverage",
+      "evidence_span": "assert \"DeprecationWarning:\" in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 546,
+      "bucket": "test_coverage",
+      "evidence_span": "if isinstance(deprecated, str):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 547,
+      "bucket": "test_coverage",
+      "evidence_span": "assert deprecated in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 47,
+      "bucket": "test_coverage",
+      "evidence_span": "@pytest.mark.parametrize(\"deprecated\", [True, \"USE B INSTEAD\"])",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 48,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_usage(runner, deprecated):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 50,
+      "bucket": "test_coverage",
+      "evidence_span": "@click.option(\"--foo\", default=\"bar\", deprecated=deprecated)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 55,
+      "bucket": "test_coverage",
+      "evidence_span": "assert \"(DEPRECATED\" in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 57,
+      "bucket": "test_coverage",
+      "evidence_span": "if isinstance(deprecated, str):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 58,
+      "bucket": "test_coverage",
+      "evidence_span": "assert deprecated in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 62,
+      "bucket": "test_coverage",
+      "evidence_span": "(\"deprecated\", \"expected\"),",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 63,
+      "bucket": "test_coverage",
+      "evidence_span": "[(True, \"(DEPRECATED)\"), (\"USE B INSTEAD\", \"(DEPRECATED: USE B INSTEAD)\")],",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 66,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_empty_help_no_leading_space(help_text, deprecated, expected):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 70,
+      "bucket": "test_coverage",
+      "evidence_span": "opt = click.Option([\"--foo\"], help=help_text, deprecated=deprecated)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 75,
+      "bucket": "test_coverage",
+      "evidence_span": "@pytest.mark.parametrize(\"deprecated\", [True, \"USE B INSTEAD\"])",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 76,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_warning(runner, deprecated):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 79,
+      "bucket": "test_coverage",
+      "evidence_span": "\"--my-option\", required=False, deprecated=deprecated, default=\"default option\"",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 84,
+      "bucket": "test_coverage",
+      "evidence_span": "# defaults should not give a deprecated warning",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 87,
+      "bucket": "test_coverage",
+      "evidence_span": "assert \"is deprecated\" not in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 91,
+      "bucket": "test_coverage",
+      "evidence_span": "assert \"option 'my_option' is deprecated\" in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 93,
+      "bucket": "test_coverage",
+      "evidence_span": "if isinstance(deprecated, str):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 94,
+      "bucket": "test_coverage",
+      "evidence_span": "assert deprecated in result.output",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 97,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_required(runner):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 98,
+      "bucket": "test_coverage",
+      "evidence_span": "with pytest.raises(ValueError, match=\"is deprecated and still required\"):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 99,
+      "bucket": "test_coverage",
+      "evidence_span": "click.Option([\"--a\"], required=True, deprecated=True)",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 102,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_deprecated_prompt(runner):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 103,
+      "bucket": "test_coverage",
+      "evidence_span": "with pytest.raises(ValueError, match=\"`deprecated` options cannot use `prompt`\"):",
+      "difficulty_tag": "real_repo_cross_file"
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 104,
+      "bucket": "test_coverage",
+      "evidence_span": "click.Option([\"--a\"], prompt=True, deprecated=True)",
+      "difficulty_tag": "real_repo_cross_file"
+    }
+  ]
+}

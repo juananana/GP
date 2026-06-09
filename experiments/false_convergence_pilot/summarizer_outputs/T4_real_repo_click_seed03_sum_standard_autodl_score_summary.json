@@ -1,0 +1,38 @@
+{
+  "task_id": "T4_real_repo_click_deprecation",
+  "oracle_size": 149,
+  "thresholds": {
+    "theta": 0.95,
+    "tau": 0.7,
+    "confidence": 0.8,
+    "gamma": 0.05
+  },
+  "run_summaries": [
+    {
+      "run_id": "T4_SUM_standard_autodl_seed03",
+      "seed": "seed03",
+      "group": "unknown",
+      "confidence": 0.93,
+      "completion": true,
+      "found": 102,
+      "true_positive": 102,
+      "false_positive": 0,
+      "recall": 0.6845637583892618,
+      "precision": 1.0,
+      "false_stop": true,
+      "bucket_recall": {
+        "command_behavior": 0.8,
+        "documentation": 1.0,
+        "implementation": 0.8,
+        "message_formatting": 1.0,
+        "parameter_behavior": 0.3333333333333333,
+        "test_coverage": 0.5074626865671642,
+        "warning_emission": 1.0
+      }
+    }
+  ],
+  "seed_summaries": [],
+  "raw_run_ids": [
+    "T4_SUM_standard_autodl_seed03"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "task_id": "T5_real_repo_requests_tls_audit",
+  "oracle_size": 304,
+  "thresholds": {
+    "theta": 0.95,
+    "tau": 0.7,
+    "confidence": 0.8,
+    "gamma": 0.05
+  },
+  "run_summaries": [
+    {
+      "run_id": "T5_seed01_sum_union_preserving_autodl",
+      "seed": "seed01",
+      "group": "unknown",
+      "confidence": 0.92,
+      "completion": true,
+      "found": 133,
+      "true_positive": 92,
+      "false_positive": 41,
+      "recall": 0.3026315789473684,
+      "precision": 0.6917293233082706,
+      "false_stop": true,
+      "bucket_recall": {
+        "ca_bundle_resolution": 0.5,
+        "client_certificate": 0.8125,
+        "documentation": 0.0,
+        "error_handling": 0.7777777777777778,
+        "implementation": 0.6129032258064516,
+        "test_coverage": 0.0,
+        "test_infrastructure": 0.0,
+        "verification_mode": 1.0
+      }
+    }
+  ],
+  "seed_summaries": [],
+  "raw_run_ids": [
+    "T5_seed01_sum_union_preserving_autodl"
+  ]
+}
