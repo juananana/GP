@@ -1,4 +1,4 @@
-\begin{thebibliography}{44}
+\begin{thebibliography}{55}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Asai et~al.(2023)Asai, Wu, Wang, Sil, and
@@ -7,6 +7,14 @@ Asai, A.; Wu, Z.; Wang, Y.; Sil, A.; and Hajishirzi, H. 2023.
 \newblock {Self-RAG}: Learning to Retrieve, Generate, and Critique through
   Self-Reflection.
 \newblock \emph{arXiv preprint arXiv:2310.11511}.
+
+\bibitem[{Bron et~al.(2025)Bron, van~der Heijden, Feelders, and
+  Siebes}]{bron2024chao}
+Bron, M.~P.; van~der Heijden, P. G.~M.; Feelders, A.~J.; and Siebes, A. P.
+  J.~M. 2025.
+\newblock Using Chao's Estimator as a Stopping Criterion for
+  Technology-Assisted Review.
+\newblock \emph{ACM Transactions on Information Systems}, 43(3): 1--51.
 
 \bibitem[{Chan et~al.(2023)Chan, Chen, Su, Yu, Xue, Zhang, Fu, and
   Liu}]{chan2023chateval}
@@ -34,6 +42,13 @@ Chen, J.; Lin, H.; Han, X.; and Sun, L. 2024.
 \newblock {RGB}: A Benchmark for Evaluating Retrieval-Augmented Generation.
 \newblock In \emph{Proceedings of the AAAI Conference on Artificial
   Intelligence}.
+
+\bibitem[{Chen et~al.(2026)Chen, Yao, Chen, Papalexakis, and
+  Wei}]{chen2026matu}
+Chen, T.; Yao, H.; Chen, J.; Papalexakis, E.~E.; and Wei, H. 2026.
+\newblock Every Response Counts: Quantifying Uncertainty of {LLM}-based
+  Multi-Agent Systems through Tensor Decomposition.
+\newblock arXiv:2604.08708.
 
 \bibitem[{Chen et~al.(2023)Chen, Su, Zuo, Yang, Yuan, Qian, Chan, Qin, Lu, Xie,
   Liu, Sun, and Zhou}]{chen2023agentverse}
@@ -69,6 +84,11 @@ Du, Y.; Li, S.; Torralba, A.; Tenenbaum, J.~B.; and Mordatch, I. 2023.
   Multiagent Debate.
 \newblock \emph{arXiv preprint arXiv:2305.14325}.
 
+\bibitem[{Fadnavis, Kanakaraj, and Wyss(2026)}]{fadnavis2026beyondconsensus}
+Fadnavis, S.; Kanakaraj, P.; and Wyss, F. 2026.
+\newblock Beyond Consensus: Trace-Level Synthesis in Mixture of Agents.
+\newblock arXiv:2605.29116.
+
 \bibitem[{Gao et~al.(2023)Gao, Xiong, Gao, Jia, Pan, Bi, Dai, Sun, Wang, and
   Wang}]{gao2023ragsurvey}
 Gao, Y.; Xiong, Y.; Gao, X.; Jia, K.; Pan, J.; Bi, Y.; Dai, Y.; Sun, J.; Wang,
@@ -94,6 +114,15 @@ Grossman, M.~R.; Cormack, G.~V.; and Roegiest, A. 2015.
 \newblock Overview of the {TREC} 2015 Total Recall Track.
 \newblock In \emph{Proceedings of The Twenty-Fourth Text REtrieval Conference}.
 
+\bibitem[{Gupta et~al.(2026)Gupta, Chatterjee, Haas, Tao, Wang, Liu, Oiwa,
+  Gribovskaya, Ackermann, Blitzer, Goldshtein, and Das}]{gupta2026deepsearchqa}
+Gupta, N.; Chatterjee, R.; Haas, L.; Tao, C.; Wang, A.; Liu, C.; Oiwa, H.;
+  Gribovskaya, E.; Ackermann, J.; Blitzer, J.; Goldshtein, S.; and Das, D.
+  2026.
+\newblock {DeepSearchQA}: Bridging the Comprehensiveness Gap for Deep Research
+  Agents.
+\newblock arXiv:2601.20975.
+
 \bibitem[{Guu et~al.(2020)Guu, Lee, Tung, Pasupat, and Chang}]{guu2020realm}
 Guu, K.; Lee, K.; Tung, Z.; Pasupat, P.; and Chang, M.-W. 2020.
 \newblock {REALM}: Retrieval-Augmented Language Model Pre-Training.
@@ -106,6 +135,19 @@ Hong, S.; Zheng, X.; Chen, J.; Cheng, Y.; Zhang, J.; Wang, C.; Yau, Z.; Lin,
 \newblock {MetaGPT}: Meta Programming for A Multi-Agent Collaborative
   Framework.
 \newblock \emph{arXiv preprint arXiv:2308.00352}.
+
+\bibitem[{Huang et~al.(2026{\natexlab{a}})Huang, Li, Li, Kwon, Yu, and
+  Zhang}]{huang2026cagecal}
+Huang, J.; Li, M.; Li, Z.; Kwon, S.; Yu, H.; and Zhang, C. 2026{\natexlab{a}}.
+\newblock Counterfactual Graph for Multi-Agent {LLM} Calibration.
+\newblock arXiv:2605.30653.
+
+\bibitem[{Huang et~al.(2026{\natexlab{b}})Huang, Ren, Yuan, Wang, Jiang, Xu,
+  He, Zhao, and Liu}]{huang2026wideseek}
+Huang, Z.; Ren, H.; Yuan, X.; Wang, J.; Jiang, Z.; Xu, K.; He, S.; Zhao, J.;
+  and Liu, K. 2026{\natexlab{b}}.
+\newblock {WideSeek}: Advancing Wide Research via Multi-Agent Scaling.
+\newblock arXiv:2602.02636.
 
 \bibitem[{Jimenez et~al.(2023)Jimenez, Yang, Wettig, Yao, Pei, Press, and
   Narasimhan}]{jimenez2023swebench}
@@ -136,6 +178,11 @@ Karpukhin, V.; Oguz, B.; Min, S.; Lewis, P.; Wu, L.; Edunov, S.; Chen, D.; and
 \newblock Dense Passage Retrieval for Open-Domain Question Answering.
 \newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
   Natural Language Processing}, 6769--6781.
+
+\bibitem[{Kim et~al.(2026)Kim, Lee, Li, and Bastani}]{kim2026seekergym}
+Kim, R.; Lee, M.; Li, S.; and Bastani, O. 2026.
+\newblock {SeekerGym}: A Benchmark for Reliable Information Seeking.
+\newblock arXiv:2604.17143.
 
 \bibitem[{Kuhn, Gal, and Farquhar(2023)}]{kuhn2023semanticentropy}
 Kuhn, L.; Gal, Y.; and Farquhar, S. 2023.
@@ -210,6 +257,12 @@ Manakul, P.; Liusie, A.; and Gales, M. J.~F. 2023.
   Generative Large Language Models.
 \newblock \emph{arXiv preprint arXiv:2303.08896}.
 
+\bibitem[{Maryanskyy(2026)}]{maryanskyy2026agentsdisagree}
+Maryanskyy, A. 2026.
+\newblock When Agents Disagree: The Selection Bottleneck in Multi-Agent {LLM}
+  Pipelines.
+\newblock arXiv:2603.20324.
+
 \bibitem[{McAllester and Schapire(2000)}]{mcAllester2000goodturing}
 McAllester, D.~A.; and Schapire, R.~E. 2000.
 \newblock On the Convergence Rate of Good-Turing Estimators.
@@ -239,6 +292,14 @@ Qin, Y.; Liang, S.; Ye, Y.; Zhu, K.; Yan, L.; Lu, Y.; Lin, Y.; Cong, X.; Tang,
 \newblock {ToolLLM}: Facilitating Large Language Models to Master 16000+
   Real-world APIs.
 \newblock \emph{arXiv preprint arXiv:2307.16789}.
+
+\bibitem[{Rafiee et~al.(2026)Rafiee, Soudani, Abbasiantaeb, Aliannejadi,
+  Hasibi, and Zamani}]{rafiee2026trqa}
+Rafiee, M.; Soudani, H.; Abbasiantaeb, Z.; Aliannejadi, M.; Hasibi, F.; and
+  Zamani, H. 2026.
+\newblock Total Recall {QA}: A Verifiable Evaluation Suite for Deep Research
+  Agents.
+\newblock arXiv:2603.18516.
 
 \bibitem[{Schick et~al.(2023)Schick, Dwivedi-Yu, Dess{\`\i}, Raileanu, Lomeli,
   Hambro, Zettlemoyer, Cancedda, and Scialom}]{schick2023toolformer}
@@ -275,6 +336,13 @@ Wang, X.; Wei, J.; Schuurmans, D.; Le, Q.; Chi, E.; Narang, S.; Chowdhery, A.;
   Models.
 \newblock \emph{arXiv preprint arXiv:2203.11171}.
 
+\bibitem[{Wong et~al.(2025)Wong, Wang, Zhao, Chen, Gao, Zhang, Zhou, Wang,
+  Xiang, Zhang, Huang, Wang, and Wang}]{wong2025widesearch}
+Wong, R.; Wang, J.; Zhao, J.; Chen, L.; Gao, Y.; Zhang, L.; Zhou, X.; Wang, Z.;
+  Xiang, K.; Zhang, G.; Huang, W.; Wang, Y.; and Wang, K. 2025.
+\newblock {WideSearch}: Benchmarking Agentic Broad Info-Seeking.
+\newblock arXiv:2508.07999.
+
 \bibitem[{Wu et~al.(2023)Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang,
   Liu, Awadallah, White, Burger, and Wang}]{wu2023autogen}
 Wu, Q.; Bansal, G.; Zhang, J.; Wu, Y.; Li, B.; Zhu, E.; Jiang, L.; Zhang, X.;
@@ -283,6 +351,13 @@ Wu, Q.; Bansal, G.; Zhang, J.; Wu, Y.; Li, B.; Zhu, E.; Jiang, L.; Zhang, X.;
 \newblock {AutoGen}: Enabling Next-Gen {LLM} Applications via Multi-Agent
   Conversation.
 \newblock \emph{arXiv preprint arXiv:2308.08155}.
+
+\bibitem[{Yang et~al.(2026)Yang, Li, Ping, Zhang, Bogdan, and
+  Thomason}]{yang2026agentauditor}
+Yang, W.; Li, S.; Ping, H.; Zhang, P.; Bogdan, P.; and Thomason, J. 2026.
+\newblock Auditing Multi-Agent {LLM} Reasoning Trees Outperforms Majority Vote
+  and {LLM}-as-Judge.
+\newblock arXiv:2602.09341.
 
 \bibitem[{Yang et~al.(2018)Yang, Qi, Zhang, Bengio, Cohen, Salakhutdinov, and
   Manning}]{yang2018hotpotqa}

@@ -1,0 +1,24 @@
+{
+  "run_id": "T5_online_seed04_source_partitioned_G3_agent02",
+  "started_at": "2026-06-09T16:29:44.822161+00:00",
+  "ended_at": "2026-06-09T16:30:01.725843+00:00",
+  "model_name": "gpt-5.3-codex",
+  "prompt_variant": "source_partition_tests",
+  "prompt_addon": "Inspect only the test and fixture partition. Return exact test, fixture, and certificate infrastructure lines related to TLS/certificate behavior.",
+  "input_tokens": 16979,
+  "output_tokens": 1447,
+  "tool_calls": null,
+  "wall_clock_seconds": 16.90365589997964,
+  "stop_reason": "api_response",
+  "notes": {
+    "task_root": "E:\\learn3\\B\\new\\experiments\\false_convergence_pilot\\T5_real_repo_requests_tls",
+    "files": [
+      "repo/tests/test_requests.py",
+      "repo/tests/conftest.py",
+      "repo/tests/testserver/server.py",
+      "repo/tests/certs/README.md"
+    ],
+    "search_budget": 180,
+    "max_lines_per_file": 1200
+  }
+}

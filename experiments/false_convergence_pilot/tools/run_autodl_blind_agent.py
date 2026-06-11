@@ -133,6 +133,8 @@ def prompt_for(
     context: str,
     task_root_label: str,
     search_budget: int,
+    prompt_variant: str,
+    prompt_addon: str,
 ) -> str:
     return f"""You are an independent blind discovery agent.
 
@@ -153,6 +155,10 @@ Search budget and self-stop condition:
 - Prefer high recall, but do not include unrelated keyword hits.
 - Use this exact run_id: {run_id}
 - Hard cap: return at most {search_budget} items.
+- Prompt variant: {prompt_variant}
+
+Additional search emphasis:
+{prompt_addon}
 
 Return JSON only with this shape:
 
@@ -182,6 +188,8 @@ def main() -> None:
     parser.add_argument("--cost-out", required=True, type=Path)
     parser.add_argument("--search-budget", type=int, default=400)
     parser.add_argument("--max-lines-per-file", type=int, default=3500)
+    parser.add_argument("--prompt-variant", default="standard_high_recall")
+    parser.add_argument("--prompt-addon", default="Use the task instructions as written.")
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--endpoint", default=DEFAULT_ENDPOINT)
     parser.add_argument("--api-key-env", default="AUTODL_ART_API_KEY")
@@ -199,6 +207,8 @@ def main() -> None:
         context=context,
         task_root_label=args.task_root_label,
         search_budget=args.search_budget,
+        prompt_variant=args.prompt_variant,
+        prompt_addon=args.prompt_addon,
     )
 
     started_at = now_iso()
@@ -220,7 +230,8 @@ def main() -> None:
         "started_at": started_at,
         "ended_at": ended_at,
         "model_name": args.model,
-        "prompt_variant": "autodl_blind_line_numbered_context",
+        "prompt_variant": args.prompt_variant,
+        "prompt_addon": args.prompt_addon,
         "input_tokens": response.get("usage", {}).get("input_tokens"),
         "output_tokens": response.get("usage", {}).get("output_tokens"),
         "tool_calls": None,

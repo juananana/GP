@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  9 JUN 2026 16:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  11 JUN 2026 21:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -128,6 +128,14 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@lastruleclass=\count289
 \@thisrulewidth=\dimen171
 )
+(C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count290
+\float@exts=\toks18
+\float@box=\box53
+\@float@everytoks=\toks19
+\@floatcapt=\box54
+)
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip54
@@ -138,7 +146,7 @@ Package: amstext 2024/11/17 v2.01 AMS text
 
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks18
+\@emptytoks=\toks20
 \ex@=\dimen172
 ))
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
@@ -148,19 +156,19 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count290
+\inf@bad=\count291
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count291
-\leftroot@=\count292
+\uproot@=\count292
+\leftroot@=\count293
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count293
-\DOTSCASE@=\count294
+\classnum@=\count294
+\DOTSCASE@=\count295
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
-\Mathstrutbox@=\box53
-\strutbox@=\box54
+\Mathstrutbox@=\box55
+\strutbox@=\box56
 LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
@@ -168,31 +176,31 @@ LaTeX Info: Redefining \Bigg on input line 724.
 \big@size=\dimen174
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count295
+\macc@depth=\count296
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count296
+\c@MaxMatrixCols=\count297
 \dotsspace@=\muskip18
-\c@parentequation=\count297
-\dspbrk@lvl=\count298
-\tag@help=\toks19
-\row@=\count299
-\column@=\count300
-\maxfields@=\count301
-\andhelp@=\toks20
+\c@parentequation=\count298
+\dspbrk@lvl=\count299
+\tag@help=\toks21
+\row@=\count300
+\column@=\count301
+\maxfields@=\count302
+\andhelp@=\toks22
 \eqnshift@=\dimen175
 \alignsep@=\dimen176
 \tagshift@=\dimen177
 \tagwidth@=\dimen178
 \totwidth@=\dimen179
 \lineht@=\dimen180
-\@envbody=\toks21
+\@envbody=\toks23
 \multlinegap=\skip55
 \multlinetaggap=\skip56
-\mathdisplay@stack=\toks22
+\mathdisplay@stack=\toks24
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
 )
@@ -207,48 +215,18 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithm.sty
-Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
-nment
-(C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count302
-\float@exts=\toks23
-\float@box=\box55
-\@float@everytoks=\toks24
-\@floatcapt=\box56
-)
-(C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
-Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
-)
-\@float@every@algorithm=\toks25
-\c@algorithm=\count303
-)
-(C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithmic.s
-ty
-Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
-\c@ALC@unique=\count304
-\c@ALC@line=\count305
-\c@ALC@rem=\count306
-\c@ALC@depth=\count307
-\ALC@tlm=\skip57
-\algorithmicindent=\skip58
-)
-(C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/newfloat\newfloat.sty
-Package: newfloat 2023/10/01 v1.2 Defining new floating environments (AR)
-)
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count308
+\lst@mode=\count303
 \lst@gtempboxa=\box57
-\lst@token=\toks26
-\lst@length=\count309
+\lst@token=\toks25
+\lst@length=\count304
 \lst@currlwidth=\dimen181
-\lst@column=\count310
-\lst@pos=\count311
+\lst@column=\count305
+\lst@pos=\count306
 \lst@lostspace=\dimen182
 \lst@width=\dimen183
-\lst@newlines=\count312
-\lst@lineno=\count313
+\lst@newlines=\count307
+\lst@lineno=\count308
 \lst@maxwidth=\dimen184
 
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
@@ -256,8 +234,8 @@ File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
 )
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
-\c@lstnumber=\count314
-\lst@skipnumbers=\count315
+\c@lstnumber=\count309
+\lst@skipnumbers=\count310
 \lst@framebox=\box58
 )
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
@@ -272,46 +250,46 @@ Package: listings 2025/11/14 1.11b (Carsten Heinz)
         2025/11/14 1.11b (Carsten Heinz)
     so I'm assuming it got fixed.
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 4
-8.
+6.
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdft
 ex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count316
+\l__color_backend_stack_int=\count311
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
 
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mki
 i
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count317
+\scratchcounter=\count312
 \scratchdimen=\dimen185
 \scratchbox=\box59
-\nofMPsegments=\count318
-\nofMParguments=\count319
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count320
+\nofMPsegments=\count313
+\nofMParguments=\count314
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count315
 \MPscratchDim=\dimen186
-\MPnumerator=\count321
-\makeMPintoPDFobject=\count322
-\everyMPtoPDFconversion=\toks28
+\MPnumerator=\count316
+\makeMPintoPDFobject=\count317
+\everyMPtoPDFconversion=\toks27
 )
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-ba
 se.sty
@@ -327,13 +305,23 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package newfloat Info: `float' package detected.
-\c@lstlisting=\count323
-\c@eqfn=\count324
+\c@lstlisting=\count318
+\c@eqfn=\count319
 \titlearea=\box60
-\actualheight=\skip59
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 9
-9.
+\actualheight=\skip57
+<figures/false_convergence_mechanisms.png, id=1, 1496.59125pt x 1058.95625pt>
+File: figures/false_convergence_mechanisms.png Graphic file (type png)
+<use figures/false_convergence_mechanisms.png>
+Package pdftex.def Info: figures/false_convergence_mechanisms.png  used on inpu
+t line 81.
+(pdftex.def)             Requested size: 227.42392pt x 160.921pt.
+<figures/jiagou.png, id=2, 1122.44344pt x 599.23875pt>
+File: figures/jiagou.png Graphic file (type png)
+<use figures/jiagou.png>
+Package pdftex.def Info: figures/jiagou.png  used on input line 90.
+(pdftex.def)             Requested size: 455.2979pt x 243.06525pt.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
+24.
  (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
@@ -342,75 +330,85 @@ C/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 
-]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 164
+ <./figures/false_convergence_mechanisms.png (PNG copy)>] [2 <./figures/jiagou.
+png>]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 198
 .
 
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 164
+LaTeX Font Info:    Trying to load font information for U+msb on input line 198
 .
 
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 302--309
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 351--358
 \OT1/ptm/m/n/10 When the cer-tifi-cate re-turns \OT1/ptm/m/sc/10 unsafe-to-stop
  \OT1/ptm/m/n/10 or
  []
 
 
-Underfull \hbox (badness 3158) in paragraph at lines 302--309
+Underfull \hbox (badness 3158) in paragraph at lines 351--358
 \OT1/ptm/m/sc/10 requires-audit\OT1/ptm/m/n/10 , the work-flow needs an au-dit 
 pol-
  []
 
-
-Underfull \hbox (badness 6477) in paragraph at lines 313--314
-[] []\OT1/ptm/m/n/10 Run $\OML/cmm/m/it/10 k$ \OT1/ptm/m/n/10 in-de-pen-dent di
-s-cov-ery agents, pro-duc-ing
+[4]
+Underfull \hbox (badness 6396) in paragraph at lines 440--442
+[]\OT1/ptm/m/n/10 self-reported com-ple-tion, confidence-only, overlap-
  []
 
-[3] [4]
+[5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5]
-Underfull \hbox (badness 4168) in paragraph at lines 658--664
-\OT1/ptm/m/n/10 The ev-i-dence sup-ports mechanism-level claims, real-
+ [6]
+<figures/online_audit_policy_pareto.pdf, id=33, 242.10449pt x 162.6075pt>
+File: figures/online_audit_policy_pareto.pdf Graphic file (type pdf)
+<use figures/online_audit_policy_pareto.pdf>
+Package pdftex.def Info: figures/online_audit_policy_pareto.pdf  used on input 
+line 737.
+(pdftex.def)             Requested size: 196.30513pt x 131.8503pt.
+
+[7 <./figures/online_audit_policy_pareto.pdf>]
+Underfull \hbox (badness 1062) in paragraph at lines 763--772
+[]\OT1/ptm/m/n/10 The ev-i-dence sup-ports mechanism-level claims, real-
+ []
+
+(main.bbl [8]
+Underfull \hbox (badness 1226) in paragraph at lines 261--265
+[]\OT1/ptm/m/n/10 Maryanskyy, A. 2026.  When Agents Dis-agree: The
  []
 
 
-Underfull \hbox (badness 1755) in paragraph at lines 658--664
-\OT1/ptm/m/n/10 claims re-quire more repos-i-to-ries, task fam-i-lies, seeds,
+Underfull \hbox (badness 5359) in paragraph at lines 261--265
+\OT1/ptm/m/n/10 Se-lec-tion Bot-tle-neck in Multi-Agent LLM Pipelines.
  []
 
-
-Underfull \hbox (badness 2205) in paragraph at lines 658--664
-\OT1/ptm/m/n/10 agent counts, prompt-diverse and model-heterogeneous
- []
-
-[6] (main.bbl [7]
-Underfull \hbox (badness 1248) in paragraph at lines 306--310
+[9]
+Underfull \hbox (badness 1248) in paragraph at lines 381--385
 \OT1/ptm/m/n/10 ing and Act-ing in Lan-guage Mod-els.  \OT1/ptm/m/it/10 arXiv p
 reprint
  []
 
-) [8] (main.aux)
+) [10
+
+] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7083 strings out of 467871
- 112064 string characters out of 5418860
- 548461 words of memory out of 5000000
- 35873 multiletter control sequences out of 15000+600000
- 652939 words of font info for 87 fonts, out of 8000000 for 9000
+ 6723 strings out of 467871
+ 106843 string characters out of 5418860
+ 544717 words of memory out of 5000000
+ 35527 multiletter control sequences out of 15000+600000
+ 651215 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,10n,76p,429b,513s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,11n,76p,429b,314s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mex10.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
 nts/cm/cmmi10.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -421,9 +419,9 @@ TeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/EPIC/AppData/Local/Prog
 rams/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/EPIC/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/EPIC/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 156239 bytes).
+Output written on main.pdf (10 pages, 1958907 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
+ 128 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

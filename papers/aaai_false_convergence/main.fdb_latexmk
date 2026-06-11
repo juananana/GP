@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1780992445.82588 "main.aux" "main.bbl" "main" 1780992447.24871 0
+["bibtex main"] 1781184260.15918 "main.aux" "main.bbl" "main" 1781184262.76073 0
   "./aaai2026.bst" 1745894796 30207 6eaa2a4f2eed92c930f9e98d689c010a ""
-  "./references.bib" 1780992426 15492 94422eecb9ebe72e9a904adabad9f6c4 ""
-  "main.aux" 1780992446 6322 e78a92e342b602c6672e7975bac495a6 "pdflatex"
+  "./references.bib" 1780994308 19152 ac04318abff7efe83a3f5cf99684a308 ""
+  "main.aux" 1781184262 7984 245dbf7e09a5fa091ad83aaeee9be221 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1780992446.07524 "main.tex" "main.pdf" "main" 1780992447.24953 0
+["pdflatex"] 1781184260.60337 "main.tex" "main.pdf" "main" 1781184262.76125 0
   "C:/Users/EPIC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1780896214 187664 65fa417f6850b604c49bfafe76826e39 ""
   "C:/Users/EPIC/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1777468269 13333003 58a3959649c331c5cf391f4df9906e74 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -49,8 +49,6 @@
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/vf/adobe/times/ptmri7t.vf" 1136743454 1384 a9d8adaf491ce34e5fba99dc7bbe5f39 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/00miktex/epstopdf-sys.cfg" 1616067285 584 2a1075dd71571459f59146da9f7502ad ""
-  "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/algorithms/algorithm.sty" 1251549064 3349 15763257e50278eef5db1952ccde229c ""
-  "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/algorithms/algorithmic.sty" 1251549064 9550 793e9d5a71e74e730d97f6bf5d7e2bca ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amsfonts.sty" 1358197772 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amssymb.sty" 1358197772 13829 94730e64147574077f8ecfea9bb69af4 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.fd" 1358197772 961 6518c6525a34feb5e8250ffa91731cff ""
@@ -61,7 +59,6 @@
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsopn.sty" 1762695271 4474 c510a88aa5f51b8c773b50a7ee92befd ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amstext.sty" 1762695272 2444 9983e1d0683f102e3b190c64a49313aa ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/base/article.cls" 1761900684 20144 b966087dda3b194755eb460d32e2ef75 ""
-  "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/base/ifthen.sty" 1761900684 5525 1593ca62a2554dd7423fc8a4e5a82125 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/base/size10.clo" 1761900684 8448 686612a86f0e04f41ea577f5ec7e83d8 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/booktabs/booktabs.sty" 1579093635 6253 f1cb470c9199e7110a27851508ed7a5c ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption.sty" 1696169587 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
@@ -82,7 +79,6 @@
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstmisc.sty" 1763898348 77105 002e983b638eadbf04e580642335f689 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstpatch.sty" 1763898348 353 9024412f43e92cd5b21fe9ded82d0610 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/natbib/natbib.sty" 1292249081 46712 1c8843383c0bd05870c45fa0ebea6cc2 ""
-  "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/newfloat/newfloat.sty" 1696192043 30252 f6e8905c538136e67643aa414a2c9161 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/psnfss/courier.sty" 1585926771 833 1508145d595475dad3d7fb46782a0f94 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/psnfss/helvet.sty" 1585926771 1558 de0ad166b701b820e03588a29bb30798 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/psnfss/ot1ptm.fd" 1585253778 1007 15056f4a61917ceed3a44e4ac11fcc52 ""
@@ -91,9 +87,12 @@
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "aaai2026.sty" 1752788094 11958 fd3cab73b88daf1cc3f800953cbb8f55 ""
-  "main.aux" 1780992446 6322 e78a92e342b602c6672e7975bac495a6 "pdflatex"
-  "main.bbl" 1780992446 16280 2709e8e2a5cae0dc178b2e8ab5072fbd "bibtex main"
-  "main.tex" 1780992414 32027 478f9b1c02fc4c0e190eb52545d69b6b ""
+  "figures/false_convergence_mechanisms.png" 1781021323 1036419 06e330e532e1cf7884b08a757f565f95 ""
+  "figures/jiagou.png" 1781081329 750317 f76d35616e109d33faf5805ef31e8319 ""
+  "figures/online_audit_policy_pareto.pdf" 1781097403 18251 bd04f5f05be3e0ddbbfb143bf89a8f99 ""
+  "main.aux" 1781184262 7984 245dbf7e09a5fa091ad83aaeee9be221 "pdflatex"
+  "main.bbl" 1781184260 19674 80c70b0434994be5e295d711e5b2cfbf "bibtex main"
+  "main.tex" 1781184225 37173 d5a07dfd01fb1e7ba460635241c42ea2 ""
   (generated)
   "main.aux"
   "main.log"

@@ -1,0 +1,67 @@
+{
+  "run_id": "T5_online_seed08_prompt_diverse_random_holdout_G6_verifier",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.93,
+  "items": [
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 85
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 334
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 356
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 403
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 426
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 463
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 486
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 982
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1007
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1010
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 219
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 663
+    },
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 84
+    },
+    {
+      "file_path": "repo/tests/certs/README.md",
+      "line": 4
+    },
+    {
+      "file_path": "repo/tests/certs/README.md",
+      "line": 6
+    }
+  ]
+}

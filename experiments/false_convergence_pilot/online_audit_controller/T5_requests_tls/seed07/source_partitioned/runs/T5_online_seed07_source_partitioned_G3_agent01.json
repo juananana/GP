@@ -1,0 +1,623 @@
+{
+  "run_id": "T5_online_seed07_source_partitioned_G3_agent01",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.87,
+  "items": [
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 54
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 85
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 87
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 88
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 97
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 98
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 99
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 100
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 101
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 102
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 104
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 105
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 106
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 107
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 108
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 109
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 113
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 133
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 134
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 145
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 146
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 147
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 148
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 307
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 308
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 310
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 316
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 317
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 318
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 319
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 321
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 325
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 326
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 329
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 331
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 333
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 337
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 339
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 340
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 342
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 344
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 345
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 346
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 348
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 350
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 351
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 353
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 354
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 355
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 357
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 360
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 362
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 404
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 408
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 409
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 412
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 416
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 417
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 418
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 419
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 420
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 421
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 422
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 424
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 425
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 426
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 438
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 439
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 440
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 441
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 442
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 443
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 444
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 445
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 446
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 447
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 455
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 462
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 469
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 470
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 471
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 472
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 475
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 476
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 477
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 639
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 640
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 651
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 652
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 653
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 654
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 662
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 668
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 725
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 726
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 727
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 737
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 738
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 739
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 740
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 90
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 192
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 193
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 296
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 297
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 420
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 421
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 434
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 435
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 468
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 469
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 470
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 471
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 472
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 473
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 474
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 475
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 476
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 477
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 478
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 480
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 481
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 572
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 573
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 607
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 608
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 609
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 610
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 611
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 612
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 613
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 614
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 615
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 760
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 761
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 831
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 836
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 853
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 855
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 856
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 857
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 858
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 865
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 868
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 7
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 8
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 11
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 12
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 15
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 18
+    },
+    {
+      "file_path": "repo/src/requests/utils.py",
+      "line": 81
+    },
+    {
+      "file_path": "repo/src/requests/utils.py",
+      "line": 82
+    },
+    {
+      "file_path": "repo/src/requests/exceptions.py",
+      "line": 78
+    },
+    {
+      "file_path": "repo/src/requests/exceptions.py",
+      "line": 79
+    }
+  ]
+}

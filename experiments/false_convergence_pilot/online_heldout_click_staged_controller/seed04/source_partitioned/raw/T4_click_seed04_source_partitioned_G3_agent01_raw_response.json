@@ -1,0 +1,84 @@
+{
+  "id": "resp_04588b74260817c9006a2ab29bd0c48196a64c56f3d631d191",
+  "object": "response",
+  "created_at": 1781183131,
+  "status": "completed",
+  "background": false,
+  "completed_at": 1781183144,
+  "content_filters": [
+    {
+      "blocked": false,
+      "source_type": "prompt",
+      "content_filter_raw": [],
+      "content_filter_results": {},
+      "content_filter_offsets": {
+        "start_offset": 829,
+        "end_offset": 1852,
+        "check_offset": 0
+      }
+    }
+  ],
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-5.3-codex",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_04588b74260817c9006a2ab29c97a08196ab16f5c4fca346a0",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"run_id\": \"T4_click_seed04_source_partitioned_G3_agent01\",\n  \"self_reported_completion\": true,\n  \"self_reported_confidence\": 0.74,\n  \"items\": [\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 77},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 80},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 83},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 84},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 85},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 86},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 91},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 94},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 95},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 96},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 97},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 102},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 105},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 106},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 107},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 108},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 113},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 117},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 118},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 119},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 120},\n    {\"file_path\": \"repo/src/click/__init__.py\", \"line\": 121},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 98},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 100},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 101},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 102},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 103},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 106},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 110},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 111},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 276},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 277},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 513},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 516},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 517},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 518},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 519},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 979},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 980},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 981},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 982},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 986},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1030},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1045},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1074},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1084},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1205},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1206},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1237},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1238},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1239},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1357},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1358},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1359},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1360},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1362},\n    {\"file_path\": \"repo/src/click/core.py\", \"line\": 1364},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 2237},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 2238},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 503},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 506},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 514},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 515},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 516},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 517},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 522},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 525},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 526},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 527},\n    {\"file_path\": \"repo/src/click/parser.py\", \"line\": 528}\n  ]\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": "none",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 24069,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 1445,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 25514
+  },
+  "user": null,
+  "metadata": {}
+}

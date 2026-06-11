@@ -1,0 +1,1455 @@
+{
+  "task_id": "T4_click_heldout_staged_controller",
+  "oracle_size": 149,
+  "runs": [
+    {
+      "run_id": "T4_click_seed05_independent_context_G3_agent01",
+      "self_reported_completion": true,
+      "self_reported_confidence": 0.91,
+      "items": [
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 80
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 83
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 84
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 85
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 86
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 91
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 94
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 95
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 96
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 97
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 102
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 105
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 106
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 107
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 108
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 113
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 117
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 118
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 119
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 120
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 121
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 98
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 100
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 101
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 102
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 103
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 106
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 110
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 111
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 276
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 277
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 513
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 516
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 517
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 518
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 519
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 979
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 980
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 981
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 982
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 986
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 987
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1030
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1045
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1074
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1084
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1205
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1206
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1237
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1238
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1239
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1357
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1358
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1359
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1360
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1361
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1362
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2237
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2238
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2503
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2506
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2514
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2515
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2516
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2517
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2522
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2525
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2526
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2527
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 2528
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 342
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 344
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 350
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 379
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 380
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 381
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 383
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 385
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 393
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 396
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 398
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 404
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 406
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 409
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 410
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 411
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 414
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 415
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 418
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 420
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 423
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 424
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 427
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 432
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 435
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 439
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 441
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 445
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 446
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 447
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 47
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 48
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 50
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 55
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 57
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 61
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 62
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 63
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 65
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 66
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 67
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 70
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 72
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 75
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 76
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 79
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 84
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 87
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 91
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 93
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 97
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 98
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 99
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 102
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 103
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 104
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 508
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 509
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 510
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 515
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 517
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 521
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 522
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 523
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 524
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 525
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 528
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 533
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 534
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 537
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 538
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 539
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 544
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 546
+        }
+      ]
+    },
+    {
+      "run_id": "T4_click_seed05_independent_context_G3_agent02",
+      "self_reported_completion": true,
+      "self_reported_confidence": 0.64,
+      "items": [
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 342
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 344
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 350
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 379
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 380
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 381
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 383
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 385
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 392
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 393
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 396
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 398
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 404
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 406
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 409
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 410
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 411
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 414
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 418
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 420
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 423
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 424
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 427
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 432
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 435
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 439
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 445
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 446
+        },
+        {
+          "file_path": "repo/tests/test_arguments.py",
+          "line": 447
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 47
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 48
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 50
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 55
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 57
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 61
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 62
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 63
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 66
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 70
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 72
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 75
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 76
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 79
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 84
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 87
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 91
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 93
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 97
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 98
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 99
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 102
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 103
+        },
+        {
+          "file_path": "repo/tests/test_options.py",
+          "line": 104
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 508
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 509
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 510
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 515
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 517
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 521
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 523
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 524
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 525
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 528
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 533
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 534
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 537
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 538
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 539
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 544
+        },
+        {
+          "file_path": "repo/tests/test_commands.py",
+          "line": 546
+        },
+        {
+          "file_path": "repo/docs/commands-and-groups.md",
+          "line": 55
+        },
+        {
+          "file_path": "repo/docs/commands-and-groups.md",
+          "line": 57
+        },
+        {
+          "file_path": "repo/docs/commands-and-groups.md",
+          "line": 62
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 18
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 19
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 152
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 153
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 154
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 155
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 305
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 308
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 309
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 311
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 312
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 314
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 394
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 395
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 396
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 398
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 399
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 400
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 401
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 536
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 827
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 906
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 950
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 951
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 970
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 971
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 1068
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 1069
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 1206
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 1327
+        }
+      ]
+    },
+    {
+      "run_id": "T4_click_seed05_independent_context_G3_agent03",
+      "self_reported_completion": true,
+      "self_reported_confidence": 0.86,
+      "items": [
+        {
+          "file_path": "repo/docs/commands-and-groups.md",
+          "line": 55
+        },
+        {
+          "file_path": "repo/docs/commands-and-groups.md",
+          "line": 57
+        },
+        {
+          "file_path": "repo/docs/commands-and-groups.md",
+          "line": 62
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 18
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 19
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 152
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 153
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 154
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 155
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 305
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 306
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 308
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 309
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 311
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 312
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 314
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 315
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 317
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 318
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 319
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 320
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 321
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 322
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 323
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 394
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 395
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 396
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 398
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 399
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 400
+        },
+        {
+          "file_path": "repo/CHANGES.md",
+          "line": 401
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 80
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 83
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 84
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 85
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 86
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 91
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 94
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 95
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 96
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 97
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 102
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 105
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 106
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 107
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 108
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 113
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 117
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 118
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 119
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 120
+        },
+        {
+          "file_path": "repo/src/click/__init__.py",
+          "line": 121
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 98
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 99
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 100
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 101
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 102
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 103
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 106
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 107
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 108
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 109
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 110
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 111
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 276
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 277
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 513
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 516
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 517
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 518
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 519
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 979
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 980
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 981
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 982
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 984
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 986
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 987
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1030
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1045
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1074
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1084
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1205
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1206
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1237
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1238
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1239
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1357
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1358
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1359
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1360
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1361
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1362
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1363
+        },
+        {
+          "file_path": "repo/src/click/core.py",
+          "line": 1364
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 7
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 237
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 238
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 500
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 503
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 506
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 514
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 515
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 516
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 517
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 522
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 525
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 526
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 527
+        },
+        {
+          "file_path": "repo/src/click/parser.py",
+          "line": 528
+        }
+      ]
+    }
+  ]
+}

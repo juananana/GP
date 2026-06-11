@@ -1,0 +1,84 @@
+{
+  "id": "resp_04eaa1452ea3ed34006a29614e4f7881949169cdf956ade123",
+  "object": "response",
+  "created_at": 1781096782,
+  "status": "completed",
+  "background": false,
+  "completed_at": 1781096793,
+  "content_filters": [
+    {
+      "blocked": false,
+      "source_type": "prompt",
+      "content_filter_raw": [],
+      "content_filter_results": {},
+      "content_filter_offsets": {
+        "start_offset": 829,
+        "end_offset": 1856,
+        "check_offset": 0
+      }
+    }
+  ],
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-5.3-codex",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_04eaa1452ea3ed34006a29614f0b4c81949a8503a8e7d3c313",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"run_id\": \"T5_online_seed06_source_partitioned_random_holdout_G6_verifier\",\n  \"self_reported_completion\": true,\n  \"self_reported_confidence\": 0.97,\n  \"items\": [\n    {\"file_path\":\"repo/tests/conftest.py\",\"line\":57},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":1063},\n    {\"file_path\":\"repo/docs/community/faq.rst\",\"line\":71},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":247},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":404},\n    {\"file_path\":\"repo/src/requests/sessions.py\",\"line\":865},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":1059},\n    {\"file_path\":\"repo/tests/testserver/server.py\",\"line\":169},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":344},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":282},\n    {\"file_path\":\"repo/tests/testserver/server.py\",\"line\":163},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":660},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":653},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":438},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":283},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":342},\n    {\"file_path\":\"repo/tests/conftest.py\",\"line\":51},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":674},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":211},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":1024},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":340},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":460},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":216},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":238},\n    {\"file_path\":\"repo/README.md\",\"line\":47},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":1036},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":215},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":326},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":100},\n    {\"file_path\":\"repo/src/requests/sessions.py\",\"line\":192},\n    {\"file_path\":\"repo/src/requests/sessions.py\",\"line\":471},\n    {\"file_path\":\"repo/src/requests/sessions.py\",\"line\":857},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":350},\n    {\"file_path\":\"repo/src/requests/exceptions.py\",\"line\":78},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":1022},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":97},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":345},\n    {\"file_path\":\"repo/tests/testserver/server.py\",\"line\":161},\n    {\"file_path\":\"repo/src/requests/certs.py\",\"line\":11},\n    {\"file_path\":\"repo/src/requests/utils.py\",\"line\":81},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":640},\n    {\"file_path\":\"repo/src/requests/sessions.py\",\"line\":614},\n    {\"file_path\":\"repo/src/requests/sessions.py\",\"line\":868},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":314},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":318},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":412},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":658},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":984},\n    {\"file_path\":\"repo/src/requests/certs.py\",\"line\":7},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":1026},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":249},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":108},\n    {\"file_path\":\"repo/src/requests/utils.py\",\"line\":82},\n    {\"file_path\":\"repo/src/requests/sessions.py\",\"line\":858},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":1061},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":727},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":997},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":248},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":653},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":145},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":267},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":287},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":424},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":487},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":307},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":999},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":146},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":252},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":663},\n    {\"file_path\":\"repo/tests/test_requests.py\",\"line\":980},\n    {\"file_path\":\"repo/src/requests/sessions.py\",\"line\":613},\n    {\"file_path\":\"repo/src/requests/adapters.py\",\"line\":316},\n    {\"file_path\":\"repo/docs/user/advanced.rst\",\"line\":274}\n  ]\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": "none",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 7253,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 1273,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 8526
+  },
+  "user": null,
+  "metadata": {}
+}

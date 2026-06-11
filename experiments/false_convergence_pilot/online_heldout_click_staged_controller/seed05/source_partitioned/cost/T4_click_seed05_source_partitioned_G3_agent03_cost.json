@@ -1,0 +1,22 @@
+{
+  "run_id": "T4_click_seed05_source_partitioned_G3_agent03",
+  "started_at": "2026-06-11T13:09:21.939317+00:00",
+  "ended_at": "2026-06-11T13:09:29.070340+00:00",
+  "model_name": "gpt-5.3-codex",
+  "prompt_variant": "click_partition_docs_changelog",
+  "prompt_addon": "Fixed held-out Click seed label: seed05. Do not use previous run outputs. Inspect only docs and bounded changelog entries.",
+  "input_tokens": 25041,
+  "output_tokens": 603,
+  "tool_calls": null,
+  "wall_clock_seconds": 7.130993800004944,
+  "stop_reason": "api_response",
+  "notes": {
+    "task_root": "E:\\learn3\\B\\new\\experiments\\false_convergence_pilot\\T4_real_repo_click",
+    "files": [
+      "repo/docs/commands-and-groups.md",
+      "repo/CHANGES.md"
+    ],
+    "search_budget": 180,
+    "max_lines_per_file": 1400
+  }
+}

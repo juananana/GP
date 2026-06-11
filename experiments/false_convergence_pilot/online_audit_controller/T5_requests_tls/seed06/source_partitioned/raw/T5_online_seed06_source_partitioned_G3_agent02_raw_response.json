@@ -1,0 +1,84 @@
+{
+  "id": "resp_082c8b7b4e83ae66006a2956d6d9e08196a3188eda5d824728",
+  "object": "response",
+  "created_at": 1781094102,
+  "status": "completed",
+  "background": false,
+  "completed_at": 1781094112,
+  "content_filters": [
+    {
+      "blocked": false,
+      "source_type": "prompt",
+      "content_filter_raw": [],
+      "content_filter_results": {},
+      "content_filter_offsets": {
+        "start_offset": 829,
+        "end_offset": 1857,
+        "check_offset": 0
+      }
+    }
+  ],
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-5.3-codex",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_082c8b7b4e83ae66006a2956d79bc88196a5b6162e6c7a6344",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"run_id\": \"T5_online_seed06_source_partitioned_G3_agent02\",\n  \"self_reported_completion\": true,\n  \"self_reported_confidence\": 0.78,\n  \"items\": [\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 51},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 59},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 966},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 967},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 969},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 971},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 972},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 975},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 978},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 980},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 981},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 984},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 987},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 988},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 990},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 993},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 997},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 999},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1002},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1004},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1005},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1009},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1011},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1012},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1018},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1022},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1024},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1026},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1027},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1034},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1036},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1048},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1059},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1061},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1063},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1064},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1065},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1066},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 7},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 45},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 50},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 51},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 53},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 54},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 55},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 57},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 58},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 60},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 64},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 3},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 138},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 147},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 148},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 149},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 150},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 159},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 160},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 161},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 162},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 163},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 164},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 165},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 166},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 168},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 169},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 173},\n    {\"file_path\": \"repo/tests/certs/README.md\", \"line\": 1},\n    {\"file_path\": \"repo/tests/certs/README.md\", \"line\": 3},\n    {\"file_path\": \"repo/tests/certs/README.md\", \"line\": 8},\n    {\"file_path\": \"repo/tests/certs/README.md\", \"line\": 9},\n    {\"file_path\": \"repo/tests/certs/README.md\", \"line\": 10}\n  ]\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": "none",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 16978,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 1390,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 18368
+  },
+  "user": null,
+  "metadata": {}
+}

@@ -1,0 +1,38 @@
+﻿{
+    "freeze_id":  "completion_certificate_v1_20260609",
+    "created_at_local":  "2026-06-09T18:02:19.6404569+08:00",
+    "purpose":  "Freeze completion_certificate_v1 and current AAAI paper as an honest diagnostic baseline. Do not tune v1 thresholds or overwrite v1 outputs.",
+    "note":  "v1 result summary: no false certification observed, low safe coverage, AUROC near random; use as prototype/baseline only.",
+    "files":  [
+                  {
+                      "path":  "paper\\main.pdf",
+                      "sha256":  "663DD45C3036AC3F7346ECA53103FA742EA12073AFDE73D06CC84C83A4A563B4",
+                      "bytes":  168589
+                  },
+                  {
+                      "path":  "paper\\main.tex",
+                      "sha256":  "EE853B2AC818FA6A48EAED04E508E1B2BDDCE403E3B207A9606301F378DFB02A",
+                      "bytes":  35483
+                  },
+                  {
+                      "path":  "paper\\references.bib",
+                      "sha256":  "646060F7AF949A2F69B816E43C9601DA6ADF37F07612D6886F4DDE3D937FC9D7",
+                      "bytes":  19152
+                  },
+                  {
+                      "path":  "protocol_outputs\\completion_certificate_v1_results.json",
+                      "sha256":  "BB0137CF85ABCB1FA6AA68D1B56F940596352879F780BB70C7AE70E33B7F9504",
+                      "bytes":  338552
+                  },
+                  {
+                      "path":  "reports\\COMPLETION_CERTIFICATE_V1_RESULTS.md",
+                      "sha256":  "7CB98825F867FE4C1DFD83C5D0B62AB8785487BDC55C49BE72FE5C2B2A5D1122",
+                      "bytes":  16793
+                  },
+                  {
+                      "path":  "tools\\run_completion_certificate_v1.py",
+                      "sha256":  "50A5505C8580CFCACC3A36F860B30CE3EB20E51BF39A62194B95FC8D5E33FC11",
+                      "bytes":  33939
+                  }
+              ]
+}

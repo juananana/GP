@@ -1,0 +1,12 @@
+{
+  "run_id": "T5_online_seed04_prompt_diverse_singleton_audit_G6_verifier",
+  "started_at": "2026-06-10T12:59:27.354078+00:00",
+  "ended_at": "2026-06-10T12:59:47.143420+00:00",
+  "model_name": "gpt-5.3-codex",
+  "policy": "singleton_audit",
+  "input_tokens": 4319,
+  "output_tokens": 875,
+  "tool_calls": 0,
+  "wall_clock_seconds": 19.78931120003108,
+  "candidate_count": 42
+}

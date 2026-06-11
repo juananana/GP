@@ -1,0 +1,191 @@
+{
+  "run_id": "T5_online_seed07_prompt_diverse_singleton_audit_G6_verifier",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.94,
+  "items": [
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 71
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 190
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 191
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 194
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 203
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 204
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 209
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 232
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 286
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 287
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 288
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 656
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 133
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 134
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 145
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 146
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 147
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 148
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 324
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 332
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 349
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 406
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 417
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 426
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 441
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 447
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 451
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 460
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 662
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 674
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 675
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 726
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 739
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 475
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 865
+    },
+    {
+      "file_path": "repo/tests/certs/README.md",
+      "line": 6
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 44
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 48
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 50
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 7
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1001
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1036
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 993
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 999
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 167
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 3
+    }
+  ]
+}

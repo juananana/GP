@@ -1,0 +1,84 @@
+{
+  "id": "resp_0bf48137a8d929a3006a29605c2b108193b9736bf49e3b87f0",
+  "object": "response",
+  "created_at": 1781096540,
+  "status": "completed",
+  "background": false,
+  "completed_at": 1781096544,
+  "content_filters": [
+    {
+      "blocked": false,
+      "source_type": "prompt",
+      "content_filter_raw": [],
+      "content_filter_results": {},
+      "content_filter_offsets": {
+        "start_offset": 829,
+        "end_offset": 1856,
+        "check_offset": 0
+      }
+    }
+  ],
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-5.3-codex",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0bf48137a8d929a3006a29605caf8881939ed635efaffdd854",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"run_id\": \"T5_online_seed05_prompt_diverse_random_holdout_G6_verifier\",\n  \"self_reported_completion\": true,\n  \"self_reported_confidence\": 0.95,\n  \"items\": [\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 488},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 192},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 475},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 148},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 482},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 866},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 460},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 868},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 147},\n    {\"file_path\": \"repo/src/requests/certs.py\", \"line\": 18},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1014},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 426},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 50},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1005},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 487},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 982},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1004},\n    {\"file_path\": \"repo/src/requests/certs.py\", \"line\": 10},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 865}\n  ]\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": "none",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 2404,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 431,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2835
+  },
+  "user": null,
+  "metadata": {}
+}

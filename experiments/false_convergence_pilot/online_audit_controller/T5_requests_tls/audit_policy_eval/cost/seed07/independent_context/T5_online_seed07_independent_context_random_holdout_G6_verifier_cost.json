@@ -1,0 +1,12 @@
+{
+  "run_id": "T5_online_seed07_independent_context_random_holdout_G6_verifier",
+  "started_at": "2026-06-10T13:09:08.950834+00:00",
+  "ended_at": "2026-06-10T13:09:14.334359+00:00",
+  "model_name": "gpt-5.3-codex",
+  "policy": "random_holdout",
+  "input_tokens": 2370,
+  "output_tokens": 453,
+  "tool_calls": 0,
+  "wall_clock_seconds": 5.383506599988323,
+  "candidate_count": 20
+}

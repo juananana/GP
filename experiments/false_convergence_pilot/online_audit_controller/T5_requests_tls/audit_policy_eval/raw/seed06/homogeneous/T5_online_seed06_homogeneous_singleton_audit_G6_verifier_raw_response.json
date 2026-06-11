@@ -1,0 +1,84 @@
+{
+  "id": "resp_0f4eaee72040c7bf006a2960d26758819782727b8ce2f02337",
+  "object": "response",
+  "created_at": 1781096658,
+  "status": "completed",
+  "background": false,
+  "completed_at": 1781096664,
+  "content_filters": [
+    {
+      "blocked": false,
+      "source_type": "prompt",
+      "content_filter_raw": [],
+      "content_filter_results": {},
+      "content_filter_offsets": {
+        "start_offset": 829,
+        "end_offset": 1856,
+        "check_offset": 0
+      }
+    }
+  ],
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-5.3-codex",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0f4eaee72040c7bf006a2960d2d88881979e6ca0888c18d9f3",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"run_id\": \"T5_online_seed06_homogeneous_singleton_audit_G6_verifier\",\n  \"self_reported_completion\": true,\n  \"self_reported_confidence\": 0.89,\n  \"items\": [\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 190},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 232},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 266},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 285},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 287},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 288},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 289},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 111},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 148},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 314},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 322},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 324},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 328},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 349},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 403},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 417},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 423},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 426},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 453},\n    {\"file_path\": \"repo/src/requests/certs.py\", \"line\": 11},\n    {\"file_path\": \"repo/src/requests/exceptions.py\", \"line\": 78},\n    {\"file_path\": \"repo/src/requests/exceptions.py\", \"line\": 79},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 866},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 868},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 64},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 980},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 987},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 997},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 998},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 999},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1000},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1001},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1004},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1005},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1007},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1012},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1013},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1014},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 167}\n  ]\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": "none",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 4811,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 818,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 5629
+  },
+  "user": null,
+  "metadata": {}
+}

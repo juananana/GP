@@ -1,0 +1,29 @@
+{
+  "run_id": "T5_online_seed05_independent_context_G3_agent03",
+  "started_at": "2026-06-10T12:15:55.694477+00:00",
+  "ended_at": "2026-06-10T12:16:32.416429+00:00",
+  "model_name": "gpt-5.3-codex",
+  "prompt_variant": "independent_docs_src",
+  "prompt_addon": "Fixed evaluation seed label: seed05. Do not use any previous run output. Use an independent source order. Start from docs and implementation; include tests only when directly justified.",
+  "input_tokens": 49980,
+  "output_tokens": 3415,
+  "tool_calls": null,
+  "wall_clock_seconds": 36.72192649997305,
+  "stop_reason": "api_response",
+  "notes": {
+    "task_root": "E:\\learn3\\B\\new\\experiments\\false_convergence_pilot\\T5_real_repo_requests_tls",
+    "files": [
+      "repo/docs/user/advanced.rst",
+      "repo/docs/community/faq.rst",
+      "repo/docs/community/recommended.rst",
+      "repo/README.md",
+      "repo/src/requests/adapters.py",
+      "repo/src/requests/sessions.py",
+      "repo/src/requests/certs.py",
+      "repo/src/requests/utils.py",
+      "repo/src/requests/exceptions.py"
+    ],
+    "search_budget": 180,
+    "max_lines_per_file": 1200
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "id": "resp_0aa716b583ab5ed4006a29608f89088194ab7f8108f5c8471d",
+  "object": "response",
+  "created_at": 1781096591,
+  "status": "completed",
+  "background": false,
+  "completed_at": 1781096602,
+  "content_filters": [
+    {
+      "blocked": false,
+      "source_type": "prompt",
+      "content_filter_raw": [],
+      "content_filter_results": {},
+      "content_filter_offsets": {
+        "start_offset": 829,
+        "end_offset": 1856,
+        "check_offset": 0
+      }
+    }
+  ],
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-5.3-codex",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0aa716b583ab5ed4006a29609017ac8194962af825b0aefe4b",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"run_id\": \"T5_online_seed05_source_partitioned_random_holdout_G6_verifier\",\n  \"self_reported_completion\": true,\n  \"self_reported_confidence\": 0.95,\n  \"items\": [\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 468},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 235},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 655},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 661},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 340},\n    {\"file_path\": \"repo/src/requests/utils.py\", \"line\": 81},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 658},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 614},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 331},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 406},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 480},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 138},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 214},\n    {\"file_path\": \"repo/tests/certs/README.md\", \"line\": 3},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 657},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 333},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 267},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 615},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 219},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 419},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 462},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 317},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 286},\n    {\"file_path\": \"repo/src/requests/utils.py\", \"line\": 82},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 48},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 54},\n    {\"file_path\": \"repo/docs/community/faq.rst\", \"line\": 74},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1027},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 441},\n    {\"file_path\": \"repo/docs/community/recommended.rst\", \"line\": 14},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 102},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 339},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 408},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 342},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 53},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 101},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 984},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 159},\n    {\"file_path\": \"repo/tests/certs/README.md\", \"line\": 10},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 613},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 328},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 969},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 356},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 404},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 108},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 169},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 166},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 438},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 472},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 109},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1034},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 321},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 57},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 308},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 420},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 455},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 277},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 348},\n    {\"file_path\": \"repo/docs/community/recommended.rst\", \"line\": 9},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 288},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 972},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 478},\n    {\"file_path\": \"repo/tests/certs/README.md\", \"line\": 1},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 651},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 471},\n    {\"file_path\": \"repo/tests/testserver/server.py\", \"line\": 148},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 316},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 351},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 329},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 640}\n  ]\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": "none",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 7152,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 1438,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 8590
+  },
+  "user": null,
+  "metadata": {}
+}

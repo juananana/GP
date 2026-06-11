@@ -1,0 +1,223 @@
+{
+  "run_id": "T5_online_seed08_independent_context_singleton_audit_G6_verifier",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.91,
+  "items": [
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 71
+    },
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 87
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 182
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 209
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 277
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 289
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 291
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 653
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 308
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 322
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 324
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 328
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 349
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 417
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 430
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 441
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 447
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 451
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 458
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 460
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 637
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 639
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 651
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 652
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 653
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 654
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 663
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 85
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 10
+    },
+    {
+      "file_path": "repo/src/requests/exceptions.py",
+      "line": 78
+    },
+    {
+      "file_path": "repo/src/requests/exceptions.py",
+      "line": 79
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 421
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 434
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 470
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 614
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 831
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 837
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 853
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 859
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 866
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 868
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 48
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 50
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 64
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1004
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1005
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1012
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1013
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1019
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1021
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1065
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1066
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 997
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 999
+    }
+  ]
+}
