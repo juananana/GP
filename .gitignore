@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+
+# Large generated v2 diagnostic logs stay local; summaries and figures are tracked.
+experiments/false_convergence_pilot/v2_outputs/run_logs/
+experiments/false_convergence_pilot/v2_outputs/state_logs/
