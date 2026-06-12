@@ -1,7 +1,0 @@
-case_id,family,seed,candidate_size,candidate_recall,candidate_precision,filter_recall,filter_precision,sweep_recall,sweep_precision
-T4_real_repo_click_seed01_blind,T3 Click,seed01,202,0.9932885906040269,0.7326732673267327,0.9932885906040269,1.0,1.0,1.0
-T4_real_repo_click_seed02_blind,T3 Click,seed02,243,1.0,0.6131687242798354,1.0,1.0,1.0,1.0
-T4_real_repo_click_seed03_blind,T3 Click,seed03,235,1.0,0.6340425531914894,1.0,1.0,1.0,1.0
-T5_real_repo_requests_tls_seed01_blind,T4 Requests,seed01,409,0.8618421052631579,0.6405867970660146,0.8618421052631579,1.0,1.0,1.0
-T5_real_repo_requests_tls_seed02_blind,T4 Requests,seed02,389,0.8453947368421053,0.6606683804627249,0.8453947368421053,1.0,1.0,1.0
-T5_real_repo_requests_tls_seed03_blind,T4 Requests,seed03,389,0.8388157894736842,0.6555269922879178,0.8388157894736842,1.0,1.0,1.0

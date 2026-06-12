@@ -1,7 +1,0 @@
-case_id,family,seed,consensus_recall,union_recall,union_precision,label,risk_flags
-T4_real_repo_click_seed01_blind,T3 Click,seed01,0.9530201342281879,0.9932885906040269,0.7437185929648241,unsafe_to_stop,low_confidence; singleton_missing_mass; chao_unseen_mass
-T4_real_repo_click_seed02_blind,T3 Click,seed02,0.7583892617449665,1.0,0.6394849785407726,unsafe_to_stop,low_confidence; singleton_missing_mass; chao_unseen_mass
-T4_real_repo_click_seed03_blind,T3 Click,seed03,0.7785234899328859,1.0,0.6422413793103449,unsafe_to_stop,low_confidence; singleton_missing_mass; chao_unseen_mass
-T5_real_repo_requests_tls_seed01_blind,T4 Requests,seed01,0.7006578947368421,0.8585526315789473,0.660759493670886,unsafe_to_stop,singleton_missing_mass; chao_unseen_mass
-T5_real_repo_requests_tls_seed02_blind,T4 Requests,seed02,0.6776315789473685,0.8453947368421053,0.6675324675324675,unsafe_to_stop,singleton_missing_mass; chao_unseen_mass
-T5_real_repo_requests_tls_seed03_blind,T4 Requests,seed03,0.6776315789473685,0.8289473684210527,0.675603217158177,unsafe_to_stop,low_confidence; singleton_missing_mass; chao_unseen_mass
