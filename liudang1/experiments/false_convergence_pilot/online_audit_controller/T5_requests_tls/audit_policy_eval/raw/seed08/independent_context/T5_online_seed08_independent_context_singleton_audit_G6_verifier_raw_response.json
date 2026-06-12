@@ -1,0 +1,84 @@
+{
+  "id": "resp_0d8d1c8ad906efdb006a2962a60d348195854aa4ac9e04fb1e",
+  "object": "response",
+  "created_at": 1781097126,
+  "status": "completed",
+  "background": false,
+  "completed_at": 1781097146,
+  "content_filters": [
+    {
+      "blocked": false,
+      "source_type": "prompt",
+      "content_filter_raw": [],
+      "content_filter_results": {},
+      "content_filter_offsets": {
+        "start_offset": 829,
+        "end_offset": 1856,
+        "check_offset": 0
+      }
+    }
+  ],
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-5.3-codex",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0d8d1c8ad906efdb006a2962a6e1988195ab54e022b6860dc7",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"run_id\": \"T5_online_seed08_independent_context_singleton_audit_G6_verifier\",\n  \"self_reported_completion\": true,\n  \"self_reported_confidence\": 0.91,\n  \"items\": [\n    {\"file_path\": \"repo/docs/community/faq.rst\", \"line\": 71},\n    {\"file_path\": \"repo/docs/community/faq.rst\", \"line\": 87},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 182},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 209},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 277},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 289},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 291},\n    {\"file_path\": \"repo/docs/user/advanced.rst\", \"line\": 653},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 308},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 322},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 324},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 328},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 349},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 417},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 430},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 441},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 447},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 451},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 458},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 460},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 637},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 639},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 651},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 652},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 653},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 654},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 663},\n    {\"file_path\": \"repo/src/requests/adapters.py\", \"line\": 85},\n    {\"file_path\": \"repo/src/requests/certs.py\", \"line\": 10},\n    {\"file_path\": \"repo/src/requests/exceptions.py\", \"line\": 78},\n    {\"file_path\": \"repo/src/requests/exceptions.py\", \"line\": 79},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 421},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 434},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 470},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 614},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 831},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 837},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 853},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 859},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 866},\n    {\"file_path\": \"repo/src/requests/sessions.py\", \"line\": 868},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 48},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 50},\n    {\"file_path\": \"repo/tests/conftest.py\", \"line\": 64},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1004},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1005},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1012},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1013},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1019},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1021},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1065},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 1066},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 997},\n    {\"file_path\": \"repo/tests/test_requests.py\", \"line\": 999}\n  ]\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": "none",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 5583,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 1123,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 6706
+  },
+  "user": null,
+  "metadata": {}
+}

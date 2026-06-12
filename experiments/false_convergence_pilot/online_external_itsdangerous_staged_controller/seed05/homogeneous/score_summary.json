@@ -1,0 +1,160 @@
+{
+  "task_id": "T6_real_repo_itsdangerous_timed_signing_external",
+  "oracle_size": 160,
+  "thresholds": {
+    "theta": 0.95,
+    "tau": 0.7,
+    "confidence": 0.8,
+    "gamma": 0.05
+  },
+  "run_summaries": [
+    {
+      "run_id": "T6_itsdangerous_seed05_homogeneous_G3_agent01",
+      "seed": "seed05",
+      "group": "G3",
+      "confidence": 0.97,
+      "completion": true,
+      "found": 176,
+      "true_positive": 137,
+      "false_positive": 39,
+      "recall": 0.85625,
+      "precision": 0.7784090909090909,
+      "false_stop": true,
+      "bucket_recall": {
+        "changelog": 0.8,
+        "documentation": 0.9333333333333333,
+        "exception_types": 0.3684210526315789,
+        "implementation": 0.8805970149253731,
+        "public_exports": 1.0,
+        "test_coverage": 1.0,
+        "url_safe_timed_api": 1.0
+      }
+    },
+    {
+      "run_id": "T6_itsdangerous_seed05_homogeneous_G3_agent02",
+      "seed": "seed05",
+      "group": "G3",
+      "confidence": 0.95,
+      "completion": true,
+      "found": 193,
+      "true_positive": 140,
+      "false_positive": 53,
+      "recall": 0.875,
+      "precision": 0.7253886010362695,
+      "false_stop": true,
+      "bucket_recall": {
+        "changelog": 0.8,
+        "documentation": 0.9333333333333333,
+        "exception_types": 0.3684210526315789,
+        "implementation": 0.9253731343283582,
+        "public_exports": 1.0,
+        "test_coverage": 1.0,
+        "url_safe_timed_api": 1.0
+      }
+    },
+    {
+      "run_id": "T6_itsdangerous_seed05_homogeneous_G3_agent03",
+      "seed": "seed05",
+      "group": "G3",
+      "confidence": 0.94,
+      "completion": true,
+      "found": 195,
+      "true_positive": 141,
+      "false_positive": 54,
+      "recall": 0.88125,
+      "precision": 0.7230769230769231,
+      "false_stop": true,
+      "bucket_recall": {
+        "changelog": 0.8,
+        "documentation": 0.9333333333333333,
+        "exception_types": 0.3684210526315789,
+        "implementation": 0.9402985074626866,
+        "public_exports": 1.0,
+        "test_coverage": 1.0,
+        "url_safe_timed_api": 1.0
+      }
+    }
+  ],
+  "seed_summaries": [
+    {
+      "seed": "seed05",
+      "g3_run_ids": [
+        "T6_itsdangerous_seed05_homogeneous_G3_agent01",
+        "T6_itsdangerous_seed05_homogeneous_G3_agent02",
+        "T6_itsdangerous_seed05_homogeneous_G3_agent03"
+      ],
+      "mean_confidence": 0.9533333333333333,
+      "pairwise_jaccard": [
+        0.835820895522388,
+        0.8186274509803921,
+        0.9113300492610837
+      ],
+      "mean_pairwise_jaccard": 0.8552594652546213,
+      "singleton_ratio": 0.09090909090909091,
+      "consensus": {
+        "found": 190,
+        "true_positive": 140,
+        "false_positive": 50,
+        "recall": 0.875,
+        "precision": 0.7368421052631579
+      },
+      "union": {
+        "found": 209,
+        "true_positive": 143,
+        "false_positive": 66,
+        "recall": 0.89375,
+        "precision": 0.6842105263157895
+      },
+      "holdout": null,
+      "holdout_gain": null,
+      "false_convergence_consensus": null,
+      "consensus_bucket_recall": {
+        "changelog": 0.8,
+        "documentation": 0.9333333333333333,
+        "exception_types": 0.3684210526315789,
+        "implementation": 0.9253731343283582,
+        "public_exports": 1.0,
+        "test_coverage": 1.0,
+        "url_safe_timed_api": 1.0
+      },
+      "union_bucket_recall": {
+        "changelog": 0.8,
+        "documentation": 0.9333333333333333,
+        "exception_types": 0.3684210526315789,
+        "implementation": 0.9701492537313433,
+        "public_exports": 1.0,
+        "test_coverage": 1.0,
+        "url_safe_timed_api": 1.0
+      },
+      "holdout_bucket_recall": null,
+      "consensus_missing_true_items": [
+        "repo/CHANGES.rst:111",
+        "repo/CHANGES.rst:127",
+        "repo/README.md:38",
+        "repo/src/itsdangerous/exc.py:101",
+        "repo/src/itsdangerous/exc.py:102",
+        "repo/src/itsdangerous/exc.py:14",
+        "repo/src/itsdangerous/exc.py:15",
+        "repo/src/itsdangerous/exc.py:16",
+        "repo/src/itsdangerous/exc.py:19",
+        "repo/src/itsdangerous/exc.py:25",
+        "repo/src/itsdangerous/exc.py:26",
+        "repo/src/itsdangerous/exc.py:43",
+        "repo/src/itsdangerous/exc.py:47",
+        "repo/src/itsdangerous/exc.py:76",
+        "repo/src/itsdangerous/exc.py:81",
+        "repo/src/itsdangerous/timed.py:101",
+        "repo/src/itsdangerous/timed.py:180",
+        "repo/src/itsdangerous/timed.py:210",
+        "repo/src/itsdangerous/timed.py:222",
+        "repo/src/itsdangerous/timed.py:53"
+      ],
+      "holdout_new_true_items": []
+    }
+  ],
+  "raw_run_ids": [
+    "T6_itsdangerous_seed05_homogeneous_G3_agent01",
+    "T6_itsdangerous_seed05_homogeneous_G3_agent02",
+    "T6_itsdangerous_seed05_homogeneous_G3_agent03"
+  ]
+}

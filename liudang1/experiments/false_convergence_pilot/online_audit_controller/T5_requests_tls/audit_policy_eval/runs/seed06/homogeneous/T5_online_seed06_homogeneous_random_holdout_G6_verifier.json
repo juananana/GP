@@ -1,0 +1,63 @@
+{
+  "run_id": "T5_online_seed06_homogeneous_random_holdout_G6_verifier",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.89,
+  "items": [
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 288
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 998
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1007
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 167
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1012
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 289
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 417
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1005
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1000
+    },
+    {
+      "file_path": "repo/src/requests/exceptions.py",
+      "line": 79
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 111
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 999
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 148
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1004
+    }
+  ]
+}

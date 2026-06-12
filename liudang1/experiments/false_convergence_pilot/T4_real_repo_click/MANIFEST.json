@@ -1,0 +1,18 @@
+{
+  "task_id": "T4_real_repo_click_deprecation",
+  "status": "task_ready_oracle_built",
+  "source_repo": "https://github.com/pallets/click",
+  "source_commit": "8a1b1a33d739be05b7e91251e3c0dde77c5e152f",
+  "oracle_size": 149,
+  "needs_blind_runs": [
+    "G3 seed01 agent01-agent03",
+    "G6 holdout seed01",
+    "optional standard summarizer",
+    "optional union-preserving summarizer"
+  ],
+  "notes": [
+    "This task family uses a real repository snapshot.",
+    "The oracle is line-level and generated from an explicit audit policy.",
+    "Do not count it as agent validation until blind G3/G6 runs are completed."
+  ]
+}

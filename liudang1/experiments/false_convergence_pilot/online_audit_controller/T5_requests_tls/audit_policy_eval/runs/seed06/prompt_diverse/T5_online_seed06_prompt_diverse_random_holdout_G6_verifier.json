@@ -1,0 +1,75 @@
+{
+  "run_id": "T5_online_seed06_prompt_diverse_random_holdout_G6_verifier",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.82,
+  "items": [
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 973
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 328
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 488
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 182
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 18
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 853
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 726
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 656
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 184
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 191
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 971
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 204
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 285
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 421
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1006
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 349
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1030
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "run_id": "T4_SUM_union_preserving_autodl_seed02",
+  "task_id": "T4_real_repo_click_deprecation",
+  "started_at": "2026-06-08T08:08:37.287977+00:00",
+  "ended_at": "2026-06-08T08:09:13.839679+00:00",
+  "model_name": "gpt-5.3-codex",
+  "prompt_variant": "autodl_union_preserving",
+  "input_tokens": 4827,
+  "output_tokens": 5399,
+  "tool_calls": null,
+  "wall_clock_seconds": 36.55167240000446,
+  "stop_reason": "api_response",
+  "notes": null
+}

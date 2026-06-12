@@ -1,0 +1,12 @@
+{
+  "run_id": "T4_click_seed05_independent_context_G6_singleton_verifier",
+  "started_at": "2026-06-11T13:19:03.525711+00:00",
+  "ended_at": "2026-06-11T13:19:15.504143+00:00",
+  "model_name": "gpt-5.3-codex",
+  "policy": "singleton_audit",
+  "input_tokens": 5129,
+  "output_tokens": 782,
+  "tool_calls": 0,
+  "wall_clock_seconds": 11.978403300003265,
+  "candidate_count": 61
+}

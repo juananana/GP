@@ -1,0 +1,12 @@
+tenant_routes:
+  orbit: "acmepay:v1"
+  nova: "acmepay:v1"
+  atlas: "stripe:v2"
+region_routes:
+  eu-west: "acmepay:v1"
+  ap-south: "acmepay:v1"
+  us-east: "stripe:v2"
+fallback_topics:
+  charge: "acmepay.v1.charge"
+  refund: "acmepay.v1.refund"
+

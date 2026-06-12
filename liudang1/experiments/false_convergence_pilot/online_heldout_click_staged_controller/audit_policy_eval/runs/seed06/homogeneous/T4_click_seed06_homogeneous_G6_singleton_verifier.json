@@ -1,0 +1,27 @@
+{
+  "run_id": "T4_click_seed06_homogeneous_G6_singleton_verifier",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.72,
+  "items": [
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 320
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1084
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 1361
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 522
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 65
+    }
+  ]
+}

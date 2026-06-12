@@ -1,0 +1,13 @@
+{
+  "task_id": "T6_real_repo_itsdangerous_timed_signing",
+  "status": "task_ready_oracle_built",
+  "source_repo": "https://github.com/pallets/itsdangerous",
+  "source_commit": "672971d66a2ef9f85151e53283113f33d642dabd",
+  "oracle_size": 160,
+  "oracle_builder": "tools/build_t6_real_itsdangerous_timed_task.py",
+  "needs_independent_human_review": true,
+  "notes": [
+    "Initial oracle is regex/manual-policy constructed from bounded source files.",
+    "Do not describe this as independent double annotation."
+  ]
+}

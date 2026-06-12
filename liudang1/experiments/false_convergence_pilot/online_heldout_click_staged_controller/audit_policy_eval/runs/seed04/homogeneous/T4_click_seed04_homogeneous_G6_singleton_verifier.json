@@ -1,0 +1,103 @@
+{
+  "run_id": "T4_click_seed04_homogeneous_G6_singleton_verifier",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.95,
+  "items": [
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 1206
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 950
+    },
+    {
+      "file_path": "repo/CHANGES.md",
+      "line": 951
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 86
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 89
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 97
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 100
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 108
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 111
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 121
+    },
+    {
+      "file_path": "repo/src/click/__init__.py",
+      "line": 124
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 512
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 519
+    },
+    {
+      "file_path": "repo/src/click/core.py",
+      "line": 522
+    },
+    {
+      "file_path": "repo/src/click/parser.py",
+      "line": 517
+    },
+    {
+      "file_path": "repo/src/click/parser.py",
+      "line": 520
+    },
+    {
+      "file_path": "repo/src/click/parser.py",
+      "line": 528
+    },
+    {
+      "file_path": "repo/src/click/parser.py",
+      "line": 531
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 514
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 518
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 543
+    },
+    {
+      "file_path": "repo/tests/test_commands.py",
+      "line": 547
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 54
+    },
+    {
+      "file_path": "repo/tests/test_options.py",
+      "line": 58
+    }
+  ]
+}

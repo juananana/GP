@@ -1,0 +1,12 @@
+{
+  "run_id": "T6_itsdangerous_seed05_source_partitioned_G6_singleton_verifier",
+  "started_at": "2026-06-11T14:44:23.542138+00:00",
+  "ended_at": "2026-06-11T14:45:02.518968+00:00",
+  "model_name": "gpt-5.3-codex",
+  "policy": "singleton_audit",
+  "input_tokens": 16802,
+  "output_tokens": 3974,
+  "tool_calls": 0,
+  "wall_clock_seconds": 38.976814199995715,
+  "candidate_count": 188
+}

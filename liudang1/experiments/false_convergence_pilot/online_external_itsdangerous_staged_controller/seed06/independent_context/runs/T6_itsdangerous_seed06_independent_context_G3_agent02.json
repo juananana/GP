@@ -1,0 +1,343 @@
+{
+  "run_id": "T6_itsdangerous_seed06_independent_context_G3_agent02",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.72,
+  "items": [
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 9
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 10
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 12
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 13
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 29
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 32
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 34
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 35
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 37
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 40
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 41
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 43
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 45
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 46
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 47
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 49
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 53
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 54
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 57
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 59
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 63
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 64
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 67
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 69
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 72
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 73
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 76
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 78
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 79
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 82
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 83
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 85
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 87
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 90
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 91
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 93
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 96
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 99
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 101
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 102
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 104
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 107
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 108
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 110
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 111
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 113
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 114
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 115
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_url_safe.py",
+      "line": 6
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_url_safe.py",
+      "line": 8
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_url_safe.py",
+      "line": 21
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_url_safe.py",
+      "line": 24
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 1
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 3
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 6
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 7
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 8
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 9
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 13
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 14
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 19
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 22
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 24
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 27
+    },
+    {
+      "file_path": "repo/docs/exceptions.rst",
+      "line": 12
+    },
+    {
+      "file_path": "repo/docs/exceptions.rst",
+      "line": 15
+    },
+    {
+      "file_path": "repo/docs/url_safe.rst",
+      "line": 21
+    },
+    {
+      "file_path": "repo/README.md",
+      "line": 12
+    },
+    {
+      "file_path": "repo/README.md",
+      "line": 13
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 35
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 43
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 85
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 86
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 87
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 88
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 90
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 91
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 131
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 139
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 140
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 243
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 270
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 271
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 272
+    }
+  ]
+}

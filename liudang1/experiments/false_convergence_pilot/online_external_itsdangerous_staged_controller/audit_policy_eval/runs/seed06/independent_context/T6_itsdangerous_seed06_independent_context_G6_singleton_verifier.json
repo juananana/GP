@@ -1,0 +1,115 @@
+{
+  "run_id": "T6_itsdangerous_seed06_independent_context_G6_singleton_verifier",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.92,
+  "items": [
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 243
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 270
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 271
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 272
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 84
+    },
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 89
+    },
+    {
+      "file_path": "repo/docs/timed.rst",
+      "line": 1
+    },
+    {
+      "file_path": "repo/src/itsdangerous/exc.py",
+      "line": 38
+    },
+    {
+      "file_path": "repo/src/itsdangerous/exc.py",
+      "line": 41
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 117
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 118
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 132
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 133
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 196
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 210
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 225
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 228
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 39
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 53
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 54
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 79
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 84
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 111
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 114
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 20
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 21
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 88
+    }
+  ]
+}

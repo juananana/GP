@@ -1,0 +1,75 @@
+{
+  "run_id": "T6_itsdangerous_seed04_homogeneous_G6_singleton_verifier",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.89,
+  "items": [
+    {
+      "file_path": "repo/CHANGES.rst",
+      "line": 272
+    },
+    {
+      "file_path": "repo/src/itsdangerous/exc.py",
+      "line": 38
+    },
+    {
+      "file_path": "repo/src/itsdangerous/exc.py",
+      "line": 51
+    },
+    {
+      "file_path": "repo/src/itsdangerous/exc.py",
+      "line": 54
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 102
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 124
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 210
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 53
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 54
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 70
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 78
+    },
+    {
+      "file_path": "repo/src/itsdangerous/timed.py",
+      "line": 95
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 105
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 20
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 21
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 38
+    },
+    {
+      "file_path": "repo/tests/test_itsdangerous/test_timed.py",
+      "line": 7
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "task_id": "T1_hard_repo",
+  "oracle_size": 35,
+  "runs": [
+    {
+      "run_id": "T1hard_SUM_standard_seed01",
+      "self_reported_completion": true,
+      "self_reported_confidence": 0.86,
+      "items": [
+        "app/runtime/gateway_registry.py:3",
+        "app/runtime/gateway_registry.py:4",
+        "app/runtime/gateway_registry.py:9",
+        "app/runtime/gateway_registry.py:10",
+        "app/runtime/gateway_registry.py:14",
+        "app/runtime/gateway_registry.py:15",
+        "app/routes/tenant_routes.py:7",
+        "app/payments/tenant_checkout.py:6",
+        "app/payments/tenant_checkout.py:18",
+        "app/payments/regional_refunds.py:6",
+        "app/payments/regional_refunds.py:18",
+        "app/jobs/fallback_jobs.py:5",
+        "app/jobs/fallback_jobs.py:10",
+        "app/config/routing.yaml:2",
+        "app/config/routing.yaml:3",
+        "app/config/routing.yaml:6",
+        "app/config/routing.yaml:7",
+        "app/config/routing.yaml:10",
+        "app/config/routing.yaml:11",
+        "scripts/replay_failures.py:6",
+        "scripts/replay_failures.py:11",
+        "scripts/replay_failures.py:16"
+      ],
+      "uncertain_or_dropped_singletons": [
+        "app/payments/tenant_checkout.py:7",
+        "app/payments/tenant_checkout.py:8",
+        "app/payments/tenant_checkout.py:19",
+        "app/payments/tenant_checkout.py:20",
+        "app/payments/regional_refunds.py:7",
+        "app/payments/regional_refunds.py:8",
+        "app/payments/regional_refunds.py:19",
+        "app/payments/regional_refunds.py:20",
+        "app/jobs/fallback_jobs.py:6",
+        "app/jobs/fallback_jobs.py:11",
+        "app/routes/tenant_routes.py:6",
+        "scripts/replay_failures.py:7",
+        "scripts/replay_failures.py:12"
+      ]
+    }
+  ]
+}

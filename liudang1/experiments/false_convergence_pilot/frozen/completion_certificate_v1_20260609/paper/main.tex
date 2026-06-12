@@ -1,0 +1,753 @@
+\documentclass[letterpaper]{article}
+
+% AAAI-26 style. Place aaai2026.sty from the official AAAI author kit in
+% this directory before compiling.
+\usepackage[submission]{aaai2026}
+
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage[hyphens]{url}
+\usepackage{graphicx}
+\urlstyle{rm}
+\def\UrlFont{\rm}
+\usepackage{natbib}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{newfloat}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\DeclareCaptionStyle{ruled}{labelfont=normalfont,labelsep=colon,strut=off}
+\lstset{
+  basicstyle={\footnotesize\ttfamily},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+\pdfinfo{
+/TemplateVersion (2026.1)
+}
+
+\setcounter{secnumdepth}{2}
+
+\title{Consensus Is Not Completion: False Convergence in Multi-Agent Discovery Workflows}
+
+\author{
+    Anonymous Authors
+}
+\affiliations{
+    Paper under anonymous review
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Multi-agent language-model workflows often treat agreement, overlap, or a final
+summary as evidence that a task is complete. This is unsafe in closed-world
+discovery tasks, where the goal is to find all relevant items. We introduce
+\emph{false convergence}: a workflow state in which agents report completion
+and exhibit high agreement, yet the final answer omits true items. We identify
+two mechanisms: \emph{aggregation loss}, where minority-discovered true items
+are discarded during consensus or summarization, and \emph{common blind spots},
+where agents agree because they miss the same region of the search space. On a
+real Click repository audit, a standard LLM summarizer self-reports completion
+in all three seeds while retaining only 68.5--74.5\% of oracle items. We argue
+that completion should be modeled as coverage-risk assessment under correlated
+exploration rather than vote-counting. We implement a decoupled completion
+certificate with pre-audit and post-audit states: the pre-audit certificate uses
+only exploration logs, while holdout gain is reserved for audit and post-audit
+updates. Experiments on synthetic tasks and two real-repository audits show that
+simple stopping baselines false-certify many incomplete states. The proposed
+certificate avoids false certification on the current mixed-state suite, but its
+safe coverage is low, exposing both the promise and the limits of the current
+rule.
+\end{abstract}
+
+\section{Introduction}
+
+Multi-agent language-model systems are increasingly used for tasks that require
+search, decomposition, and synthesis. A common design pattern is simple:
+multiple agents independently inspect a task, their outputs are aggregated by
+majority vote or a summarizer, and the system stops when agents agree or report
+high confidence. This pattern is natural. Agreement is easy to measure, and
+summaries provide a clean final answer.
+
+However, agreement is not the same as completion. In closed-world discovery
+tasks, such as finding every affected file location, every policy case, or every
+relevant document in a bounded corpus, the central question is not only whether
+the final answer is plausible. It is whether there remains missing mass outside
+the discovered set. A group of agents can converge for the wrong reason: they
+may share a search strategy, omit the same boundary cases, or discard minority
+evidence during aggregation.
+
+This paper studies this failure mode. We call it \emph{false convergence}: a
+workflow state in which the system appears complete under its own completion
+signals but is incomplete under a closed-world oracle. The failure is subtle
+because the final output can have perfect precision and high self-reported
+confidence. The error is not necessarily hallucination. It is often omission.
+
+We make three contributions.
+
+\begin{itemize}
+    \item We define false convergence in closed-world agentic discovery and
+    distinguish two mechanisms: aggregation loss and common blind spots.
+    \item We model completion as coverage-risk assessment rather than
+    vote-counting over agent outputs.
+    \item We propose a lightweight completion certificate and an
+    evidence-preserving audit policy, and evaluate them on synthetic tasks and
+    two real-repository audits.
+\end{itemize}
+
+Our results do not imply that union aggregation is always better than consensus.
+Instead, they show that singleton evidence has two faces. Sometimes it is
+missing mass; sometimes it is noise. A reliable completion controller should
+model this distinction rather than silently deleting minority evidence or
+blindly accepting all unique items.
+
+\section{Related Work}
+
+\subsection{Multi-Agent Consensus, Aggregation, and Calibration}
+
+Self-consistency selects a consistent answer from multiple samples
+\citep{wang2022selfconsistency}; debate, collaboration, and role-specialized
+agent frameworks improve reasoning or task performance
+\citep{du2023debate,chan2023chateval,wu2023autogen,chen2023agentverse,
+hong2023metagpt,li2023camel,zhang2024proagent}. Recent work also studies
+majority-failure auditing, selection bottlenecks, trace-level synthesis, and
+calibration under communication-induced correlation
+\citep{yang2026agentauditor,maryanskyy2026agentsdisagree,
+fadnavis2026beyondconsensus,huang2026cagecal}. Tool-using and
+planning agents extend LLMs through environment interaction
+\citep{yao2023react,schick2023toolformer,qin2023toolllm,yao2023tot,
+wang2023voyager}. Benchmarks such as
+AgentBench, WebArena, GAIA, and SWE-bench stress interactive or software tasks
+\citep{liu2023agentbench,zhou2023webarena,mialon2023gaia,jimenez2023swebench}.
+Our focus is different: aggregation is judged by closed-world recall and
+calibrated stopping risk, not by the quality of one selected answer.
+
+\subsection{Wide Research and Completeness Evaluation}
+
+Self-Refine, Reflexion, CRITIC, Chain-of-Verification, and related factuality
+checks repair or verify outputs
+\citep{madaan2023selfrefine,shinn2023reflexion,gou2023critic,dhuliawala2023cov,
+lin2021truthfulqa,manakul2023selfcheckgpt,li2023halueval}. Retrieval-augmented
+generation and dense retrieval reduce hallucination but still face noise,
+negative rejection, integration, and long-context failures
+\citep{lewis2020rag,guu2020realm,karpukhin2020dpr,nakano2021webgpt,
+chen2024rgb,li2024unigen,liu2023lost,asai2023selfrag,
+gao2023ragsurvey}. Closed-world discovery is also related to high-recall
+retrieval, fact verification, and technology-assisted review, where stopping is
+a coverage-estimation problem
+\citep{thorne2018fever,yang2018hotpotqa,grossman2015trec,
+cormack2021tarstopping}. Our certificate adopts this stopping perspective for
+correlated LLM-agent exploration.
+Recent broad or deep research benchmarks explicitly evaluate exhaustive
+information seeking and stopping uncertainty
+\citep{wong2025widesearch,gupta2026deepsearchqa,rafiee2026trqa,
+huang2026wideseek,kim2026seekergym}.
+
+\subsection{Coverage Estimation and Stopping}
+
+Our certificate uses observable missing-mass signals rather than oracle labels at
+decision time. Singleton counts and unseen-mass estimates are conceptually
+related to Good-Turing, Chao-style, capture-recapture, and ecological diversity
+estimators \citep{good1953population,chao1984nonparametric,
+mcAllester2000goodturing,chao2014rarefaction,bron2024chao}. Recent LLM and
+multi-agent uncertainty methods
+estimate answer risk from probabilities, samples, or semantic variation
+\citep{kuhn2023semanticentropy,kadavath2022language,chen2026matu,
+cole2023selectively}. We study a complementary question: whether a multi-agent
+workflow has covered a bounded item set well enough to stop.
+
+\section{Problem Formulation}
+
+\subsection{Closed-World Discovery Tasks}
+
+We consider tasks with a bounded source collection $D$ and a finite oracle set
+$Y^\star$ of target items. A run returns a set $\hat{Y}$. We evaluate:
+
+\begin{align}
+\text{Recall}(\hat{Y}) &= \frac{|\hat{Y} \cap Y^\star|}{|Y^\star|}, \\
+\text{Precision}(\hat{Y}) &= \frac{|\hat{Y} \cap Y^\star|}{|\hat{Y}|}.
+\end{align}
+
+Examples include code dependency audits, policy-case discovery, high-recall
+document review, and bounded repository analysis. Unlike open-ended question
+answering, a plausible final answer is insufficient: the system must decide
+whether it has found the complete set.
+
+\subsection{Multi-Agent Completion Signals}
+
+A typical workflow runs $k$ agents $A_1, \ldots, A_k$, each producing an item set
+$Y_i$, a completion flag $c_i$, and a confidence score $q_i$. Aggregation then
+produces a final set $Y_{\text{agg}}$. Common aggregation rules include:
+
+\begin{itemize}
+    \item \textbf{Majority consensus}: keep items reported by at least two
+    agents.
+    \item \textbf{Standard summarization}: ask a summarizer to produce a clean
+    final answer from the agent reports.
+    \item \textbf{Raw union}: keep every unique item reported by any agent.
+    \item \textbf{Union-preserving summarization}: instruct a summarizer to
+    preserve all unique reported items unless malformed or contradicted.
+\end{itemize}
+
+Systems often treat high pairwise overlap, high mean confidence, and affirmative
+self-reported completion as stopping evidence. We argue that these are not
+completion certificates.
+
+\subsection{False Convergence}
+
+Let $S$ be a multi-agent workflow state with $k$ agents, an aggregation rule
+$g$, and a target recall threshold $\theta$. We say $S$ exhibits false
+convergence under $g$ when:
+
+\begin{enumerate}
+    \item agents self-report completion with high confidence;
+    \item agent outputs exhibit high overlap;
+    \item the aggregated answer $g(Y_1,\ldots,Y_k)$ has recall below $\theta$.
+\end{enumerate}
+
+Our preregistered scoring uses $\theta=0.95$, confidence threshold $0.80$, and
+overlap threshold $\tau=0.70$. Holdout recovery is a diagnostic and audit
+mechanism, not part of the definition. We also report near-positive and
+mechanism-positive cases when the missing items are few but diagnostically
+important.
+
+\subsection{Aggregation Loss}
+
+Aggregation loss occurs when a true item appears in at least one agent report
+but is removed by consensus-style aggregation or standard summarization. This is
+not a search failure: the evidence exists in the reports. The failure happens at
+the final synthesis step.
+
+Formally, an oracle item $y \in Y^\star$ is an aggregation-loss item if:
+\begin{equation}
+y \in \bigcup_i Y_i \quad \text{and} \quad y \notin Y_{\text{agg}}.
+\end{equation}
+When $y$ appears in only one agent report, it is a singleton true positive.
+
+\subsection{Common Blind Spots}
+
+Common blind spots occur when multiple agents agree because they share a search
+failure. In this case, the missing item is absent even from the raw union:
+\begin{equation}
+y \in Y^\star \quad \text{and} \quad y \notin \bigcup_i Y_i.
+\end{equation}
+Raw union and union-preserving summarization cannot recover such items because
+there is no reported evidence to preserve. The mitigation must change the search
+or auditing process, for example through boundary-focused holdout review.
+
+\subsection{Singletons as Missing Mass or Noise}
+
+Singletons are ambiguous. A singleton may be a hard-to-find true positive, or it
+may be a false positive. Consensus implicitly treats singletons as noise. Raw
+union implicitly treats them as valid evidence. Both assumptions are unsafe. The
+right action is often to preserve singleton evidence for audit.
+
+\section{Coverage-Risk Completion Certificate}
+
+We propose a lightweight completion certificate for deciding whether a
+multi-agent discovery workflow can safely stop. The certificate is not an
+oracle: it does not use ground truth and does not decide final item labels.
+Instead, it maps observable workflow signals to a stopping judgment.
+
+\begin{figure*}[t]
+\centering
+\setlength{\unitlength}{0.7pt}
+\begin{picture}(720,125)
+\put(5,78){\framebox(105,34){Agent reports}}
+\put(135,96){\vector(1,0){60}}
+\put(205,78){\framebox(125,34){Aggregation loss}}
+\put(205,38){\framebox(125,34){Common blind spot}}
+\put(350,96){\vector(1,0){55}}
+\put(350,56){\vector(1,0){55}}
+\put(415,78){\framebox(105,34){Evidence ledger}}
+\put(535,96){\vector(1,0){45}}
+\put(590,78){\framebox(120,34){Pre-audit cert.}}
+\put(590,38){\framebox(120,34){Audit policy}}
+\put(650,78){\vector(0,-1){20}}
+\put(650,38){\vector(0,-1){20}}
+\put(550,5){\framebox(160,28){Post-audit certificate}}
+\put(62,63){\makebox(0,0){minority true item dropped}}
+\put(62,23){\makebox(0,0){shared missing region}}
+\end{picture}
+\caption{False convergence mechanisms and the decoupled completion workflow.
+Holdout gain is not a pre-audit signal; it updates the ledger only after audit.}
+\label{fig:workflow}
+\end{figure*}
+
+\subsection{Observable Signals}
+
+The pre-audit certificate takes as input only exploration-stage reports
+$Y_1,\ldots,Y_k$, confidence values, and source metadata. It does not use oracle
+labels or holdout gain. We compute item counts $n(y)$ and frequency counts
+$f_r=|\{y:n(y)=r\}|$. The Chao-style unseen estimate is
+\begin{equation}
+\hat{U}_{\text{Chao}} =
+\begin{cases}
+f_1^2/(2f_2), & f_2>0,\\
+f_1(f_1-1)/2, & f_2=0,
+\end{cases}
+\end{equation}
+with missing ratio
+$m_{\text{Chao}}=\hat{U}_{\text{Chao}}/(|\cup_iY_i|+\hat{U}_{\text{Chao}})$.
+We also compute Good--Turing missing mass $m_{\text{GT}}=f_1/\sum_y n(y)$,
+mean output Jaccard, mean source overlap, source coverage, and an effective
+exploration size $k_{\text{eff}}=k/(1+(k-1)\rho)$, where $\rho$ is mean output
+Jaccard.
+
+\subsection{Certificate Rule}
+
+The implemented rule computes a continuous risk score
+\begin{align}
+R = &\ r_{\text{conf}} + .25\min(1,s/0.20)
+      + .22\min(1,m_{\text{Chao}}/0.10) \nonumber\\
+    &+ .20\min(1,m_{\text{corr}}/0.15)
+      + r_{\text{src}} + r_{\text{boundary}} + r_{\text{audit}},
+\end{align}
+clipped to $[0,1]$, where $s=f_1/|\cup_iY_i|$ and
+$m_{\text{corr}}=\min(1,m_{\text{Chao}}\cdot k/k_{\text{eff}})$. The confidence
+penalty $r_{\text{conf}}$ is 0.12 when mean confidence is below 0.80. The source
+penalty is proportional to missing source coverage below 0.30. Boundary risk
+adds 0.12 when mean overlap is at least 0.95 on a boundary-sensitive task.
+Post-audit unresolved singleton evidence adds 0.12.
+
+The label is \textsc{safe-to-stop} only when confidence is high,
+$m_{\text{corr}}\le0.05$, singleton evidence is absent or resolved by audit, and
+$R<0.25$. It is \textsc{unsafe-to-stop} when $R\ge0.60$ or
+$m_{\text{corr}}\ge0.20$; otherwise it returns \textsc{requires-audit}. These
+thresholds are fixed in code and written to the result log.
+
+\subsection{Certificate Outputs}
+
+The certificate returns one of three labels:
+
+\begin{itemize}
+    \item \textsc{safe-to-stop}: observable risk is low enough that the workflow
+    may publish the current conservative answer.
+    \item \textsc{unsafe-to-stop}: observable risk suggests likely missing
+    mass; the workflow should continue searching or run a stronger audit.
+    \item \textsc{requires-audit}: the current answer may be complete, but
+    singleton evidence, noisy union items, or weak independence prevents clean
+    certification.
+\end{itemize}
+
+In the current experiments, the certificate is deliberately conservative. It is
+designed to catch high-risk states rather than to maximize automatic stopping.
+We therefore report false-certification rate and safe coverage separately.
+
+\subsection{Evidence-Preserving Audit Policy}
+
+When the certificate returns \textsc{unsafe-to-stop} or
+\textsc{requires-audit}, the workflow needs an audit policy. We use an
+evidence-preserving policy that separates finalization from evidence retention:
+consensus items form a conservative answer, singleton evidence is retained for
+review, and high-agreement boundary-risk states trigger holdout or source-focused
+audit. This policy is the audit response to a risky certificate state, not the
+certificate itself.
+
+\begin{algorithm}[H]
+\caption{Evidence-Preserving Audit Policy}
+\begin{algorithmic}[1]
+\STATE Run $k$ independent discovery agents, producing $Y_1,\ldots,Y_k$.
+\STATE Compute item counts $n(y)=|\{i:y\in Y_i\}|$.
+\STATE Set conservative final set $F=\{y:n(y)\ge2\}$.
+\STATE Set audit queue $Q=\{y:n(y)=1\}$.
+\STATE Compute pre-audit confidence, overlap, source coverage, and unseen-mass signals.
+\STATE Apply the pre-audit completion certificate.
+\IF{certificate is \textsc{safe-to-stop}}
+    \STATE Return $F$ with certificate report.
+\ENDIF
+\IF{$Q$ is non-empty}
+    \STATE Trigger singleton audit.
+\ENDIF
+\IF{confidence and overlap are high and the task has boundary-resolution risk}
+    \STATE Trigger boundary-focused holdout audit.
+\ENDIF
+\STATE Add audit-verified singletons to $F$.
+\STATE Add holdout-discovered boundary items to $F$.
+\STATE Recompute post-audit certificate using the updated ledger.
+\STATE Return $F$ plus pre/post certificate reports.
+\end{algorithmic}
+\end{algorithm}
+
+The audit policy handles the two failure mechanisms differently. For aggregation
+loss, it preserves and audits singleton or minority evidence instead of deleting
+it during summarization. For common blind spots, where no current agent reported
+the missing item, it triggers boundary-focused holdout or source-focused review.
+In our experiments, singletons are not automatically accepted; they are retained
+and audited. High agreement is not automatically trusted; it can trigger a
+common-blind-spot check.
+
+\section{Experimental Setup}
+
+\subsection{Research Questions}
+
+We ask:
+
+\begin{itemize}
+    \item \textbf{RQ1}: Can consensus-style aggregation produce false completion
+    signals in closed-world discovery tasks?
+    \item \textbf{RQ2}: Are failures caused by aggregation loss, common blind
+    spots, or both?
+    \item \textbf{RQ3}: Does raw union solve the problem, or does it introduce a
+    precision cost?
+    \item \textbf{RQ4}: Can a coverage-risk certificate identify unsafe
+    stopping states, and when can an audit policy recover missing items?
+\end{itemize}
+
+\subsection{Tasks}
+
+We use four bounded discovery task families: two synthetic families designed to
+isolate mechanisms, and two real-repository audits used to test whether the
+failure appears beyond constructed examples.
+
+\textbf{T1: Code dependency audit.} Agents inspect a synthetic AcmePay migration
+repository and must find every code or configuration location that resolves to
+AcmePay v1 through direct calls, routing configuration, registry indirection,
+fallback queues, or replay scripts. The hard oracle has 35 items.
+
+\textbf{T2: Policy document search.} Agents inspect naturalistic incident notes,
+changelogs, appendices, and policy memos. They must find all cases whose state,
+flow, and service-resolution chain imply AcmePay v1 handling. The oracle has 30
+items. Boundary cases require following service catalog and adapter registry
+resolution rather than relying on surface service names.
+
+\textbf{T3: Real-repository Click deprecation audit.} Agents inspect a fixed
+snapshot of the public Click repository and must find line-level locations that
+belong to a deprecated API surface audit. The oracle has 149 items spanning
+implementation, warning emission, help-message formatting, parameter behavior,
+tests, documentation, and bounded changelog entries. Unlike T1/T2, T3 uses a
+real repository and is used as a stronger validation of aggregation behavior
+rather than as a strict false-convergence construction.
+
+\textbf{T4: Real-repository Requests TLS audit.} We additionally instantiate a
+second real-repository task family from a fixed snapshot of the public Requests
+repository. The task asks agents to find line-level items related to TLS
+certificate verification, CA bundle resolution, client certificates, SSL error
+handling, tests, test infrastructure, and user documentation. The oracle has
+304 items. T4 is used to test whether the real-repository result depends on
+Click or deprecation-surface search.
+
+\subsection{Runs and Aggregation Policies}
+
+Each seed contains three G3 agents. Where available, we also run an independent
+G6 holdout scout. To test whether the certificate simply always refuses to stop,
+we construct mixed evaluation states from saved logs: each single agent, each
+two-agent union, the three-agent pre-audit union, and the post-holdout state
+when available. This yields complete, near-complete, and incomplete states
+without generating new oracle-dependent agent outputs. We compare:
+
+\begin{itemize}
+    \item majority consensus;
+    \item blind standard summarization;
+    \item raw union;
+    \item blind union-preserving summarization;
+    \item holdout scout;
+    \item self-reported completion, confidence-only, overlap-only, no-new-item,
+    Chao-only, always-unsafe, always-holdout, and the proposed certificate.
+\end{itemize}
+
+The standard and union-preserving summarizers are blind to oracle and scoring
+files. The pre-audit certificate uses only exploration outputs and metadata;
+holdout gain is used only after audit. Oracle is used only for offline metrics.
+
+\section{Results}
+
+\subsection{Mechanism Evidence}
+
+The six mechanism slices show the two failure modes. T1 seed01 and
+T2 seed01 show aggregation loss: true items were present in minority reports but
+dropped by consensus and standard summaries. T2 seed02 and seed03 show common
+blind spots: all three G3 agents agreed on the same incomplete 28-item set, and
+raw union could not recover the missing cases. T1 seed02 and seed03 are
+precision-cost controls: consensus is complete, while raw union preserves false
+positive singletons.
+
+\subsection{Aggregation Policy Comparison}
+
+Table~\ref{tab:methods} shows the method-level comparison. Consensus and
+standard summarization can produce high-precision false stops. Raw union and
+union-preserving summarization recover aggregation-loss cases, but incur
+precision cost in T1 seed02/03 and cannot recover T2 common blind spots. The
+evidence-preserving audit policy recovers missing items when holdout evidence is
+available and marks singleton-noise controls as requiring audit rather than
+silently accepting false positives.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{llrrrrl}
+\toprule
+Case & Method & Found & TP & FP & Recall & Status \\
+\midrule
+T1 seed01 & consensus / standard & 22 & 22 & 0 & 0.629 & false stop \\
+T1 seed01 & raw union / union-preserving & 35 & 35 & 0 & 1.000 & complete \\
+T1 seed01 & audit policy & 35 & 35 & 0 & 1.000 & verified \\
+\midrule
+T1 seed02 & consensus / standard & 35 & 35 & 0 & 1.000 & complete \\
+T1 seed02 & raw union / union-preserving & 39 & 35 & 4 & 1.000 & precision cost \\
+T1 seed02 & audit policy & 35 & 35 & 0 & 1.000 & requires audit \\
+\midrule
+T1 seed03 & consensus / standard & 35 & 35 & 0 & 1.000 & complete \\
+T1 seed03 & raw union / union-preserving & 40 & 35 & 5 & 1.000 & precision cost \\
+T1 seed03 & audit policy & 35 & 35 & 0 & 1.000 & requires audit \\
+\midrule
+T2 seed01 & consensus / standard & 28 & 28 & 0 & 0.933 & false stop \\
+T2 seed01 & raw union / union-preserving & 30 & 30 & 0 & 1.000 & complete \\
+T2 seed01 & audit policy & 30 & 30 & 0 & 1.000 & verified \\
+\midrule
+T2 seed02 & consensus / raw union & 28 & 28 & 0 & 0.933 & common blind spot \\
+T2 seed02 & holdout / audit policy & 30 & 30 & 0 & 1.000 & verified \\
+\midrule
+T2 seed03 & consensus / raw union & 28 & 28 & 0 & 0.933 & common blind spot \\
+T2 seed03 & holdout / audit policy & 30 & 30 & 0 & 1.000 & verified \\
+\bottomrule
+\end{tabular}
+\caption{Method comparison on current case slices. Grouped rows combine methods
+with identical scores in the current experiments.}
+\label{tab:methods}
+\end{table*}
+
+\subsection{Real-Repository Summarizer False Stops}
+
+T3 evaluates whether the aggregation-stage failure appears in a real repository
+task rather than only in constructed mechanism slices. We give the same G3
+aggregation packet to two blind LLM summarizers. The \emph{standard} summarizer
+is instructed to produce a concise, high-precision final answer from the three
+agent reports. The \emph{union-preserving} summarizer is instructed to preserve
+all unique reported items unless malformed or contradicted.
+
+Table~\ref{tab:t3-summarizers} shows a stable pattern across three blind seeds.
+The standard summarizer reports completion with confidence between 0.93 and
+0.96, but its recall is only 0.685--0.745. Its precision is nearly perfect, so
+the failure is not hallucination; it is omission. The union-preserving
+summarizer removes the false stop in all three seeds, reaching 0.993--1.000
+recall, but precision falls to 0.639--0.744. This supports two claims. First,
+much of the missing evidence was already present in the agent reports and was
+discarded during aggregation. Second, naive union preservation is diagnostic but
+not a complete solution because it preserves noise along with missing true
+items.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{llrrrrrrr}
+\toprule
+Seed & Policy & Conf. & Found & TP & FP & Recall & Precision & False Stop \\
+\midrule
+01 & standard summarizer & 0.930 & 105 & 104 & 1 & 0.698 & 0.990 & yes \\
+01 & union-preserving summarizer & 0.910 & 199 & 148 & 51 & 0.993 & 0.744 & no \\
+02 & standard summarizer & 0.960 & 111 & 111 & 0 & 0.745 & 1.000 & yes \\
+02 & union-preserving summarizer & 0.950 & 233 & 149 & 84 & 1.000 & 0.639 & no \\
+03 & standard summarizer & 0.930 & 102 & 102 & 0 & 0.685 & 1.000 & yes \\
+03 & union-preserving summarizer & 0.840 & 232 & 149 & 83 & 1.000 & 0.642 & no \\
+\midrule
+Mean & standard summarizer & -- & -- & -- & -- & 0.709 & 0.997 & 3/3 \\
+Mean & union-preserving summarizer & -- & -- & -- & -- & 0.998 & 0.675 & 0/3 \\
+\bottomrule
+\end{tabular}
+\caption{T3 real-repository summarizer comparison. The oracle contains 149
+line-level Click deprecation-audit items. Standard summarization is
+high-precision but repeatedly false-stops; union-preserving summarization
+recovers recall but incurs a substantial precision cost.}
+\label{tab:t3-summarizers}
+\end{table*}
+
+\subsection{Second Real-Repository Task Family}
+
+T4 evaluates a different real repository and audit surface: TLS and certificate
+handling in Requests. Unlike T3, this task is larger and noisier. Table
+~\ref{tab:t4-realrepo} shows that the failure shifts from mostly aggregation
+loss to mixed search-coverage and aggregation risk. Majority consensus is
+incomplete in all three seeds, with recall between 0.678 and 0.701. Raw union
+improves recall to 0.829--0.859, showing that some omitted evidence is present
+in minority reports, but raw union remains below the 0.95 completion threshold
+in every seed. Thus T4 contains candidate-pool missing mass that union
+aggregation cannot recover.
+
+The standard summarizer also false-stops in all three seeds, with recall
+0.368--0.648 despite self-reported completion. The completion certificate marks
+all three seeds \textsc{unsafe-to-stop}. This supports the broader claim that a
+completion controller must estimate coverage risk, not merely summarize or vote
+over the current reports. T4 should not be read as a direct copy of the T3
+mechanism; instead, it is a harder boundary case showing that real-repository
+discovery can combine aggregation loss, noisy singleton evidence, and
+insufficient search coverage.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Seed & Cons. Rec. & Std. Rec. & Union Rec. & Union Prec. & Holdout Rec. & Cert. \\
+\midrule
+01 & 0.701 & 0.368 & 0.859 & 0.661 & 0.750 & unsafe \\
+02 & 0.678 & 0.622 & 0.845 & 0.668 & 0.688 & unsafe \\
+03 & 0.678 & 0.648 & 0.829 & 0.676 & 0.763 & unsafe \\
+\midrule
+Mean & 0.685 & 0.546 & 0.844 & 0.668 & 0.734 & 3/3 unsafe \\
+\bottomrule
+\end{tabular}
+\caption{T4 Requests TLS/certificate audit on a second real repository. Raw
+union improves over consensus but remains incomplete, indicating missing mass
+outside the G3 candidate pool. Standard summarization false-stops in all three
+seeds.}
+\label{tab:t4-realrepo}
+\end{table*}
+
+\subsection{Decoupled Certificate and Stopping Baselines}
+
+We then evaluate the decoupled v1 certificate on 96 saved states constructed
+from existing runs: 86 pre-audit states and 10 post-audit states. Oracle labels
+are used only for evaluation; a state is safe when recall is at least 0.95. The
+suite contains 44 safe and 52 unsafe states. Table~\ref{tab:v1-certificate}
+shows that simple stopping signals false-certify many incomplete states:
+self-reported completion and confidence-only stopping each false-certify 35
+states, Chao-only false-certifies 13, and overlap-only false-certifies 10. The
+proposed certificate certifies one post-audit state and makes no false
+certifications, but its safe coverage is only 0.023. Thus the current rule is a
+conservative risk detector, not a solved stopping policy. Its continuous risk
+score has AUROC 0.515 and AUPRC 0.589 for unsafe-state detection, indicating
+that stronger correlation and coverage features are still needed.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Rule & Stop & False & FCR & Safe Cov. \\
+\midrule
+Self-report & 70 & 35 & .500 & .795 \\
+Confidence & 70 & 35 & .500 & .795 \\
+Overlap & 15 & 10 & .667 & .114 \\
+No-new-item & 22 & 10 & .455 & .273 \\
+Chao-only & 26 & 13 & .500 & .295 \\
+Raw union & 86 & 49 & .570 & .841 \\
+Always unsafe & 0 & 0 & .000 & .000 \\
+Always holdout & 10 & 3 & .300 & .159 \\
+Ours v1 & 1 & 0 & .000 & .023 \\
+\bottomrule
+\end{tabular}
+\caption{Stopping evaluation on 96 mixed saved states. FCR is false
+certification rate among stopped/certified states. The proposed certificate is
+safe but too conservative in this version.}
+\label{tab:v1-certificate}
+\end{table}
+
+\subsection{Completion Certificate on T3}
+
+The real-repository results also reveal a limitation of audit-by-holdout alone.
+In T3 seed01, the evidence-preserving audit policy reaches 0.993 recall and 0.955
+precision by auditing singleton evidence. In seed02 and seed03, however, the
+available holdout scout is itself incomplete, so the audit policy recovers only to
+0.805 and 0.832 recall. The completion certificate catches this boundary: for
+all three T3 seeds it returns \textsc{unsafe-to-stop}, triggered by low mean
+confidence, singleton missing-mass signals, and Chao unseen-mass estimates.
+Thus the method contribution should be read in two layers: evidence preservation
+can recover aggregation-stage omissions when audit evidence is strong, while the
+certificate prevents high-risk states from being falsely certified as complete.
+
+\subsection{Source-Aware Audit Prototype}
+
+The T3 certificate tells the workflow not to stop, but a practical system also
+needs an audit policy that converts retained evidence into recovery. We evaluate
+an offline source-aware audit prototype over G3/holdout candidates, using
+deterministic task-policy predicates over source lines. This is an audit-policy
+upper bound, not a blind LLM result. On T3, the raw candidate pools average 0.998
+recall but only 0.660 precision. Source-aware filtering keeps the same average
+recall and raises precision to 1.000; a bounded source sweep reaches 1.000 recall
+and 1.000 precision. On T4, candidate filtering reaches 0.849 recall and 1.000
+precision, showing that precise audit is possible but search coverage remains
+insufficient.
+
+\subsection{Audit Policy Behavior}
+
+The audit policy exposes rather than hides uncertainty. In T1 seed01, it audits and
+verifies 13 singleton true positives. In T2 seed01, it verifies 2 singleton true
+positives. In T2 seed02/03, there are no singletons, but high agreement and high
+confidence trigger boundary-focused holdout, recovering 2 new items in each
+seed. In T1 seed02/03, the audit policy leaves 4 and 5 singleton items in the audit
+queue and does not mark completion, avoiding raw union's false positives.
+
+\subsection{Ablation and Cost Proxy}
+
+We additionally run audit-policy ablations. Removing singleton audit leaves the
+aggregation-loss singletons in T1 seed01 and T2 seed01 unrecovered. Removing the
+common-blind-spot trigger leaves T2 seed02/03 at 28/30 recall despite perfect G3
+agreement. Removing holdout converts hidden risk into a \textsc{requires-audit}
+state but cannot recover missing items. Thus the two triggers correspond to
+distinct failure mechanisms, and holdout is the mechanism that turns retained
+risk into verified recovery.
+
+Current logs do not contain reliable token or wall-clock accounting, so we
+report a proxy cost: audit queue size plus one unit per triggered holdout. Under
+this proxy, T1 seed01 uses 14 audit actions to recover 13 true positives, T2
+seed01 uses 3 actions to recover 2 true positives, and T2 seed02/03 use one
+holdout unit to recover 2 true positives each. In T1 seed02/03, the audit policy
+avoids the 4 and 5 false positives introduced by raw union, but correctly
+refuses to certify completion without further audit.
+
+\section{Discussion and Limitations}
+
+\subsection{Why Consensus Fails}
+
+Consensus can fail for two opposite reasons. It can be too conservative when a
+minority report contains real evidence. It can also be overconfident when agents
+are correlated and share a blind spot. These are not contradictions. They show
+that agreement is evidence of shared sampling behavior, not necessarily evidence
+of low missing mass.
+
+\subsection{Why Raw Union Is Insufficient}
+
+Raw union is a useful diagnostic: if raw union recovers missing items, then the
+failure occurred after discovery, at aggregation. But raw union is not a general
+solution. It can preserve singleton false positives, and it cannot recover items
+that no agent reported. A production workflow needs an audit policy, not merely
+a larger set operation.
+
+\subsection{Completion as Coverage-Risk Assessment}
+
+The core lesson is that completion should be represented as a risk assessment.
+A final answer should be accompanied by signals such as singleton count,
+singleton audit status, pairwise overlap, source coverage, and known
+boundary-risk triggers. Holdout gain is a post-audit signal, not a pre-audit
+certificate input. This reframes agent completion from a consensus problem to an
+uncertainty-estimation problem under correlated exploration.
+
+\subsection{Limitations and Next Experiments}
+
+The evidence supports mechanism-level claims, real-repository false stops, and a
+proof-of-concept coverage-risk certificate, not a general proof of safe
+completion. Broader claims require more repositories, task families, seeds,
+agent counts, prompt-diverse and model-heterogeneous runs, blind
+source-partitioned audits, systematic token and wall-clock accounting, stronger
+stopping baselines, and correlation metrics beyond output Jaccard.
+We prepared a SeekerGym adapter scaffold but did not run the benchmark, so no
+public-benchmark results are claimed here.
+
+\section{Conclusion}
+
+Consensus is not completion. In closed-world discovery tasks, multi-agent
+agreement and high confidence can hide missing true items. We identified two
+mechanisms: aggregation loss, where true singleton evidence is discarded, and
+common blind spots, where agents agree because they miss the same boundary
+cases. We showed that raw union diagnoses some aggregation failures but can
+preserve false positives and cannot recover unreported items. A coverage-risk
+certificate separates the stopping decision from the audit policy: it can mark
+high-risk states as unsafe or requiring audit, while evidence-preserving audit
+retains minority evidence and triggers additional review. These results suggest
+that reliable agentic workflows need completion certificates grounded in
+coverage risk, not only consensus.
+
+\bibliography{references}
+\end{document}

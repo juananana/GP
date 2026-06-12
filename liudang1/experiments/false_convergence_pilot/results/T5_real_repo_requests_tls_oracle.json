@@ -1,0 +1,2136 @@
+{
+  "task_id": "T5_real_repo_requests_tls_audit",
+  "source_repo": "https://github.com/psf/requests",
+  "source_commit": "1190afd14fca74292946d62c4c8169880a47ff67",
+  "oracle_policy": "Line-level items in the real Requests repository that belong to a TLS certificate verification and certificate handling audit. Include verify parameter behavior, CA bundle resolution, client certificate handling, TLS/SSL error handling, test infrastructure, tests, and direct user documentation. Exclude unrelated uses of 'verify' that do not concern TLS/certificates.",
+  "items": [
+    {
+      "file_path": "repo/README.md",
+      "line": 47,
+      "bucket": "documentation",
+      "evidence_span": "- Browser-style TLS/SSL Verification",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 74,
+      "bucket": "documentation",
+      "evidence_span": "These errors occur when :ref:`SSL certificate verification <verification>`",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 75,
+      "bucket": "documentation",
+      "evidence_span": "fails to match the certificate the server responds with to the hostname",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 76,
+      "bucket": "documentation",
+      "evidence_span": "Requests thinks it's contacting. If you're certain the server's SSL setup is",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 81,
+      "bucket": "documentation",
+      "evidence_span": "`Server-Name-Indication`_, or SNI, is an official extension to SSL where the",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 84,
+      "bucket": "documentation",
+      "evidence_span": "more than one SSL site they need to be able to return the appropriate",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 85,
+      "bucket": "documentation",
+      "evidence_span": "certificate based on the hostname the client is connecting to.",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 87,
+      "bucket": "documentation",
+      "evidence_span": "Python 3 already includes native support for SNI in their SSL modules.",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/recommended.rst",
+      "line": 9,
+      "bucket": "documentation",
+      "evidence_span": "Certifi CA Bundle",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/recommended.rst",
+      "line": 12,
+      "bucket": "documentation",
+      "evidence_span": "`Certifi`_ is a carefully curated collection of Root Certificates for",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/recommended.rst",
+      "line": 13,
+      "bucket": "documentation",
+      "evidence_span": "validating the trustworthiness of SSL certificates while verifying the",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/recommended.rst",
+      "line": 14,
+      "bucket": "documentation",
+      "evidence_span": "identity of TLS hosts. It has been extracted from the Requests project.",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/community/recommended.rst",
+      "line": 16,
+      "bucket": "documentation",
+      "evidence_span": ".. _Certifi: https://github.com/certifi/python-certifi",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 145,
+      "bucket": "documentation",
+      "evidence_span": "verify=verify,",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 182,
+      "bucket": "documentation",
+      "evidence_span": "verify=verify,",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 192,
+      "bucket": "documentation",
+      "evidence_span": "For example: Self-signed SSL certificates specified in ``REQUESTS_CA_BUNDLE`` will not be taken into account.",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 193,
+      "bucket": "documentation",
+      "evidence_span": "As a result an ``SSL: CERTIFICATE_VERIFY_FAILED`` is thrown.",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 211,
+      "bucket": "documentation",
+      "evidence_span": "SSL Cert Verification",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 214,
+      "bucket": "documentation",
+      "evidence_span": "Requests verifies SSL certificates for HTTPS requests, just like a web browser.",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 215,
+      "bucket": "documentation",
+      "evidence_span": "By default, SSL verification is enabled, and Requests will throw a SSLError if",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 216,
+      "bucket": "documentation",
+      "evidence_span": "it's unable to verify the certificate::",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 219,
+      "bucket": "documentation",
+      "evidence_span": "requests.exceptions.SSLError: hostname 'requestb.in' doesn't match either of '*.herokuapp.com', 'herokuapp.com'",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 221,
+      "bucket": "documentation",
+      "evidence_span": "I don't have SSL setup on this domain, so it throws an exception. Excellent. GitHub does though::",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 226,
+      "bucket": "documentation",
+      "evidence_span": "You can pass ``verify`` the path to a CA_BUNDLE file or directory with certificates of trusted CAs::",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 228,
+      "bucket": "documentation",
+      "evidence_span": ">>> requests.get('https://github.com', verify='/path/to/certfile')",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 233,
+      "bucket": "documentation",
+      "evidence_span": "s.verify = '/path/to/certfile'",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 235,
+      "bucket": "documentation",
+      "evidence_span": ".. note:: If ``verify`` is set to a path to a directory, the directory must have been processed using",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 236,
+      "bucket": "documentation",
+      "evidence_span": "the ``c_rehash`` utility supplied with OpenSSL.",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 241,
+      "bucket": "documentation",
+      "evidence_span": "Requests can also ignore verifying the SSL certificate if you set ``verify`` to False::",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 243,
+      "bucket": "documentation",
+      "evidence_span": ">>> requests.get('https://kennethreitz.org', verify=False)",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 246,
+      "bucket": "documentation",
+      "evidence_span": "Note that when ``verify`` is set to ``False``, requests will accept any TLS",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 247,
+      "bucket": "documentation",
+      "evidence_span": "certificate presented by the server, and will ignore hostname mismatches",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 248,
+      "bucket": "documentation",
+      "evidence_span": "and/or expired certificates, which will make your application vulnerable to",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 249,
+      "bucket": "documentation",
+      "evidence_span": "man-in-the-middle (MitM) attacks. Setting verify to ``False`` may be useful",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 252,
+      "bucket": "documentation",
+      "evidence_span": "By default, ``verify`` is set to True. Option ``verify`` only applies to host certs.",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 254,
+      "bucket": "documentation",
+      "evidence_span": "Client Side Certificates",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 257,
+      "bucket": "documentation",
+      "evidence_span": "You can also specify a local cert to use as client side certificate, as a single",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 258,
+      "bucket": "documentation",
+      "evidence_span": "file (containing the private key and the certificate) or as a tuple of both",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 261,
+      "bucket": "documentation",
+      "evidence_span": ">>> requests.get('https://kennethreitz.org', cert=('/path/client.cert', '/path/client.key'))",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 267,
+      "bucket": "documentation",
+      "evidence_span": "s.cert = '/path/client.cert'",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 269,
+      "bucket": "documentation",
+      "evidence_span": "If you specify a wrong path or an invalid cert, you'll get a SSLError::",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 272,
+      "bucket": "documentation",
+      "evidence_span": "SSLError: [Errno 336265225] _ssl.c:347: error:140B0009:SSL routines:SSL_CTX_use_PrivateKey_file:PEM lib",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 274,
+      "bucket": "documentation",
+      "evidence_span": ".. warning:: The private key to your local certificate *must* be unencrypted.",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 277,
+      "bucket": "documentation",
+      "evidence_span": ".. _ca-certificates:",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 279,
+      "bucket": "documentation",
+      "evidence_span": "CA Certificates",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 282,
+      "bucket": "documentation",
+      "evidence_span": "Requests uses certificates from the package `certifi`_. This allows for users",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 283,
+      "bucket": "documentation",
+      "evidence_span": "to update their trusted certificates without changing the version of Requests.",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 286,
+      "bucket": "documentation",
+      "evidence_span": "sourced from the `Mozilla trust store`_. The certificates were only updated",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 287,
+      "bucket": "documentation",
+      "evidence_span": "once for each Requests version. When ``certifi`` was not installed, this led to",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 288,
+      "bucket": "documentation",
+      "evidence_span": "extremely out-of-date certificate bundles when using significantly older",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 291,
+      "bucket": "documentation",
+      "evidence_span": "For the sake of security we recommend upgrading certifi frequently!",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 295,
+      "bucket": "documentation",
+      "evidence_span": ".. _certifi: https://certifiio.readthedocs.io/",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 654,
+      "bucket": "documentation",
+      "evidence_span": "local machine to trust the proxy's root certificate. By default the list of",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 655,
+      "bucket": "documentation",
+      "evidence_span": "certificates trusted by Requests can be found with::",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 660,
+      "bucket": "documentation",
+      "evidence_span": "You override this default certificate bundle by setting the ``REQUESTS_CA_BUNDLE``",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 663,
+      "bucket": "documentation",
+      "evidence_span": "$ export REQUESTS_CA_BUNDLE=\"/usr/local/myproxy_info/cacert.pem\"",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 1001,
+      "bucket": "documentation",
+      "evidence_span": "this documentation, but take a look at the next example for a simple SSL use-",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 1005,
+      "bucket": "documentation",
+      "evidence_span": "Example: Specific SSL Version",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 1008,
+      "bucket": "documentation",
+      "evidence_span": "The Requests team has made a specific choice to use whatever SSL version is",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 1014,
+      "bucket": "documentation",
+      "evidence_span": "implementation of HTTPAdapter, and adding a parameter *ssl_version* that gets",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 1016,
+      "bucket": "documentation",
+      "evidence_span": "library to use SSLv3::",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 1018,
+      "bucket": "documentation",
+      "evidence_span": "import ssl",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 1024,
+      "bucket": "documentation",
+      "evidence_span": "class Ssl3HttpAdapter(HTTPAdapter):",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 1025,
+      "bucket": "documentation",
+      "evidence_span": "\"\"\"\"Transport adapter\" that allows us to use SSLv3.\"\"\"",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 1030,
+      "bucket": "documentation",
+      "evidence_span": "block=block, ssl_version=ssl.PROTOCOL_SSLv3)",
+      "difficulty_tag": "real_repo_tls_docs"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 30,
+      "bucket": "error_handling",
+      "evidence_span": "from urllib3.exceptions import SSLError as _SSLError",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 49,
+      "bucket": "error_handling",
+      "evidence_span": "SSLError,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 54,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "DEFAULT_CA_BUNDLE_PATH,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 87,
+      "bucket": "implementation",
+      "evidence_span": "verify: bool | str | None,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 97,
+      "bucket": "verification_mode",
+      "evidence_span": "cert_reqs = \"CERT_REQUIRED\"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 98,
+      "bucket": "verification_mode",
+      "evidence_span": "if verify is False:",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 99,
+      "bucket": "verification_mode",
+      "evidence_span": "cert_reqs = \"CERT_NONE\"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 100,
+      "bucket": "implementation",
+      "evidence_span": "elif isinstance(verify, str):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 101,
+      "bucket": "implementation",
+      "evidence_span": "if not os.path.isdir(verify):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 102,
+      "bucket": "implementation",
+      "evidence_span": "pool_kwargs[\"ca_certs\"] = verify",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 104,
+      "bucket": "implementation",
+      "evidence_span": "pool_kwargs[\"ca_cert_dir\"] = verify",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 105,
+      "bucket": "verification_mode",
+      "evidence_span": "pool_kwargs[\"cert_reqs\"] = cert_reqs",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 108,
+      "bucket": "client_certificate",
+      "evidence_span": "pool_kwargs[\"cert_file\"] = client_cert[0]",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 109,
+      "bucket": "client_certificate",
+      "evidence_span": "pool_kwargs[\"key_file\"] = client_cert[1]",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 113,
+      "bucket": "client_certificate",
+      "evidence_span": "pool_kwargs[\"cert_file\"] = client_cert",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 133,
+      "bucket": "implementation",
+      "evidence_span": "verify: _t.VerifyType = True,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 145,
+      "bucket": "implementation",
+      "evidence_span": ":param verify: (optional) Either a boolean, in which case it controls whether we verify",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 146,
+      "bucket": "implementation",
+      "evidence_span": "the server's TLS certificate, or a string, in which case it must be a path",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 147,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "to a CA bundle to use",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 148,
+      "bucket": "implementation",
+      "evidence_span": ":param cert: (optional) Any user-provided SSL certificate to be trusted.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 307,
+      "bucket": "implementation",
+      "evidence_span": "def cert_verify(",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 308,
+      "bucket": "implementation",
+      "evidence_span": "self, conn: Any, url: str, verify: _t.VerifyType, cert: _t.CertType",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 310,
+      "bucket": "implementation",
+      "evidence_span": "\"\"\"Verify a SSL certificate. This method should not be called from user",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 316,
+      "bucket": "implementation",
+      "evidence_span": ":param verify: Either a boolean, in which case it controls whether we verify",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 317,
+      "bucket": "implementation",
+      "evidence_span": "the server's TLS certificate, or a string, in which case it must be a path",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 318,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "to a CA bundle to use",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 319,
+      "bucket": "implementation",
+      "evidence_span": ":param cert: The SSL certificate to verify.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 321,
+      "bucket": "implementation",
+      "evidence_span": "if url.lower().startswith(\"https\") and verify:",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 325,
+      "bucket": "implementation",
+      "evidence_span": "if verify is not True:",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 326,
+      "bucket": "implementation",
+      "evidence_span": "cert_loc = verify",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 329,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "cert_loc = DEFAULT_CA_BUNDLE_PATH",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 333,
+      "bucket": "implementation",
+      "evidence_span": "f\"Could not find a suitable TLS CA certificate bundle, \"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 337,
+      "bucket": "verification_mode",
+      "evidence_span": "conn.cert_reqs = \"CERT_REQUIRED\"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 340,
+      "bucket": "implementation",
+      "evidence_span": "conn.ca_certs = cert_loc",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 342,
+      "bucket": "implementation",
+      "evidence_span": "conn.ca_cert_dir = cert_loc",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 344,
+      "bucket": "verification_mode",
+      "evidence_span": "conn.cert_reqs = \"CERT_NONE\"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 345,
+      "bucket": "implementation",
+      "evidence_span": "conn.ca_certs = None",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 346,
+      "bucket": "implementation",
+      "evidence_span": "conn.ca_cert_dir = None",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 350,
+      "bucket": "client_certificate",
+      "evidence_span": "conn.cert_file = cert[0]",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 351,
+      "bucket": "client_certificate",
+      "evidence_span": "conn.key_file = cert[1]",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 353,
+      "bucket": "client_certificate",
+      "evidence_span": "conn.cert_file = cert",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 354,
+      "bucket": "client_certificate",
+      "evidence_span": "conn.key_file = None",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 355,
+      "bucket": "client_certificate",
+      "evidence_span": "if conn.cert_file and not os.path.exists(conn.cert_file):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 357,
+      "bucket": "implementation",
+      "evidence_span": "f\"Could not find the TLS certificate file, \"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 358,
+      "bucket": "client_certificate",
+      "evidence_span": "f\"invalid path: {conn.cert_file}\"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 360,
+      "bucket": "client_certificate",
+      "evidence_span": "if conn.key_file and not os.path.exists(conn.key_file):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 362,
+      "bucket": "client_certificate",
+      "evidence_span": "f\"Could not find the TLS key file, invalid path: {conn.key_file}\"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 404,
+      "bucket": "implementation",
+      "evidence_span": "self, request: PreparedRequest, verify: _t.VerifyType, cert: _t.CertType = None",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 408,
+      "bucket": "implementation",
+      "evidence_span": "This looks at the PreparedRequest, the user-specified verify value,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 412,
+      "bucket": "implementation",
+      "evidence_span": "The SSL related pool key arguments are not consistently set. As of",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 416,
+      "bucket": "implementation",
+      "evidence_span": "* If ``verify`` is ``True``, ``\"ssl_context\"`` will be set and will be the",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 417,
+      "bucket": "implementation",
+      "evidence_span": "default Requests SSL Context",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 418,
+      "bucket": "verification_mode",
+      "evidence_span": "* If ``verify`` is ``False``, ``\"ssl_context\"`` will not be set but",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 419,
+      "bucket": "verification_mode",
+      "evidence_span": "``\"cert_reqs\"`` will be set",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 420,
+      "bucket": "implementation",
+      "evidence_span": "* If ``verify`` is a string, (i.e., it is a user-specified trust bundle)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 421,
+      "bucket": "implementation",
+      "evidence_span": "``\"ca_certs\"`` will be set if the string is not a directory recognized",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 422,
+      "bucket": "implementation",
+      "evidence_span": "by :py:func:`os.path.isdir`, otherwise ``\"ca_cert_dir\"`` will be",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 424,
+      "bucket": "client_certificate",
+      "evidence_span": "* If ``\"cert\"`` is specified, ``\"cert_file\"`` will always be set. If",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 425,
+      "bucket": "client_certificate",
+      "evidence_span": "``\"cert\"`` is a tuple with a second item, ``\"key_file\"`` will also",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 430,
+      "bucket": "implementation",
+      "evidence_span": "example, if one wishes to use a custom :py:class:`ssl.SSLContext` one",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 431,
+      "bucket": "implementation",
+      "evidence_span": "must both set ``\"ssl_context\"`` and based on what else they require,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 438,
+      "bucket": "implementation",
+      "evidence_span": ":param verify:",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 440,
+      "bucket": "implementation",
+      "evidence_span": "we verify the server's TLS certificate, or a string, in which case it",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 441,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "must be a path to a CA bundle to use.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 443,
+      "bucket": "implementation",
+      "evidence_span": "(optional) Any user-provided SSL certificate for client",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 444,
+      "bucket": "implementation",
+      "evidence_span": "authentication (a.k.a., mTLS). This may be a string (i.e., just",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 445,
+      "bucket": "implementation",
+      "evidence_span": "the path to a file which holds both certificate and key) or a",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 446,
+      "bucket": "implementation",
+      "evidence_span": "tuple of length 2 with the certificate file path and key file",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 451,
+      "bucket": "implementation",
+      "evidence_span": "second is a dictionary of SSLContext related parameters.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 453,
+      "bucket": "implementation",
+      "evidence_span": "return _urllib3_request_context(request, verify, cert, self.poolmanager)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 455,
+      "bucket": "implementation",
+      "evidence_span": "def get_connection_with_tls_context(",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 458,
+      "bucket": "implementation",
+      "evidence_span": "verify: _t.VerifyType,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 462,
+      "bucket": "implementation",
+      "evidence_span": "\"\"\"Returns a urllib3 connection for the given request and TLS settings.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 469,
+      "bucket": "implementation",
+      "evidence_span": ":param verify:",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 470,
+      "bucket": "implementation",
+      "evidence_span": "Either a boolean, in which case it controls whether we verify the",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 471,
+      "bucket": "implementation",
+      "evidence_span": "server's TLS certificate, or a string, in which case it must be a",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 472,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "path to a CA bundle to use.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 476,
+      "bucket": "implementation",
+      "evidence_span": "(optional) Any user-provided SSL certificate to be used for client",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 477,
+      "bucket": "implementation",
+      "evidence_span": "authentication (a.k.a., mTLS).",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 487,
+      "bucket": "implementation",
+      "evidence_span": "verify,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 515,
+      "bucket": "implementation",
+      "evidence_span": "\"\"\"DEPRECATED: Users should move to `get_connection_with_tls_context`",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 529,
+      "bucket": "implementation",
+      "evidence_span": "\"`get_connection_with_tls_context`. Custom HTTPAdapter subclasses \"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 639,
+      "bucket": "implementation",
+      "evidence_span": "verify: _t.VerifyType = True,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 651,
+      "bucket": "implementation",
+      "evidence_span": ":param verify: (optional) Either a boolean, in which case it controls whether",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 652,
+      "bucket": "implementation",
+      "evidence_span": "we verify the server's TLS certificate, or a string, in which case it",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 653,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "must be a path to a CA bundle to use",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 654,
+      "bucket": "implementation",
+      "evidence_span": ":param cert: (optional) Any user-provided SSL certificate to be trusted.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 662,
+      "bucket": "implementation",
+      "evidence_span": "conn = self.get_connection_with_tls_context(",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 663,
+      "bucket": "implementation",
+      "evidence_span": "request, verify, proxies=proxies, cert=cert",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 668,
+      "bucket": "implementation",
+      "evidence_span": "self.cert_verify(conn, request.url, verify, cert)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 674,
+      "bucket": "implementation",
+      "evidence_span": "verify=verify,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 725,
+      "bucket": "error_handling",
+      "evidence_span": "if isinstance(e.reason, _SSLError):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 727,
+      "bucket": "error_handling",
+      "evidence_span": "raise SSLError(e, request=request)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 737,
+      "bucket": "error_handling",
+      "evidence_span": "except (_SSLError, _HTTPError) as e:",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 738,
+      "bucket": "error_handling",
+      "evidence_span": "if isinstance(e, _SSLError):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 740,
+      "bucket": "error_handling",
+      "evidence_span": "raise SSLError(e, request=request)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/api.py",
+      "line": 51,
+      "bucket": "implementation",
+      "evidence_span": ":param verify: (optional) Either a boolean, in which case it controls whether we verify",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/api.py",
+      "line": 52,
+      "bucket": "implementation",
+      "evidence_span": "the server's TLS certificate, or a string, in which case it must be a path",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/api.py",
+      "line": 53,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "to a CA bundle to use. Defaults to ``True``.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/api.py",
+      "line": 55,
+      "bucket": "client_certificate",
+      "evidence_span": ":param cert: (optional) if String, path to ssl client cert file (.pem). If Tuple, ('cert', 'key') pair.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 7,
+      "bucket": "implementation",
+      "evidence_span": "This module returns the preferred default CA certificate bundle. There is",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 8,
+      "bucket": "implementation",
+      "evidence_span": "only one — the one from the certifi package.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 12,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "packaged CA bundle.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/certs.py",
+      "line": 15,
+      "bucket": "implementation",
+      "evidence_span": "from certifi import where",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/exceptions.py",
+      "line": 78,
+      "bucket": "error_handling",
+      "evidence_span": "class SSLError(ConnectionError):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/exceptions.py",
+      "line": 79,
+      "bucket": "error_handling",
+      "evidence_span": "\"\"\"An SSL error occurred.\"\"\"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 90,
+      "bucket": "implementation",
+      "evidence_span": "# Bypass if not a dictionary (e.g. verify)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 192,
+      "bucket": "implementation",
+      "evidence_span": "verify: _t.VerifyType = True,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 296,
+      "bucket": "implementation",
+      "evidence_span": "verify=verify,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 364,
+      "bucket": "implementation",
+      "evidence_span": "# Avoid appending this to TLS tunneled requests where it may be leaked.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 420,
+      "bucket": "implementation",
+      "evidence_span": "verify: _t.VerifyType",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 434,
+      "bucket": "implementation",
+      "evidence_span": "\"verify\",",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 468,
+      "bucket": "implementation",
+      "evidence_span": "#: SSL Verification default.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 469,
+      "bucket": "implementation",
+      "evidence_span": "#: Defaults to `True`, requiring requests to verify the TLS certificate at the",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 471,
+      "bucket": "implementation",
+      "evidence_span": "#: If verify is set to `False`, requests will accept any TLS certificate",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 473,
+      "bucket": "implementation",
+      "evidence_span": "#: expired certificates, which will make your application vulnerable to",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 476,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "#: If verify is set to a string, it must be the path to a CA bundle file",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 477,
+      "bucket": "implementation",
+      "evidence_span": "#: that will be used to verify the TLS certificate.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 478,
+      "bucket": "implementation",
+      "evidence_span": "self.verify = True",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 480,
+      "bucket": "client_certificate",
+      "evidence_span": "#: SSL client certificate default, if String, path to ssl client",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 572,
+      "bucket": "implementation",
+      "evidence_span": "verify: _t.VerifyType | None = None,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 607,
+      "bucket": "implementation",
+      "evidence_span": ":param verify: (optional) Either a boolean, in which case it controls whether we verify",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 608,
+      "bucket": "implementation",
+      "evidence_span": "the server's TLS certificate, or a string, in which case it must be a path",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 609,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "to a CA bundle to use. Defaults to ``True``. When set to",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 610,
+      "bucket": "implementation",
+      "evidence_span": "``False``, requests will accept any TLS certificate presented by",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 612,
+      "bucket": "implementation",
+      "evidence_span": "certificates, which will make your application vulnerable to",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 613,
+      "bucket": "implementation",
+      "evidence_span": "man-in-the-middle (MitM) attacks. Setting verify to ``False``",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 615,
+      "bucket": "client_certificate",
+      "evidence_span": ":param cert: (optional) if String, path to ssl client cert file (.pem).",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 642,
+      "bucket": "implementation",
+      "evidence_span": "prep.url, proxies, stream, verify, cert",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 760,
+      "bucket": "implementation",
+      "evidence_span": "kwargs.setdefault(\"verify\", self.verify)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 836,
+      "bucket": "implementation",
+      "evidence_span": "verify: _t.VerifyType | None,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 855,
+      "bucket": "implementation",
+      "evidence_span": "if verify is True or verify is None:",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 856,
+      "bucket": "implementation",
+      "evidence_span": "verify = (",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 857,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "os.environ.get(\"REQUESTS_CA_BUNDLE\")",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 858,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "or os.environ.get(\"CURL_CA_BUNDLE\")",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 859,
+      "bucket": "implementation",
+      "evidence_span": "or verify",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 865,
+      "bucket": "implementation",
+      "evidence_span": "verify = merge_setting(verify, self.verify)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 868,
+      "bucket": "implementation",
+      "evidence_span": "return {\"proxies\": proxies, \"stream\": stream, \"verify\": verify, \"cert\": cert}",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/utils.py",
+      "line": 81,
+      "bucket": "implementation",
+      "evidence_span": "# Certificate is extracted by certifi when needed.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/src/requests/utils.py",
+      "line": 82,
+      "bucket": "ca_bundle_resolution",
+      "evidence_span": "DEFAULT_CA_BUNDLE_PATH: str = certs.where()",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/certs/README.md",
+      "line": 1,
+      "bucket": "test_infrastructure",
+      "evidence_span": "# Testing Certificates",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/certs/README.md",
+      "line": 3,
+      "bucket": "test_infrastructure",
+      "evidence_span": "This is a collection of certificates useful for testing aspects of Requests'",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/certs/README.md",
+      "line": 6,
+      "bucket": "test_infrastructure",
+      "evidence_span": "The certificates include:",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/certs/README.md",
+      "line": 8,
+      "bucket": "test_infrastructure",
+      "evidence_span": "* [expired](./expired) server certificate with a valid certificate authority",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/certs/README.md",
+      "line": 9,
+      "bucket": "test_infrastructure",
+      "evidence_span": "* [mtls](./mtls) provides a valid client certificate with a 2 year validity",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/certs/README.md",
+      "line": 10,
+      "bucket": "test_infrastructure",
+      "evidence_span": "* [valid](./valid) has a valid server certificate",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 7,
+      "bucket": "test_coverage",
+      "evidence_span": "import ssl",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 54,
+      "bucket": "test_coverage",
+      "evidence_span": "ca_bundle = str(tmpdir / \"ca.pem\")",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 55,
+      "bucket": "test_coverage",
+      "evidence_span": "ca.cert_pem.write_to_path(ca_bundle)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 57,
+      "bucket": "test_coverage",
+      "evidence_span": "context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 64,
+      "bucket": "test_coverage",
+      "evidence_span": "yield \"localhost\", server.server_address[1], ca_bundle",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 51,
+      "bucket": "test_coverage",
+      "evidence_span": "from requests.exceptions import SSLError as RequestsSSLError",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 59,
+      "bucket": "test_coverage",
+      "evidence_span": "from .testserver.server import TLSServer, consume_socket_content",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 70,
+      "bucket": "test_coverage",
+      "evidence_span": "from ssl import SSLContext",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 72,
+      "bucket": "test_coverage",
+      "evidence_span": "del SSLContext",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 73,
+      "bucket": "test_coverage",
+      "evidence_span": "HAS_MODERN_SSL = True",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 75,
+      "bucket": "test_coverage",
+      "evidence_span": "HAS_MODERN_SSL = False",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 78,
+      "bucket": "test_coverage",
+      "evidence_span": "requests.pyopenssl",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 79,
+      "bucket": "test_coverage",
+      "evidence_span": "HAS_PYOPENSSL = True",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 81,
+      "bucket": "test_coverage",
+      "evidence_span": "HAS_PYOPENSSL = False",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 471,
+      "bucket": "test_coverage",
+      "evidence_span": "# Verify CookieJar isn't being converted to RequestsCookieJar",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 966,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_pyopenssl_redirect(self, httpbin_secure, httpbin_ca_bundle):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 967,
+      "bucket": "test_coverage",
+      "evidence_span": "requests.get(httpbin_secure(\"status\", \"301\"), verify=httpbin_ca_bundle)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 969,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_invalid_ca_certificate_path(self, httpbin_secure):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 972,
+      "bucket": "test_coverage",
+      "evidence_span": "requests.get(httpbin_secure(), verify=INVALID_PATH)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 975,
+      "bucket": "test_coverage",
+      "evidence_span": "== f\"Could not find a suitable TLS CA certificate bundle, invalid path: {INVALID_PATH}\"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 978,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_invalid_ssl_certificate_files(self, httpbin_secure):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 984,
+      "bucket": "test_coverage",
+      "evidence_span": "== f\"Could not find the TLS certificate file, invalid path: {INVALID_PATH}\"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 990,
+      "bucket": "test_coverage",
+      "evidence_span": "f\"Could not find the TLS key file, invalid path: {INVALID_PATH}\"",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 997,
+      "bucket": "test_coverage",
+      "evidence_span": "({\"REQUESTS_CA_BUNDLE\": \"/some/path\"}, \"/some/path\"),",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 998,
+      "bucket": "test_coverage",
+      "evidence_span": "({\"REQUESTS_CA_BUNDLE\": \"\"}, True),",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 999,
+      "bucket": "test_coverage",
+      "evidence_span": "({\"CURL_CA_BUNDLE\": \"/some/path\"}, \"/some/path\"),",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1000,
+      "bucket": "test_coverage",
+      "evidence_span": "({\"CURL_CA_BUNDLE\": \"\"}, True),",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1001,
+      "bucket": "test_coverage",
+      "evidence_span": "({\"REQUESTS_CA_BUNDLE\": \"\", \"CURL_CA_BUNDLE\": \"\"}, True),",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1004,
+      "bucket": "test_coverage",
+      "evidence_span": "\"REQUESTS_CA_BUNDLE\": \"/some/path\",",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1005,
+      "bucket": "test_coverage",
+      "evidence_span": "\"CURL_CA_BUNDLE\": \"/curl/path\",",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1011,
+      "bucket": "test_coverage",
+      "evidence_span": "\"REQUESTS_CA_BUNDLE\": \"\",",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1012,
+      "bucket": "test_coverage",
+      "evidence_span": "\"CURL_CA_BUNDLE\": \"/curl/path\",",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1022,
+      "bucket": "test_coverage",
+      "evidence_span": "url=httpbin(\"get\"), proxies={}, stream=False, verify=True, cert=None",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1024,
+      "bucket": "test_coverage",
+      "evidence_span": "assert settings[\"verify\"] == expected",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1026,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_http_with_certificate(self, httpbin):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1036,
+      "bucket": "test_coverage",
+      "evidence_span": "host, port, ca_bundle = nosan_server",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1037,
+      "bucket": "test_coverage",
+      "evidence_span": "if HAS_MODERN_SSL or HAS_PYOPENSSL:",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1048,
+      "bucket": "test_coverage",
+      "evidence_span": "requests.get(f\"https://localhost:{port}/\", verify=ca_bundle)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1059,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_certificate_failure(self, httpbin_secure):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1061,
+      "bucket": "test_coverage",
+      "evidence_span": "When underlying SSL problems occur, an SSLError is raised.",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1063,
+      "bucket": "test_coverage",
+      "evidence_span": "with pytest.raises(RequestsSSLError):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1390,
+      "bucket": "test_coverage",
+      "evidence_span": "# Verify that CookieConflictError is raised if domain is not specified",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1394,
+      "bucket": "test_coverage",
+      "evidence_span": "# Verify that CookieConflictError is not raised if domain is specified",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1507,
+      "bucket": "test_coverage",
+      "evidence_span": "(urllib3.exceptions.SSLError, tuple(), RequestsSSLError),",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1523,
+      "bucket": "test_coverage",
+      "evidence_span": "# verify we can pickle the original request",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1526,
+      "bucket": "test_coverage",
+      "evidence_span": "# verify we can pickle the response and that we have access to",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1535,
+      "bucket": "test_coverage",
+      "evidence_span": "# Verify PreparedRequest can be pickled and unpickled",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1541,
+      "bucket": "test_coverage",
+      "evidence_span": "# Verify unpickled PreparedRequest sends properly",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1551,
+      "bucket": "test_coverage",
+      "evidence_span": "# Verify PreparedRequest can be pickled and unpickled",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1557,
+      "bucket": "test_coverage",
+      "evidence_span": "# Verify unpickled PreparedRequest sends properly",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1566,
+      "bucket": "test_coverage",
+      "evidence_span": "# Verify PreparedRequest can be pickled",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1573,
+      "bucket": "test_coverage",
+      "evidence_span": "# Verify unpickled PreparedRequest sends properly",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1896,
+      "bucket": "test_coverage",
+      "evidence_span": "self, httpbin, httpbin_secure, httpbin_ca_bundle",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1902,
+      "bucket": "test_coverage",
+      "evidence_span": "verify=httpbin_ca_bundle,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2536,
+      "bucket": "test_coverage",
+      "evidence_span": "Instead we verify that setting the timeout to None does not prevent the",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2632,
+      "bucket": "test_coverage",
+      "evidence_span": "\"verify\": True,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2902,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_different_connection_pool_for_tls_settings_verify_True(self):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2913,
+      "bucket": "test_coverage",
+      "evidence_span": "server = TLSServer(",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2923,
+      "bucket": "test_coverage",
+      "evidence_span": "r1 = s.get(url, verify=False)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2926,
+      "bucket": "test_coverage",
+      "evidence_span": "# Cannot verify self-signed certificate",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2927,
+      "bucket": "test_coverage",
+      "evidence_span": "with pytest.raises(requests.exceptions.SSLError):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2933,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_different_connection_pool_for_tls_settings_verify_bundle_expired_cert(",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2946,
+      "bucket": "test_coverage",
+      "evidence_span": "server = TLSServer(",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2956,
+      "bucket": "test_coverage",
+      "evidence_span": "r1 = s.get(url, verify=False)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2959,
+      "bucket": "test_coverage",
+      "evidence_span": "# Has right trust bundle, but certificate expired",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2960,
+      "bucket": "test_coverage",
+      "evidence_span": "with pytest.raises(requests.exceptions.SSLError):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2961,
+      "bucket": "test_coverage",
+      "evidence_span": "s.get(url, verify=\"tests/certs/expired/ca/ca.crt\")",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2966,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_different_connection_pool_for_tls_settings_verify_bundle_unexpired_cert(",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2979,
+      "bucket": "test_coverage",
+      "evidence_span": "server = TLSServer(",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2989,
+      "bucket": "test_coverage",
+      "evidence_span": "r1 = s.get(url, verify=False)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2992,
+      "bucket": "test_coverage",
+      "evidence_span": "r2 = s.get(url, verify=\"tests/certs/valid/ca/ca.crt\")",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 2998,
+      "bucket": "test_coverage",
+      "evidence_span": "def test_different_connection_pool_for_mtls_settings(self):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 3013,
+      "bucket": "test_coverage",
+      "evidence_span": "server = TLSServer(",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 3019,
+      "bucket": "test_coverage",
+      "evidence_span": "mutual_tls=True,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 3020,
+      "bucket": "test_coverage",
+      "evidence_span": "cacert=\"tests/certs/expired/ca/ca.crt\",",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 3024,
+      "bucket": "test_coverage",
+      "evidence_span": "\"tests/certs/mtls/client/client.pem\",",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 3025,
+      "bucket": "test_coverage",
+      "evidence_span": "\"tests/certs/mtls/client/client.key\",",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 3029,
+      "bucket": "test_coverage",
+      "evidence_span": "r1 = s.get(url, verify=False, cert=cert)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 3031,
+      "bucket": "test_coverage",
+      "evidence_span": "with pytest.raises(requests.exceptions.SSLError):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 3,
+      "bucket": "test_infrastructure",
+      "evidence_span": "import ssl",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 138,
+      "bucket": "test_infrastructure",
+      "evidence_span": "class TLSServer(Server):",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 149,
+      "bucket": "test_infrastructure",
+      "evidence_span": "mutual_tls=False,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 150,
+      "bucket": "test_infrastructure",
+      "evidence_span": "cacert=None,",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 161,
+      "bucket": "test_infrastructure",
+      "evidence_span": "self.ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 162,
+      "bucket": "test_infrastructure",
+      "evidence_span": "self.ssl_context.load_cert_chain(self.cert_chain, keyfile=self.keyfile)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 163,
+      "bucket": "test_infrastructure",
+      "evidence_span": "self.mutual_tls = mutual_tls",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 164,
+      "bucket": "test_infrastructure",
+      "evidence_span": "self.cacert = cacert",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 165,
+      "bucket": "test_infrastructure",
+      "evidence_span": "if mutual_tls:",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 166,
+      "bucket": "test_infrastructure",
+      "evidence_span": "# For simplicity, we're going to assume that the client cert is",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 167,
+      "bucket": "test_infrastructure",
+      "evidence_span": "# issued by the same CA as our Server certificate",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 168,
+      "bucket": "test_infrastructure",
+      "evidence_span": "self.ssl_context.verify_mode = ssl.CERT_OPTIONAL",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 169,
+      "bucket": "test_infrastructure",
+      "evidence_span": "self.ssl_context.load_verify_locations(self.cacert)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    },
+    {
+      "file_path": "repo/tests/testserver/server.py",
+      "line": 173,
+      "bucket": "test_infrastructure",
+      "evidence_span": "sock = self.ssl_context.wrap_socket(sock, server_side=True)",
+      "difficulty_tag": "real_repo_cross_file_tls"
+    }
+  ]
+}

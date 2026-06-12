@@ -1,0 +1,84 @@
+{
+  "id": "resp_0b8912aa7ead2b75006a2ab383358c819790e779be0df60f82",
+  "object": "response",
+  "created_at": 1781183363,
+  "status": "completed",
+  "background": false,
+  "completed_at": 1781183368,
+  "content_filters": [
+    {
+      "blocked": false,
+      "source_type": "prompt",
+      "content_filter_raw": [],
+      "content_filter_results": {},
+      "content_filter_offsets": {
+        "start_offset": 829,
+        "end_offset": 1852,
+        "check_offset": 0
+      }
+    }
+  ],
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-5.3-codex",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0b8912aa7ead2b75006a2ab38408788197851bea468151b92d",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"run_id\": \"T4_click_seed05_source_partitioned_G3_agent03\",\n  \"self_reported_completion\": true,\n  \"self_reported_confidence\": 0.83,\n  \"items\": [\n    {\"file_path\": \"repo/docs/commands-and-groups.md\", \"line\": 55},\n    {\"file_path\": \"repo/docs/commands-and-groups.md\", \"line\": 57},\n    {\"file_path\": \"repo/docs/commands-and-groups.md\", \"line\": 62},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 18},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 19},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 152},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 153},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 154},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 155},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 305},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 308},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 309},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 311},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 312},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 314},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 315},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 317},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 318},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 319},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 320},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 321},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 322},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 323},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 394},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 395},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 396},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 398},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 399},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 400},\n    {\"file_path\": \"repo/CHANGES.md\", \"line\": 401}\n  ]\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": "none",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 25041,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 603,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 25644
+  },
+  "user": null,
+  "metadata": {}
+}

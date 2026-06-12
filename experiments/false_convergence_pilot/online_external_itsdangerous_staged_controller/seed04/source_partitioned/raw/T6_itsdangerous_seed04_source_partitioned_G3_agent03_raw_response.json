@@ -1,0 +1,84 @@
+{
+  "id": "resp_03dcc1268b9af034006a2ac7858b0c8193af6f647693a91a4b",
+  "object": "response",
+  "created_at": 1781188485,
+  "status": "completed",
+  "background": false,
+  "completed_at": 1781188491,
+  "content_filters": [
+    {
+      "blocked": false,
+      "source_type": "prompt",
+      "content_filter_raw": [],
+      "content_filter_results": {},
+      "content_filter_offsets": {
+        "start_offset": 829,
+        "end_offset": 1858,
+        "check_offset": 0
+      }
+    }
+  ],
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-5.3-codex",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_03dcc1268b9af034006a2ac785feb0819386212ec783b416f2",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"run_id\": \"T6_itsdangerous_seed04_source_partitioned_G3_agent03\",\n  \"self_reported_completion\": true,\n  \"self_reported_confidence\": 0.89,\n  \"items\": [\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 3},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 6},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 7},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 8},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 9},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 13},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 14},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 15},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 19},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 22},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 24},\n    {\"file_path\": \"repo/docs/timed.rst\", \"line\": 27},\n    {\"file_path\": \"repo/docs/exceptions.rst\", \"line\": 12},\n    {\"file_path\": \"repo/docs/exceptions.rst\", \"line\": 15},\n    {\"file_path\": \"repo/docs/url_safe.rst\", \"line\": 21},\n    {\"file_path\": \"repo/README.md\", \"line\": 12},\n    {\"file_path\": \"repo/README.md\", \"line\": 13},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 35},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 43},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 85},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 86},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 87},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 88},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 89},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 90},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 91},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 131},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 139},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 140},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 243},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 270},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 271},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 272},\n    {\"file_path\": \"repo/CHANGES.rst\", \"line\": 273}\n  ]\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": "none",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 5201,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 699,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 5900
+  },
+  "user": null,
+  "metadata": {}
+}

@@ -1,0 +1,382 @@
+{
+  "claim_status": "requests_p0_method_effect_loop_completed_but_not_completion_certifying",
+  "requests_seed04_discovery_summary": [
+    {
+      "condition": "homogeneous",
+      "seed": "seed04",
+      "model": "gpt-5.3-codex",
+      "mean_confidence": "0.7633333333333333",
+      "mean_jaccard": "0.8137118737844288",
+      "singleton_ratio": "0.11974110032362459",
+      "consensus_recall": "0.6842105263157895",
+      "consensus_precision": "0.7647058823529411",
+      "union_recall": "0.7203947368421053",
+      "union_precision": "0.7087378640776699",
+      "input_tokens": "198444",
+      "output_tokens": "13646",
+      "wall_clock_seconds": "135.93939660006436",
+      "tool_calls": "0",
+      "score_summary": "experiments\\false_convergence_pilot\\online_blind_validation\\T5_requests_tls_seed04\\homogeneous\\score_summary.json",
+      "cost_dir": "experiments\\false_convergence_pilot\\online_blind_validation\\T5_requests_tls_seed04\\homogeneous\\cost"
+    },
+    {
+      "condition": "prompt_diverse",
+      "seed": "seed04",
+      "model": "gpt-5.3-codex",
+      "mean_confidence": "0.7600000000000001",
+      "mean_jaccard": "0.7773311546840959",
+      "singleton_ratio": "0.1346153846153846",
+      "consensus_recall": "0.6875",
+      "consensus_precision": "0.774074074074074",
+      "union_recall": "0.7368421052631579",
+      "union_precision": "0.717948717948718",
+      "input_tokens": "198463",
+      "output_tokens": "14211",
+      "wall_clock_seconds": "121.18036370002665",
+      "tool_calls": "0",
+      "score_summary": "experiments\\false_convergence_pilot\\online_blind_validation\\T5_requests_tls_seed04\\prompt_diverse\\score_summary.json",
+      "cost_dir": "experiments\\false_convergence_pilot\\online_blind_validation\\T5_requests_tls_seed04\\prompt_diverse\\cost"
+    },
+    {
+      "condition": "source_partitioned",
+      "seed": "seed04",
+      "model": "gpt-5.3-codex",
+      "mean_confidence": "0.8466666666666667",
+      "mean_jaccard": "0.0",
+      "singleton_ratio": "1.0",
+      "consensus_recall": "0.0",
+      "consensus_precision": "1.0",
+      "union_recall": "0.7138157894736842",
+      "union_precision": "0.7185430463576159",
+      "input_tokens": "67751",
+      "output_tokens": "6110",
+      "wall_clock_seconds": "59.86261080001714",
+      "tool_calls": "0",
+      "score_summary": "experiments\\false_convergence_pilot\\online_blind_validation\\T5_requests_tls_seed04\\source_partitioned\\score_summary.json",
+      "cost_dir": "experiments\\false_convergence_pilot\\online_blind_validation\\T5_requests_tls_seed04\\source_partitioned\\cost"
+    }
+  ],
+  "required_discovery_grid": [
+    {
+      "seed": "seed04",
+      "condition": "homogeneous",
+      "status": "completed_minimal_seed04"
+    },
+    {
+      "seed": "seed04",
+      "condition": "prompt_diverse",
+      "status": "completed_minimal_seed04"
+    },
+    {
+      "seed": "seed04",
+      "condition": "source_partitioned",
+      "status": "completed_minimal_seed04"
+    },
+    {
+      "seed": "seed04",
+      "condition": "independent_context",
+      "status": "completed"
+    },
+    {
+      "seed": "seed05",
+      "condition": "homogeneous",
+      "status": "completed"
+    },
+    {
+      "seed": "seed05",
+      "condition": "prompt_diverse",
+      "status": "completed"
+    },
+    {
+      "seed": "seed05",
+      "condition": "source_partitioned",
+      "status": "completed"
+    },
+    {
+      "seed": "seed05",
+      "condition": "independent_context",
+      "status": "completed"
+    },
+    {
+      "seed": "seed06",
+      "condition": "homogeneous",
+      "status": "completed"
+    },
+    {
+      "seed": "seed06",
+      "condition": "prompt_diverse",
+      "status": "completed"
+    },
+    {
+      "seed": "seed06",
+      "condition": "source_partitioned",
+      "status": "completed"
+    },
+    {
+      "seed": "seed06",
+      "condition": "independent_context",
+      "status": "completed"
+    },
+    {
+      "seed": "seed07",
+      "condition": "homogeneous",
+      "status": "completed"
+    },
+    {
+      "seed": "seed07",
+      "condition": "prompt_diverse",
+      "status": "completed"
+    },
+    {
+      "seed": "seed07",
+      "condition": "source_partitioned",
+      "status": "completed"
+    },
+    {
+      "seed": "seed07",
+      "condition": "independent_context",
+      "status": "completed"
+    },
+    {
+      "seed": "seed08",
+      "condition": "homogeneous",
+      "status": "completed"
+    },
+    {
+      "seed": "seed08",
+      "condition": "prompt_diverse",
+      "status": "completed"
+    },
+    {
+      "seed": "seed08",
+      "condition": "source_partitioned",
+      "status": "completed"
+    },
+    {
+      "seed": "seed08",
+      "condition": "independent_context",
+      "status": "completed"
+    }
+  ],
+  "required_audit_policy_grid": [
+    {
+      "seed": "seed04",
+      "policy": "no_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed04",
+      "policy": "random_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed04",
+      "policy": "singleton_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed04",
+      "policy": "boundary_focused_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed04",
+      "policy": "source_partitioned_review",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed04",
+      "policy": "always_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed04",
+      "policy": "risk_triggered_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed05",
+      "policy": "no_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed05",
+      "policy": "random_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed05",
+      "policy": "singleton_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed05",
+      "policy": "boundary_focused_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed05",
+      "policy": "source_partitioned_review",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed05",
+      "policy": "always_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed05",
+      "policy": "risk_triggered_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed06",
+      "policy": "no_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed06",
+      "policy": "random_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed06",
+      "policy": "singleton_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed06",
+      "policy": "boundary_focused_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed06",
+      "policy": "source_partitioned_review",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed06",
+      "policy": "always_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed06",
+      "policy": "risk_triggered_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed07",
+      "policy": "no_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed07",
+      "policy": "random_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed07",
+      "policy": "singleton_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed07",
+      "policy": "boundary_focused_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed07",
+      "policy": "source_partitioned_review",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed07",
+      "policy": "always_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed07",
+      "policy": "risk_triggered_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed08",
+      "policy": "no_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed08",
+      "policy": "random_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed08",
+      "policy": "singleton_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed08",
+      "policy": "boundary_focused_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed08",
+      "policy": "source_partitioned_review",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed08",
+      "policy": "always_holdout",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    },
+    {
+      "seed": "seed08",
+      "policy": "risk_triggered_audit",
+      "status": "completed",
+      "reason": "online audit-policy results written"
+    }
+  ],
+  "paper_level_requirements_met": false,
+  "policy_results": "E:\\learn3\\B\\new\\experiments\\false_convergence_pilot\\online_audit_controller\\T5_requests_tls\\audit_policy_eval\\ONLINE_AUDIT_POLICY_RESULTS.csv",
+  "discovery_grid": "E:\\learn3\\B\\new\\experiments\\false_convergence_pilot\\online_audit_controller\\T5_requests_tls\\ONLINE_DISCOVERY_GRID_SUMMARY.csv",
+  "minimum_missing_items": [
+    "Add independent oracle second-pass review before submission.",
+    "Run at least one public benchmark subset or keep external benchmark claims out of the main paper.",
+    "Add more real repositories before claiming repository-general audit-controller performance.",
+    "Run second-model or cross-provider validation before claiming model-general behavior."
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "task_id": "T2_policy_docs",
+  "oracle_size": 30,
+  "thresholds": {
+    "theta": 0.95,
+    "tau": 0.7,
+    "confidence": 0.8,
+    "gamma": 0.1
+  },
+  "run_summaries": [
+    {
+      "run_id": "T2_G1_seed01",
+      "seed": "seed01",
+      "group": "G1",
+      "confidence": 0.88,
+      "completion": true,
+      "found": 28,
+      "true_positive": 28,
+      "false_positive": 0,
+      "recall": 0.9333333333333333,
+      "precision": 1.0,
+      "false_stop": true,
+      "bucket_recall": {
+        "alias_resolution": 0.9090909090909091,
+        "queue_resolution": 1.0
+      }
+    },
+    {
+      "run_id": "T2_G3_seed01_agent01",
+      "seed": "seed01",
+      "group": "G3",
+      "confidence": 0.92,
+      "completion": true,
+      "found": 28,
+      "true_positive": 28,
+      "false_positive": 0,
+      "recall": 0.9333333333333333,
+      "precision": 1.0,
+      "false_stop": true,
+      "bucket_recall": {
+        "alias_resolution": 0.9090909090909091,
+        "queue_resolution": 1.0
+      }
+    },
+    {
+      "run_id": "T2_G3_seed01_agent02",
+      "seed": "seed01",
+      "group": "G3",
+      "confidence": 0.88,
+      "completion": true,
+      "found": 30,
+      "true_positive": 30,
+      "false_positive": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "false_stop": false,
+      "bucket_recall": {
+        "alias_resolution": 1.0,
+        "queue_resolution": 1.0
+      }
+    },
+    {
+      "run_id": "T2_G3_seed01_agent03",
+      "seed": "seed01",
+      "group": "G3",
+      "confidence": 0.86,
+      "completion": true,
+      "found": 28,
+      "true_positive": 28,
+      "false_positive": 0,
+      "recall": 0.9333333333333333,
+      "precision": 1.0,
+      "false_stop": true,
+      "bucket_recall": {
+        "alias_resolution": 0.9090909090909091,
+        "queue_resolution": 1.0
+      }
+    },
+    {
+      "run_id": "T2_G6_holdout_seed01",
+      "seed": "seed01",
+      "group": "G6",
+      "confidence": 0.91,
+      "completion": true,
+      "found": 30,
+      "true_positive": 30,
+      "false_positive": 0,
+      "recall": 1.0,
+      "precision": 1.0,
+      "false_stop": false,
+      "bucket_recall": {
+        "alias_resolution": 1.0,
+        "queue_resolution": 1.0
+      }
+    }
+  ],
+  "seed_summaries": [
+    {
+      "seed": "seed01",
+      "g3_run_ids": [
+        "T2_G3_seed01_agent01",
+        "T2_G3_seed01_agent02",
+        "T2_G3_seed01_agent03"
+      ],
+      "mean_confidence": 0.8866666666666667,
+      "pairwise_jaccard": [
+        0.9333333333333333,
+        1.0,
+        0.9333333333333333
+      ],
+      "mean_pairwise_jaccard": 0.9555555555555556,
+      "singleton_ratio": 0.06666666666666667,
+      "consensus": {
+        "found": 28,
+        "true_positive": 28,
+        "false_positive": 0,
+        "recall": 0.9333333333333333,
+        "precision": 1.0
+      },
+      "union": {
+        "found": 30,
+        "true_positive": 30,
+        "false_positive": 0,
+        "recall": 1.0,
+        "precision": 1.0
+      },
+      "holdout": {
+        "found": 30,
+        "true_positive": 30,
+        "false_positive": 0,
+        "recall": 1.0,
+        "precision": 1.0
+      },
+      "holdout_gain": 0.06666666666666667,
+      "false_convergence_consensus": false,
+      "consensus_bucket_recall": {
+        "alias_resolution": 0.9090909090909091,
+        "queue_resolution": 1.0
+      },
+      "union_bucket_recall": {
+        "alias_resolution": 1.0,
+        "queue_resolution": 1.0
+      },
+      "holdout_bucket_recall": {
+        "alias_resolution": 1.0,
+        "queue_resolution": 1.0
+      },
+      "consensus_missing_true_items": [
+        "CASE-047::CASE-047",
+        "CASE-048::CASE-048"
+      ],
+      "holdout_new_true_items": [
+        "CASE-047::CASE-047",
+        "CASE-048::CASE-048"
+      ]
+    }
+  ],
+  "raw_run_ids": [
+    "T2_G1_seed01",
+    "T2_G3_seed01_agent01",
+    "T2_G3_seed01_agent02",
+    "T2_G3_seed01_agent03",
+    "T2_G6_holdout_seed01"
+  ]
+}

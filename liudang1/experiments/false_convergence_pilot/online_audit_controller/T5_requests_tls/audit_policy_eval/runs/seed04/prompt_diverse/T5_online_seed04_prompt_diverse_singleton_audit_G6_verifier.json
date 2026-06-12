@@ -1,0 +1,175 @@
+{
+  "run_id": "T5_online_seed04_prompt_diverse_singleton_audit_G6_verifier",
+  "self_reported_completion": true,
+  "self_reported_confidence": 0.95,
+  "items": [
+    {
+      "file_path": "repo/docs/community/faq.rst",
+      "line": 71
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 190
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 285
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 656
+    },
+    {
+      "file_path": "repo/docs/user/advanced.rst",
+      "line": 662
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 324
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 328
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 332
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 356
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 361
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 403
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 426
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 430
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 431
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 442
+    },
+    {
+      "file_path": "repo/src/requests/adapters.py",
+      "line": 662
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 296
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 297
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 470
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 475
+    },
+    {
+      "file_path": "repo/src/requests/sessions.py",
+      "line": 614
+    },
+    {
+      "file_path": "repo/tests/certs/README.md",
+      "line": 6
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 50
+    },
+    {
+      "file_path": "repo/tests/conftest.py",
+      "line": 64
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 997
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 998
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 999
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1000
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1001
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1004
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1005
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1006
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1007
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1012
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1013
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1014
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1026
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1035
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1038
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1043
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1064
+    },
+    {
+      "file_path": "repo/tests/test_requests.py",
+      "line": 1065
+    }
+  ]
+}

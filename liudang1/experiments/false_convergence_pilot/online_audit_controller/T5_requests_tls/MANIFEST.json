@@ -1,0 +1,44 @@
+{
+  "suite": "online_audit_controller_requests_tls",
+  "status": "discovery_completed",
+  "dry_run": false,
+  "created_or_updated_at": "2026-06-10T12:44:03.585015+00:00",
+  "task": "T5 Requests TLS certificate audit",
+  "repository": "psf/requests",
+  "commit": "1190afd14fca74292946d62c4c8169880a47ff67",
+  "model": "gpt-5.3-codex",
+  "seeds": [
+    "seed05",
+    "seed06",
+    "seed07",
+    "seed08"
+  ],
+  "discovery_conditions": [
+    "homogeneous",
+    "prompt_diverse",
+    "source_partitioned",
+    "independent_context"
+  ],
+  "audit_policies_planned": [
+    "no_audit",
+    "random_holdout",
+    "singleton_audit",
+    "boundary_focused_holdout",
+    "source_partitioned_review",
+    "always_holdout",
+    "risk_triggered_audit"
+  ],
+  "api_key_env": "AUTODL_ART_API_KEY",
+  "api_key_present": true,
+  "outputs": {
+    "root": "E:\\learn3\\B\\new\\experiments\\false_convergence_pilot\\online_audit_controller\\T5_requests_tls",
+    "per_seed": {
+      "seed05": "E:\\learn3\\B\\new\\experiments\\false_convergence_pilot\\online_audit_controller\\T5_requests_tls\\seed05",
+      "seed06": "E:\\learn3\\B\\new\\experiments\\false_convergence_pilot\\online_audit_controller\\T5_requests_tls\\seed06",
+      "seed07": "E:\\learn3\\B\\new\\experiments\\false_convergence_pilot\\online_audit_controller\\T5_requests_tls\\seed07",
+      "seed08": "E:\\learn3\\B\\new\\experiments\\false_convergence_pilot\\online_audit_controller\\T5_requests_tls\\seed08"
+    }
+  },
+  "online_audit_status": "not_implemented_yet_verifier_and_holdout_agents_required",
+  "error": null
+}

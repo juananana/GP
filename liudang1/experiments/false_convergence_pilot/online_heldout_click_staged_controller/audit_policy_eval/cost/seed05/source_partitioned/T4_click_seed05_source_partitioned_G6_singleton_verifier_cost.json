@@ -1,0 +1,12 @@
+{
+  "run_id": "T4_click_seed05_source_partitioned_G6_singleton_verifier",
+  "started_at": "2026-06-11T13:18:40.504952+00:00",
+  "ended_at": "2026-06-11T13:19:03.511209+00:00",
+  "model_name": "gpt-5.3-codex",
+  "policy": "singleton_audit",
+  "input_tokens": 14736,
+  "output_tokens": 1968,
+  "tool_calls": 0,
+  "wall_clock_seconds": 23.006241700000828,
+  "candidate_count": 174
+}
