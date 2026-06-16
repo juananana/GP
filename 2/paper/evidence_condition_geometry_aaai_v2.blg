@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99e
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: evidence_condition_geometry_aaai_v2.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: plainnat.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Database file #1: references.bib
+You've used 45 entries,
+            2773 wiz_defined-function locations,
+            790 strings with 16254 characters,
+and the built_in function-call counts, 30201 in all, are:
+= -- 2238
+> -- 3076
+< -- 17
++ -- 1030
+- -- 984
+* -- 2756
+:= -- 4860
+add.period$ -- 135
+call.type$ -- 45
+change.case$ -- 462
+chr.to.int$ -- 44
+cite$ -- 90
+duplicate$ -- 1062
+empty$ -- 1804
+format.name$ -- 1040
+if$ -- 6089
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 44
+newline$ -- 233
+num.names$ -- 180
+pop$ -- 1050
+preamble$ -- 1
+purify$ -- 417
+quote$ -- 0
+skip$ -- 925
+stack$ -- 0
+substring$ -- 285
+swap$ -- 116
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 495
+warning$ -- 0
+while$ -- 156
+width$ -- 0
+write$ -- 558

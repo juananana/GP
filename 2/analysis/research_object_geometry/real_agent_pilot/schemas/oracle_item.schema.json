@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Real Agent Pilot Oracle Item",
+  "type": "object",
+  "required": [
+    "task_id",
+    "item_id",
+    "oracle_label"
+  ],
+  "properties": {
+    "task_id": {"type": "string"},
+    "item_id": {"type": "string"},
+    "oracle_label": {"type": "boolean"},
+    "oracle_bucket": {"type": "string"},
+    "source_path": {"type": "string"},
+    "source_family": {"type": "string"},
+    "source_route_stratum": {"type": "string"},
+    "reportable": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}

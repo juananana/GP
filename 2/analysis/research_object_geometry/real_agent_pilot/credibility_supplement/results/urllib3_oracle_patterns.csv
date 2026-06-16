@@ -1,0 +1,6 @@
+repo,route,pattern
+urllib3,timeout_route,\b(timeout|Timeout|connect_timeout|read_timeout|_connect_timeout|_read_timeout)\b
+urllib3,retry_route,\b(retry|Retry|retries|increment|backoff|status_forcelist)\b
+urllib3,tls_route,\b(ssl|SSL|TLS|cert|certificate|verify|assert_hostname|ca_certs|cert_reqs)\b
+urllib3,exception_route,\b(except|raise|Error|TimeoutError|SSLError|ProxyError|HTTPError|MaxRetryError)\b
+urllib3,cleanup_route,\b(close|release_conn|drain_conn|shutdown|finally|with\s+|__exit__)\b

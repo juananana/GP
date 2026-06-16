@@ -1,0 +1,11 @@
+oracle_bucket,item_id,source_family,line_no,line
+cleanup_route,connection:cleanup_route:1016,connection,1016,ssl_sock.close()
+cleanup_route,connection:cleanup_route:173,connection,173,"However, the hostname with trailing dot is critical to DNS resolution; doing a"
+exception_route,connection:exception_route:1015,connection,1015,except BaseException:
+exception_route,connection:exception_route:1017,connection,1017,raise
+retry_route,connectionpool:retry_route:1011,connectionpool,1011,"retries,"
+retry_route,connectionpool:retry_route:156,connectionpool,156,:param retries:
+timeout_route,connection:timeout_route:137,connection,137,"timeout: _TYPE_TIMEOUT = _DEFAULT_TIMEOUT,"
+timeout_route,connection:timeout_route:149,connection,149,"timeout=Timeout.resolve_default_timeout(timeout),"
+tls_route,connection:tls_route:1005,connection,1005,"cert,"
+tls_route,connection:tls_route:1006,connection,1006,"assert_hostname or server_hostname,  # type: ignore[arg-type]"

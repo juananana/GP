@@ -1,0 +1,112 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{caption}
+
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+\emergencystretch=4em
+\urlstyle{rm}
+\def\UrlFont{\rm}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\do\/\do\_\do\-}
+\makeatother
+\frenchspacing
+
+\newcommand{\safe}{\textsc{Safe}}
+\newcommand{\cont}{\textsc{Continue}}
+\newcommand{\abstain}{\textsc{Abstain}}
+
+\title{Supplementary Material for\\
+Local Evidence Is Not Completion:\\
+Evidence-Condition Geometry for Bounded Completion-Audit Workflows}
+\author{Anonymous Submission}
+\date{}
+
+\begin{document}
+\sloppy
+\maketitle
+
+\section*{Scope of the Supplement}
+
+This anonymous supplementary material contains reproducibility and audit details
+that are intentionally kept out of the main technical-content pages. These
+tables support the evidence-condition controller evaluation but are not used as
+additional main effectiveness evidence. In particular, the workflow pilot is a
+workflow-shape/interface validation only, and the scalar singleton/Chao proxy is
+a negative control because it does not encode source-route evidence conditions.
+
+\section*{Reproducibility Notes}
+
+\paragraph{Script entry points.}
+All paths are relative to the repository root. The supplement and paper figures
+are assembled from \path{2/analysis/research_object_geometry/real_agent_pilot/}
+by running the Python entry point
+\path{credibility_supplement/run_credibility_supplement.py}. The frozen task logs
+used by this assembler are produced by
+\path{scripts/run_blind_policy_task.py},
+\path{scripts/run_blind_code_task.py},
+\path{external_validation_requests/run_external_requests_validation.py},
+\path{controller_validation_v1/run_controller_validation_v1.py},
+\path{controller_validation_v1/run_controller_validation_v2.py}, and
+\path{external_validation_v2/run_external_validation_v2.py}. The controlled
+stress tests are in \path{2/analysis/research_object_geometry/}:
+\path{controlled_geometry_simulation_v2.py} and
+\path{controlled_exposure_localization_v3.py}.
+
+\paragraph{Seeds and thresholds.}
+Generated-task method validation, external repository repair validation, and
+external boundary validation use 200 fixed seeds per challenger or controller
+policy before oracle scoring. Safe-state validation uses 6000 order/budget
+perturbations. The controller-validation thresholds are
+\(\tau_s=0.75\) for source-route support and \(\tau_g=0.70\) for exposure
+Gini. The 0.90 bounded-oracle recall threshold is used only for post-hoc
+false-certification evaluation and is not visible to the controller.
+
+\paragraph{Data and log format.}
+Primary run logs are JSONL action/evidence ledgers. Each event records a task
+identifier, source family, source-route stratum, route, action or scan record,
+discovered item identifier when present, new-item flag, and cost fields used for
+post-stop repair or confirmation-audit accounting. Aggregated CSVs in
+\texttt{credibility\_supplement/results/} contain condition summaries,
+controller decisions, repair confidence intervals, seeded safe-state summaries,
+threshold/budget sweeps, oracle summaries, route-pattern examples, and leakage
+controls.
+
+\paragraph{Oracle CSV and JSONL fields.}
+Oracle item files use the fields
+\texttt{task\_id}, \texttt{item\_id}, \texttt{oracle\_label},
+\texttt{oracle\_bucket}, \texttt{source\_path}, \texttt{source\_family},
+\texttt{source\_route\_stratum}, \texttt{reportable}, and, for external
+repository JSONL files, a representative \texttt{line}. Source-route count CSVs
+use \texttt{source\_family}, \texttt{oracle\_bucket}, and
+\texttt{oracle\_items}. Oracle labels and oracle totals are loaded only after
+trajectories, repair orderings, and challenger choices are fixed.
+
+\paragraph{Figure generation.}
+The same supplement assembler writes
+\path{main_results_overview.png}, \path{controller_decision_matrix.png}, and
+\path{repair_sensitivity_summary.png} to \path{2/paper/figures/}. Run the
+assembler above, then compile from \path{2/paper/} with \texttt{latexmk -pdf
+-interaction=nonstopmode -outdir=build} and either
+\path{evidence_condition_geometry_aaai_v2.tex} or
+\path{supplementary_material.tex}.
+
+\paragraph{Computing environment.}
+The checked environment is Windows 11 with Python 3.13.9, NumPy 2.3.5, pandas
+2.3.3, and Matplotlib 3.10.6. The code uses only local frozen snapshots for the
+external repository audits; no network access is required to reproduce the
+reported tables and figures from the included logs and snapshots.
+
+\input{generated/supplementary_tables.tex}
+
+\end{document}

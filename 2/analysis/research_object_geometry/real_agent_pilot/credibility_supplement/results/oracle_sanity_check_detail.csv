@@ -1,0 +1,73 @@
+repo,route,item_id,line,judgment,note
+requests,compat_route,utils:compat_route:27,"# to_native_string is unused here, but imported here for backwards compatibility",positive,route keyword and code context match
+requests,compat_route,models:compat_route:34,"builtin_str,",positive,route keyword and code context match
+requests,compat_route,models:compat_route:38,from .compat import json as complexjson,positive,route keyword and code context match
+requests,compat_route,utils:compat_route:43,from .compat import parse_http_list as _parse_list_header,positive,route keyword and code context match
+requests,compat_route,models:compat_route:520,"not isinstance(data, (basestring, list, tuple, Mapping)),",positive,route keyword and code context match
+requests,compat_route,models:compat_route:575,length = super_len(body),positive,route keyword and code context match
+requests,compat_route,auth:compat_route:17,"from .compat import basestring, str, urlparse",positive,route keyword and code context match
+requests,compat_route,sessions:compat_route:124,"return to_native_string(location, ""utf8"")",positive,route keyword and code context match
+requests,exception_route,auth:exception_route:293,except AttributeError:,positive,route keyword and code context match
+requests,exception_route,models:exception_route:527,"except (TypeError, AttributeError, UnsupportedOperation):",positive,route keyword and code context match
+requests,exception_route,models:exception_route:977,except JSONDecodeError as e:,positive,route keyword and code context match
+requests,exception_route,adapters:exception_route:680,"raise ConnectionError(e, request=request)",positive,route keyword and code context match
+requests,exception_route,adapters:exception_route:679,except ClosedPoolError as e:,positive,route keyword and code context match
+requests,exception_route,utils:exception_route:198,except OSError:,positive,route keyword and code context match
+requests,exception_route,models:exception_route:434,except LocationParseError as e:,positive,route keyword and code context match
+requests,exception_route,adapters:exception_route:43,"RetryError,",positive,route keyword and code context match
+requests,timeout_route,sessions:timeout_route:538,:param timeout: (optional) How many seconds to wait for the server to send,positive,route keyword and code context match
+requests,timeout_route,sessions:timeout_route:585,"""timeout"": timeout,",positive,route keyword and code context match
+requests,timeout_route,adapters:timeout_route:654,"timeout=timeout,",positive,route keyword and code context match
+requests,timeout_route,adapters:timeout_route:127,"data before giving up, as a float, or a :ref:`(connect timeout,",positive,route keyword and code context match
+requests,timeout_route,api:timeout_route:34,timeout) <timeouts>` tuple.,positive,route keyword and code context match
+requests,timeout_route,adapters:timeout_route:597,:param timeout: (optional) How long to wait for the server to send,positive,route keyword and code context match
+requests,timeout_route,sessions:timeout_route:541,:type timeout: float or tuple,positive,route keyword and code context match
+requests,timeout_route,adapters:timeout_route:632,"timeout = TimeoutSauce(connect=connect, read=read)",positive,route keyword and code context match
+requests,tls_route,sessions:tls_route:776,"verify = merge_setting(verify, self.verify)",positive,route keyword and code context match
+requests,tls_route,sessions:tls_route:553,"``False``, requests will accept any TLS certificate presented by",positive,route keyword and code context match
+requests,tls_route,adapters:tls_route:288,"the server's TLS certificate, or a string, in which case it must be a path",positive,route keyword and code context match
+requests,tls_route,sessions:tls_route:681,"kwargs.setdefault(""verify"", self.verify)",positive,route keyword and code context match
+requests,tls_route,adapters:tls_route:438,(optional) Any user-provided SSL certificate to be used for client,positive,route keyword and code context match
+requests,tls_route,adapters:tls_route:319,if cert:,positive,route keyword and code context match
+requests,tls_route,sessions:tls_route:779,"return {""proxies"": proxies, ""stream"": stream, ""verify"": verify, ""cert"": cert}",positive,route keyword and code context match
+requests,tls_route,adapters:tls_route:287,":param verify: Either a boolean, in which case it controls whether we verify",positive,route keyword and code context match
+urllib3,cleanup_route,connectionpool:cleanup_route:333,"# Connection never got put back into the pool, close it.",positive,route keyword and code context match
+urllib3,cleanup_route,connection:cleanup_route:562,"_shutdown = getattr(self.sock, ""shutdown"", None)",positive,route keyword and code context match
+urllib3,cleanup_route,connection:cleanup_route:1016,ssl_sock.close(),positive,route keyword and code context match
+urllib3,cleanup_route,connectionpool:cleanup_route:1176,conn.close(),positive,route keyword and code context match
+urllib3,cleanup_route,response:cleanup_route:830,self.release_conn(),positive,route keyword and code context match
+urllib3,cleanup_route,response:cleanup_route:87,finally:,positive,route keyword and code context match
+urllib3,cleanup_route,response:cleanup_route:923,"# raised during streaming, so all calls with incorrect",ambiguous,generic with-context line; weak cleanup signal
+urllib3,cleanup_route,connectionpool:cleanup_route:732,"# the function recurses, the original value of `release_conn` will be",positive,route keyword and code context match
+urllib3,exception_route,response:exception_route:790,raise SSLError(e) from e,positive,route keyword and code context match
+urllib3,exception_route,connectionpool:exception_route:901,except MaxRetryError:,positive,route keyword and code context match
+urllib3,exception_route,response:exception_route:1040,raise RuntimeError(,positive,route keyword and code context match
+urllib3,exception_route,connectionpool:exception_route:40,"TimeoutError,",positive,route keyword and code context match
+urllib3,exception_route,connection:exception_route:205,"raise NameResolutionError(self.host, self, e) from e",positive,route keyword and code context match
+urllib3,exception_route,connectionpool:exception_route:812,"TimeoutError,",positive,route keyword and code context match
+urllib3,exception_route,connectionpool:exception_route:819,"ProxyError,",positive,route keyword and code context match
+urllib3,exception_route,response:exception_route:1171,except ValueError:,positive,route keyword and code context match
+urllib3,retry_route,util_retry:retry_route:200,DEFAULT: typing.ClassVar[Retry],positive,route keyword and code context match
+urllib3,retry_route,util_retry:retry_route:410,"""""""Are we out of retries?""""""",positive,route keyword and code context match
+urllib3,retry_route,util_retry:retry_route:68,"retries are disabled, in which case the causing exception will be raised.",positive,route keyword and code context match
+urllib3,retry_route,connectionpool:retry_route:183,"retries: Retry | bool | int | None = None,",positive,route keyword and code context match
+urllib3,retry_route,connectionpool:retry_route:701,Position to seek to in file-like body in the event of a retry or,positive,route keyword and code context match
+urllib3,retry_route,util_retry:retry_route:392,"respect the Retry-After header, whether this header is present, and",positive,route keyword and code context match
+urllib3,retry_route,util_retry:retry_route:111,``status_forcelist``.,positive,route keyword and code context match
+urllib3,retry_route,util_retry:retry_route:234,self.status_forcelist = status_forcelist or set(),positive,route keyword and code context match
+urllib3,timeout_route,connectionpool:timeout_route:536,"self._raise_timeout(err=e, url=url, timeout_value=read_timeout)",positive,route keyword and code context match
+urllib3,timeout_route,connectionpool:timeout_route:364,"""""""Is the error actually a timeout? Will raise a ReadTimeout or pass""""""",positive,route keyword and code context match
+urllib3,timeout_route,util_timeout:timeout_route:184,:rtype: :class:`Timeout`,positive,route keyword and code context match
+urllib3,timeout_route,util_timeout:timeout_route:234,:return: Connect timeout.,positive,route keyword and code context match
+urllib3,timeout_route,util_timeout:timeout_route:182,":type timeout: integer, float, :attr:`urllib3.util.Timeout.DEFAULT_TIMEOUT`, or None",positive,route keyword and code context match
+urllib3,timeout_route,connectionpool:timeout_route:776,"err=e, url=self.proxy.url, timeout_value=conn.timeout",positive,route keyword and code context match
+urllib3,timeout_route,util_timeout:timeout_route:135,:param name: The name of the timeout attribute to validate. This is,positive,route keyword and code context match
+urllib3,timeout_route,connection:timeout_route:209,"f""Connection to {self.host} timed out. (connect timeout={self.timeout})"",",positive,route keyword and code context match
+urllib3,tls_route,connection:tls_route:605,cert_reqs: int | str | None = None,positive,route keyword and code context match
+urllib3,tls_route,poolmanager:tls_route:569,"proxy_ssl_context: ssl.SSLContext | None = None,",positive,route keyword and code context match
+urllib3,tls_route,connection:tls_route:888,verified after the TLS handshake,positive,route keyword and code context match
+urllib3,tls_route,connection:tls_route:710,self.cert_reqs = cert_reqs,positive,route keyword and code context match
+urllib3,tls_route,connection:tls_route:938,# assert_hostname can be set to False to disable hostname checking,positive,route keyword and code context match
+urllib3,tls_route,connection:tls_route:992,cert: _TYPE_PEER_CERT_RET_DICT = ssl_sock.getpeercert()  # type: ignore[assignment],positive,route keyword and code context match
+urllib3,tls_route,connection:tls_route:633,"ca_certs: str | None = None,",positive,route keyword and code context match
+urllib3,tls_route,connection:tls_route:674,self.cert_reqs = cert_reqs,positive,route keyword and code context match

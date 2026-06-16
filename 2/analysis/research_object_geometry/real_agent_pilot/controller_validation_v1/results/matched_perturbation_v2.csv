@@ -1,0 +1,6 @@
+state,note,discovered_true_items,recall,support_ratio,exposure_gini,weak_plausible_gap,geometry_eligible,evidence_still_appearing,controller_decision,false_certification_if_safe
+local_observed_31,observed homogeneous local evidence,31,0.1040268456375839,0.25,0.8885135135135134,15,False,False,ABSTAIN,False
+broad_matched_31,"same discovered count as homogeneous, broad source-route searches",31,0.1040268456375839,1.0,0.540151515151515,0,True,True,CONTINUE,False
+broad_prefix_100,broad exposure with medium continuing evidence,100,0.33557046979865773,1.0,0.745295698924731,0,False,True,CONTINUE,False
+broad_prefix_200,broad exposure with high continuing evidence,200,0.6711409395973155,1.0,0.7139136904761905,0,False,True,CONTINUE,False
+broad_observed_298,observed route-partitioned completed audit,298,1.0,1.0,0.6074016563146998,0,True,False,SAFE,False

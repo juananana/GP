@@ -1,0 +1,15 @@
+metric,repos_with_signal,positive_repos,negative_repos,sign_consistent
+file_coverage_count,1,0,1,True
+file_entropy_effective_rank,3,0,3,True
+mean_confidence,3,1,2,False
+mean_pairwise_item_jaccard_from_score,3,3,0,True
+mean_pairwise_source_jaccard,3,3,0,True
+singleton_ratio_from_score,3,0,3,True
+source_concentration_entropy,3,1,2,False
+source_concentration_gini,3,2,1,False
+source_concentration_hhi,3,2,1,False
+source_coverage_count,0,0,0,False
+source_logdet_volume,3,1,2,False
+source_marginal_logdet_gain,3,1,2,False
+source_normalized_effective_rank,3,0,3,True
+source_pairwise_cosine,3,2,1,False

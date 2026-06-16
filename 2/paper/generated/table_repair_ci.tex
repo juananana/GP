@@ -1,0 +1,18 @@
+\begin{table*}[t]
+\centering
+\caption{Repair policy comparison with mean and 95\% CI. Residual-potential is
+used as a mechanism-aligned repair probe, not as an optimal-search claim.}
+\label{tab:repair}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+Task & Residual gain & High-potential gain & Random gain
+& Residual/cost & High-potential/cost \\
+\midrule
+\texttt{policy\_docset\_v1} & 4.0 [4.0, 4.0] & 0.0 [0.0, 0.0] & 2.0 [1.8, 2.2] & 0.125 [0.125, 0.125] & 0.000 [0.000, 0.000] \\
+\texttt{code\_repo\_v1} & 9.0 [9.0, 9.0] & 5.0 [5.0, 5.0] & 4.3 [4.1, 4.5] & 0.136 [0.136, 0.136] & 0.076 [0.076, 0.076] \\
+\texttt{requests} & 177.0 [177.0, 177.0] & 177.0 [177.0, 177.0] & 45.5 [41.4, 49.6] & 0.054 & 0.054 \\
+\texttt{urllib3} & 329.0 [329.0, 329.0] & 275.0 [275.0, 275.0] & 92.5 [85.8, 99.3] & 0.062 [0.062, 0.062] & 0.063 [0.063, 0.063] \\
+\bottomrule
+\end{tabular}}
+\end{table*}

@@ -1,0 +1,4 @@
+task_id,condition,n_events,n_agents,n_exposure_strata,n_discovery_strata,source_route_coverage_ratio,exposure_gini,discovery_gini,found_true_items,oracle_total,recall,false_stop_at_90
+T_blind_policy_docset_v1,homogeneous,66,3,4,4,0.25,0.7708333333333333,0.775735294117647,17,24,0.7083333333333334,True
+T_blind_policy_docset_v1,homogeneous_low_exposure_challenger,13,1,4,1,0.25,0.7932692307692308,0.9375,2,24,0.08333333333333333,True
+T_blind_policy_docset_v1,route_partitioned,51,3,12,8,0.75,0.38541666666666674,0.640625,24,24,1.0,False

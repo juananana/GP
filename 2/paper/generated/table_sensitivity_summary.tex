@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{Sensitivity sweep numeric summary. Ranges aggregate threshold settings
+or repair-budget settings within each external task.}
+\label{tab:sensitivity_summary}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llllllr}
+\toprule
+Task & Sweep & SAFE rate & CONTINUE rate & ABSTAIN rate & Max FCR & Mean repair cost \\
+\midrule
+\texttt{requests} & threshold & 0.000-0.000 & 0.995-1.000 & 0.000-0.005 & 0.000 & 2854.6 \\
+\texttt{urllib3} & threshold & 0.000-0.000 & 0.990-1.000 & 0.000-0.010 & 0.000 & 4831.8 \\
+\texttt{requests} & budget & 0.000-0.000 & 0.635-1.000 & 0.000-0.365 & 0.000 & 2966.4 \\
+\texttt{urllib3} & budget & 0.000-0.000 & 0.640-1.000 & 0.000-0.360 & 0.000 & 4036.5 \\
+\bottomrule
+\end{tabular}}
+\end{table}

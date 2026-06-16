@@ -1,0 +1,5 @@
+challenger,runs,mean_new_true_items,max_new_true_items,mean_cumulative_recall
+low_discovery,1,2.0,2,0.7916666666666666
+low_exposure,1,2.0,2,0.7916666666666666
+random,20,2.15,5,0.7979166666666667
+residual_potential,1,4.0,4,0.875

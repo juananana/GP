@@ -1,0 +1,4 @@
+task_id,condition,n_events,n_agents,support_size,support_ratio,exposure_gini,weak_plausible_gap,found_true_items,oracle_total,recall,naive_false_certification,geometry_eligible,controller_decision,controller_false_certification
+T_external_urllib3_audit_v2,extended_audit,734,5,30,1.0,0.5502057613168723,0,699,699,1.0,False,True,SAFE,False
+T_external_urllib3_audit_v2,homogeneous,426,3,6,0.2,0.9151300236406619,24,135,699,0.19313304721030042,True,False,CONTINUE,False
+T_external_urllib3_audit_v2,route_partitioned,612,4,24,0.8,0.6471491228070174,6,584,699,0.8354792560801144,True,True,CONTINUE,False

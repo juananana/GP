@@ -1,0 +1,5 @@
+task,observed_items,oracle_total,recall,singletons,doubletons,singleton_rate,chao1_estimate,scalar_stop_proxy,false_if_scalar_stop,source_route_mismatch
+policy_docset_v1,17,24,0.7083333333333334,17,0,1.0,153.0,False,False,True
+code_repo_v1,6,20,0.3,6,0,1.0,21.0,False,False,True
+requests,31,298,0.1040268456375839,31,0,1.0,496.0,False,False,True
+urllib3,135,699,0.19313304721030042,135,0,1.0,9180.0,False,False,True

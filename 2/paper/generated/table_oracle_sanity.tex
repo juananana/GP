@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{Route-match consistency sanity check for external oracle positives. A
+small sample of line-level positives was checked for route consistency;
+ambiguous lines are retained as such rather than treated as full validation.}
+\label{tab:oracle_sanity}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrrrl}
+\toprule
+Repo & Route & Sample & Positive & Precision & Ambiguous & Notes \\
+\midrule
+\texttt{requests} & compat\_route & 8 & 8 & 1.000 & 0 & line-level oracle-positive sample \\
+\texttt{requests} & exception\_route & 8 & 8 & 1.000 & 0 & line-level oracle-positive sample \\
+\texttt{requests} & timeout\_route & 8 & 8 & 1.000 & 0 & line-level oracle-positive sample \\
+\texttt{requests} & tls\_route & 8 & 8 & 1.000 & 0 & line-level oracle-positive sample \\
+\texttt{urllib3} & cleanup\_route & 8 & 7 & 0.875 & 1 & line-level oracle-positive sample \\
+\texttt{urllib3} & exception\_route & 8 & 8 & 1.000 & 0 & line-level oracle-positive sample \\
+\texttt{urllib3} & retry\_route & 8 & 8 & 1.000 & 0 & line-level oracle-positive sample \\
+\texttt{urllib3} & timeout\_route & 8 & 8 & 1.000 & 0 & line-level oracle-positive sample \\
+\texttt{urllib3} & tls\_route & 8 & 8 & 1.000 & 0 & line-level oracle-positive sample \\
+\bottomrule
+\end{tabular}}
+\end{table}

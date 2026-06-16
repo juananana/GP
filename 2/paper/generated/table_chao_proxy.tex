@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering
+\caption{Negative control: scalar singleton/Chao proxy on homogeneous runs. The
+proxy observes item-count sparsity but does not encode source-route condition,
+so it is not a competitive controller baseline for certificate mismatch.}
+\label{tab:chao_proxy}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrll}
+\toprule
+Task & Observed & Oracle total & Recall & \(f_1\) & \(f_2\)
+& \(f_1/\mathrm{obs}\) & Chao1 & Scalar stop & False if stop \\
+\midrule
+\texttt{policy\_docset\_v1} & 17 & 24 & 0.708 & 17 & 0 & 1.000 & 153.0 & No & No \\
+\texttt{code\_repo\_v1} & 6 & 20 & 0.300 & 6 & 0 & 1.000 & 21.0 & No & No \\
+\texttt{requests} & 31 & 298 & 0.104 & 31 & 0 & 1.000 & 496.0 & No & No \\
+\texttt{urllib3} & 135 & 699 & 0.193 & 135 & 0 & 1.000 & 9180.0 & No & No \\
+\bottomrule
+\end{tabular}}
+\end{table*}

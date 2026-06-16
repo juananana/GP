@@ -1,0 +1,17 @@
+\begin{table*}[t]
+\centering
+\caption{Small logged workflow pilot for workflow-shape/interface validation
+only. The pilot fixes the prompt and records independent contexts,
+action/evidence events, localized stop proposals, and the controller-facing
+decision record; it is not used as main effectiveness evidence.}
+\label{tab:workflow_pilot}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrrl}
+\toprule
+Task & Model & Agents & Independent contexts & Action events & Evidence events
+& Stop proposals & Controller decision \\
+\midrule
+\texttt{T\_doc\_dynamic\_workflow\_smoke} & logged LLM-agent workflow & 3 & 3 & 39 & 35 & 3 & not scored; workflow-shape validation \\
+\bottomrule
+\end{tabular}}
+\end{table*}

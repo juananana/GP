@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\caption{Controller decision accounting. Oracle-safe and oracle-unsafe counts
+are post-hoc denominators used only for evaluation. Cost is measured repair
+cost, counted after a fixed repair target set is selected.}
+\label{tab:controller_decisions}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrrrrrrrrr}
+\toprule
+Task group & Evaluation set & \(n\) & Oracle-safe & Oracle-unsafe
+& \#SAFE & \#CONTINUE & \#ABSTAIN & False SAFE & FCR
+& Safe cov. & Abstain & Repair gain & Repair cost \\
+\midrule
+all tasks & observed stop states & 9 & 4 & 5 & 4 & 5 & 0 & 0 & 0.000 & 1.000 & 0.000 & 0.000 & 0.0 \\
+external repos & observed external states & 5 & 2 & 3 & 2 & 3 & 0 & 0 & 0.000 & 1.000 & 0.000 & 0.000 & 0.0 \\
+requests & seeded repairs & 1200 & 0 & 1200 & 0 & 1199 & 1 & 0 & 0.000 & -- & 0.001 & 122.992 & 2854.6 \\
+urllib3 & seeded repairs & 1000 & 0 & 1000 & 0 & 998 & 2 & 0 & 0.000 & -- & 0.002 & 204.987 & 4831.8 \\
+external repos & seeded repairs & 2200 & 0 & 2200 & 0 & 2197 & 3 & 0 & 0.000 & -- & 0.001 & 160.262 & 3753.3 \\
+requests & seeded safe states & 3000 & 3000 & 0 & 3000 & 0 & 0 & 0 & 0.000 & 1.000 & 0.000 & 0.000 & 3041.2 \\
+urllib3 & seeded safe states & 3000 & 3000 & 0 & 3000 & 0 & 0 & 0 & 0.000 & 1.000 & 0.000 & 0.000 & 3678.2 \\
+external repos & seeded safe states & 6000 & 6000 & 0 & 6000 & 0 & 0 & 0 & 0.000 & 1.000 & 0.000 & 0.000 & 3359.7 \\
+\bottomrule
+\end{tabular}}
+\end{table*}

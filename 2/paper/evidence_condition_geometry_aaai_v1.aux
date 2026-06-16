@@ -1,0 +1,51 @@
+\relax 
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{grossman2011technology,cormack2014evaluation,cormack2016engineering}
+\citation{lewis1994sequential,settles2009active,garnett2012bayesian}
+\citation{good1953population,chao1984nonparametric}
+\citation{dietterich2000ensemble,cobbe2021training,wang2023selfconsistency}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Technology-assisted review and total recall.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Active search and active learning.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Missing mass and unseen evidence.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-agent agreement and verification.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Setting}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Evidence-Condition Geometry}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Evidence-Condition Controller}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Residual-potential repair.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental Protocol}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tasks.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Conditions.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Repair challengers.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics and leakage control.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Results}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Localized Evidence Creates False Certification Risk}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Certificate mismatch in completion decisions. Dynamic workflows produce stop evidence under specific source-route conditions. Repeated no-new findings, agent agreement, or stable summaries can indicate local exhaustion, but they do not automatically support a global completion claim. The evidence-condition controller checks whether the exposure condition is broad enough for the claim, repairs weak plausible strata, and returns \textsc  {Safe}{}, \textsc  {Continue}{}, or \textsc  {Abstain}{}.}}{4}{}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:mismatch}{{1}{4}{}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Source-route exposure geometry. The runtime exposure distribution over source-route strata records where and how completion evidence was produced. Homogeneous route reuse concentrates exposure on a small part of the coverage simplex, so stop evidence is locally conditioned. Broader route-partitioned exposure makes a stop claim eligible for certification, but \textsc  {Safe}{} additionally requires that repair or audit reveal no residual evidence.}}{4}{}\protected@file@percent }
+\newlabel{fig:geometry}{{2}{4}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Broad Exposure Improves Eligibility but Does Not Guarantee Safety}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Repair Evidence Is Positive but Bounded}{4}{}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\bibcite{chao1984nonparametric}{{1}{1984}{{Chao}}{{}}}
+\bibcite{cobbe2021training}{{2}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}}}
+\bibcite{cormack2014evaluation}{{3}{2014}{{Cormack and Grossman}}{{}}}
+\bibcite{cormack2016engineering}{{4}{2016}{{Cormack and Grossman}}{{}}}
+\bibcite{dietterich2000ensemble}{{5}{2000}{{Dietterich}}{{}}}
+\bibcite{garnett2012bayesian}{{6}{2012}{{Garnett et~al.}}{{Garnett, Krishnamurthy, Xiong, Schneider, and Mann}}}
+\bibcite{good1953population}{{7}{1953}{{Good}}{{}}}
+\bibcite{grossman2011technology}{{8}{2011}{{Grossman and Cormack}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-task evidence-condition diagnostic. Homogeneous route reuse produces localized exposure and would be a false certification if accepted as a global stop in all four tasks. Broader source-route exposure improves completion eligibility. The \texttt  {urllib3} row is the boundary case: route-partitioned exposure is broad but still incomplete, so the controller outputs \textsc  {Continue}{} rather than \textsc  {Safe}{}.}}{5}{}\protected@file@percent }
+\newlabel{tab:cross}{{1}{5}{}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Limitations and Additional Validation}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{5}{}\protected@file@percent }
+\bibcite{lewis1994sequential}{{9}{1994}{{Lewis and Gale}}{{}}}
+\bibcite{settles2009active}{{10}{2009}{{Settles}}{{}}}
+\bibcite{wang2023selfconsistency}{{11}{2023}{{Wang et~al.}}{{Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery, and Zhou}}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Residual-potential as a bounded repair instance. Residual-potential often finds residual evidence in weak source-route regions, but the evidence does not establish optimality.}}{6}{}\protected@file@percent }
+\newlabel{tab:repair}{{2}{6}{}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Leakage control for controller and repair decisions. Runtime decisions use only visible evidence. Oracle labels, oracle totals, post-hoc recall, and undiscovered true item counts are used only after trajectories and challenger choices are fixed.}}{6}{}\protected@file@percent }
+\newlabel{tab:leakage}{{3}{6}{}{table.3}{}}
+\gdef \@abspage@last{7}

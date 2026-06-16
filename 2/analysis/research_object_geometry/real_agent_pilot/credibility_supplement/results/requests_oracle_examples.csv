@@ -1,0 +1,9 @@
+oracle_bucket,item_id,source_family,line
+compat_route,adapters:compat_route:32,adapters,"from .compat import basestring, urlparse"
+compat_route,adapters:compat_route:320,adapters,"if not isinstance(cert, basestring):"
+exception_route,adapters:exception_route:136,adapters,raise NotImplementedError
+exception_route,adapters:exception_route:140,adapters,raise NotImplementedError
+timeout_route,adapters:timeout_route:120,adapters,"self, request, stream=False, timeout=None, verify=True, cert=None, proxies=None"
+timeout_route,adapters:timeout_route:126,adapters,:param timeout: (optional) How long to wait for the server to send
+tls_route,adapters:tls_route:103,adapters,# cert path
+tls_route,adapters:tls_route:120,adapters,"self, request, stream=False, timeout=None, verify=True, cert=None, proxies=None"

@@ -1,0 +1,5 @@
+repo,route,pattern
+requests,tls_route,\b(verify|cert|ssl|SSL|TLS|cert_verify|ca_bundle|DEFAULT_CA_BUNDLE_PATH)\b
+requests,timeout_route,\b(timeout|Timeout|connect timeout|read timeout)\b
+requests,exception_route,\b(except|raise|RetryError|SSLError|ConnectionError|Timeout|TooManyRedirects)\b
+requests,compat_route,\b(deprecated|compat|super_len|basestring|builtin_str|to_native_string|unicode_is_ascii)\b

@@ -1,0 +1,3 @@
+condition,base_recall,base_false_certificate_if_stop_accepted,base_support_size,base_support_ratio,base_exposure_gini,base_weak_plausible_gap,base_safe_by_condition,safe_coverage_min,safe_gini_max
+homogeneous,0.1040268456375839,True,6,0.25,0.8885135135135134,15,False,0.75,0.7
+route_partitioned,1.0,False,24,1.0,0.6074016563146998,0,True,0.75,0.7

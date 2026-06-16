@@ -1,0 +1,4 @@
+state,note,discovered_true_items,recall,support_size,support_ratio,exposure_gini,weak_plausible_gap,same_stop_signal,naive_accepts_stop,naive_false_certification,controller_decision,controller_false_certification
+homogeneous_observed_stop,observed local stop evidence,31,0.1040268456375839,6,0.25,0.8885135135135134,15,True,True,True,ABSTAIN,False
+route_partitioned_matched_discovery,same discovered-count ledger with broad source-route exposure,31,0.1040268456375839,24,1.0,0.540151515151515,0,True,True,True,CONTINUE,False
+route_partitioned_observed_stop,observed broad stop evidence,298,1.0,24,1.0,0.6074016563146998,0,True,True,False,SAFE,False

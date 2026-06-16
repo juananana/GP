@@ -1,0 +1,140 @@
+ICLR2027 
+
+  r/d 
+  Grassmann 
+ 
+
+
+  Rank-Phase Transition d  r  LoRA 
+  E[]arccos(r/d) r/d0.03
+  r/d=0.5
+ TIESDARE r=16  r=256 
+  sin2(2)/4 ManifoldMerge
+  8  SuperNI Per-Task
+ Selective Projection  51.8%ME%=120.7% 11 
+  r0.03dTIES  r256 
+
+
+1. 
+Model Merging  LoRA 
+
+ Task ArithmeticTIES+DARE
+ AdaMergingOPCM/NUFILT
+ r=16 
+r=256 
+2. Rank-Phase Transition
+ r/d 
+ d  Rd  r  U1,U2  principal angles 1r 
+Grassmann  Gr(r,d) 
+ 1
+ Pi=UiUi  Frobenius 
+[P1,P2]F2=21k=1rsin2(2k)
+  U()=41sin2(2) =0  =/2  =/4  1/4
+=/2=0
+/4
+ 2
+ r  dim(U1U2)2rd  2r>d 
+ principal angle  drtheory=21
+ Haar-trace identity  k=1rE[cos2k]=dr2  Jensen
+arccos()  [0,1/2]  E[]arccos(dr)=2drO((dr)3/2)
+ E[]=80 drpractical(18)20.0305
+
+
+
+
+
+rtheory/d=0.5  rpractical/d0.03  10 
+""""
+ 3 Haar-
+ LoRA  Haar- Radon-Nikodym 
+ Haar  RN 
+
+
+LLaMA-3.1-8B 
+ k_proj/v_proj: dout=1024
+ q_proj/o_proj: dout=4096
+ gate_proj: dout=14336
+ r/d=16/4096=0.39% k_proj/v_proj  16/1024=1.56% transition
+zone r=16  orthogonal ratio (46.6%)  r=32 (50.6%)
+
+3. ManifoldMerge
+ManifoldMerge  Rank-Phase Transition 
+
+3.1 
+ ij  Wj 
+ S(i,j)=L1l=1L[k=1rcos(kl)(i,kl,j,kl)4k=1rsin2(2kl)i,klj,kl]
+ cos(k)1  1  
+ sin2(2k)/4  =/4   
+3.2 
+ principal direction
+ 
+ 
+3.3 Per-Task 
+"" t Order(t)=
+[t]+argsortj =t(S(t,j),descending) 
+3.4 
+
+
+4. 
+4.1 SuperNI, 8, r=256r=256
+
+
+
+
+MM-PT-SP 
+
+4.2 10 ranks
+ r=16,24,32,48,64,96,128,192,256,512
+
+
+
+
+ 10.5
+ Orthogonal ratio p=0.546e7.10r/dR2=0.87
+4.3 5 seeds
+
+
+
+ <1%
+4.4 //
+ Llama-3.1-8B  Qwen2.5-7B r/d 
+ 1B/3B/8Br/d 
+ CLIP ViT-B/16 (VTAB-1k)d=768TIES  r/d=16.7% 
+ GLUETIES  r=64 (r/d=1.56%) CoLA=0, MRPC=0
+
+5. 
+5.1 
+ r0.03d Llama-3.1-8B (d=4096) r123 r=128
+AP=42.7
+5.2 
+Orthogonal ratio  TIES  p38%  r256
+5.3 r=512r=512 
+ danger zone constructive mask selective projection  uniform
+averagingselective=lazy AP=40.33
+6. 
+ hWh0  nl0.25%  99.75% 
+
+
+
+d=4096 r 
+
+
+
+
+
+""""
+  0.4%r=16
+  6%r=256
+  50%r=2048
+"""
+"**""**
+
+ManifoldMerge
+ 
+ 
+ 
+ CPer-Task 
+ 8  11 
+
+ 10  
+0.03  

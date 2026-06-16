@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\caption{Source-only versus source-route ablation. Homogeneous agents visit all
+sources, so a source-only controller would see full source support even when the
+source-route evidence condition is localized and the stop would be a false
+certification.}
+\label{tab:source_only_ablation}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrll}
+\toprule
+Task & Source-only support & Source-route support & Source-route Gini
+& Base recall & Source-only false if SAFE & Source-route eligible \\
+\midrule
+\texttt{policy\_docset\_v1} & 1.000 & 0.250 & 0.771 & 0.708 & True & False \\
+\texttt{code\_repo\_v1} & 1.000 & 0.333 & 0.750 & 0.300 & True & False \\
+\texttt{requests} & 1.000 & 0.250 & 0.889 & 0.104 & True & False \\
+\texttt{urllib3} & 1.000 & 0.200 & 0.915 & 0.193 & True & False \\
+\bottomrule
+\end{tabular}}
+\end{table*}

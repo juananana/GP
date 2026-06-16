@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Leakage control for controller and repair decisions. Runtime decisions
+use only visible evidence. Oracle labels, oracle totals, post-hoc recall, and
+undiscovered true item counts are used only after trajectories and challenger
+choices are fixed.}
+\label{tab:leakage}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+Component & Runtime allowed & Oracle forbidden \\
+\midrule
+Exposure & visits, scans, actions & missing mass \\
+Support/Gini & exposure counts & post-hoc recall \\
+Potential & text, routes, matches & hidden true items \\
+Decision & condition and repair & target distribution \\
+\bottomrule
+\end{tabular}}
+\end{table}

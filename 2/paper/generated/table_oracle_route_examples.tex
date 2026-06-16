@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering
+\caption{External oracle appendix detail. Each route uses a frozen regex pattern;
+items are deduplicated by source, route, and line. To avoid unreadable regex
+truncation, the appendix reports a short pattern category and one representative
+line-level item per route; full regex rules and items are in the generated CSVs.}
+\label{tab:oracle_route_examples}
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrllp{0.46\textwidth}}
+\toprule
+Repo & Route & Items & Pattern category & Dedup & Representative item \\
+\midrule
+\texttt{requests} & \texttt{tls\_route} & 102 & TLS/certificate/verification terms & source+route+line & adapters:tls\_route:103: \# cert path \\
+\texttt{requests} & \texttt{timeout\_route} & 31 & timeout/connect/read-timeout terms & source+route+line & adapters:timeout\_route:120: self, request, stream=False, timeout=None, verify=True, cert=None, proxies=None \\
+\texttt{requests} & \texttt{exception\_route} & 121 & exception/raise/error terms & source+route+line & adapters:exception\_route:136: raise NotImplementedError \\
+\texttt{requests} & \texttt{compat\_route} & 44 & compatibility/deprecation terms & source+route+line & adapters:compat\_route:32: from .compat import basestring, urlparse \\
+\texttt{urllib3} & \texttt{timeout\_route} & 135 & timeout/connect/read-timeout terms & source+route+line & connection:timeout\_route:137: timeout: \_TYPE\_TIMEOUT = \_DEFAULT\_TIMEOUT, \\
+\texttt{urllib3} & \texttt{retry\_route} & 168 & retry/backoff/status terms & source+route+line & connectionpool:retry\_route:1011: retries, \\
+\texttt{urllib3} & \texttt{tls\_route} & 111 & TLS/certificate/verification terms & source+route+line & connection:tls\_route:1005: cert, \\
+\texttt{urllib3} & \texttt{exception\_route} & 170 & exception/raise/error terms & source+route+line & connection:exception\_route:1015: except BaseException: \\
+\texttt{urllib3} & \texttt{cleanup\_route} & 115 & close/release/finally terms & source+route+line & connection:cleanup\_route:1016: ssl\_sock.close() \\
+\bottomrule
+\end{tabular}}
+\end{table*}

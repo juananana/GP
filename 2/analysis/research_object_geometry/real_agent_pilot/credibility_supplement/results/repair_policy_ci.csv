@@ -1,0 +1,13 @@
+task,challenger,mean_new_true_items,new_true_ci95_low,new_true_ci95_high,mean_novelty_per_cost,novelty_per_cost_ci95_low,novelty_per_cost_ci95_high,source
+code_repo_v1,high_potential,5.0,5.0,5.0,0.0757575757575757,0.0757575757575757,0.0757575757575757,method_validation_v1
+code_repo_v1,random,4.315,4.094875,4.53,0.0653488896145557,0.0620113844862291,0.0686117282711801,method_validation_v1
+code_repo_v1,residual_potential,9.0,9.0,9.0,0.1363636363636363,0.1363636363636363,0.1363636363636363,method_validation_v1
+policy_docset_v1,high_potential,0.0,0.0,0.0,0.0,0.0,0.0,method_validation_v1
+policy_docset_v1,random,2.025,1.825,2.235,0.06328125,0.05703125,0.06984375,method_validation_v1
+policy_docset_v1,residual_potential,4.0,4.0,4.0,0.125,0.125,0.125,method_validation_v1
+requests,high_potential,177.0,177.0,177.0,0.0542611894543224,,,external_requests
+requests,random,45.535,41.361875000000005,49.640375,0.0166784193127576,,,external_requests
+requests,residual_potential,177.0,177.0,177.0,0.0542611894543224,,,external_requests
+urllib3,high_potential,275.0,275.0,275.0,0.06269949840401269,0.06269949840401269,0.06269949840401269,external_urllib3
+urllib3,random,92.525,85.82975,99.305375,0.021812532048201737,0.020261252022547107,0.023292014550983273,external_urllib3
+urllib3,residual_potential,329.0,329.0,329.0,0.0622045755341274,0.0622045755341274,0.0622045755341274,external_urllib3

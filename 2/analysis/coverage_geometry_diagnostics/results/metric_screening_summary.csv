@@ -1,0 +1,13 @@
+metric,n,spearman_r,spearman_p,auroc_abs_direction,auprc_raw_direction
+mean_pairwise_item_jaccard_from_score,38,,,,
+mean_pairwise_source_jaccard,38,,,,
+source_coverage_count,38,,,,
+singleton_ratio_from_score,38,,,,
+source_pairwise_cosine,38,,,,
+source_normalized_effective_rank,38,,,,
+source_logdet_volume,38,,,,
+source_marginal_logdet_gain,38,,,,
+source_concentration_entropy,38,,,,
+source_concentration_hhi,38,,,,
+source_concentration_gini,38,,,,
+mean_confidence,38,,,,

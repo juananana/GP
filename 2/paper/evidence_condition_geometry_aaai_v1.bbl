@@ -1,0 +1,80 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Chao(1984)]{chao1984nonparametric}
+Anne Chao.
+\newblock Nonparametric estimation of the number of classes in a population.
+\newblock \emph{Scandinavian Journal of Statistics}, 11\penalty0 (4):\penalty0
+  265--270, 1984.
+
+\bibitem[Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser,
+  Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman]{cobbe2021training}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  Christopher Hesse, and John Schulman.
+\newblock Training verifiers to solve math word problems.
+\newblock In \emph{arXiv preprint arXiv:2110.14168}, 2021.
+
+\bibitem[Cormack and Grossman(2014)]{cormack2014evaluation}
+Gordon~V. Cormack and Maura~R. Grossman.
+\newblock Evaluation of machine-learning protocols for technology-assisted
+  review in electronic discovery.
+\newblock In \emph{Proceedings of the 37th International ACM SIGIR Conference
+  on Research and Development in Information Retrieval}, pages 153--162, 2014.
+
+\bibitem[Cormack and Grossman(2016)]{cormack2016engineering}
+Gordon~V. Cormack and Maura~R. Grossman.
+\newblock Engineering quality and reliability in technology-assisted review.
+\newblock \emph{Proceedings of the 39th International ACM SIGIR Conference on
+  Research and Development in Information Retrieval}, pages 75--84, 2016.
+
+\bibitem[Dietterich(2000)]{dietterich2000ensemble}
+Thomas~G. Dietterich.
+\newblock Ensemble methods in machine learning.
+\newblock \emph{Multiple Classifier Systems}, pages 1--15, 2000.
+
+\bibitem[Garnett et~al.(2012)Garnett, Krishnamurthy, Xiong, Schneider, and
+  Mann]{garnett2012bayesian}
+Roman Garnett, Yamuna Krishnamurthy, Xuehan Xiong, Jeff Schneider, and Richard
+  Mann.
+\newblock Bayesian optimal active search and surveying.
+\newblock In \emph{Proceedings of the 29th International Conference on Machine
+  Learning}, pages 843--850, 2012.
+
+\bibitem[Good(1953)]{good1953population}
+I.~J. Good.
+\newblock The population frequencies of species and the estimation of
+  population parameters.
+\newblock \emph{Biometrika}, 40\penalty0 (3--4):\penalty0 237--264, 1953.
+
+\bibitem[Grossman and Cormack(2011)]{grossman2011technology}
+Maura~R. Grossman and Gordon~V. Cormack.
+\newblock Technology-assisted review in e-discovery can be more effective and
+  more efficient than exhaustive manual review.
+\newblock \emph{Richmond Journal of Law and Technology}, 17\penalty0 (3), 2011.
+
+\bibitem[Lewis and Gale(1994)]{lewis1994sequential}
+David~D. Lewis and William~A. Gale.
+\newblock A sequential algorithm for training text classifiers.
+\newblock In \emph{Proceedings of the 17th Annual International ACM SIGIR
+  Conference on Research and Development in Information Retrieval}, pages
+  3--12, 1994.
+
+\bibitem[Settles(2009)]{settles2009active}
+Burr Settles.
+\newblock Active learning literature survey.
+\newblock Technical Report 1648, University of Wisconsin--Madison, 2009.
+
+\bibitem[Wang et~al.(2023)Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery,
+  and Zhou]{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed~Chi, Sharan Narang,
+  Aakanksha Chowdhery, and Denny Zhou.
+\newblock Self-consistency improves chain of thought reasoning in language
+  models.
+\newblock In \emph{International Conference on Learning Representations}, 2023.
+
+\end{thebibliography}

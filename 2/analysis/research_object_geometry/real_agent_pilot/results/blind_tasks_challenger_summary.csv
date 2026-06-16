@@ -1,0 +1,9 @@
+task_dir,challenger,runs,mean_new_true_items,max_new_true_items,mean_cumulative_recall
+code_repo_v1,low_discovery,1,6.0,6,0.6
+code_repo_v1,low_exposure,1,6.0,6,0.6
+code_repo_v1,random,20,4.35,8,0.5175
+code_repo_v1,residual_potential,1,9.0,9,0.75
+policy_docset_v1,low_discovery,1,2.0,2,0.7916666666666666
+policy_docset_v1,low_exposure,1,2.0,2,0.7916666666666666
+policy_docset_v1,random,20,2.15,5,0.7979166666666667
+policy_docset_v1,residual_potential,1,4.0,4,0.875

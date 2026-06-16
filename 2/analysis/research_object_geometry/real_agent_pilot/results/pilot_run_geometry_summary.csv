@@ -1,0 +1,2 @@
+task_id,condition,n_agents,n_events,n_exposure_strata,n_discovery_strata,run_exposure_gini,run_discovery_gini,run_exposure_entropy,run_discovery_entropy,run_discovery_per_exposure
+T_doc_dynamic_workflow_smoke,route_partitioned_smoke,3,39,3,3,0.08547008547008561,0.0980392156862746,1.0851732524324265,1.0822819419242888,0.8717948717948718

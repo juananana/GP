@@ -1,0 +1,2 @@
+task,model,agents,independent_contexts,action_events,evidence_events,stop_proposals,controller_decision
+T_doc_dynamic_workflow_smoke,logged LLM-agent workflow,3,3,39,35,3,not scored; workflow-shape validation

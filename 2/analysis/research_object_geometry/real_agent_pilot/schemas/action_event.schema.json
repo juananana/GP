@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Real Agent Pilot Action Event",
+  "type": "object",
+  "required": [
+    "task_id",
+    "run_id",
+    "condition",
+    "agent_id",
+    "round_id",
+    "event_id",
+    "action_type",
+    "source_family",
+    "search_route",
+    "source_route_stratum"
+  ],
+  "properties": {
+    "task_id": {"type": "string"},
+    "repo_id": {"type": "string"},
+    "run_id": {"type": "string"},
+    "condition": {"type": "string"},
+    "agent_id": {"type": "string"},
+    "round_id": {"type": "integer", "minimum": 0},
+    "event_id": {"type": "integer", "minimum": 0},
+    "timestamp": {"type": "string"},
+    "query_text": {"type": "string"},
+    "tool_name": {"type": "string"},
+    "action_type": {"type": "string"},
+    "source_path": {"type": "string"},
+    "source_family": {"type": "string"},
+    "search_route": {"type": "string"},
+    "source_route_stratum": {"type": "string"},
+    "discovered_item_id": {"type": ["string", "null"]},
+    "new_item": {"type": "boolean"},
+    "self_reported_completion": {"type": ["boolean", "null"]},
+    "self_reported_confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "stop_reason": {"type": ["string", "null"]},
+    "token_or_cost": {"type": ["number", "null"], "minimum": 0},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

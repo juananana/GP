@@ -1,0 +1,4 @@
+theta,false_completion,not_false_completion,label_has_two_classes
+0.90,38,0,False
+0.95,38,0,False
+1.00,38,0,False

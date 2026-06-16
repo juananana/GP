@@ -1,0 +1,6 @@
+challenger,runs,mean_support_expansion,mean_support_gap_reduction,mean_new_true_items,mean_new_evidence_per_cost,mean_cost,mean_cumulative_recall,safe_rate,continue_rate,abstain_rate,false_certification_rate,abstain_precision
+residual_potential,200,5.0,5.0,329.0,0.06220457553412743,5289.0,0.6638054363376252,0.0,1.0,0.0,0.0,
+low_exposure,200,5.0,5.0,157.0,0.028288288288288284,5550.0,0.4177396280400573,0.0,1.0,0.0,0.0,
+random,200,4.065,4.065,92.525,0.021812532048201785,4225.245,0.32550071530758223,0.0,0.99,0.01,0.0,1.0
+free_search_continuation,200,4.025,4.025,171.41,0.03648614682668929,4708.88,0.4383547925608012,0.0,1.0,0.0,0.0,
+high_potential,200,4.0,4.0,275.0,0.06269949840401277,4386.0,0.586552217453505,0.0,1.0,0.0,0.0,

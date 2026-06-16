@@ -1,0 +1,5 @@
+task,source_only_support,source_route_support,source_route_gini,base_recall,source_only_would_be_eligible,source_route_eligible,false_certification_if_source_only_safe
+policy_docset_v1,1.0,0.25,0.7708333333333333,0.7083333333333334,True,False,True
+code_repo_v1,1.0,0.3333333333333333,0.75,0.3,True,False,True
+requests,1.0,0.25,0.8885135135135134,0.1040268456375839,True,False,True
+urllib3,1.0,0.2,0.915130023640662,0.1931330472103004,True,False,True

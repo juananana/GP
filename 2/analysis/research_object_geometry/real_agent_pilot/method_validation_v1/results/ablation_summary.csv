@@ -1,0 +1,7 @@
+task,granularity,free_search_continuation,high_potential,low_discovery,low_exposure,random,residual_potential,rp_minus_random,rp_minus_low_exposure,rp_minus_high_potential
+code_repo_v1,source_only,13.0,13.0,13.0,13.0,13.0,13.0,0.0,0.0,0.0
+code_repo_v1,source_route,5.44,5.0,6.0,6.0,4.315,9.0,4.685,3.0,4.0
+code_repo_v1,source_route_action,5.44,5.0,3.0,6.0,4.315,9.0,4.685,3.0,4.0
+policy_docset_v1,source_only,7.0,7.0,7.0,7.0,7.0,7.0,0.0,0.0,0.0
+policy_docset_v1,source_route,2.265,0.0,2.0,2.0,2.025,4.0,1.975,2.0,4.0
+policy_docset_v1,source_route_action,2.265,0.0,2.0,2.0,2.025,4.0,1.975,2.0,4.0

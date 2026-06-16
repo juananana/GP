@@ -1,0 +1,9 @@
+task_group,evaluation_set,n,oracle_safe_n,oracle_unsafe_n,safe,continue,abstain,false_certification_rate,false_certification_n,safe_coverage,abstention_rate,mean_repair_gain,mean_cost
+all tasks,observed stop states,9,4,5,4,5,0,0.0,0,1.0,0.0,0.0,0.0
+external repos,observed external states,5,2,3,2,3,0,0.0,0,1.0,0.0,0.0,0.0
+requests,seeded repairs,1200,0,1200,0,1199,1,0.0,0,,0.0008333333333333334,122.99166666666666,2854.5833333333335
+urllib3,seeded repairs,1000,0,1000,0,998,2,0.0,0,,0.002,204.987,4831.825
+external repos,seeded repairs,2200,0,2200,0,2197,3,0.0,0,,0.0013636363636363637,160.26227272727272,3753.3295454545455
+requests,seeded safe states,3000,3000,0,3000,0,0,0.0,0,1.0,0.0,0.0,3041.1573333333336
+urllib3,seeded safe states,3000,3000,0,3000,0,0,0.0,0,1.0,0.0,0.0,3678.222
+external repos,seeded safe states,6000,6000,0,6000,0,0,0.0,0,1.0,0.0,0.0,3359.6896666666667

@@ -1,0 +1,334 @@
+\begin{thebibliography}{43}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Amodei et~al.(2016)Amodei, Olah, Steinhardt, Christiano, Schulman, and
+  Man{\'e}]{amodei2016concrete}
+Dario Amodei, Chris Olah, Jacob Steinhardt, Paul Christiano, John Schulman, and
+  Dan Man{\'e}.
+\newblock Concrete problems in ai safety.
+\newblock \emph{arXiv preprint arXiv:1606.06565}, 2016.
+
+\bibitem[Attenberg et~al.(2015)Attenberg, Ipeirotis, and
+  Provost]{attenberg2011beat}
+Josh Attenberg, Panos Ipeirotis, and Foster Provost.
+\newblock Beat the machine: Challenging humans to find a predictive model's
+  unknown unknowns.
+\newblock \emph{Journal of Data and Information Quality}, 6\penalty0 (1), 2015.
+
+\bibitem[Chao(1984)]{chao1984nonparametric}
+Anne Chao.
+\newblock Nonparametric estimation of the number of classes in a population.
+\newblock \emph{Scandinavian Journal of Statistics}, 11\penalty0 (4):\penalty0
+  265--270, 1984.
+
+\bibitem[Chao et~al.(2014)Chao, Gotelli, Hsieh, Sander, Ma, Colwell, and
+  Ellison]{chao2014species}
+Anne Chao, Nicholas~J. Gotelli, T.~C. Hsieh, Elizabeth~L. Sander, K.~H. Ma,
+  Robert~K. Colwell, and Aaron~M. Ellison.
+\newblock Rarefaction and extrapolation with hill numbers: A framework for
+  sampling and estimation in species diversity studies.
+\newblock \emph{Ecological Monographs}, 84\penalty0 (1):\penalty0 45--67, 2014.
+
+\bibitem[Christiano et~al.(2017)Christiano, Leike, Brown, Martic, Legg, and
+  Amodei]{christiano2017deep}
+Paul~F. Christiano, Jan Leike, Tom~B. Brown, Miljan Martic, Shane Legg, and
+  Dario Amodei.
+\newblock Deep reinforcement learning from human preferences.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2017.
+
+\bibitem[Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser,
+  Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman]{cobbe2021training}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  Christopher Hesse, and John Schulman.
+\newblock Training verifiers to solve math word problems.
+\newblock In \emph{arXiv preprint arXiv:2110.14168}, 2021.
+
+\bibitem[Cormack and Grossman(2014)]{cormack2014evaluation}
+Gordon~V. Cormack and Maura~R. Grossman.
+\newblock Evaluation of machine-learning protocols for technology-assisted
+  review in electronic discovery.
+\newblock In \emph{Proceedings of the 37th International ACM SIGIR Conference
+  on Research and Development in Information Retrieval}, pages 153--162, 2014.
+
+\bibitem[Cormack and Grossman(2015)]{cormack2015multi}
+Gordon~V. Cormack and Maura~R. Grossman.
+\newblock Multi-faceted recall of continuous active learning for
+  technology-assisted review.
+\newblock In \emph{Proceedings of the 38th International ACM SIGIR Conference
+  on Research and Development in Information Retrieval}, 2015.
+
+\bibitem[Cormack and Grossman(2016)]{cormack2016engineering}
+Gordon~V. Cormack and Maura~R. Grossman.
+\newblock Engineering quality and reliability in technology-assisted review.
+\newblock \emph{Proceedings of the 39th International ACM SIGIR Conference on
+  Research and Development in Information Retrieval}, pages 75--84, 2016.
+
+\bibitem[Deng et~al.(2024)Deng, Gu, Zheng, Chen, Stevens, Wang, Sun, and
+  Su]{deng2024mind2web}
+Xiang Deng, Yu~Gu, Boyuan Zheng, Shijie Chen, Sam Stevens, Boshi Wang, Huan
+  Sun, and Yu~Su.
+\newblock Mind2web: Towards a generalist agent for the web.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2024.
+
+\bibitem[Dietterich(2000)]{dietterich2000ensemble}
+Thomas~G. Dietterich.
+\newblock Ensemble methods in machine learning.
+\newblock \emph{Multiple Classifier Systems}, pages 1--15, 2000.
+
+\bibitem[Gao et~al.(2023)Gao, Dai, Pasupat, Chen, Chaganty, Fan, Zhao, Lao,
+  Lee, Juan, and Guu]{gao2023rarr}
+Luyu Gao, Zhuyun Dai, Panupong Pasupat, Anthony Chen, Arun~Tejasvi Chaganty,
+  Yicheng Fan, Vincent~Y. Zhao, Ni~Lao, Hongrae Lee, Da-Cheng Juan, and Kelvin
+  Guu.
+\newblock Rarr: Researching and revising what language models say, using
+  language models.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics}, 2023.
+
+\bibitem[Garnett et~al.(2012)Garnett, Krishnamurthy, Xiong, Schneider, and
+  Mann]{garnett2012bayesian}
+Roman Garnett, Yamuna Krishnamurthy, Xuehan Xiong, Jeff Schneider, and Richard
+  Mann.
+\newblock Bayesian optimal active search and surveying.
+\newblock In \emph{Proceedings of the 29th International Conference on Machine
+  Learning}, pages 843--850, 2012.
+
+\bibitem[Good(1953)]{good1953population}
+I.~J. Good.
+\newblock The population frequencies of species and the estimation of
+  population parameters.
+\newblock \emph{Biometrika}, 40\penalty0 (3--4):\penalty0 237--264, 1953.
+
+\bibitem[Grossman and Cormack(2011)]{grossman2011technology}
+Maura~R. Grossman and Gordon~V. Cormack.
+\newblock Technology-assisted review in e-discovery can be more effective and
+  more efficient than exhaustive manual review.
+\newblock \emph{Richmond Journal of Law and Technology}, 17\penalty0 (3), 2011.
+
+\bibitem[Grossman et~al.(2016)Grossman, Cormack, and
+  Roegiest]{grossman2016trec}
+Maura~R. Grossman, Gordon~V. Cormack, and Adam Roegiest.
+\newblock Trec 2015 total recall track overview.
+\newblock In \emph{Proceedings of The Twenty-Fourth Text REtrieval Conference},
+  2016.
+
+\bibitem[Hendrycks et~al.(2021{\natexlab{a}})Hendrycks, Burns, Basart, Zou,
+  Mazeika, Song, and Steinhardt]{hendrycks2021measuring}
+Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn
+  Song, and Jacob Steinhardt.
+\newblock Measuring massive multitask language understanding.
+\newblock In \emph{International Conference on Learning Representations},
+  2021{\natexlab{a}}.
+
+\bibitem[Hendrycks et~al.(2021{\natexlab{b}})Hendrycks, Carlini, Schulman, and
+  Steinhardt]{hendrycks2021unsolved}
+Dan Hendrycks, Nicholas Carlini, John Schulman, and Jacob Steinhardt.
+\newblock Unsolved problems in ml safety.
+\newblock In \emph{arXiv preprint arXiv:2109.13916}, 2021{\natexlab{b}}.
+
+\bibitem[Irving et~al.(2018)Irving, Christiano, and Amodei]{irving2018ai}
+Geoffrey Irving, Paul Christiano, and Dario Amodei.
+\newblock Ai safety via debate.
+\newblock In \emph{arXiv preprint arXiv:1805.00899}, 2018.
+
+\bibitem[Jimenez et~al.(2024)Jimenez, Yang, Wettig, Yao, Pei, Press, and
+  Narasimhan]{jimenez2024swebench}
+Carlos~E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir
+  Press, and Karthik Narasimhan.
+\newblock Swe-bench: Can language models resolve real-world github issues?
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\bibitem[Leike et~al.(2018)Leike, Krueger, Everitt, Martic, Maini, and
+  Legg]{leike2018scalable}
+Jan Leike, David Krueger, Tom Everitt, Miljan Martic, Vishal Maini, and Shane
+  Legg.
+\newblock Scalable agent alignment via reward modeling: A research direction.
+\newblock In \emph{arXiv preprint arXiv:1811.07871}, 2018.
+
+\bibitem[Lewis and Gale(1994)]{lewis1994sequential}
+David~D. Lewis and William~A. Gale.
+\newblock A sequential algorithm for training text classifiers.
+\newblock In \emph{Proceedings of the 17th Annual International ACM SIGIR
+  Conference on Research and Development in Information Retrieval}, pages
+  3--12, 1994.
+
+\bibitem[Liang et~al.(2022)Liang, Bommasani, Lee, Tsipras, Soylu, Yasunaga,
+  Zhang, Narayanan, Wu, Kumar, Newman, Yuan, Yan, Zhang, Cosgrove, Manning,
+  R{\'e}, Acosta-Navas, Hudson, Zelikman, Durmus, Ladhak, Rong, Ren, Yao, Wang,
+  Santhanam, Orr, Zheng, Yuksekgonul, Suzgun, Kim, Guha, Chatterji, Khattab,
+  Henderson, Huang, Chi, Xie, Santurkar, Ganguli, Hashimoto, Icard, Zhang,
+  Chaudhary, Wang, Li, Mai, Zhang, and Koreeda]{liang2022holistic}
+Percy Liang, Rishi Bommasani, Tony Lee, Dimitris Tsipras, Dilara Soylu,
+  Michihiro Yasunaga, Yian Zhang, Deepak Narayanan, Yuhuai Wu, Ananya Kumar,
+  Benjamin Newman, Binhang Yuan, Bobby Yan, Ce~Zhang, Connor Cosgrove,
+  Christopher~D. Manning, Christopher R{\'e}, Diana Acosta-Navas, Drew~A.
+  Hudson, Eric Zelikman, Esin Durmus, Faisal Ladhak, Frieda Rong, Hongyu Ren,
+  Huaxiu Yao, Jue Wang, Keshav Santhanam, Laurel Orr, Lucia Zheng, Mert
+  Yuksekgonul, Mirac Suzgun, Nathan Kim, Neel Guha, Niladri Chatterji, Omar
+  Khattab, Peter Henderson, Qian Huang, Ryan Chi, Sang~Michael Xie, Shibani
+  Santurkar, Surya Ganguli, Tatsunori Hashimoto, Thomas Icard, Tianyi Zhang,
+  Vishrav Chaudhary, William Wang, Xuechen Li, Yifan Mai, Yuhui Zhang, and Yuta
+  Koreeda.
+\newblock Holistic evaluation of language models.
+\newblock \emph{arXiv preprint arXiv:2211.09110}, 2022.
+
+\bibitem[Lin et~al.(2022)Lin, Hilton, and Evans]{lin2022truthfulqa}
+Stephanie Lin, Jacob Hilton, and Owain Evans.
+\newblock Truthfulqa: Measuring how models mimic human falsehoods.
+\newblock In \emph{Proceedings of the 60th Annual Meeting of the Association
+  for Computational Linguistics}, 2022.
+
+\bibitem[Liu et~al.(2024)Liu, Yu, Zhang, Xu, Lei, Lai, Gu, Ding, Men, Yang,
+  Zhang, Deng, Zeng, Du, Zhang, Shen, Zhang, Su, Sun, Huang, and
+  Tang]{liu2024agentbench}
+Xiao Liu, Hao Yu, Hanchen Zhang, Yifan Xu, Xuanyu Lei, Hanyu Lai, Yu~Gu,
+  Hangliang Ding, Kaiwen Men, Kejuan Yang, Shudan Zhang, Xiang Deng, Aohan
+  Zeng, Zhengxiao Du, Chenhui Zhang, Sheng Shen, Tianjun Zhang, Yu~Su, Huan
+  Sun, Minlie Huang, and Jie Tang.
+\newblock Agentbench: Evaluating llms as agents.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\bibitem[Madaan et~al.(2023)Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe,
+  Alon, Dziri, Prabhumoye, Yang, Welleck, Majumder, Gupta, Yazdanbakhsh, and
+  Clark]{madaan2023selfrefine}
+Aman Madaan, Niket Tandon, Prakhar Gupta, Skyler Hallinan, Luyu Gao, Sarah
+  Wiegreffe, Uri Alon, Nouha Dziri, Shrimai Prabhumoye, Yiming Yang, Sean
+  Welleck, Bodhisattwa~Prasad Majumder, Shashank Gupta, Amir Yazdanbakhsh, and
+  Peter Clark.
+\newblock Self-refine: Iterative refinement with self-feedback.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2023.
+
+\bibitem[Min et~al.(2023)Min, Krishna, Lyu, Lewis, Yih, Koh, Iyyer,
+  Zettlemoyer, and Hajishirzi]{min2023factscore}
+Sewon Min, Kalpesh Krishna, Xinxi Lyu, Mike Lewis, Wen-tau Yih, Pang~Wei Koh,
+  Mohit Iyyer, Luke Zettlemoyer, and Hannaneh Hajishirzi.
+\newblock Factscore: Fine-grained atomic evaluation of factual precision in
+  long form text generation.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, 2023.
+
+\bibitem[Nakano et~al.(2021)Nakano, Hilton, Balaji, Wu, Ouyang, Kim, Hesse,
+  Jain, Kosaraju, Saunders, Jiang, Cobbe, Eloundou, Krueger, Button, Knight,
+  Chess, and Schulman]{nakano2021webgpt}
+Reiichiro Nakano, Jacob Hilton, Suchir Balaji, Jeff Wu, Long Ouyang, Christina
+  Kim, Christopher Hesse, Shantanu Jain, Vineet Kosaraju, William Saunders,
+  Xu~Jiang, Karl Cobbe, Tyna Eloundou, Gretchen Krueger, Kevin Button, Matthew
+  Knight, Benjamin Chess, and John Schulman.
+\newblock Webgpt: Browser-assisted question-answering with human feedback.
+\newblock In \emph{arXiv preprint arXiv:2112.09332}, 2021.
+
+\bibitem[Park et~al.(2023)Park, O'Brien, Cai, Morris, Liang, and
+  Bernstein]{park2023generative}
+Joon~Sung Park, Joseph~C. O'Brien, Carrie~J. Cai, Meredith~Ringel Morris, Percy
+  Liang, and Michael~S. Bernstein.
+\newblock Generative agents: Interactive simulacra of human behavior.
+\newblock In \emph{Proceedings of the 36th Annual ACM Symposium on User
+  Interface Software and Technology}, 2023.
+
+\bibitem[Qin et~al.(2024)Qin, Liang, Ye, Zhu, Yan, Lu, Lin, Cong, Tang, Qian,
+  Zhao, Hong, Tian, Xie, Zhou, Gerstein, Li, Liu, and Sun]{qin2024toolllm}
+Yujia Qin, Shengding Liang, Yining Ye, Kunlun Zhu, Lan Yan, Yaxi Lu, Yankai
+  Lin, Xin Cong, Xiangru Tang, Bill Qian, Sihan Zhao, Yulong Hong, Ruobing
+  Tian, Ruixue Xie, Jie Zhou, Mark Gerstein, Dahai Li, Zhiyuan Liu, and Maosong
+  Sun.
+\newblock Toolllm: Facilitating large language models to master 16000+
+  real-world apis.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\bibitem[Roegiest et~al.(2015)Roegiest, Cormack, and
+  Grossman]{roegiest2015trec}
+Adam Roegiest, Gordon~V. Cormack, and Maura~R. Grossman.
+\newblock Trec 2015 total recall track guidelines and assessment process.
+\newblock In \emph{Proceedings of The Twenty-Fourth Text REtrieval Conference},
+  2015.
+
+\bibitem[Schick et~al.(2023)Schick, Dwivedi-Yu, Dess{\`i}, Raileanu, Lomeli,
+  Hambro, Zettlemoyer, Cancedda, and Scialom]{schick2023toolformer}
+Timo Schick, Jane Dwivedi-Yu, Roberto Dess{\`i}, Roberta Raileanu, Maria
+  Lomeli, Eric Hambro, Luke Zettlemoyer, Nicola Cancedda, and Thomas Scialom.
+\newblock Toolformer: Language models can teach themselves to use tools.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2023.
+
+\bibitem[Schuster et~al.(2021)Schuster, Fisch, and Barzilay]{schuster2021get}
+Tal Schuster, Adam Fisch, and Regina Barzilay.
+\newblock Get your vitamin c! robust fact verification with contrastive
+  evidence.
+\newblock In \emph{Proceedings of the 2021 Conference of the North American
+  Chapter of the Association for Computational Linguistics}, 2021.
+
+\bibitem[Settles(2009)]{settles2009active}
+Burr Settles.
+\newblock Active learning literature survey.
+\newblock Technical Report 1648, University of Wisconsin--Madison, 2009.
+
+\bibitem[Shinn et~al.(2024)Shinn, Cassano, Gopinath, Narasimhan, and
+  Yao]{shinn2024reflexion}
+Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu
+  Yao.
+\newblock Reflexion: Language agents with verbal reinforcement learning.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2024.
+
+\bibitem[Srivastava et~al.(2023)]{srivastava2023beyond}
+Aarohi Srivastava et~al.
+\newblock Beyond the imitation game: Quantifying and extrapolating the
+  capabilities of language models.
+\newblock In \emph{Transactions on Machine Learning Research}, 2023.
+
+\bibitem[Thorne et~al.(2018)Thorne, Vlachos, Christodoulopoulos, and
+  Mittal]{thorne2018fever}
+James Thorne, Andreas Vlachos, Christos Christodoulopoulos, and Arpit Mittal.
+\newblock Fever: A large-scale dataset for fact extraction and verification.
+\newblock In \emph{Proceedings of the 2018 Conference of the North American
+  Chapter of the Association for Computational Linguistics}, 2018.
+
+\bibitem[Wang et~al.(2024)Wang, Xie, Jiang, Mandlekar, Xiao, Zhu, Fan, and
+  Anandkumar]{wang2024voyager}
+Guanzhi Wang, Yuqi Xie, Yunfan Jiang, Ajay Mandlekar, Chaowei Xiao, Yuke Zhu,
+  Linxi Fan, and Anima Anandkumar.
+\newblock Voyager: An open-ended embodied agent with large language models.
+\newblock In \emph{Transactions on Machine Learning Research}, 2024.
+
+\bibitem[Wang et~al.(2023)Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery,
+  and Zhou]{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed~Chi, Sharan Narang,
+  Aakanksha Chowdhery, and Denny Zhou.
+\newblock Self-consistency improves chain of thought reasoning in language
+  models.
+\newblock In \emph{International Conference on Learning Representations}, 2023.
+
+\bibitem[Wu et~al.(2023)Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang,
+  Liu, Awadallah, White, Burger, and Wang]{wu2023autogen}
+Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, Erkang Zhu,
+  Li~Jiang, Xiaoyun Zhang, Shaokun Zhang, Jiale Liu, Ahmed~H. Awadallah,
+  Ryen~W. White, Doug Burger, and Chi Wang.
+\newblock Autogen: Enabling next-gen llm applications via multi-agent
+  conversation.
+\newblock \emph{arXiv preprint arXiv:2308.08155}, 2023.
+
+\bibitem[Yao et~al.(2022)Yao, Rao, Hausknecht, and Narasimhan]{yao2022alfworld}
+Shunyu Yao, Rohan Rao, Matthew Hausknecht, and Karthik Narasimhan.
+\newblock Alfworld: Aligning text and embodied environments for interactive
+  learning.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+
+\bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
+  Cao]{yao2023react}
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
+  and Yuan Cao.
+\newblock React: Synergizing reasoning and acting in language models.
+\newblock In \emph{International Conference on Learning Representations}, 2023.
+
+\bibitem[Zhou et~al.(2024)Zhou, Xu, Zhu, Zhou, Lo, Sridhar, Cheng, Ou, Bisk,
+  Fried, Alon, and Neubig]{zhou2024webarena}
+Shuyan Zhou, Frank~F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar,
+  Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, and Graham
+  Neubig.
+\newblock Webarena: A realistic web environment for building autonomous agents.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\end{thebibliography}
