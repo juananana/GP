@@ -4,22 +4,26 @@
 \@writefile{toc}{\contentsline {paragraph}{Data and log format.}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Oracle CSV and JSONL fields.}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Figure generation.}{1}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Negative control: scalar singleton/Chao proxy on homogeneous runs. The proxy observes item-count sparsity but does not encode source-route condition, so it is not a competitive controller baseline for certificate mismatch.}}{2}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Controller variant comparison. Naive stop acceptance and source-only control accept unsafe observed stop states. Source-route eligibility reduces false \textsc  {Safe}{} decisions but remains insufficient on the broad-but-productive \texttt  {urllib3} boundary. Repair-enabled variants preserve safe-state coverage; residual-potential is the method instance used by the full controller.}}{2}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:controller_variant_comparison}{{1}{2}{}{figure.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Negative control: scalar singleton/Chao proxy on homogeneous runs. The proxy observes item-count sparsity but does not encode source-route condition, so it is not a competitive controller baseline for certificate mismatch.}}{2}{}\protected@file@percent }
 \newlabel{tab:chao_proxy}{{1}{2}{}{table.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Sensitivity sweep numeric summary. Ranges aggregate threshold settings or repair-budget settings within each external task.}}{2}{}\protected@file@percent }
-\newlabel{tab:sensitivity_summary}{{2}{2}{}{table.2}{}}
 \@writefile{toc}{\contentsline {paragraph}{Computing environment.}{2}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Task-level repair gain for residual-potential, high-potential, and random probes with 95\% confidence intervals. This detail complements the main paper's controller-variant comparison and is not a separate task expansion.}}{3}{}\protected@file@percent }
+\newlabel{fig:repair_sensitivity_detail}{{2}{3}{}{figure.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Sensitivity sweep numeric summary. Ranges aggregate threshold settings or repair-budget settings within each external task.}}{3}{}\protected@file@percent }
+\newlabel{tab:sensitivity_summary}{{2}{3}{}{table.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces External oracle construction summary. Pattern-defined external oracles are line-level source-route evidence occurrences from frozen local snapshots.}}{3}{}\protected@file@percent }
 \newlabel{tab:oracle_appendix_summary}{{3}{3}{}{table.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Small logged workflow pilot for workflow-shape/interface validation only. The pilot fixes the prompt and records independent contexts, action/evidence events, localized stop proposals, and the controller-facing decision record; it is not used as main effectiveness evidence.}}{3}{}\protected@file@percent }
-\newlabel{tab:workflow_pilot}{{4}{3}{}{table.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Seeded safe-state validation. These are oracle-safe broad-complete states with seeded order perturbations; the controller should remain SAFE rather than over-reacting to extra repair opportunity.}}{3}{}\protected@file@percent }
-\newlabel{tab:safe_state_validation}{{5}{3}{}{table.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Route-match consistency sanity check for external oracle positives. A small sample of line-level positives was checked for route consistency; ambiguous lines are retained as such rather than treated as full validation.}}{3}{}\protected@file@percent }
-\newlabel{tab:oracle_sanity}{{6}{3}{}{table.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Leakage control for controller and repair decisions. Runtime decisions use only visible evidence. Oracle labels, oracle totals, post-hoc recall, and undiscovered true item counts are used only after trajectories and challenger choices are fixed.}}{3}{}\protected@file@percent }
-\newlabel{tab:leakage}{{7}{3}{}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Small logged workflow pilot for workflow-shape/interface validation only. The pilot fixes the prompt and records independent contexts, action/evidence events, localized stop proposals, and the controller-facing decision record; it is not used as main effectiveness evidence.}}{4}{}\protected@file@percent }
+\newlabel{tab:workflow_pilot}{{4}{4}{}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Seeded safe-state validation. These are oracle-safe broad-complete states with seeded order perturbations; the controller should remain SAFE rather than over-reacting to extra repair opportunity.}}{4}{}\protected@file@percent }
+\newlabel{tab:safe_state_validation}{{5}{4}{}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Route-match consistency sanity check for external oracle positives. A small sample of line-level positives was checked for route consistency; ambiguous lines are retained as such rather than treated as full validation.}}{4}{}\protected@file@percent }
+\newlabel{tab:oracle_sanity}{{6}{4}{}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Leakage control for controller and repair decisions. Runtime decisions use only visible evidence. Oracle labels, oracle totals, post-hoc recall, and undiscovered true item counts are used only after trajectories and challenger choices are fixed.}}{4}{}\protected@file@percent }
+\newlabel{tab:leakage}{{7}{4}{}{table.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces External oracle appendix detail. Each route uses a frozen regex pattern; items are deduplicated by source, route, and line. To avoid unreadable regex truncation, the appendix reports a short pattern category and one representative line-level item per route; full regex rules and items are in the generated CSVs.}}{4}{}\protected@file@percent }
 \newlabel{tab:oracle_route_examples}{{8}{4}{}{table.8}{}}
 \gdef \@abspage@last{4}

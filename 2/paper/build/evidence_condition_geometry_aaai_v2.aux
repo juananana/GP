@@ -7,7 +7,7 @@
 \citation{yao2022alfworld,deng2024mind2web,zhou2024webarena,liu2024agentbench,jimenez2024swebench,hendrycks2021measuring,liang2022holistic,srivastava2023beyond,lin2022truthfulqa,thorne2018fever,gao2023rarr,min2023factscore,schuster2021get}
 \citation{dietterich2000ensemble,cobbe2021training,wang2023selfconsistency}
 \citation{amodei2016concrete,christiano2017deep,irving2018ai,leike2018scalable,hendrycks2021unsolved}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Certificate mismatch from local stop evidence. A workflow may observe no-new findings or agreement under localized source-route exposure. Such evidence can support local exhaustion, but it does not by itself certify completion over the intended source-route space. The evidence-condition controller audits this condition before accepting \textsc  {Safe}{}.}}{2}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Certificate mismatch from local stop evidence. A workflow may observe no-new findings, agreement, or a stable summary under evidence condition \(U\). Promoting that stop proposal to a completion claim over \(\Omega \) is unsafe when \(U\neq  \Omega \); the unobserved source-route strata are not certified.}}{2}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:mismatch}{{1}{2}{}{figure.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
@@ -16,35 +16,36 @@
 \@writefile{toc}{\contentsline {paragraph}{Agreement, audit agents, and oversight.}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Problem Setting}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Evidence-Condition Geometry}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Evidence-Condition Controller}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Method}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Source-Route Exposure Estimation}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Eligibility Gate}{3}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evidence-condition controller. The controller maps a runtime evidence log to an exposure distribution over the intended source-route space. The support/Gini check is an eligibility test, not a completion proof. If the condition is localized or weak plausible gaps remain, the controller repairs or continues. It returns \textsc  {Safe}{} only when the evidence condition is broad and repair or audit reveals no residual evidence.}}{4}{}\protected@file@percent }
 \newlabel{fig:controller}{{2}{4}{}{figure.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{Residual-potential repair.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Residual-Evidence Repair}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}\textsc  {Safe}{}/\textsc  {Continue}{}/\textsc  {Abstain}{} Decision Rule}{4}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}Experiments}{4}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Tasks.}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Workflow conditions.}{4}{}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Evidence-Condition Controller}}{5}{}\protected@file@percent }
 \newlabel{alg:controller}{{1}{5}{}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Workflow conditions.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compared policies and ablations.}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Seeds, budgets, thresholds, and cost.}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {7}Results}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{RQ1: Localized evidence creates false certification risk.}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{RQ2: Broad exposure is eligibility, not proof.}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{RQ3: The controller reduces unsafe stops without merely refusing to stop.}{5}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Experimental coverage. The main evaluation combines generated audits, external repository audits, seeded repair/controller validation, and simulation stress tests. Pattern-defined external oracles are used only for post-hoc scoring.}}{6}{}\protected@file@percent }
-\newlabel{tab:coverage}{{1}{6}{}{table.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Main diagnostic and ablation. Left: homogeneous base states have low source-route support; broader audits increase support. Middle: source-only support is full in homogeneous runs, but source-route support remains localized, exposing the route-level certificate mismatch. Right: \texttt  {urllib3} is the boundary case: route-partitioned audit is broad but incomplete, while the extended audit reaches completion. Dashed lines mark the operational support and recall thresholds used for evaluation.}}{6}{}\protected@file@percent }
-\newlabel{fig:main_results}{{3}{6}{}{figure.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{RQ4: Residual-potential is useful but bounded.}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Sensitivity and audit checks.}{6}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Controller decision accounting for external validations. Unsafe repair states have 0\% \textsc  {Safe}{} decisions, while safe complete states have 100\% \textsc  {Safe}{} decisions under order/budget perturbations. Oracle-safe and oracle-unsafe denominators are used only for evaluation.}}{7}{}\protected@file@percent }
-\newlabel{fig:controller_decisions}{{4}{7}{}{figure.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Repair gain for residual-potential, high-potential, and random probes with 95\% confidence intervals. Sensitivity details are reported in the supplementary material.}}{7}{}\protected@file@percent }
-\newlabel{fig:repair_sensitivity}{{5}{7}{}{figure.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion and Validity}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}Limitations and Supplement}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Naive stop signals cause false certification.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Source-route geometry is necessary.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Eligibility alone is not proof.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Full controller avoids unsafe stops without never-stopping.}{5}{}\protected@file@percent }
 \bibstyle{plainnat}
 \bibdata{references}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Experimental coverage. Oracles are used only for post-hoc scoring.}}{6}{}\protected@file@percent }
+\newlabel{tab:coverage}{{1}{6}{}{table.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Main diagnostic and ablation. Left: broader audits increase source-route support. Middle: source-only support is full in homogeneous runs, but source-route support remains localized. Right: \texttt  {urllib3} as eligibility-only vs. eligibility+repair; broad route-partitioned exposure is still incomplete, while the extended audit reaches completion.}}{6}{}\protected@file@percent }
+\newlabel{fig:main_results}{{3}{6}{}{figure.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Repair policy comparison.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sensitivity and audit checks.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion and Validity}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Limitations and Supplement}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{6}{}\protected@file@percent }
 \bibcite{amodei2016concrete}{{1}{2016}{{Amodei et~al.}}{{Amodei, Olah, Steinhardt, Christiano, Schulman, and Man{\'e}}}}
 \bibcite{attenberg2011beat}{{2}{2015}{{Attenberg et~al.}}{{Attenberg, Ipeirotis, and Provost}}}
 \bibcite{chao1984nonparametric}{{3}{1984}{{Chao}}{{}}}
@@ -62,6 +63,8 @@
 \bibcite{grossman2011technology}{{15}{2011}{{Grossman and Cormack}}{{}}}
 \bibcite{grossman2016trec}{{16}{2016}{{Grossman et~al.}}{{Grossman, Cormack, and Roegiest}}}
 \bibcite{hendrycks2021measuring}{{17}{2021{a}}{{Hendrycks et~al.}}{{Hendrycks, Burns, Basart, Zou, Mazeika, Song, and Steinhardt}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Controller variant comparison. Left/middle: decision variants on the same fixed stop-state set. FCR is the micro-average over oracle-unsafe fixed stops; safe coverage is the micro-average over oracle-safe fixed stops and seeded complete states. Right: repair target variants keep the full decision rule fixed and compare mean repair gain vs. mean post-stop repair cost over oracle-unsafe repair states.}}{7}{}\protected@file@percent }
+\newlabel{fig:controller_variants}{{4}{7}{}{figure.4}{}}
 \bibcite{hendrycks2021unsolved}{{18}{2021{b}}{{Hendrycks et~al.}}{{Hendrycks, Carlini, Schulman, and Steinhardt}}}
 \bibcite{irving2018ai}{{19}{2018}{{Irving et~al.}}{{Irving, Christiano, and Amodei}}}
 \bibcite{jimenez2024swebench}{{20}{2024}{{Jimenez et~al.}}{{Jimenez, Yang, Wettig, Yao, Pei, Press, and Narasimhan}}}
@@ -88,4 +91,4 @@
 \bibcite{yao2022alfworld}{{41}{2022}{{Yao et~al.}}{{Yao, Rao, Hausknecht, and Narasimhan}}}
 \bibcite{yao2023react}{{42}{2023}{{Yao et~al.}}{{Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao}}}
 \bibcite{zhou2024webarena}{{43}{2024}{{Zhou et~al.}}{{Zhou, Xu, Zhu, Zhou, Lo, Sridhar, Cheng, Ou, Bisk, Fried, Alon, and Neubig}}}
-\gdef \@abspage@last{10}
+\gdef \@abspage@last{9}

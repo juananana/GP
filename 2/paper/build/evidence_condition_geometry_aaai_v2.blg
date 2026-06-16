@@ -8,36 +8,36 @@ Database file #1: references.bib
 You've used 43 entries,
             2773 wiz_defined-function locations,
             780 strings with 15836 characters,
-and the built_in function-call counts, 29330 in all, are:
+and the built_in function-call counts, 29180 in all, are:
 = -- 2172
 > -- 3018
 < -- 16
 + -- 1010
 - -- 966
-* -- 2693
+* -- 2688
 := -- 4726
 add.period$ -- 129
 call.type$ -- 43
 change.case$ -- 450
 chr.to.int$ -- 42
 cite$ -- 86
-duplicate$ -- 1015
-empty$ -- 1723
+duplicate$ -- 995
+empty$ -- 1673
 format.name$ -- 1020
-if$ -- 5905
+if$ -- 5855
 int.to.chr$ -- 2
 int.to.str$ -- 1
 missing$ -- 42
 newline$ -- 223
 num.names$ -- 172
-pop$ -- 1017
+pop$ -- 997
 preamble$ -- 1
 purify$ -- 407
 quote$ -- 0
 skip$ -- 895
 stack$ -- 0
 substring$ -- 281
-swap$ -- 112
+swap$ -- 107
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0

@@ -35,6 +35,7 @@ COLORS = {
     "gray": "#9CA3AF",
     "gray_light": "#F3F4F6",
     "purple": "#7C3AED",
+    "teal": "#0F766E",
 }
 
 
@@ -295,7 +296,7 @@ def plot_main_results_overview() -> None:
     axes[2].text(0, vals[0] + 0.025, f"{vals[0]:.3f}", ha="center", va="bottom", fontsize=7.2, color=COLORS["ink"])
     axes[2].text(1, vals[1] - 0.035, f"{vals[1]:.3f}", ha="center", va="top", fontsize=7.2, color=COLORS["ink"])
     axes[2].text(0.55, SAFE_RECALL_MIN + 0.025, "0.90 evaluation threshold", color=COLORS["red"], fontsize=6.8, ha="center")
-    axes[2].set_title("(c) urllib3 boundary", loc="left", fontweight="bold")
+    axes[2].set_title("(c) Eligibility vs repair", loc="left", fontweight="bold")
     axes[2].set_ylim(0, 1.05)
     axes[2].set_xticks([0, 1], ["route-\npartitioned", "extended\naudit"])
     axes[2].set_ylabel("bounded-oracle recall")
@@ -370,10 +371,141 @@ def plot_repair_sensitivity_summary() -> None:
     save(fig, "repair_sensitivity_summary")
 
 
+def controller_variant_summary() -> pd.DataFrame:
+    detail = pd.read_csv(RESULTS / "controller_decision_detail.csv")
+    observed = detail[detail["condition"].isin(["homogeneous", "route_partitioned", "extended_audit"])].copy()
+    observed["oracle_safe"] = observed["recall"] >= SAFE_RECALL_MIN
+    observed["geometry_ok"] = (observed["support"] >= SAFE_SUPPORT_MIN) & (observed["gini"] <= 0.70)
+    observed_unsafe = observed[~observed["oracle_safe"]].copy()
+
+    safe_states = pd.read_csv(RESULTS / "seeded_safe_state_validation.csv")
+    unsafe_repairs = detail[detail["condition"].str.startswith("repair:")].copy()
+
+    def rates_for_decision(decision: pd.Series) -> tuple[float, float]:
+        unsafe = ~observed["oracle_safe"]
+        safe = observed["oracle_safe"]
+        false_safe = ((decision == "SAFE") & unsafe).sum() / unsafe.sum()
+        safe_cov = ((decision == "SAFE") & safe).sum() / safe.sum()
+        return float(false_safe), float(safe_cov)
+
+    rows = []
+    policy_specs = [
+        ("Naive stop", "all_safe", None),
+        ("Source-only", "all_safe", None),
+        ("Eligibility-only", "geometry", None),
+        ("Random repair", "full", "random"),
+        ("High-potential", "full", "high_potential"),
+        ("Ours", "full", "residual_potential"),
+    ]
+    for label, kind, repair_policy in policy_specs:
+        if kind == "all_safe":
+            decision = pd.Series(["SAFE"] * len(observed), index=observed.index)
+        elif kind == "geometry":
+            decision = pd.Series(np.where(observed["geometry_ok"], "SAFE", "ABSTAIN"), index=observed.index)
+        else:
+            decision = observed["decision"]
+        false_safe_rate, safe_coverage = rates_for_decision(decision)
+
+        if repair_policy is None:
+            unsafe_decision = decision.loc[observed_unsafe.index]
+            continue_rate = float((unsafe_decision == "CONTINUE").mean())
+            abstain_rate = float((unsafe_decision == "ABSTAIN").mean())
+            mean_gain = np.nan
+            mean_cost = np.nan
+        else:
+            repair_rows = unsafe_repairs[unsafe_repairs["condition"] == f"repair:{repair_policy}"]
+            continue_rate = float((repair_rows["decision"] == "CONTINUE").mean())
+            abstain_rate = float((repair_rows["decision"] == "ABSTAIN").mean())
+            mean_gain = float(repair_rows["repair_gain"].mean())
+            mean_cost = float(repair_rows["cost"].mean())
+
+        if repair_policy is None:
+            safe_state_coverage = safe_coverage
+        else:
+            safe_rows = safe_states[safe_states["challenger"] == repair_policy]
+            safe_state_coverage = float(safe_rows["safe"].mean())
+
+        rows.append(
+            {
+                "policy": label,
+                "false_safe_rate_observed": false_safe_rate,
+                "safe_coverage_observed": safe_coverage,
+                "safe_coverage_seeded_safe": safe_state_coverage,
+                "continue_rate_seeded_unsafe": continue_rate,
+                "abstain_rate_seeded_unsafe": abstain_rate,
+                "mean_repair_gain_seeded_unsafe": mean_gain,
+                "mean_cost_seeded_unsafe": mean_cost,
+            }
+        )
+    out = pd.DataFrame(rows)
+    out.to_csv(RESULTS / "controller_variant_comparison.csv", index=False)
+    return out
+
+
+def plot_controller_variant_comparison() -> None:
+    set_style()
+    summary = controller_variant_summary()
+    controller = summary[summary["policy"].isin(["Naive stop", "Source-only", "Eligibility-only", "Ours"])].copy()
+    repair = summary[summary["policy"].isin(["Random repair", "High-potential", "Ours"])].copy()
+    controller_labels = ["Naive", "Source-only", "Elig.-only", "Full"]
+    controller_colors = [COLORS["gray"], COLORS["green"], COLORS["orange"], COLORS["purple"]]
+    repair_labels = ["Random", "High-pot.", "Residual-pot."]
+    repair_colors = [COLORS["gray"], COLORS["blue"], COLORS["purple"]]
+
+    fig, axes = plt.subplots(1, 3, figsize=(7.25, 1.78), constrained_layout=True)
+    n_note = {
+        "false_safe_rate_observed": "unsafe fixed stops: n=5",
+        "safe_coverage_seeded_safe": "complete-state perturbations: n=6000",
+    }
+
+    for ax, col, title in [
+        (axes[0], "false_safe_rate_observed", "FCR on unsafe\nfixed stops"),
+        (axes[1], "safe_coverage_seeded_safe", "SAFE coverage\non complete states"),
+    ]:
+        vals = controller[col].to_numpy(dtype=float)
+        x = np.arange(len(vals))
+        ax.bar(x, vals, color=controller_colors, width=0.68)
+        ax.set_title(title, loc="left", fontweight="bold")
+        ax.set_xticks(x, controller_labels, rotation=18, ha="right")
+        ax.set_ylim(0, 1.08)
+        ax.set_ylabel("rate")
+        ax.set_yticks([0, 0.5, 1.0])
+        ax.grid(axis="y", alpha=0.9)
+        ax.set_axisbelow(True)
+        ax.text(
+            0.02,
+            0.93,
+            n_note[col],
+            transform=ax.transAxes,
+            ha="left",
+            va="top",
+            fontsize=6.4,
+            color=COLORS["muted"],
+        )
+        for i, val in enumerate(vals):
+            if val > 0 and col == "false_safe_rate_observed":
+                ax.text(i, val + 0.035, f"{val:.2f}", ha="center", va="bottom", fontsize=6.8)
+
+    gain = repair["mean_repair_gain_seeded_unsafe"].to_numpy(dtype=float)
+    cost = repair["mean_cost_seeded_unsafe"].to_numpy(dtype=float)
+    for i, (g, c, label, color) in enumerate(zip(gain, cost, repair_labels, repair_colors)):
+        axes[2].scatter(c, g, s=46, color=color, edgecolor="white", linewidth=0.7, zorder=3)
+        axes[2].text(c + 55, g + (7 if i != 0 else -13), label, fontsize=6.8, color=COLORS["ink"], va="center")
+    axes[2].set_title("Repair target variants\nmean gain vs. cost", loc="left", fontweight="bold")
+    axes[2].set_xlabel("mean cost")
+    axes[2].set_ylabel("mean new items")
+    axes[2].set_xlim(3200, 4550)
+    axes[2].set_ylim(40, 280)
+    axes[2].grid(alpha=0.9)
+    axes[2].set_axisbelow(True)
+    save(fig, "controller_variant_comparison")
+
+
 def main() -> None:
     plot_main_results_overview()
     plot_controller_decision_matrix()
     plot_repair_sensitivity_summary()
+    plot_controller_variant_comparison()
     print(f"Wrote paper figures to {FIGURES}")
 
 

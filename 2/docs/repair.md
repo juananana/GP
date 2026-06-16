@@ -1,331 +1,343 @@
-我们暂时不要继续实现 DICE-Lite，也不要修改正式论文正文。请新建一个独立的“小型几何诊断实验包”，目标是验证：在 closed-world high-recall discovery 中，multi-agent false completion 是否表现为 source-path/action trajectory 的局部集中与全局覆盖空洞，以及覆盖几何指标能否比简单 overlap 更好地解释或预测错误停止。
+我会比较客观地说：**这版已经从“有想法的研究草稿”变成了“可以认真冲 AAAI 的方法论文雏形”，但还不是高分稳稿。** 现在的主要风险不是“实验没有闭环”，而是：**方法深度、实验外部有效性、理论边界、图表观感和审稿人对 novelty 的判断还不够稳。**
 
-请严格区分：这一阶段是 mechanism diagnostic pilot，不是新方法实现，不要提前宣称 phase transition、Grassmann manifold、geometry-aware controller 或 stopping certificate 已经成立。
+如果按现在版本直接投，我觉得可能是 **borderline / weak accept 区间**；如果再补强一轮，尤其是补一个更像 completion audit 的小型验证、强化理论保证和图表表达，才有机会接近 **solid accept**。
 
-## 0. 先阅读并更新邻近工作边界
+---
 
-请建立 `docs/coverage_geometry_related_work.md`，至少整理以下工作：
+## 一、先给整体评分判断
 
-* Representational Collapse in Multi-Agent LLM Committees, arXiv:2604.03809
-* Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity, arXiv:2602.03794
-* Predictive Maps of Multi-Agent Reasoning, arXiv:2605.11453
-* DiLLS, arXiv:2602.05446
-* Auditing Multi-Agent LLM Reasoning Trees Outperforms Majority Vote and LLM-as-Judge, arXiv:2602.09341
-* Beyond Consensus: Trace-Level Synthesis in Mixture of Agents, arXiv:2605.29116
-* Push Your Agent: Measuring and Enforcing Quantitative Goal Persistence in Long-Horizon LLM Agents, arXiv:2605.23574
-* SeekerGym, arXiv:2604.17143
-* DeepSearchQA, arXiv:2601.20975
-* Total Recall QA, arXiv:2603.18516
-* Detecting Underspecification in Software Requirements via k-NN Coverage Geometry, arXiv:2603.24248
-* Measuring Black-Box Confidence via Reasoning Trajectories: Geometry, Coverage, and Verbalization, arXiv:2605.06308
+从审稿人视角，我大概会这样打：
 
-对每篇论文记录：
+| 维度        | 当前判断                                               |
+| --------- | -------------------------------------------------- |
+| 问题重要性     | 较好，有现实意义                                           |
+| 新颖性       | 中等偏上，但容易被认为是 coverage / audit / active search 的再包装 |
+| 方法完整性     | 已经成型，但像 rule-based controller，理论深度还可以加强            |
+| 实验完整性     | 主闭环已经有，但外部验证仍偏弱                                    |
+| 写作清晰度     | 比之前好很多，摘要和主线清楚                                     |
+| 图表质量      | 仍有提升空间，Figure 2/4 尤其影响第一印象                         |
+| AAAI 高分潜力 | 有，但目前还不是高分稿                                        |
 
-```text
-研究对象
-输入表示
-使用的几何或统计指标
-预测目标
-是否研究 multi-agent
-是否研究 closed-world discovery
-是否研究未知目标总数下的 stopping
-与我们重叠的部分
-仍未覆盖的缺口
-```
+我会给当前版本一个比较现实的判断：
 
-不要将以下内容视为我们的原创点：
+> **当前：5.5–6.5 / 10，偏 borderline 到 weak accept。**
+> **改好后：6.5–7.5 / 10，有机会 weak accept / accept。**
+> **想成为高分强稿：需要再补一个更强外部验证或更硬的理论结果。**
 
-```text
-embedding cosine similarity
-effective rank
-heterogeneous agents improve diversity
-majority vote may discard evidence
-false completion terminology
-coverage geometry terminology
-```
+---
 
-我们的候选差异仅限于：
+## 二、这篇论文现在最强的地方
 
-> source-path/action-trajectory coverage geometry for false-completion diagnosis in multi-agent closed-world discovery, where the true total item count is hidden from agents but available to the oracle for evaluation.
+### 1. 问题定义已经比较清楚
 
-## 1. 先审查现有日志，不要假设数据已经存在
+论文现在抓住了一个很好的核心问题：
 
-请检查当前项目中已有 Requests、Click 和其他 runs 的日志字段，输出：
+> stop signal 本身不等于 completion certificate。关键是 stop signal 是在什么 evidence condition 下产生的。
+
+摘要里已经把这个问题讲得很清楚：no-new、agreement、stable summary 等停止信号可以局部有意义，但未必能作为 scope-wide completion certificate；论文提出用 source-route stratum 记录“在哪里搜索”和“用什么 audit route 搜索”，再构建 evidence-condition controller。
+
+这个问题比普通“多 agent 会犯错”更具体，审稿人容易理解。
+
+### 2. 方法结构已经像一篇方法论文了
+
+现在方法部分已经拆成四个模块：
 
 ```text
-docs/geometry_log_audit.md
+source-route exposure estimation
+eligibility gate
+residual-evidence repair
+SAFE / CONTINUE / ABSTAIN decision rule
 ```
 
-逐项说明是否已经记录：
+论文也明确说，方法不是证明 universal completion，而是在接受 stop claim 之前显式检查 runtime evidence condition。
+
+这个方向是对的。比之前“发现问题 + 修补实验”的感觉强很多。
+
+### 3. 实验闭环已经成立
+
+现在实验不只是证明问题存在，而是有了 baseline / ablation：
+
+* Naive stop；
+* Source-only；
+* Source-route eligibility-only；
+* Full controller；
+* Random / High-potential / Residual-potential repair variants。
+
+论文明确写了这些 policy 使用相同 fixed trajectories 和 proposed stop states，差异来自 decision rule 或 repair target selection，而不是不同 discovery trajectories；oracle 只用于 post-hoc scoring。
+
+这个很关键。它说明你们已经不是单纯“现象论文”，而是在评估 controller 的设计选择。
+
+---
+
+## 三、当前最大的审稿风险
+
+### 风险 1：容易被认为是“coverage + audit + heuristic controller”的组合
+
+严格审稿人可能会说：
+
+> 你们的 source-route exposure 不就是 coverage matrix 吗？
+> support/Gini 不就是 coverage/concentration 指标吗？
+> repair 不就是继续搜索弱区域吗？
+
+这不是致命问题，但必须防御。现在 Related Work 已经和 high-recall review、active search、missing mass、agent verification、agreement/oversight 做了区分，但还可以更硬一点。论文现在强调 controller 不观察 oracle totals、recall 或 hidden missing mass，只观察 stop claim 产生时的 source-route condition，以及 repair 是否揭示 residual evidence。 这个方向很好，但还需要再加一句更强的 novelty framing：
+
+> **我们不是估计还有多少 item 未发现，而是判断一个 stop certificate 的证据条件是否匹配它声称覆盖的 scope。**
+
+建议在 Introduction 或 Related Work 末尾加一个小段 **“Why this is not coverage / total recall / active search”**。不要太长，3–4 句即可。
+
+---
+
+### 风险 2：理论结果偏“显然”，还不够有深度
+
+Proposition 1 的逻辑是：如果所有 evidence 都在 (U \subset \Omega)，那么 no-new over (U) 不能证明 completion over (\Omega)。这是正确的，但审稿人可能觉得：
+
+> 这个命题太直观，像常识形式化，不足以构成理论贡献。
+
+所以我建议补一个更像方法 guarantee 的命题，例如：
+
+> **Under declared source-route scope and oracle-free repair protocol, the controller never returns SAFE unless eligibility holds and residual repair is nonproductive.**
+
+这不是强保证“世界无遗漏”，而是保证 controller 的输出语义与证据条件一致。可以叫：
 
 ```text
-task_id
-repo_id
-run_id
-agent_id
-round_id
-item_id
-oracle_label
-source_path
-source_family
-search_route
-query_text
-tool_name
-action_type
-timestamp
-self_reported_completion
-self_reported_confidence
-stop_reason
-holdout_or_scout_id
-scout_discovered_items
-cost_or_token_count
-latency
+Proposition 2: Soundness of SAFE under the controller’s declared certificate semantics.
 ```
 
-如果字段缺失，请明确列出：
+证明也不需要很长。目标是让方法看起来不是一组规则，而是一个有明确 certificate semantics 的控制器。
+
+---
+
+### 风险 3：外部实验仍偏弱，pattern-defined oracle 会被质疑
+
+现在实验包括两个 generated audits 和两个 real-repository audits。论文也很诚实地写了，external oracles 是 pattern-defined from frozen snapshots，比 generated toy 强，但弱于 human-annotated completion-audit benchmarks。
+
+这个诚实是好的，但审稿人可能会因此打折：
+
+> 真实仓库实验是否只是 regex/pattern audit？
+> 这是否真的代表 agent workflow completion？
+> generated tasks 是否过于可控？
+
+如果时间允许，我最建议补一个**小型 claim-verification completion audit**，而不是再加一个 item-discovery repo audit。
+
+比如论文里自己已经提到未来可以做 claim-verification audit，包括 support、contradiction、exception-path、configuration-default、scope-boundary routes。这个方向非常适合作为一个小主实验，而不是 future work。
+
+可以很小：
 
 ```text
-可直接计算的指标
-只能近似计算的指标
-完全无法计算的指标
-需要补跑实验才能获得的字段
+Claim: all network-facing calls either set timeout or route through retry/timeout policy.
+Sources: 4–6 files/modules.
+Routes: support, contradiction, exception-path, config-default, scope-boundary.
+Compare: Naive / Source-only / Eligibility-only / Ours.
 ```
 
-不得虚构日志字段，不得使用无法从现有数据获得的代理值而不说明限制。
+这会显著提高论文价值，因为它能证明方法不只适用于“找 item”，也适用于更像 completion claim 的审计。
 
-## 2. 建立三类表示
+---
 
-优先构建离散、可解释的覆盖表示。
+### 风险 4：Figure 2 还是有点像 AI 画的说明图，不够顶会质感
 
-### A. Agent × Source-Route Stratum 覆盖矩阵
+现在 Figure 2 在第 4 页，方法结构是对的：四模块结构、source-route matrix、eligibility gate、residual repair、decision rule 都有。 但问题是：
 
-定义：
+* 图里的小字还是太多；
+* 模块边框较重；
+* 底部 example summary 仍然稍微抢戏；
+* 图片整体像“AI infographic”，不是特别像手工排版的 AAAI 图。
+
+建议最终版 Figure 2 用矢量工具重画，不要完全依赖生成图。最稳的做法是用 TikZ / Illustrator / Figma 画，保持四模块主流程，底部只留极小 legend，不要大 inset。
+
+---
+
+### 风险 5：Figure 4 很关键，但在版面上有点“挤”
+
+Figure 4 现在做得比上一版合理：左/中是 decision variants 的 FCR 和 safe coverage，右边是 repair target variants 的 gain-cost tradeoff；caption 也明确 FCR 是 oracle-unsafe fixed stops 的 micro-average，safe coverage 是 oracle-safe fixed stops 和 seeded complete states 的 micro-average。
+
+但审稿人看图时可能仍然会有两个问题：
+
+1. **FCR 1.00 / 1.00 / 0.20 / 0 的 denominator 是多少？**
+2. **Full controller 的 safe coverage 是不是只在少数 safe states 上成立？**
+
+建议在正文或 supplement 里加一个小表：
 
 ```text
-C[i, j] = agent i 在 source-route stratum j 中的访问次数、动作次数或发现条目数量
+variant | #unsafe states | #safe states | #SAFE on unsafe | #SAFE on safe | FCR | safe coverage
 ```
 
-至少分别构建：
+主文不一定要放，supplement 放就够。但 Figure 4 caption 可以加一句：
 
 ```text
-visit_count matrix
-action_count matrix
-discovered_item_count matrix
+Counts are reported in Supplementary Table X.
 ```
 
-矩阵可以行归一化，但必须同时保留原始计数。
+这样审稿人会觉得统计口径更扎实。
 
-### B. Agent × Item Incidence Matrix
+---
 
-定义：
+## 四、现在还需要具体怎么修改
+
+### 必改 1：把 contribution 里的方法深度再抬一点
+
+现在 contribution 是对的，但可以更强调：
 
 ```text
-Z[i, k] = 1，当 agent i 发现 item k；否则为 0
+certificate semantics
+eligibility/proof separation
+oracle-free runtime controller
 ```
 
-区分：
+建议把第二个贡献改得更硬：
+
+> We define a certificate semantics for bounded audit completion: a SAFE decision is admissible only when the source-route evidence condition is eligible and residual-evidence repair is nonproductive.
+
+这样比“we introduce geometry and controller”更像理论/方法贡献。
+
+---
+
+### 必改 2：补一个 Proposition 2 或 Theorem-like statement
+
+建议放在 Method 5.4 后面，内容大概是：
 
 ```text
-all discovered items
-oracle true-positive discovered items
+Proposition 2 (Controller certificate semantics).
+For a declared source-route scope Ω and a fixed repair rule using only runtime-visible signals, Algorithm 1 returns SAFE only if (i) the exposure condition satisfies the eligibility gate and (ii) repair/audit reveals no residual evidence within the allocated repair budget. Otherwise it returns CONTINUE if residual evidence is found, or ABSTAIN when eligibility cannot be established under budget.
 ```
 
-其中 oracle true-positive 版本只能用于事后诊断，不能作为部署时特征。
+这个命题不需要夸张。它的价值是把 controller 的语义说清楚。
 
-### C. Action-Trajectory Embedding，可选
+---
 
-只有当现有日志包含足够的 query/action/tool 序列时，才构建 action trajectory embedding。
+### 必改 3：补强 Related Work 边界
 
-embedding 只作为补充分析，不作为第一优先级。至少比较两种 encoder 或说明为什么无法做 encoder robustness 检查。不要仅凭 embedding 结果得出结论。
-
-## 3. 计算指标
-
-### 3.1 简单基线指标
-
-计算：
+建议新增一个短段，放在 Related Work 最后：
 
 ```text
-pairwise item Jaccard overlap
-source overlap
-route overlap
-self-reported completion confidence
-number of no-new-item rounds
-raw source coverage
-raw route coverage
-singleton ratio
+Coverage and stopping criteria.
 ```
 
-### 3.2 覆盖几何指标
+内容包括：
 
-基于覆盖矩阵计算：
+* 软件测试 / audit coverage 关注覆盖多少程序结构或测试路径；
+* active search / total recall 关注如何更快找全 positives；
+* 本文关注的是 stop certificate 的条件匹配；
+* source-route coverage 不是目标本身，而是 certificate eligibility 的诊断条件。
+
+这个能防止“这不就是 coverage 吗”的攻击。
+
+---
+
+### 必改 4：Figure 2 用人工矢量重画
+
+我建议不要再继续纯 AI 生成。直接用现在这个结构做人工版：
 
 ```text
-pairwise cosine similarity
-singular value spectrum
-entropy effective rank
-normalized effective rank = erank(C) / min(num_agents, num_strata)
-Gram matrix G = C C^T
-logdet volume = log det(G + epsilon I)
-marginal logdet gain after adding each agent
-source concentration entropy
-route concentration entropy
-HHI or Gini concentration
+[Exposure Estimation] → [Eligibility Gate] → [Residual Repair] → [Decision Rule]
 ```
 
-如果要计算 principal angles，请先说明每个 Agent 的轨迹如何形成非退化子空间。若每个 Agent 只有一个向量，禁止为了使用 principal angles 人为包装成子空间。
-
-### 3.3 Residual Scout 指标
-
-不要预设 Scout 是“正交”的。
-
-首先计算：
+底部只放：
 
 ```text
-scout_new_items
-scout_new_true_positives
-scout_cost
-residual_novelty_per_cost
-scout_source_route_similarity_to_main_agents
+observed / exposed / residual gap
+local→ABSTAIN; broad+residual→CONTINUE; broad+clean→SAFE
 ```
 
-只有当 Scout 路线向量在已有探索空间上的投影较低时，才进一步计算并报告：
+不要大热图，不要复杂内部图标，不要粗边框。Figure 2 的目标是**方法架构清楚**，不是好看复杂。
+
+---
+
+### 必改 5：补充一个 small claim-verification audit，或者至少把它写成强 future validation
+
+如果能跑实验，强烈建议补。它可能是从 borderline 拉到 weak accept/accept 的关键。
+
+如果实在跑不了，就不要在主文里写太多 future claim-verification，而是在 Limitations 里保守一句即可。因为现在主文提 future work 会提醒审稿人：
+
+> 你们自己也知道缺一个非 item-discovery audit。
+
+最理想是把 future work 变成一小节 supplement validation。
+
+---
+
+## 五、次要但会影响观感的问题
+
+### 1. 章节太碎
+
+现在有 8 Discussion and Validity、9 Limitations and Supplement、10 Conclusion，而且每节都很短。
+
+建议合并成：
 
 ```text
-residual_projection_ratio
-orthogonal_component_ratio
+8 Discussion, Limitations, and Conclusion
 ```
 
-并使用中性名称：
+这样节奏更自然，也省空间。
+
+---
+
+### 2. Table 1 可以移到 supplement
+
+Table 1 的信息有用，但主文已经非常紧。它现在占了第 6 页顶部不少空间。
+
+如果要腾空间给 claim-verification audit 或 Proposition 2，可以把 Table 1 移到 supplement，正文保留一句：
+
+> We evaluate two generated audits, two external repository audits, 200-seed controller validations, and controlled simulation sweeps; details are in Supplementary Table X.
+
+---
+
+### 3. Abstract 现在不错，但略密
+
+摘要已经比之前好很多，尤其是最后一句“bounded diagnostic and control principle”很稳。 但可以稍微减少罗列，让读者更快抓到“certificate mismatch + controller”。
+
+---
+
+### 4. references 仍需格式统一
+
+有些 arXiv 文献格式已经比之前好，但最后还要统一检查大小写，例如 “ai safety” 应该按标题格式或 BibTeX 保留规范大小写。这个是小问题，但 AAAI 审稿里会影响正式感。
+
+---
+
+## 六、这篇论文的高分潜力在哪里？
+
+它有潜力，但高分的前提是你把它包装成：
+
+> **一种 bounded audit completion 的 certificate framework。**
+
+而不是：
+
+> **我们发现 LLM agents 会局部搜索，然后用 coverage/Gini 修一下。**
+
+高分点在这里：
+
+1. **问题切得准**：不是泛泛说 agent 不可靠，而是说 stop evidence 的条件与 completion claim 的范围错配。
+2. **方法边界克制**：不声称 universal completion，不声称 optimal repair。
+3. **实验设计能服务方法设计点**：source-only 消融、eligibility-only 边界、full controller 非 never-stop、repair policy 对比都已经有。
+4. **容易引起 agent workflow / audit / safety 审稿人的兴趣**。
+
+但是高分阻碍也很明显：
+
+1. **方法容易被看成 heuristic controller**；
+2. **理论命题目前偏直观**；
+3. **真实实验是 pattern-defined oracle，不是人工 completion benchmark**；
+4. **图表还有 AI 感和压缩感**；
+5. **应用范围被 bounded audit 限制，可能被认为较窄。**
+
+所以我的客观判断是：
+
+> **这篇论文有“好想法 + 可投潜力”，但目前不是那种一看就 strong accept 的稿子。**
+> 它更像一篇需要靠清晰定位、克制主张、扎实消融和漂亮图表来赢审稿人的方法论文。
+
+---
+
+## 七、最终修改优先级
+
+最值得做的 5 件事：
 
 ```text
-residual-direction scout
+1. 补 Proposition 2，把 controller 的 certificate semantics 形式化。
+2. Related Work 加一小段 coverage / stopping criteria 边界，防止被说成 coverage 换名。
+3. Figure 2 用人工矢量重画，保留四模块架构，删掉视觉噪声。
+4. Figure 4 在 supplement 补 denominator/count table，主文 caption 指向它。
+5. 能跑的话，补一个小型 claim-verification audit；不能跑就弱化 future-work 暗示。
 ```
 
-不要提前称为 orthogonal scout。
+我会把现在的论文定位为：
 
-## 4. 标签与数据泄漏控制
-
-严格区分：
-
-### 部署时可观察特征
-
-```text
-source overlap
-route overlap
-action concentration
-effective rank
-logdet volume
-marginal logdet gain
-new-item rate
-singleton ratio
-scout residual novelty
-```
-
-### 仅用于离线评价的 Oracle 标签
-
-```text
-oracle recall
-oracle missing-item count
-per-stratum true missing mass
-false completion label
-safe completion label
-oracle coverage holes
-scout new true positives
-```
-
-定义：
-
-```text
-false_completion = 系统宣布完成，但 oracle recall < theta
-```
-
-至少报告：
-
-```text
-theta = 0.90
-theta = 0.95
-theta = 1.00
-```
-
-不得将 oracle missing mass、oracle recall 或 oracle coverage hole 混入运行时预测特征。
-
-## 5. 分析问题
-
-请回答：
-
-### RQ1
-
-错误停止是否表现为 source-path/action trajectory 的局部集中，而不是全局充分覆盖？
-
-### RQ2
-
-effective rank、logdet volume 或 marginal volume gain 是否比简单 Jaccard overlap、source coverage、连续无新增轮数和自报置信度更能解释或预测 false completion？
-
-### RQ3
-
-低投影 residual-direction scout 是否比普通 free-search scout、随机 source scout 和低覆盖 source scout 更容易发现 ledger 外的新真阳性？
-
-### RQ4
-
-几何指标在不同仓库、不同任务和不同 Agent 配置下是否稳定？还是仅在特定表示或特定仓库中有效？
-
-## 6. 统计与可视化
-
-如果现有 runs 数量足够，请报告：
-
-```text
-Spearman correlation
-AUROC
-AUPRC
-bootstrap 95% confidence intervals
-leave-one-task-out 或 leave-one-repo-out 验证
-```
-
-如果样本量不足，不要强行训练分类器。改为报告描述性统计、散点图和需要补跑的最小实验集合。
-
-至少输出：
-
-```text
-results/coverage_geometry_metrics.csv
-results/run_level_summary.csv
-figures/false_completion_vs_erank.png
-figures/false_completion_vs_logdet_gain.png
-figures/recall_vs_source_concentration.png
-figures/scout_gain_vs_residual_projection.png
-figures/singular_value_spectrum_safe_vs_false.png
-docs/coverage_geometry_diagnostic_report.md
-```
-
-## 7. Go / No-Go 判断
-
-请在报告最后给出严格判断。
-
-只有满足以下条件，才建议进入几何主线：
-
-1. 至少一个覆盖几何指标能够稳定区分 safe completion 与 false completion；
-2. 它明显优于简单 overlap、source coverage 和连续无新增轮数；
-3. 规律在至少两个仓库或两个任务类型中复现；
-4. residual-direction scout 在相近成本下优于普通追加搜索；
-5. 结果不依赖单一 embedding encoder；
-6. 指标可以在不访问 oracle 的情况下计算。
-
-如果不满足，请明确建议回退到：
-
-```text
-简单 source coverage
-+ evidence ledger
-+ lightweight audit controller
-```
-
-不要为了保留几何叙事增加复杂模块。
-
-## 8. 实现约束
-
-* 不要覆盖或破坏现有实验代码；
-* 新建独立目录，例如 `analysis/coverage_geometry_diagnostics/`；
-* 不要修改正式论文正文；
-* 不要伪造任何实验结果；
-* 所有图表必须由真实日志生成；
-* 如果现有日志不足，先给出最小补跑方案，不要直接大规模调用模型；
-* 保留运行命令、环境说明和输出文件路径；
-* 最后给出一段简短结论：当前证据是否足以继续几何主线，以及下一步最小补跑实验是什么。
+> **已经具备 AAAI 投稿基础，但还需要一次“审稿人防御型重构”。**
+> 不是大改主线，而是把 novelty、guarantee、validity 和 figure polish 补到位。

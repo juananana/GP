@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/evidence_condition_geometry_aaai_v2"] 1781596947.81851 "build/evidence_condition_geometry_aaai_v2.aux" "build/evidence_condition_geometry_aaai_v2.bbl" "build/evidence_condition_geometry_aaai_v2" 1781596950.43434 0
-  "./references.bib" 1781512467 17184 71c8aaf0c94799b5805bd1542ecceb5d ""
+["bibtex build/evidence_condition_geometry_aaai_v2"] 1781615656.89345 "build/evidence_condition_geometry_aaai_v2.aux" "build/evidence_condition_geometry_aaai_v2.bbl" "build/evidence_condition_geometry_aaai_v2" 1781615659.29481 0
+  "./references.bib" 1781614298 17144 e005a1422257aebe7c9f339567d6201a ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/bibtex/bst/natbib/plainnat.bst" 1284455456 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "build/evidence_condition_geometry_aaai_v2.aux" 1781596949 11493 8290b89d4c6100269619a2fed96b93d1 "pdflatex"
+  "build/evidence_condition_geometry_aaai_v2.aux" 1781615658 11467 5c025598f131aae458e7ba5f6e16e4dc "pdflatex"
   (generated)
   "build/evidence_condition_geometry_aaai_v2.bbl"
   "build/evidence_condition_geometry_aaai_v2.blg"
   (rewritten before read)
-["pdflatex"] 1781596948.08141 "evidence_condition_geometry_aaai_v2.tex" "build/evidence_condition_geometry_aaai_v2.pdf" "evidence_condition_geometry_aaai_v2" 1781596950.43483 0
+["pdflatex"] 1781615657.157 "evidence_condition_geometry_aaai_v2.tex" "build/evidence_condition_geometry_aaai_v2.pdf" "evidence_condition_geometry_aaai_v2" 1781615659.2953 0
   "C:/Users/EPIC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1780896214 187664 65fa417f6850b604c49bfafe76826e39 ""
   "C:/Users/EPIC/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1777468269 13333003 58a3959649c331c5cf391f4df9906e74 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -15,6 +15,7 @@
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/courier/pcrr8r.tfm" 1136765053 1292 bd42be2f344128bff6d35d98474adfe3 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/times/ptmb7t.tfm" 1136743454 2172 fd0c924230362ff848a33632ed45dc23 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/times/ptmb8r.tfm" 1136743454 4524 6bce29db5bc272ba5f332261583fee9c ""
+  "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/times/ptmbc7t.tfm" 1136743454 2732 3862f0304d4d7c3718523e7d6fd950ad ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/times/ptmr7t.tfm" 1136743454 2124 2601a75482e9426d33db523edf23570a ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/times/ptmr8r.tfm" 1136743454 4408 25b74d011a4c66b7f212c0cc3c90061b ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/times/ptmrc7t.tfm" 1136743454 2680 312a2d12b1f1df8ee0212e7ba1962402 ""
@@ -52,6 +53,7 @@
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb" 1136824548 45458 504e2b06fa82109d168c7a0afb09e145 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/vf/adobe/courier/pcrr7t.vf" 1136765053 1344 6ff472164bf9de0fb2e864b28ac156d9 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/vf/adobe/times/ptmb7t.vf" 1136743454 1372 788387fea833ef5963f4c5bffe33eb89 ""
+  "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/vf/adobe/times/ptmbc7t.vf" 1136743454 1948 09614867cfee727c370daa115b7f3542 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/vf/adobe/times/ptmr7t.vf" 1136743454 1380 0ea3a3370054be6da6acd929ec569f06 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/vf/adobe/times/ptmrc7t.vf" 1136743454 1948 7330aeef3af211edff3b35fb2c12a0fd ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/vf/adobe/times/ptmri7t.vf" 1136743454 1384 a9d8adaf491ce34e5fba99dc7bbe5f39 ""
@@ -177,14 +179,13 @@
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/tools/array.sty" 1761901070 15651 9d7c62df82cb29a555c00550babfe364 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "build/evidence_condition_geometry_aaai_v2.aux" 1781596949 11493 8290b89d4c6100269619a2fed96b93d1 "pdflatex"
-  "build/evidence_condition_geometry_aaai_v2.bbl" 1781596948 17203 4f930b480ecc538d31de8ee64f6ef402 "bibtex build/evidence_condition_geometry_aaai_v2"
-  "evidence_condition_geometry_aaai_v2.tex" 1781596902 37146 9f558866da27a7b7cb564f0b7b02b8fb ""
-  "figures/controller_decision_matrix.pdf" 1781596663 16984 d0d726bab5246560773e9d5e3dce37c6 ""
-  "figures/fig1.png" 1781513881 1187402 dba07d0b1da417c551e687b0e3304e16 ""
-  "figures/fig2-2.png" 1781593704 832779 17c5da113184963f3330e65297e67cd4 ""
-  "figures/main_results_overview.pdf" 1781596662 24241 a406bd94c76a2fc09043c1efa224517d ""
-  "figures/repair_sensitivity_summary.pdf" 1781596663 18521 d88a90513c36d00fbe9ef806d0454047 ""
+  "build/evidence_condition_geometry_aaai_v2.aux" 1781615658 11467 5c025598f131aae458e7ba5f6e16e4dc "pdflatex"
+  "build/evidence_condition_geometry_aaai_v2.bbl" 1781615657 17188 36bbb1da81182291e97cb0c4ad30f0f8 "bibtex build/evidence_condition_geometry_aaai_v2"
+  "evidence_condition_geometry_aaai_v2.tex" 1781615633 30240 7043f6822f02ba927d46570f624f0f11 ""
+  "figures/controller_variant_comparison.pdf" 1781614353 21896 481749b4b531f5fe392b10314d6a76c2 ""
+  "figures/fig1-1.png" 1781614004 580995 2334f15041766208c452d2a7f24455a7 ""
+  "figures/fig2-4.png" 1781615512 1124318 4dacb633d83b715b4f020c333665c8fe ""
+  "figures/main_results_overview.pdf" 1781614350 24261 dd9691d1958d12804863ac61a2b32ea5 ""
   (generated)
   "build/evidence_condition_geometry_aaai_v2.aux"
   "build/evidence_condition_geometry_aaai_v2.log"

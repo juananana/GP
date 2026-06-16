@@ -46,7 +46,7 @@ Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
   Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
   Christopher Hesse, and John Schulman.
 \newblock Training verifiers to solve math word problems.
-\newblock In \emph{arXiv preprint arXiv:2110.14168}, 2021.
+\newblock \emph{arXiv preprint arXiv:2110.14168}, 2021.
 
 \bibitem[Cormack and Grossman(2014)]{cormack2014evaluation}
 Gordon~V. Cormack and Maura~R. Grossman.
@@ -129,12 +129,12 @@ Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn
   Steinhardt]{hendrycks2021unsolved}
 Dan Hendrycks, Nicholas Carlini, John Schulman, and Jacob Steinhardt.
 \newblock Unsolved problems in ml safety.
-\newblock In \emph{arXiv preprint arXiv:2109.13916}, 2021{\natexlab{b}}.
+\newblock \emph{arXiv preprint arXiv:2109.13916}, 2021{\natexlab{b}}.
 
 \bibitem[Irving et~al.(2018)Irving, Christiano, and Amodei]{irving2018ai}
 Geoffrey Irving, Paul Christiano, and Dario Amodei.
 \newblock Ai safety via debate.
-\newblock In \emph{arXiv preprint arXiv:1805.00899}, 2018.
+\newblock \emph{arXiv preprint arXiv:1805.00899}, 2018.
 
 \bibitem[Jimenez et~al.(2024)Jimenez, Yang, Wettig, Yao, Pei, Press, and
   Narasimhan]{jimenez2024swebench}
@@ -148,7 +148,7 @@ Carlos~E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir
 Jan Leike, David Krueger, Tom Everitt, Miljan Martic, Vishal Maini, and Shane
   Legg.
 \newblock Scalable agent alignment via reward modeling: A research direction.
-\newblock In \emph{arXiv preprint arXiv:1811.07871}, 2018.
+\newblock \emph{arXiv preprint arXiv:1811.07871}, 2018.
 
 \bibitem[Lewis and Gale(1994)]{lewis1994sequential}
 David~D. Lewis and William~A. Gale.
@@ -220,7 +220,7 @@ Reiichiro Nakano, Jacob Hilton, Suchir Balaji, Jeff Wu, Long Ouyang, Christina
   Xu~Jiang, Karl Cobbe, Tyna Eloundou, Gretchen Krueger, Kevin Button, Matthew
   Knight, Benjamin Chess, and John Schulman.
 \newblock Webgpt: Browser-assisted question-answering with human feedback.
-\newblock In \emph{arXiv preprint arXiv:2112.09332}, 2021.
+\newblock \emph{arXiv preprint arXiv:2112.09332}, 2021.
 
 \bibitem[Park et~al.(2023)Park, O'Brien, Cai, Morris, Liang, and
   Bernstein]{park2023generative}

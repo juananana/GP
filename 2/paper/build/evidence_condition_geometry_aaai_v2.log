@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  16 JUN 2026 16:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  16 JUN 2026 21:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -792,7 +792,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 6
-3.
+2.
 
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
@@ -802,104 +802,40 @@ C/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-<figures/fig1.png, id=12, 1090.0725pt x 1453.43pt>
-File: figures/fig1.png Graphic file (type png)
-<use figures/fig1.png>
-Package pdftex.def Info: figures/fig1.png  used on input line 137.
-(pdftex.def)             Requested size: 243.91125pt x 325.21126pt.
+<figures/fig1-1.png, id=12, 1219.55624pt x 596.98032pt>
+File: figures/fig1-1.png Graphic file (type png)
+<use figures/fig1-1.png>
+Package pdftex.def Info: figures/fig1-1.png  used on input line 135.
+(pdftex.def)             Requested size: 243.91125pt x 119.39394pt.
 
-Underfull \hbox (badness 1377) in paragraph at lines 154--167
+Underfull \hbox (badness 1377) in paragraph at lines 151--164
  \OT1/ptm/b/n/10 (+20) High-recall re-view, ac-tive search, and miss-ing mass.[
 ]
  []
 
-[2 <./figures/fig1.png (PNG copy)>]
-<figures/fig2-2.png, id=18, 1090.0725pt x 727.21687pt>
-File: figures/fig2-2.png Graphic file (type png)
-<use figures/fig2-2.png>
-Package pdftex.def Info: figures/fig2-2.png  used on input line 300.
-(pdftex.def)             Requested size: 394.59357pt x 263.2404pt.
- [3] [4 <./figures/fig2-2.png>]
+[2 <./figures/fig1-1.png>]
+<figures/fig2-4.png, id=22, 1453.43pt x 1090.0725pt>
+File: figures/fig2-4.png Graphic file (type png)
+<use figures/fig2-4.png>
+Package pdftex.def Info: figures/fig2-4.png  used on input line 297.
+(pdftex.def)             Requested size: 394.59357pt x 295.93692pt.
+ [3] [4 <./figures/fig2-4.png (PNG copy)>]
 <figures/main_results_overview.pdf, id=33, 521.54805pt x 177.54282pt>
 File: figures/main_results_overview.pdf Graphic file (type pdf)
 <use figures/main_results_overview.pdf>
 Package pdftex.def Info: figures/main_results_overview.pdf  used on input line 
-468.
+487.
 (pdftex.def)             Requested size: 505.89pt x 172.21631pt.
+<figures/controller_variant_comparison.pdf, id=34, 532.30754pt x 137.07162pt>
+File: figures/controller_variant_comparison.pdf Graphic file (type pdf)
+<use figures/controller_variant_comparison.pdf>
+Package pdftex.def Info: figures/controller_variant_comparison.pdf  used on inp
+ut line 522.
+(pdftex.def)             Requested size: 505.89pt x 130.27376pt.
  [5]
-<figures/controller_decision_matrix.pdf, id=37, 251.60252pt x 156.59102pt>
-File: figures/controller_decision_matrix.pdf Graphic file (type pdf)
-<use figures/controller_decision_matrix.pdf>
-Package pdftex.def Info: figures/controller_decision_matrix.pdf  used on input 
-line 531.
-(pdftex.def)             Requested size: 243.91125pt x 151.80707pt.
-<figures/repair_sensitivity_summary.pdf, id=38, 250.53552pt x 174.65202pt>
-File: figures/repair_sensitivity_summary.pdf Graphic file (type pdf)
-<use figures/repair_sensitivity_summary.pdf>
-Package pdftex.def Info: figures/repair_sensitivity_summary.pdf  used on input 
-line 562.
-(pdftex.def)             Requested size: 243.91125pt x 170.03586pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 570--587
- \OT1/ptm/b/n/10 (+20) Sen-si-tiv-ity and au-dit checks.[] \OT1/ptm/m/n/10 (+20
-) Sen-si-tiv-ity de-tails
- []
-
-
-Underfull \hbox (badness 4144) in paragraph at lines 570--587
-\OT1/ptm/m/n/10 (+20) are moved to the sup-ple-men-tary ma-te-rial. Thresh-old
- []
-
-
-Underfull \hbox (badness 3769) in paragraph at lines 570--587
-\OT1/ptm/m/n/10 (+20) and bud-get sweeps over the ex-ter-nal con-troller val-i-
-
- []
-
-
-Underfull \hbox (badness 4416) in paragraph at lines 570--587
-\OT1/ptm/m/n/10 (+20) da-tions scan $\OML/cmm/m/it/10 ^^\[] \OMS/cmsy/m/n/10 2 
-f\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 50\OML/cmm/m/it/10 ; \OT1/c
-mr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 60\OML/cmm/m/it/10 ; \OT1/cmr/m/n/
-10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 70\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OM
-L/cmm/m/it/10 :\OT1/cmr/m/n/10 75\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m
-/it/10 :\OT1/cmr/m/n/10 80\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 
-:\OT1/cmr/m/n/10 90\OMS/cmsy/m/n/10 g$\OT1/ptm/m/n/10 (+20) ,
- []
-
-
-Underfull \hbox (badness 1701) in paragraph at lines 570--587
-\OML/cmm/m/it/10 ^^\[] \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\
-OT1/cmr/m/n/10 50\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr
-/m/n/10 60\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10
- 70\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 80\OML
-/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 90\OMS/cmsy/m
-/n/10 g$\OT1/ptm/m/n/10 (+20) , and re-pair bud-gets
- []
-
-
-Underfull \hbox (badness 1189) in paragraph at lines 570--587
-\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 2\OML/cmm
-/m/it/10 ; \OT1/cmr/m/n/10 4\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 6\OML/cmm/m/it/1
-0 ; \OT1/cmr/m/n/10 8\OMS/cmsy/m/n/10 g$\OT1/ptm/m/n/10 (+20) . These sweeps ma
-inly test un-safe pro-duc-
- []
-
-[6 <./figures/main_results_overview.pdf>]
-Underfull \hbox (badness 1478) in paragraph at lines 618--629
-\OT1/ptm/m/n/10 (+20) thresh-olds are op-er-a-tional; source-route strata are t
-ask-
- []
-
-
-Underfull \hbox (badness 4995) in paragraph at lines 632--638
-\OT1/ptm/m/n/10 (+20) This pa-per stud-ies com-ple-tion de-ci-sions in bounded
- []
-
-[7 <./figures/controller_decision_matrix.pdf> <./figures/repair_sensitivity_sum
-mary.pdf>]
-(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.bbl [8]
-[9]) [10
+(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.bbl [6 <./fi
+gures/main_results_overview.pdf>] [7 <./figures/controller_variant_comparison.p
+df>] [8]) [9
 
 ]
 (E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.aux)
@@ -909,13 +845,13 @@ L3 programming layer <2025-12-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 20579 strings out of 467871
- 400792 string characters out of 5418860
- 837944 words of memory out of 5000000
- 48798 multiletter control sequences out of 15000+600000
- 663699 words of font info for 289 fonts, out of 8000000 for 9000
+ 20597 strings out of 467871
+ 400722 string characters out of 5418860
+ 835920 words of memory out of 5000000
+ 48794 multiletter control sequences out of 15000+600000
+ 667737 words of font info for 303 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,94p,1034b,430s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,9n,94p,1034b,430s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mex10.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
 nts/cm/cmmi10.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -930,9 +866,9 @@ Data/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/EPIC/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/EPIC/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
 Output written on E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaa
-i_v2.pdf (10 pages, 2262162 bytes).
+i_v2.pdf (9 pages, 1897383 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
+ 139 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 44582 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 52769 words of extra memory for PDF output out of 61914 (max. 10000000)
 

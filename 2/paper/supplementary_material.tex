@@ -101,6 +101,34 @@ assembler above, then compile from \path{2/paper/} with \texttt{latexmk -pdf
 \path{evidence_condition_geometry_aaai_v2.tex} or
 \path{supplementary_material.tex}.
 
+\section*{Controller Variant Details}
+
+Figure~\ref{fig:controller_variant_comparison} compares decision policies on the
+same fixed bounded-audit states used in the main paper. This is a policy
+ablation, not a new task suite: oracle labels are used only after decisions are
+fixed to compute false-\safe{} rate, safe-state coverage, decision rates, and
+repair gain/cost.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/controller_variant_comparison.pdf}
+\caption{Controller variant comparison. Naive stop acceptance and source-only
+control accept unsafe observed stop states. Source-route eligibility reduces
+false \safe{} decisions but remains insufficient on the broad-but-productive
+\texttt{urllib3} boundary. Repair-enabled variants preserve safe-state coverage;
+residual-potential is the method instance used by the full controller.}
+\label{fig:controller_variant_comparison}
+\end{figure*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/repair_sensitivity_summary.pdf}
+\caption{Task-level repair gain for residual-potential, high-potential, and
+random probes with 95\% confidence intervals. This detail complements the main
+paper's controller-variant comparison and is not a separate task expansion.}
+\label{fig:repair_sensitivity_detail}
+\end{figure}
+
 \paragraph{Computing environment.}
 The checked environment is Windows 11 with Python 3.13.9, NumPy 2.3.5, pandas
 2.3.3, and Matplotlib 3.10.6. The code uses only local frozen snapshots for the
@@ -108,5 +136,17 @@ external repository audits; no network access is required to reproduce the
 reported tables and figures from the included logs and snapshots.
 
 \input{generated/supplementary_tables.tex}
+
+\section*{AAAI Reproducibility Checklist}
+
+This paper includes computational experiments. The main text states the bounded
+scope, assumptions, metrics, thresholds, and controller rule. This supplement
+records script entry points, seeds, data/log formats, oracle fields,
+figure-generation commands, software environment, confidence intervals, and
+threshold/budget sweeps. Randomness is controlled by fixed seed sets before
+oracle scoring; oracle labels, oracle totals, post-hoc recall, and undiscovered
+true-item counts are used only for post-hoc scoring. The implementation and
+generated artifacts are organized as a code/data supplement for anonymous review
+and can be released on publication.
 
 \end{document}
