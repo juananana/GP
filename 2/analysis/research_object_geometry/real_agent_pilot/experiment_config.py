@@ -7,7 +7,7 @@ from typing import Any
 import yaml
 
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[4]
 PILOT = ROOT / "analysis" / "research_object_geometry" / "real_agent_pilot"
 CONFIG_DIR = ROOT / "configs"
 DEFAULT_CONFIG = CONFIG_DIR / "full_200seed.yaml"
@@ -25,9 +25,15 @@ def load_experiment_config(path: str | Path | None = None) -> dict[str, Any]:
 
 def thresholds(config: dict[str, Any]) -> dict[str, float]:
     values = config.get("thresholds", {})
+    support = values["tau_support"]
+    gini = values["tau_gini"]
+    if isinstance(support, list):
+        support = 0.75 if 0.75 in support else support[0]
+    if isinstance(gini, list):
+        gini = 0.70 if 0.70 in gini else gini[0]
     return {
-        "tau_support": float(values["tau_support"]),
-        "tau_gini": float(values["tau_gini"]),
+        "tau_support": float(support),
+        "tau_gini": float(gini),
         "eval_recall": float(values["eval_only_recall_threshold"]),
     }
 

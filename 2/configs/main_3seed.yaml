@@ -1,0 +1,82 @@
+seeds:
+  validation: [0, 1, 2]
+  safe_state: [0, 1, 2]
+  challenger: [0, 1, 2]
+
+thresholds:
+  tau_support: 0.75
+  tau_gini: 0.70
+  eval_only_recall_threshold: 0.90
+
+repair_budgets:
+  generated: 4
+  external_requests: 4
+  external_urllib3: 5
+  safe_state_validation_budgets: [1, 2, 4]
+
+tasks:
+  policy_docset_v1:
+    condition: homogeneous
+    routes:
+      - obligation_route
+  code_repo_v1:
+    condition: homogeneous
+    routes:
+      - compat_route
+  requests:
+    condition: route_partitioned
+    routes:
+      - tls_route
+      - timeout_route
+      - exception_route
+      - compat_route
+  urllib3:
+    condition: extended_audit
+    routes:
+      - timeout_route
+      - retry_route
+      - tls_route
+      - exception_route
+      - cleanup_route
+
+oracle_paths:
+  requests: analysis/research_object_geometry/real_agent_pilot/external_validation_requests/logs/oracle_items.jsonl
+  urllib3: analysis/research_object_geometry/real_agent_pilot/external_validation_v2/logs/oracle_items.jsonl
+
+outputs:
+  figure_script: paper/figures
+  paper_figures: paper/figures
+  supplement_results: analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results
+
+runtime_visible_fields:
+  - task_id
+  - repo_id
+  - run_id
+  - condition
+  - agent_id
+  - round_id
+  - event_id
+  - timestamp
+  - query_text
+  - tool_name
+  - action_type
+  - source_path
+  - source_family
+  - search_route
+  - source_route_stratum
+  - discovered_item_id
+  - new_item
+  - self_reported_completion
+  - self_reported_confidence
+  - stop_reason
+  - token_or_cost
+  - notes
+
+posthoc_oracle_only_fields:
+  - oracle_label
+  - oracle_bucket
+  - oracle_total
+  - recall
+  - bounded_oracle_recall
+  - undiscovered_true_item_count
+  - hidden_missing_mass

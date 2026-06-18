@@ -304,7 +304,7 @@ unchanged across domains.
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.78\textwidth]{figures/fig2-4.png}
+\includegraphics[width=0.965\textwidth]{figures/evidence_condition_controller.pdf}
 \caption{Evidence-condition controller. The controller maps a runtime evidence
 log to an exposure distribution over the intended source-route space. The
 support/Gini check is an eligibility test, not a completion proof. If the
@@ -419,22 +419,30 @@ unobserved evidence.
 
 \section{Experiments}
 
-The experiments are not a discovery benchmark. They are controlled
-completion-audit tests designed to check whether stop evidence is sufficient to
-support a completion claim under a declared source-route scope.
+The experiments test whether a proposed stop can be accepted as a bounded
+completion certificate under a declared source-route scope. They are not a
+benchmark for the best item-discovery policy. Each run follows the same closed
+protocol. First, a workflow trajectory produces a proposed stop state using only
+runtime-visible evidence. Second, the compared decision rule observes the
+exposure log, applies any allowed repair under the fixed budget, and returns
+\safe{}, \cont{}, or \abstain{}. Third, the oracle is revealed only for
+post-hoc scoring. The controller is therefore evaluated on whether it accepts
+unsafe completion claims, not on whether it has oracle access to the remaining
+workload.
 
-We organize experiments around the method design points. First, do naive stop
-signals create false certification? Second, is source-route geometry necessary
-relative to source-only exposure? Third, is eligibility alone sufficient? Fourth,
-does the full controller avoid unsafe stops without becoming a never-stop rule?
-Fifth, how does residual-potential repair compare with random and high-potential
-repair?
+We organize the evaluation around five method-aligned questions. Q1 asks whether
+naive stop signals create false certification. Q2 asks whether source-route
+geometry detects risks that source-only exposure misses. Q3 asks whether broad
+eligibility is sufficient for safety. Q4 asks whether the full controller
+rejects unsafe stops without degenerating into a never-stop rule. Q5 compares
+residual-potential repair with random and high-potential repair under the same
+decision rule.
 
 \paragraph{Tasks.}
-\texttt{policy\_docset\_v1} is a generated policy document set with four
+\texttt{policy-docset} is a generated policy document set with four
 sources covering access control, data handling, release process, and audit
 exceptions. Its routes are obligation, exception, deadline, and prohibition; the
-hidden oracle contains 24 policy clauses. \texttt{code\_repo\_v1} is a generated
+hidden oracle contains 24 policy clauses. \texttt{code-repo} is a generated
 bounded code repository with authentication, payment, storage, and API-client
 sources. Its routes are compatibility, security, and resilience; the hidden
 oracle contains 20 code-risk items.
@@ -451,8 +459,8 @@ benchmarks.
 
 \paragraph{Workflow conditions.}
 Homogeneous route reuse assigns multiple agents to the same route across
-sources. The reused routes are obligation for \texttt{policy\_docset\_v1},
-compatibility for \texttt{code\_repo\_v1}, and timeout for the two external
+sources. The reused routes are obligation for \texttt{policy-docset},
+compatibility for \texttt{code-repo}, and timeout for the two external
 repository audits.
 Route-partitioned audit assigns agents to different routes over the same source
 set. \texttt{urllib3} additionally includes an \texttt{extended\_audit}
@@ -469,29 +477,43 @@ not from different discovery trajectories. Oracle labels are used only for
 post-hoc scoring.
 
 \paragraph{Seeds, budgets, thresholds, and cost.}
-Generated tasks use budget 4; \texttt{requests} and \texttt{urllib3} use 200
-seeds with budgets 4 and 5, respectively. The controller uses
-\(\tau_s=0.75\), \(\tau_g=0.70\). A 0.90 recall threshold is used only for
+Generated tasks use repair budget 4; \texttt{requests} and \texttt{urllib3} use
+200 seeded validations with budgets 4 and 5, respectively. The controller uses
+\(\tau_s=0.75\), \(\tau_g=0.70\) as pre-specified operational test points, not
+oracle-tuned hyperparameters. A recall threshold of 0.90 is used only for
 bounded-oracle false-certification evaluation and is invisible to the
 controller. Repair cost counts only additional scanned source lines plus
 extraction events after a stop state is fixed. Seeds, route assignments, repair
 orders, and challengers are fixed before oracle scoring.
 
+\paragraph{Reproducibility and leakage control.}
+We provide both a lightweight three-seed reproduction configuration and the full
+seeded validation configuration. The configs specify task snapshots, route
+sets, thresholds, budgets, seeds, repair rules, oracle-scoring paths, output
+CSVs, and figure paths. Runtime decisions may use only the evidence log, source
+text, lexical route matches, route identifiers, source size, and non-oracle
+ledger notes. They may not use oracle totals, undiscovered item counts,
+post-hoc recall, or scorer-visible target distributions. The released scripts
+regenerate Table~\ref{tab:coverage}, Figure~\ref{fig:main_results},
+Figure~\ref{fig:controller_variants}, and the controller-count tables from the
+same fixed configs.
+
 \begin{table*}[t]
 \centering
-\caption{Experimental coverage. Oracles are used only for post-hoc scoring.}
+\caption{Experimental coverage. SR strata denote source-route strata; oracles
+are used only for post-hoc scoring.}
 \label{tab:coverage}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{lrrrrl}
+\begin{tabular}{lrrrrrl}
 \toprule
-Study & Sources & Routes & Oracle items & Runs/seeds & Main measurement \\
+Study & Sources & Routes & SR strata & Oracle items & Runs/seeds & Main measurement \\
 \midrule
-\texttt{policy} & 4 & 4/16 & 24 & 200/challenger & FCR, repair gain \\
-\texttt{code} & 4 & 3/12 & 20 & 200/challenger & FCR, repair gain \\
-\texttt{requests} & 6 & 4/24 & 298 & 200/challenger & controller validation \\
-\texttt{urllib3} & 6 & 5/30 & 699 & 200/challenger & boundary validation \\
-Controlled geometry & -- & variable & synthetic & 2160 & metric screening \\
-Exposure localization & -- & 18/30/42 & synthetic & 2700 & localization check \\
+\texttt{policy-docset} & 4 & 4 & 16 & 24 & 200/challenger & FCR, repair gain \\
+\texttt{code-repo} & 4 & 3 & 12 & 20 & 200/challenger & FCR, repair gain \\
+\texttt{requests} & 6 & 4 & 24 & 298 & 200/challenger & controller validation \\
+\texttt{urllib3} & 6 & 5 & 30 & 699 & 200/challenger & boundary validation \\
+Controlled geometry & -- & variable & variable & synthetic & 2160 & metric screening \\
+Exposure localization & -- & variable & 18/30/42 & synthetic & 2700 & localization check \\
 \bottomrule
 \end{tabular}}
 \end{table*}
@@ -506,19 +528,18 @@ source text, not oracle labels or undiscovered true-item counts.
 \paragraph{Naive stop signals cause false certification.}
 Figure~\ref{fig:main_results} begins with the failure mode. Across all four
 tasks, homogeneous route reuse produces localized evidence and would falsely
-certify completion if accepted as \safe{}. Controlled sweeps show the same
-pattern: homogeneous and prompt-diverse conditions have near-complete false-stop
-failure. This motivates source-route granularity rather than accepting
-unconditioned stop signals.
+certify completion if accepted as \safe{}. Controlled sweeps in the supplement
+show the same qualitative pattern under localized exposure. This motivates
+source-route granularity rather than accepting unconditioned stop signals.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/main_results_overview.pdf}
 \caption{Main diagnostic and ablation. Left: broader audits increase
 source-route support. Middle: source-only support is full in homogeneous runs,
-but source-route support remains localized. Right: \texttt{urllib3} as
-eligibility-only vs. eligibility+repair; broad route-partitioned exposure is
-still incomplete, while the extended audit reaches completion.}
+but source-route support remains localized. Right: the eligible
+\texttt{urllib3} route-partitioned state still has recall \(0.835\), below the
+post-hoc \(0.90\) threshold, while the extended audit reaches recall \(1.000\).}
 \label{fig:main_results}
 \end{figure*}
 
@@ -527,44 +548,52 @@ The middle panel of Figure~\ref{fig:main_results} is the source-only vs.
 source-route ablation. Homogeneous runs touch all files, so source-only support
 looks complete; the same states have localized source-route support and
 sub-threshold recall. Source-only exposure cannot detect that timeout evidence
-does not certify TLS, retry, exception, or cleanup routes in the same file. This
-is the source-route granularity design point.
+does not certify TLS, retry, exception, or cleanup routes in the same file.
 
 \paragraph{Eligibility alone is not proof.}
 Route-partitioned evidence improves eligibility, but it is not proof. In
 \texttt{urllib3}, route-partitioned exposure covers 24/30 strata and passes the
 gate, yet recall remains below threshold and repair finds residual evidence; the
 controller returns \cont{}, not \safe{}. The extended audit reaches support and
-recall \(1.000\). This is the eligibility/proof separation design point.
+recall \(1.000\).
+
+\input{generated/table_eligibility_boundary.tex}
 
 \paragraph{Full controller avoids unsafe stops without never-stopping.}
 A naive controller falsely certifies homogeneous stops; the full controller
 rejects them. It is not a never-stop rule: it returns \safe{} for broad complete
 states in the generated tasks, \texttt{requests}, and the extended
 \texttt{urllib3} audit. In seeded external validations, repair states are
-oracle-unsafe and return \cont{} or \abstain{}, while 6000 oracle-safe complete
-state perturbations keep safe coverage \(1\). This is the non-never-stop
-decision-behavior design point.
+oracle-unsafe and return \cont{} or \abstain{}, while oracle-safe complete-state
+perturbations keep safe coverage \(1\). Figure~\ref{fig:controller_variants}
+therefore reports seeded unsafe-state FCR rather than relying only on the five
+fixed observed stop states; those fixed states define the boundary cases and
+are counted in the supplement.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/controller_variant_comparison.pdf}
-\caption{Controller variant comparison. Left/middle: decision variants on the
-same fixed stop-state set. FCR is the micro-average over oracle-unsafe fixed
-stops; safe coverage is the micro-average over oracle-safe fixed stops and
-seeded complete states. Right: repair target variants keep the full decision
-rule fixed and compare mean repair gain vs. mean post-stop repair cost over
-oracle-unsafe repair states. Counts are reported in the supplementary
-controller-variant count table.}
+\caption{Controller variant comparison. Left/middle: decision variants are
+scored on seeded unsafe repair states and seeded complete-state perturbations
+derived from the same fixed stop boundaries. The decision distribution panels
+show SAFE, CONTINUE, and ABSTAIN rates on unsafe and complete states; Table~\ref{tab:eligibility_boundary}
+isolates the eligible-but-residual-positive boundary case. Right: repair target
+variants keep the full decision rule fixed and compare mean repair gain vs.
+mean post-stop repair cost over seeded unsafe repair states.}
 \label{fig:controller_variants}
 \end{figure*}
+
+\input{generated/table_main_controller_counts.tex}
 
 \paragraph{Repair policy comparison.}
 Figure~\ref{fig:controller_variants} separates repair target variants from
 decision variants. Residual-potential exposes residual evidence and has higher
 mean gain than random repair, but it is not proven optimal; high-potential is
 competitive in cost-normalized terms. Repair is therefore a bounded probe for
-remaining evidence, not a claim of optimal active search.
+remaining evidence, not a claim of optimal active search. The supplement includes
+per-task decision breakdowns and lightweight external baselines, including
+source-only stopping, random route expansion, high-potential expansion, and a
+scalar singleton/Chao negative control.
 
 \paragraph{Sensitivity and audit checks.}
 Sensitivity sweeps are in the supplementary material. Varying
@@ -574,31 +603,55 @@ certifications in the external controller validations. Oracle construction,
 negative controls, leakage checks, seeded details, and regex examples are also
 supplementary.
 
-\section{Discussion, Limitations, and Conclusion}
+Together, the results close the intended bounded-audit loop: naive and
+source-only stopping certify localized evidence, source-route geometry exposes
+the mismatch, eligibility is only a precondition, and repair distinguishes
+unsafe residual states from broad complete states.
 
-The controller certifies a relationship between a stop claim and the evidence
-condition that produced its support. It does not certify that the world contains
-no further facts, that future searches would fail, or that source-route is the
-only possible abstraction. Recall is used only for post-hoc measurement; runtime
-decisions use exposure, eligibility, and repair outcomes. The main threat is
-oracle leakage, controlled by freezing trajectories before scoring and limiting
-runtime features to visible logs, source text, lexical counts, route identifiers,
-and non-oracle ledger signals. Thresholds are operational test points, not
-universal constants.
+\section{Discussion}
 
-The evidence supports a diagnostic and controller for bounded completion-audit
-subclasses. External oracles are pattern-defined; source-route strata are
-task-designed; and residual-potential is not proven optimal. The workflow pilot
-in the supplement is an interface validation, not a scored claim-verification
-benchmark; a human-annotated completion-claim audit remains the most important
-external-validity extension. Local evidence therefore does not automatically
-support a scope-wide completion claim. Source-route evidence-condition geometry
-makes this conditioning explicit, and the controller uses it to reject unsafe
-local stops, repair weak plausible strata, and reserve \safe{} for broad
-evidence conditions with no residual evidence. The contribution is a bounded
-diagnostic and control principle: completion certificates should be judged by
-the evidence condition that produced them.
+The experiments support a bounded certificate claim rather than an open-world
+guarantee. A \safe{} decision means that the declared source-route condition is
+eligible and that budgeted repair did not reveal residual evidence; it does not
+mean that the world contains no further facts or that future searches would
+fail.
 
+\paragraph{What the validation establishes.}
+The ablations close the intended loop: homogeneous route reuse induces unsafe
+local stop evidence; source-route exposure detects the mismatch that source-only
+coverage misses; the \texttt{urllib3} boundary shows that eligibility is only a
+precondition; and repair separates broad-but-productive states from clean
+complete states.
+
+\paragraph{Reproducibility and auditability.}
+The implementation fixes snapshots, routes, seeds, thresholds, budgets, and
+oracle-scoring paths in config files. A three-seed config checks regeneration;
+the full seeded config produces the reported validation. Runtime-visible fields
+are separated from oracle-only fields, and stop states are fixed before scoring,
+so the controller cannot use the hidden workload it is supposed to audit.
+
+\section{Limitations}
+
+The external repository oracles are pattern-defined and therefore stronger than
+generated toy labels but weaker than human-annotated completion-audit
+benchmarks. They are nevertheless appropriate for this mechanism validation
+because the evaluation asks whether the controller accepts unsafe completion
+certificates, not whether it performs semantic vulnerability discovery.
+Source-route strata are task-designed, and other domains may need different
+route inventories or thresholds. Residual-potential repair is a
+mechanism-aligned probe, not an optimal active-search policy. The workflow pilot
+is an interface validation rather than a scored claim-verification benchmark; a
+human-annotated completion-claim audit remains the key external-validity test.
+
+\section{Conclusion}
+
+Local evidence does not automatically support a scope-wide completion claim.
+Evidence-condition geometry makes this conditioning explicit: the controller
+rejects unsafe local stops, repairs weak plausible strata, and abstains when no
+defensible certificate can be formed. Completion certificates should be judged
+by evidence condition, not stop signals alone.
+
+\clearpage
 \bibliographystyle{plainnat}
 \bibliography{references}
 

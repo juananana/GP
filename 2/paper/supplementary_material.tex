@@ -101,6 +101,55 @@ assembler above, then compile from \path{2/paper/} with \texttt{latexmk -pdf
 \path{evidence_condition_geometry_aaai_v2.tex} or
 \path{supplementary_material.tex}.
 
+\section*{Reproducibility Protocol}
+
+\paragraph{Configuration files.}
+All experiment settings are specified under \path{2/configs/}.
+\path{main_3seed.yaml} is the lightweight reproduction configuration;
+\path{full_200seed.yaml} is the paper-grade seeded validation configuration;
+and \path{sensitivity.yaml} defines the support/Gini threshold and repair-budget
+sweeps. These files specify seeds, task sources and routes, repair budgets,
+\(\tau_s\), \(\tau_g\), the evaluation-only recall threshold, oracle paths, and
+output paths.
+
+\paragraph{Runtime versus post-hoc fields.}
+The configs explicitly separate runtime-visible ledger fields from post-hoc
+oracle-only fields. The controller may use source text, route names, exposure
+counts, source-route strata, runtime discoveries, costs, and ledger-visible
+agent notes. It may not use oracle labels, oracle totals, post-hoc recall,
+hidden missing mass, or undiscovered true-item counts. Oracle fields are loaded
+only after trajectories, route assignments, repair orderings, and challenger
+choices have been fixed.
+
+\paragraph{Commands.}
+Set \texttt{EVIDENCE\_CONFIG=2/configs/main\_3seed.yaml} for a lightweight run
+or \texttt{EVIDENCE\_CONFIG=2/configs/full\_200seed.yaml} for the seeded
+validation reported in the paper. From \path{2/}, run:
+\begin{verbatim}
+P=analysis/research_object_geometry/real_agent_pilot
+python $P/scripts/run_blind_policy_task.py
+python $P/scripts/run_blind_code_task.py
+python $P/external_validation_requests/run_external_requests_validation.py
+python $P/external_validation_v2/run_external_validation_v2.py
+python $P/credibility_supplement/run_credibility_supplement.py
+python paper/scripts/make_paper_figures.py
+\end{verbatim}
+Use \texttt{EVIDENCE\_CONFIG=2/configs/sensitivity.yaml} before the supplement
+assembler for the threshold and budget sweeps.
+
+\paragraph{Outputs and figures.}
+Experiment ledgers are written as JSONL under task-specific \path{logs/}
+directories, and aggregate CSV files are written under task-specific
+\path{results/} directories and
+\path{analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/}.
+Figure~3 and Figure~4 are regenerated from fixed CSV outputs by
+\path{paper/scripts/make_paper_figures.py}, which writes
+\path{paper/figures/main_results_overview.pdf},
+\path{paper/figures/evidence_condition_controller.pdf}, and
+\path{paper/figures/controller_variant_comparison.pdf}. The same command writes
+\path{paper/generated/table_controller_variant_counts.tex}, which is the count
+table used below.
+
 \section*{Controller Variant Details}
 
 Figure~\ref{fig:controller_variant_comparison} compares decision policies on the
@@ -108,15 +157,22 @@ same fixed bounded-audit states used in the main paper. This is a policy
 ablation, not a new task suite: oracle labels are used only after decisions are
 fixed to compute false-\safe{} rate, safe-state coverage, decision rates, and
 repair gain/cost.
+The main figure reports seeded unsafe-state FCR and seeded safe-state coverage.
+The observed fixed stop states remain the boundary states from which these
+seeded validations are derived; they are summarized in
+Table~\ref{tab:controller_decisions}.
+
+\input{generated/table_controller_variant_counts.tex}
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/controller_variant_comparison.pdf}
 \caption{Controller variant comparison. Naive stop acceptance and source-only
-control accept unsafe observed stop states. Source-route eligibility reduces
-false \safe{} decisions but remains insufficient on the broad-but-productive
-\texttt{urllib3} boundary. Repair-enabled variants preserve safe-state coverage;
-residual-potential is the method instance used by the full controller.}
+control accept seeded unsafe states. The full controller and repair-enabled
+variants avoid SAFE on seeded unsafe repair states while preserving SAFE
+coverage on seeded complete states. Source-route eligibility alone is evaluated
+separately on the broad-but-productive \texttt{urllib3} fixed boundary in the
+main text.}
 \label{fig:controller_variant_comparison}
 \end{figure*}
 

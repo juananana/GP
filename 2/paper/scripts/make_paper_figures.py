@@ -8,16 +8,23 @@ import pandas as pd
 from matplotlib import patches
 from matplotlib.colors import LinearSegmentedColormap
 
+import sys
+
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.append(str(ROOT / "analysis" / "research_object_geometry" / "real_agent_pilot"))
+from experiment_config import load_experiment_config, thresholds  # noqa: E402
+
 PAPER = ROOT / "paper"
 PILOT = ROOT / "analysis" / "research_object_geometry" / "real_agent_pilot"
 SUPPLEMENT = PILOT / "credibility_supplement"
 RESULTS = SUPPLEMENT / "results"
 FIGURES = PAPER / "figures"
 
-SAFE_SUPPORT_MIN = 0.75
-SAFE_RECALL_MIN = 0.90
+CONFIG = load_experiment_config()
+THRESHOLDS = thresholds(CONFIG)
+SAFE_SUPPORT_MIN = THRESHOLDS["tau_support"]
+SAFE_RECALL_MIN = THRESHOLDS["eval_recall"]
 FIG_DPI = 360
 
 COLORS = {
@@ -187,50 +194,100 @@ def plot_certificate_mismatch() -> None:
 
 def plot_evidence_condition_controller() -> None:
     set_style()
-    fig, ax = plt.subplots(figsize=(7.05, 3.70))
+    fig, ax = plt.subplots(figsize=(7.10, 2.10))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
-    ax.text(0.015, 0.975, "Evidence-condition geometry and controller", fontsize=10, weight="bold", ha="left", va="top")
 
-    panels = [
-        (0.035, "Localized exposure", COLORS["red"], COLORS["red_light"], np.array([[0.95, 0, 0, 0], [0, 0.85, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0.80]]), "Not eligible\nrepair or abstain"),
-        (0.360, "Broad but productive", COLORS["orange"], COLORS["orange_light"], np.array([[0.10, 0.45, 0.20, 0.10], [0.18, 0.55, 0.15, 0.22], [0.25, 0.22, 0.08, 0.12], [0.15, 0.26, 0.20, 0.18]]), "Eligible, but residual\nevidence appears"),
-        (0.685, "Broad and stable", COLORS["green"], COLORS["green_light"], np.array([[0.38, 0.40, 0.44, 0.42], [0.39, 0.43, 0.36, 0.41], [0.44, 0.40, 0.39, 0.37], [0.41, 0.38, 0.42, 0.45]]), "Eligible and\nno residual evidence"),
+    xs = [0.035, 0.280, 0.525, 0.770]
+    w = 0.190
+    h = 0.700
+    titles = [
+        "Source-route\nexposure estimation",
+        "Eligibility\ngate",
+        "Residual-evidence\nrepair",
+        "SAFE / CONTINUE /\nABSTAIN rule",
+    ]
+    heads = [COLORS["blue"], COLORS["teal"], COLORS["orange"], COLORS["green"]]
+    fills = [COLORS["blue_light"], "#CCFBF1", COLORS["orange_light"], COLORS["green_light"]]
+    bodies = [
+        [r"Input: $E_t$, $S \times R$", r"Compute $v_t(s)$ and $p_t(s)$", "Output: support, Gini"],
+        [r"Input: support, Gini", rf"support $\geq {SAFE_SUPPORT_MIN:.2f}$", rf"Gini $\leq {THRESHOLDS['tau_gini']:.2f}$"],
+        ["Input: weak plausible gaps", "Priority = under-exposure", r"$\times$ runtime potential"],
+        ["SAFE: eligible + clean", "CONTINUE: residual found", "ABSTAIN: no certificate"],
     ]
 
-    for i, (x, title, color, light, mat, outcome) in enumerate(panels):
-        ax.add_patch(patches.FancyBboxPatch((x, 0.535), 0.28, 0.375, boxstyle="round,pad=0.008,rounding_size=0.025", fc="#FFFFFF", ec=color, lw=0.9))
-        ax.text(x + 0.014, 0.878, f"({chr(97+i)}) {title}", color=color, fontsize=7.6, weight="bold", ha="left")
-        mini_heatmap(ax, x + 0.066, 0.660, 0.134, 0.138, mat)
-        if i == 1:
-            ax.add_patch(patches.Rectangle((x + 0.123, 0.716), 0.066, 0.048, facecolor="none", edgecolor=COLORS["orange"], linewidth=0.9, linestyle=(0, (2, 1))))
-            ax.text(x + 0.238, 0.730, "weak gaps\nremain", fontsize=5.7, color=COLORS["muted"], ha="center", va="center")
-        rounded_box(ax, (x + 0.043, 0.568), 0.195, 0.052, outcome, light, color, fontsize=6.7, weight="bold", radius=0.018)
+    for i, x in enumerate(xs):
+        ax.add_patch(
+            patches.FancyBboxPatch(
+                (x, 0.205),
+                w,
+                h,
+                boxstyle="round,pad=0.010,rounding_size=0.020",
+                facecolor="#FFFFFF",
+                edgecolor=heads[i],
+                linewidth=0.9,
+            )
+        )
+        ax.add_patch(
+            patches.FancyBboxPatch(
+                (x + 0.010, 0.780),
+                w - 0.020,
+                0.082,
+                boxstyle="round,pad=0.006,rounding_size=0.016",
+                facecolor=fills[i],
+                edgecolor=heads[i],
+                linewidth=0.7,
+            )
+        )
+        ax.text(x + 0.023, 0.823, str(i + 1), fontsize=7.3, weight="bold", color=heads[i], ha="center", va="center")
+        ax.text(x + 0.108, 0.823, titles[i], fontsize=5.9, weight="bold", color=COLORS["ink"], ha="center", va="center", linespacing=0.98)
 
-    ax.text(0.035, 0.430, "Controller", fontsize=7.6, weight="bold", ha="left")
-    y0 = 0.335
-    rounded_box(ax, (0.060, y0), 0.100, 0.060, "Stop\nclaim", "#FFFFFF", COLORS["blue"], fontsize=6.9, radius=0.018)
-    arrow(ax, (0.160, y0 + 0.030), (0.225, y0 + 0.030), COLORS["muted"])
-    rounded_box(ax, (0.225, y0), 0.165, 0.060, "Condition\ncheck", COLORS["blue_light"], COLORS["blue"], fontsize=7.0, weight="bold", radius=0.018)
-    arrow(ax, (0.390, y0 + 0.030), (0.455, y0 + 0.030), COLORS["muted"])
-    rounded_box(ax, (0.455, y0), 0.150, 0.060, "Repair /\naudit", COLORS["orange_light"], COLORS["orange"], fontsize=7.0, weight="bold", radius=0.018)
-    arrow(ax, (0.605, y0 + 0.030), (0.675, y0 + 0.030), COLORS["muted"])
-    rounded_box(ax, (0.675, y0), 0.245, 0.060, "SAFE / CONTINUE / ABSTAIN", COLORS["green_light"], COLORS["green"], fontsize=7.0, weight="bold", radius=0.018)
-    arrow(ax, (0.530, y0), (0.307, y0), COLORS["orange"], lw=0.85, style="->")
-    ax.text(0.418, 0.288, "residual evidence sends the workflow back to audit", fontsize=6.2, color=COLORS["orange"], ha="center")
+        if i == 0:
+            mini_heatmap(
+                ax,
+                x + 0.042,
+                0.485,
+                0.105,
+                0.130,
+                np.array([[0.9, 0.0, 0.2], [0.0, 0.7, 0.0], [0.1, 0.0, 0.85]]),
+                route_labels=False,
+            )
+            ax.text(x + 0.095, 0.640, r"$\Omega_{SR}$", fontsize=5.8, color=COLORS["muted"], ha="center")
+        elif i == 1:
+            rounded_box(ax, (x + 0.025, 0.555), w - 0.050, 0.052, r"support $\geq \tau_s$", "#FFFFFF", heads[i], fontsize=5.9, radius=0.015)
+            rounded_box(ax, (x + 0.025, 0.485), w - 0.050, 0.052, r"Gini $\leq \tau_g$", "#FFFFFF", heads[i], fontsize=5.9, radius=0.015)
+            ax.text(x + w / 2, 0.425, "eligibility is not proof", fontsize=5.6, color=COLORS["muted"], ha="center")
+        elif i == 2:
+            mini_heatmap(
+                ax,
+                x + 0.050,
+                0.505,
+                0.092,
+                0.105,
+                np.array([[0.7, 0.2, 0.0], [0.1, 0.6, 0.2], [0.0, 0.1, 0.7]]),
+                route_labels=False,
+                cmap=LinearSegmentedColormap.from_list("repair", ["#FFF7ED", "#FDBA74", "#EA580C"]),
+            )
+            ax.add_patch(patches.Rectangle((x + 0.111, 0.542), 0.031, 0.035, fc="none", ec=COLORS["red"], lw=0.8, linestyle=(0, (2, 1))))
+            ax.text(x + w / 2, 0.435, "probe residual evidence", fontsize=5.6, color=COLORS["muted"], ha="center")
+        else:
+            rounded_box(ax, (x + 0.025, 0.590), w - 0.050, 0.046, "SAFE", "#ECFDF5", COLORS["green"], fontsize=6.0, weight="bold", radius=0.014)
+            rounded_box(ax, (x + 0.025, 0.525), w - 0.050, 0.046, "CONTINUE", "#FFF7ED", COLORS["orange"], fontsize=6.0, weight="bold", radius=0.014)
+            rounded_box(ax, (x + 0.025, 0.460), w - 0.050, 0.046, "ABSTAIN", "#FEF2F2", COLORS["red"], fontsize=6.0, weight="bold", radius=0.014)
 
-    rounded_box(ax, (0.085, 0.148), 0.210, 0.058, r"$p_t(s)=v_t(s)/\sum_{s'}v_t(s')$", "#FFFFFF", COLORS["gray"], fontsize=7.0, radius=0.018)
-    rounded_box(ax, (0.365, 0.148), 0.255, 0.058, r"eligible: support $\geq \tau_s$, Gini $\leq \tau_g$", "#FFFFFF", COLORS["gray"], fontsize=7.0, radius=0.018)
-    rounded_box(ax, (0.685, 0.148), 0.230, 0.058, r"repair: under-exposure $\times$ potential", "#FFFFFF", COLORS["gray"], fontsize=6.9, radius=0.018)
-    ax.text(0.50, 0.060, "Broad exposure gives completion eligibility, not completion proof.", fontsize=7.6, weight="bold", color=COLORS["ink"], ha="center")
+        if i < 3:
+            arrow(ax, (x + w + 0.010, 0.545), (xs[i + 1] - 0.013, 0.545), COLORS["muted"], lw=0.9)
+
+    arrow(ax, (xs[2] + w / 2, 0.165), (xs[1] + w / 2, 0.165), COLORS["orange"], lw=0.85, style="->")
+    ax.text(0.520, 0.095, "residual evidence keeps the workflow in audit", fontsize=5.8, color=COLORS["orange"], ha="center")
     save(fig, "evidence_condition_controller")
 
 
 def _condition_frame_for_overview() -> pd.DataFrame:
     files = [
-        ("policy", PILOT / "blind_tasks" / "policy_docset_v1" / "results" / "condition_metrics.csv"),
-        ("code", PILOT / "blind_tasks" / "code_repo_v1" / "results" / "condition_metrics.csv"),
+        ("policy-docset", PILOT / "blind_tasks" / "policy_docset_v1" / "results" / "condition_metrics.csv"),
+        ("code-repo", PILOT / "blind_tasks" / "code_repo_v1" / "results" / "condition_metrics.csv"),
         ("requests", PILOT / "external_validation_requests" / "results" / "external_requests_condition_metrics.csv"),
         ("urllib3", PILOT / "external_validation_v2" / "results" / "condition_summary.csv"),
     ]
@@ -258,13 +315,13 @@ def plot_main_results_overview() -> None:
     set_style()
     overview = _condition_frame_for_overview()
     ablation = pd.read_csv(RESULTS / "source_only_vs_source_route.csv")
-    tasks = ["policy", "code", "requests", "urllib3"]
-    labels = ["policy", "code", "requests", "urllib3"]
+    tasks = ["policy-docset", "code-repo", "requests", "urllib3"]
+    labels = ["policy-docset", "code-repo", "requests", "urllib3"]
     x = np.arange(len(tasks))
     base = overview[overview["condition"] == "homogeneous"].set_index("task").reindex(tasks)
     broad = overview[overview["condition"] == "route_partitioned"].set_index("task").reindex(tasks)
     extended = overview[overview["condition"] == "extended_audit"].set_index("task")
-    ablation["short_task"] = ablation["task"].map({"policy_docset_v1": "policy", "code_repo_v1": "code", "requests": "requests", "urllib3": "urllib3"})
+    ablation["short_task"] = ablation["task"].map({"policy_docset_v1": "policy-docset", "code_repo_v1": "code-repo", "requests": "requests", "urllib3": "urllib3"})
     ablation = ablation.set_index("short_task").reindex(tasks)
 
     fig, axes = plt.subplots(1, 3, figsize=(7.10, 2.34), constrained_layout=True)
@@ -272,12 +329,20 @@ def plot_main_results_overview() -> None:
     axes[0].bar(x - width / 2, base["support"], width, label="homogeneous", color=COLORS["gray"])
     axes[0].bar(x + width / 2, broad["support"], width, label="route-partitioned", color=COLORS["blue"])
     axes[0].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.9)
-    axes[0].text(3.45, SAFE_SUPPORT_MIN + 0.025, r"$\tau_s=0.75$", color=COLORS["red"], fontsize=7, ha="right")
+    axes[0].text(
+        0.98,
+        SAFE_SUPPORT_MIN + 0.035,
+        rf"$\tau_s={SAFE_SUPPORT_MIN:.2f}$",
+        transform=axes[0].get_yaxis_transform(),
+        color=COLORS["red"],
+        fontsize=6.7,
+        ha="right",
+    )
     axes[0].set_title("(a) Support eligibility", loc="left", fontweight="bold")
     axes[0].set_ylim(0, 1.05)
     axes[0].set_xticks(x, labels, rotation=22, ha="right")
     axes[0].set_ylabel("source-route support")
-    axes[0].legend(frameon=False, loc="upper left", handlelength=1.2)
+    axes[0].legend(frameon=False, loc="upper left", handlelength=1.1)
 
     axes[1].bar(x - width / 2, ablation["source_only_support"], width, label="source-only", color=COLORS["green"])
     axes[1].bar(x + width / 2, ablation["source_route_support"], width, label="source-route", color=COLORS["purple"])
@@ -285,7 +350,8 @@ def plot_main_results_overview() -> None:
     axes[1].set_title("(b) Route granularity matters", loc="left", fontweight="bold")
     axes[1].set_ylim(0, 1.05)
     axes[1].set_xticks(x, labels, rotation=22, ha="right")
-    axes[1].legend(frameon=False, loc="lower left", handlelength=1.2)
+    axes[1].text(3.42, 0.985, "source-only", color=COLORS["green"], fontsize=6.8, ha="right", va="top", bbox=dict(facecolor="white", edgecolor="none", pad=0.6, alpha=0.85))
+    axes[1].text(3.42, 0.205, "source-route", color=COLORS["purple"], fontsize=6.8, ha="right", va="bottom", bbox=dict(facecolor="white", edgecolor="none", pad=0.6, alpha=0.85))
 
     vals = [
         float(broad.loc["urllib3", "recall"]),
@@ -293,10 +359,20 @@ def plot_main_results_overview() -> None:
     ]
     axes[2].bar([0, 1], vals, 0.50, color=[COLORS["orange"], COLORS["green"]])
     axes[2].axhline(SAFE_RECALL_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.9)
-    axes[2].text(0, vals[0] + 0.025, f"{vals[0]:.3f}", ha="center", va="bottom", fontsize=7.2, color=COLORS["ink"])
-    axes[2].text(1, vals[1] - 0.035, f"{vals[1]:.3f}", ha="center", va="top", fontsize=7.2, color=COLORS["ink"])
-    axes[2].text(0.55, SAFE_RECALL_MIN + 0.025, "0.90 evaluation threshold", color=COLORS["red"], fontsize=6.8, ha="center")
-    axes[2].set_title("(c) Eligibility vs repair", loc="left", fontweight="bold")
+    axes[2].text(0, vals[0] + 0.025, f"{vals[0]:.3f}", ha="center", va="bottom", fontsize=7.0, color=COLORS["ink"])
+    axes[2].text(1, vals[1] - 0.040, f"{vals[1]:.3f}", ha="center", va="top", fontsize=7.0, color="#FFFFFF", weight="bold")
+    axes[2].text(
+        0.02,
+        0.97,
+        f"{SAFE_RECALL_MIN:.2f} post-hoc threshold",
+        transform=axes[2].transAxes,
+        color=COLORS["red"],
+        fontsize=6.5,
+        ha="left",
+        va="top",
+        bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.85),
+    )
+    axes[2].set_title("(c) Eligible is not complete", loc="left", fontweight="bold")
     axes[2].set_ylim(0, 1.05)
     axes[2].set_xticks([0, 1], ["route-\npartitioned", "extended\naudit"])
     axes[2].set_ylabel("bounded-oracle recall")
@@ -346,7 +422,7 @@ def plot_repair_sensitivity_summary() -> None:
     set_style()
     repair_ci = pd.read_csv(RESULTS / "repair_policy_ci.csv")
     tasks = ["policy_docset_v1", "code_repo_v1", "requests", "urllib3"]
-    labels = ["policy", "code", "requests", "urllib3"]
+    labels = ["policy-docset", "code-repo", "requests", "urllib3"]
     fig, ax = plt.subplots(figsize=(3.35, 2.30), constrained_layout=True)
     x = np.arange(len(tasks))
     width = 0.24
@@ -373,98 +449,466 @@ def plot_repair_sensitivity_summary() -> None:
 
 def controller_variant_summary() -> pd.DataFrame:
     detail = pd.read_csv(RESULTS / "controller_decision_detail.csv")
-    observed = detail[detail["condition"].isin(["homogeneous", "route_partitioned", "extended_audit"])].copy()
-    observed["oracle_safe"] = observed["recall"] >= SAFE_RECALL_MIN
-    observed["geometry_ok"] = (observed["support"] >= SAFE_SUPPORT_MIN) & (observed["gini"] <= 0.70)
-    observed_unsafe = observed[~observed["oracle_safe"]].copy()
-
     safe_states = pd.read_csv(RESULTS / "seeded_safe_state_validation.csv")
     unsafe_repairs = detail[detail["condition"].str.startswith("repair:")].copy()
 
-    def rates_for_decision(decision: pd.Series) -> tuple[float, float]:
-        unsafe = ~observed["oracle_safe"]
-        safe = observed["oracle_safe"]
-        false_safe = ((decision == "SAFE") & unsafe).sum() / unsafe.sum()
-        safe_cov = ((decision == "SAFE") & safe).sum() / safe.sum()
-        return float(false_safe), float(safe_cov)
+    def decision_counts(label: str, unsafe: pd.DataFrame, safe: pd.DataFrame, unsafe_decision: pd.Series, safe_decision: pd.Series, gain: float, cost: float) -> dict[str, float | int | str]:
+        unsafe_n = int(len(unsafe))
+        safe_n = int(len(safe))
+        safe_on_unsafe = int((unsafe_decision == "SAFE").sum())
+        safe_on_safe = int((safe_decision == "SAFE").sum())
+        cont = int((unsafe_decision == "CONTINUE").sum())
+        abstain = int((unsafe_decision == "ABSTAIN").sum())
+        safe_cont = int((safe_decision == "CONTINUE").sum())
+        safe_abstain = int((safe_decision == "ABSTAIN").sum())
+        return {
+            "policy": label,
+            "unsafe_denominator": unsafe_n,
+            "safe_denominator": safe_n,
+            "safe_on_unsafe": safe_on_unsafe,
+            "safe_on_safe": safe_on_safe,
+            "continue_on_safe": safe_cont,
+            "abstain_on_safe": safe_abstain,
+            "false_certification_rate_seeded_unsafe": safe_on_unsafe / unsafe_n if unsafe_n else np.nan,
+            "safe_coverage_seeded_safe": safe_on_safe / safe_n if safe_n else np.nan,
+            "continue_rate_seeded_unsafe": cont / unsafe_n if unsafe_n else np.nan,
+            "abstain_rate_seeded_unsafe": abstain / unsafe_n if unsafe_n else np.nan,
+            "mean_repair_gain_seeded_unsafe": gain,
+            "mean_cost_seeded_unsafe": cost,
+        }
 
     rows = []
-    policy_specs = [
-        ("Naive stop", "all_safe", None),
-        ("Source-only", "all_safe", None),
-        ("Eligibility-only", "geometry", None),
-        ("Random repair", "full", "random"),
-        ("High-potential", "full", "high_potential"),
-        ("Ours", "full", "residual_potential"),
-    ]
-    for label, kind, repair_policy in policy_specs:
-        if kind == "all_safe":
-            decision = pd.Series(["SAFE"] * len(observed), index=observed.index)
-        elif kind == "geometry":
-            decision = pd.Series(np.where(observed["geometry_ok"], "SAFE", "ABSTAIN"), index=observed.index)
-        else:
-            decision = observed["decision"]
-        false_safe_rate, safe_coverage = rates_for_decision(decision)
+    residual_unsafe = unsafe_repairs[unsafe_repairs["condition"] == "repair:residual_potential"].copy()
+    residual_safe = safe_states[safe_states["challenger"] == "residual_potential"].copy()
+    geom_unsafe = (residual_unsafe["support"] >= SAFE_SUPPORT_MIN) & (residual_unsafe["gini"] <= THRESHOLDS["tau_gini"])
+    geom_safe = (residual_safe["after_support_ratio"] >= SAFE_SUPPORT_MIN) & (residual_safe["after_exposure_gini"] <= THRESHOLDS["tau_gini"])
+    rows.append(decision_counts("Naive stop", residual_unsafe, residual_safe, pd.Series(["SAFE"] * len(residual_unsafe)), pd.Series(["SAFE"] * len(residual_safe)), np.nan, np.nan))
+    rows.append(decision_counts("Source-only", residual_unsafe, residual_safe, pd.Series(["SAFE"] * len(residual_unsafe)), pd.Series(["SAFE"] * len(residual_safe)), np.nan, np.nan))
+    rows.append(decision_counts("Eligibility-only", residual_unsafe, residual_safe, pd.Series(np.where(geom_unsafe, "SAFE", "ABSTAIN")), pd.Series(np.where(geom_safe, "SAFE", "ABSTAIN")), np.nan, np.nan))
+    rows.append(decision_counts("Full controller", residual_unsafe, residual_safe, residual_unsafe["decision"].reset_index(drop=True), residual_safe["decision"].reset_index(drop=True), float(residual_unsafe["repair_gain"].mean()), float(residual_unsafe["cost"].mean())))
 
-        if repair_policy is None:
-            unsafe_decision = decision.loc[observed_unsafe.index]
-            continue_rate = float((unsafe_decision == "CONTINUE").mean())
-            abstain_rate = float((unsafe_decision == "ABSTAIN").mean())
-            mean_gain = np.nan
-            mean_cost = np.nan
-        else:
-            repair_rows = unsafe_repairs[unsafe_repairs["condition"] == f"repair:{repair_policy}"]
-            continue_rate = float((repair_rows["decision"] == "CONTINUE").mean())
-            abstain_rate = float((repair_rows["decision"] == "ABSTAIN").mean())
-            mean_gain = float(repair_rows["repair_gain"].mean())
-            mean_cost = float(repair_rows["cost"].mean())
-
-        if repair_policy is None:
-            safe_state_coverage = safe_coverage
-        else:
-            safe_rows = safe_states[safe_states["challenger"] == repair_policy]
-            safe_state_coverage = float(safe_rows["safe"].mean())
-
+    for label, repair_policy in [
+        ("Random repair", "random"),
+        ("High-potential repair", "high_potential"),
+        ("Ours", "residual_potential"),
+    ]:
+        repair_rows = unsafe_repairs[unsafe_repairs["condition"] == f"repair:{repair_policy}"].copy()
+        safe_rows = safe_states[safe_states["challenger"] == repair_policy].copy()
         rows.append(
-            {
-                "policy": label,
-                "false_safe_rate_observed": false_safe_rate,
-                "safe_coverage_observed": safe_coverage,
-                "safe_coverage_seeded_safe": safe_state_coverage,
-                "continue_rate_seeded_unsafe": continue_rate,
-                "abstain_rate_seeded_unsafe": abstain_rate,
-                "mean_repair_gain_seeded_unsafe": mean_gain,
-                "mean_cost_seeded_unsafe": mean_cost,
-            }
+            decision_counts(
+                label,
+                repair_rows,
+                safe_rows,
+                repair_rows["decision"].reset_index(drop=True),
+                safe_rows["decision"].reset_index(drop=True),
+                float(repair_rows["repair_gain"].mean()),
+                float(repair_rows["cost"].mean()),
+            )
         )
     out = pd.DataFrame(rows)
     out.to_csv(RESULTS / "controller_variant_comparison.csv", index=False)
     return out
 
 
+def write_controller_variant_count_table(summary: pd.DataFrame) -> None:
+    def f3(value: float) -> str:
+        if pd.isna(value):
+            return "--"
+        return f"{float(value):.3f}"
+
+    def f1(value: float) -> str:
+        if pd.isna(value):
+            return "--"
+        return f"{float(value):.1f}"
+
+    rows = []
+    for _, row in summary.iterrows():
+        rows.append(
+            " & ".join(
+                [
+                    str(row["policy"]).replace("_", r"\_"),
+                    str(int(row["unsafe_denominator"])),
+                    str(int(row["safe_denominator"])),
+                    str(int(row["safe_on_unsafe"])),
+                    str(int(row["safe_on_safe"])),
+                    f3(row["false_certification_rate_seeded_unsafe"]),
+                    f3(row["safe_coverage_seeded_safe"]),
+                    f3(row["continue_rate_seeded_unsafe"]),
+                    f3(row["abstain_rate_seeded_unsafe"]),
+                    f1(row["mean_repair_gain_seeded_unsafe"]),
+                    f1(row["mean_cost_seeded_unsafe"]),
+                ]
+            )
+            + r" \\"
+        )
+    text = r"""
+\begin{table*}[t]
+\centering
+\caption{Controller variant count table. Unsafe denominators are seeded
+oracle-unsafe repair states; safe denominators are seeded oracle-safe complete
+states. Oracle safety labels are used only for post-hoc scoring. Decision
+variants are evaluated on the residual-potential seeded state set; repair
+target variants use the same seeds and budgets with their named target rule.}
+\label{tab:controller_variant_counts}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+Policy & Unsafe denom. & Safe denom. & SAFE-on-unsafe & SAFE-on-safe
+& FCR & Safe cov. & CONTINUE & ABSTAIN & Repair gain & Repair cost \\
+\midrule
+""" + "\n".join(rows) + r"""
+\bottomrule
+\end{tabular}}
+\end{table*}
+"""
+    (PAPER / "generated" / "table_controller_variant_counts.tex").write_text(text.strip() + "\n", encoding="utf-8")
+
+    main = summary[summary["policy"].isin(["Naive stop", "Source-only", "Eligibility-only", "Full controller"])].copy()
+    main["policy"] = pd.Categorical(
+        main["policy"],
+        categories=["Naive stop", "Source-only", "Eligibility-only", "Full controller"],
+        ordered=True,
+    )
+    main = main.sort_values("policy")
+    main_rows = []
+    for _, row in main.iterrows():
+        unsafe_sca = (
+            f"{int(row['safe_on_unsafe'])}/"
+            f"{int(round(float(row['continue_rate_seeded_unsafe'] * row['unsafe_denominator'])))}/"
+            f"{int(round(float(row['abstain_rate_seeded_unsafe'] * row['unsafe_denominator'])))}"
+        )
+        complete_sca = (
+            f"{int(row['safe_on_safe'])}/"
+            f"{int(row['continue_on_safe'])}/"
+            f"{int(row['abstain_on_safe'])}"
+        )
+        main_rows.append(
+            " & ".join(
+                [
+                    str(row["policy"]).replace("Full controller", "Full"),
+                    str(int(row["unsafe_denominator"])),
+                    str(int(row["safe_denominator"])),
+                    unsafe_sca,
+                    complete_sca,
+                    f3(row["false_certification_rate_seeded_unsafe"]),
+                    f3(row["safe_coverage_seeded_safe"]),
+                ]
+            )
+            + r" \\"
+        )
+    main_text = r"""
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{2.8pt}
+\caption{Seeded controller decision counts for Figure~\ref{fig:controller_variants}.
+All decision rules are evaluated on the same seeded stop-boundary states; oracle
+labels are used only after decisions are fixed. S/C/A reports
+SAFE/CONTINUE/ABSTAIN counts.}
+\label{tab:main_controller_counts}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+Decision rule & Unsafe & Complete & Unsafe S/C/A & Complete S/C/A & FCR & Safe cov. \\
+\midrule
+""" + "\n".join(main_rows) + r"""
+\bottomrule
+\end{tabular}}
+\end{table}
+"""
+    (PAPER / "generated" / "table_main_controller_counts.tex").write_text(main_text.strip() + "\n", encoding="utf-8")
+
+    write_per_task_decision_breakdown()
+    write_eligibility_boundary_table()
+    write_lightweight_baseline_table()
+
+
+def _fmt_table_float(value: float, digits: int = 3) -> str:
+    if pd.isna(value):
+        return "--"
+    return f"{float(value):.{digits}f}"
+
+
+def _escape_tex(text: str) -> str:
+    return str(text).replace("_", r"\_")
+
+
+def write_per_task_decision_breakdown() -> None:
+    detail = pd.read_csv(RESULTS / "controller_decision_detail.csv")
+    observed = detail[detail["condition"].isin(["homogeneous", "route_partitioned", "extended_audit"])].copy()
+    observed["oracle_safe"] = observed["recall"] >= SAFE_RECALL_MIN
+    observed["geometry_ok"] = (observed["support"] >= SAFE_SUPPORT_MIN) & (observed["gini"] <= THRESHOLDS["tau_gini"])
+
+    policies = [
+        ("Naive stop", lambda df: pd.Series(["SAFE"] * len(df), index=df.index)),
+        ("Source-only", lambda df: pd.Series(["SAFE"] * len(df), index=df.index)),
+        ("Eligibility-only", lambda df: pd.Series(np.where(df["geometry_ok"], "SAFE", "ABSTAIN"), index=df.index)),
+        ("Full controller", lambda df: df["decision"]),
+    ]
+    rows = []
+    for task in ["policy_docset_v1", "code_repo_v1", "requests", "urllib3"]:
+        task_df = observed[observed["task"] == task].copy()
+        unsafe = ~task_df["oracle_safe"]
+        safe = task_df["oracle_safe"]
+        for policy, decide in policies:
+            decisions = decide(task_df)
+            rows.append(
+                {
+                    "task": task,
+                    "policy": policy,
+                    "unsafe_n": int(unsafe.sum()),
+                    "safe_n": int(safe.sum()),
+                    "safe_on_unsafe": int(((decisions == "SAFE") & unsafe).sum()),
+                    "fcr": float(((decisions == "SAFE") & unsafe).sum() / unsafe.sum()) if unsafe.sum() else np.nan,
+                    "safe_coverage": float(((decisions == "SAFE") & safe).sum() / safe.sum()) if safe.sum() else np.nan,
+                    "continue_rate": float((decisions == "CONTINUE").mean()) if len(decisions) else np.nan,
+                    "abstain_rate": float((decisions == "ABSTAIN").mean()) if len(decisions) else np.nan,
+                }
+            )
+    out = pd.DataFrame(rows)
+    out.to_csv(RESULTS / "per_task_decision_breakdown.csv", index=False)
+
+    labels = {
+        "policy_docset_v1": "policy-docset",
+        "code_repo_v1": "code-repo",
+        "requests": "requests",
+        "urllib3": "urllib3",
+    }
+    tex_rows = []
+    for _, row in out.iterrows():
+        tex_rows.append(
+            " & ".join(
+                [
+                    _escape_tex(labels.get(row["task"], row["task"])),
+                    _escape_tex(row["policy"]),
+                    str(int(row["unsafe_n"])),
+                    str(int(row["safe_n"])),
+                    str(int(row["safe_on_unsafe"])),
+                    _fmt_table_float(row["fcr"]),
+                    _fmt_table_float(row["safe_coverage"]),
+                    _fmt_table_float(row["continue_rate"]),
+                    _fmt_table_float(row["abstain_rate"]),
+                ]
+            )
+            + r" \\"
+        )
+    text = r"""
+\begin{table*}[t]
+\centering
+\caption{Per-task decision breakdown on observed stop states. FCR is
+SAFE-on-unsafe divided by oracle-unsafe stop states for that task; safe coverage
+is SAFE-on-safe divided by oracle-safe stop states for that task. Oracle labels
+are post-hoc only.}
+\label{tab:per_task_decision_breakdown}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrrrr}
+\toprule
+Task & Policy & Unsafe & Safe & SAFE-on-unsafe & FCR & Safe cov. & CONTINUE & ABSTAIN \\
+\midrule
+""" + "\n".join(tex_rows) + r"""
+\bottomrule
+\end{tabular}}
+\end{table*}
+"""
+    (PAPER / "generated" / "table_per_task_decision_breakdown.tex").write_text(text.strip() + "\n", encoding="utf-8")
+
+
+def write_eligibility_boundary_table() -> None:
+    detail = pd.read_csv(RESULTS / "controller_decision_detail.csv")
+    observed = detail[detail["condition"].isin(["homogeneous", "route_partitioned", "extended_audit"])].copy()
+    observed["oracle_safe"] = observed["recall"] >= SAFE_RECALL_MIN
+    observed["geometry_ok"] = (observed["support"] >= SAFE_SUPPORT_MIN) & (observed["gini"] <= THRESHOLDS["tau_gini"])
+    boundary = observed[observed["geometry_ok"] & ~observed["oracle_safe"]].copy()
+
+    oracle_totals = {
+        "policy_docset_v1": 24,
+        "code_repo_v1": 20,
+        "requests": 298,
+        "urllib3": 699,
+    }
+    tex_rows = []
+    csv_rows = []
+    for _, row in boundary.iterrows():
+        total = oracle_totals.get(row["task"], np.nan)
+        missed = int(round((1.0 - float(row["recall"])) * total)) if not pd.isna(total) else np.nan
+        eligibility_decision = "SAFE"
+        full_decision = str(row["decision"])
+        csv_rows.append(
+            {
+                "task": row["task"],
+                "condition": row["condition"],
+                "support": row["support"],
+                "gini": row["gini"],
+                "recall": row["recall"],
+                "residual_positive": True,
+                "posthoc_missed_items": missed,
+                "eligibility_only_decision": eligibility_decision,
+                "full_controller_decision": full_decision,
+            }
+        )
+        tex_rows.append(
+            " & ".join(
+                [
+                    _escape_tex(row["task"].replace("policy_docset_v1", "policy-docset").replace("code_repo_v1", "code-repo")),
+                    _escape_tex(row["condition"]),
+                    _fmt_table_float(row["support"]),
+                    _fmt_table_float(row["gini"]),
+                    _fmt_table_float(row["recall"]),
+                    "yes" if missed >= 0 else "--",
+                    eligibility_decision,
+                    full_decision,
+                ]
+            )
+            + r" \\"
+        )
+    pd.DataFrame(csv_rows).to_csv(RESULTS / "eligibility_passed_unsafe_boundary.csv", index=False)
+    text = r"""
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.2pt}
+\caption{Boundary case showing why eligibility is not proof. The state passes
+the source-route eligibility gate, but post-hoc recall remains below the
+completion threshold; repair-aware control therefore returns CONTINUE rather
+than SAFE.}
+\label{tab:eligibility_boundary}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrrrll}
+\toprule
+Task & State & Support & Gini & Recall & Residual+ & Elig.-only & Full \\
+\midrule
+""" + "\n".join(tex_rows) + r"""
+\bottomrule
+\end{tabular}}
+\end{table}
+"""
+    (PAPER / "generated" / "table_eligibility_boundary.tex").write_text(text.strip() + "\n", encoding="utf-8")
+
+
+def write_lightweight_baseline_table() -> None:
+    repair = pd.read_csv(RESULTS / "repair_policy_ci.csv")
+    chao = pd.read_csv(RESULTS / "chao_singleton_proxy.csv")
+    source = pd.read_csv(RESULTS / "source_only_vs_source_route.csv")
+
+    rows = []
+    for task in ["requests", "urllib3"]:
+        source_row = source[source["task"] == task].iloc[0]
+        rows.append(
+            {
+                "task": task,
+                "baseline": "Source-only stop",
+                "measurement": "FCR if accepted",
+                "value": float(source_row["false_certification_if_source_only_safe"]),
+                "cost": np.nan,
+                "note": "accepts localized route evidence",
+            }
+        )
+        for challenger in ["random", "high_potential", "residual_potential"]:
+            row = repair[(repair["task"] == task) & (repair["challenger"] == challenger)].iloc[0]
+            rows.append(
+                {
+                    "task": task,
+                    "baseline": challenger.replace("_", "-") + " expansion",
+                    "measurement": "mean repair gain",
+                    "value": float(row["mean_new_true_items"]),
+                    "cost": np.nan,
+                    "note": "same budget, post-stop repair",
+                }
+            )
+    for _, row in chao[chao["task"].isin(["requests", "urllib3"])].iterrows():
+        rows.append(
+            {
+                "task": row["task"],
+                "baseline": "Singleton/Chao scalar stop",
+                "measurement": "would stop?",
+                "value": float(row["scalar_stop_proxy"]),
+                "cost": np.nan,
+                "note": f"Chao1={float(row['chao1_estimate']):.1f}",
+            }
+        )
+    out = pd.DataFrame(rows)
+    out.to_csv(RESULTS / "lightweight_external_baselines.csv", index=False)
+
+    tex_rows = []
+    for _, row in out.iterrows():
+        if row["measurement"] == "FCR if accepted":
+            value = "1.000" if row["value"] else "0.000"
+        elif row["measurement"] == "would stop?":
+            value = "yes" if row["value"] else "no"
+        else:
+            value = _fmt_table_float(row["value"], 1)
+        tex_rows.append(
+            " & ".join(
+                [
+                    _escape_tex(row["task"]),
+                    _escape_tex(row["baseline"]),
+                    _escape_tex(row["measurement"]),
+                    value,
+                    _escape_tex(row["note"]),
+                ]
+            )
+            + r" \\"
+        )
+    text = r"""
+\begin{table*}[t]
+\centering
+\caption{Lightweight external baselines and sanity checks. These are not new
+task suites: source-only is a direct stopping baseline, random/high-potential
+are repair-target baselines under the same budget, and the scalar singleton/Chao
+proxy is a negative control that ignores source-route geometry.}
+\label{tab:lightweight_baselines}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllll}
+\toprule
+Task & Baseline & Measurement & Value & Note \\
+\midrule
+""" + "\n".join(tex_rows) + r"""
+\bottomrule
+\end{tabular}}
+\end{table*}
+"""
+    (PAPER / "generated" / "table_lightweight_baselines.tex").write_text(text.strip() + "\n", encoding="utf-8")
+
+
 def plot_controller_variant_comparison() -> None:
     set_style()
     summary = controller_variant_summary()
-    controller = summary[summary["policy"].isin(["Naive stop", "Source-only", "Eligibility-only", "Ours"])].copy()
-    repair = summary[summary["policy"].isin(["Random repair", "High-potential", "Ours"])].copy()
+    write_controller_variant_count_table(summary)
+    controller = summary[summary["policy"].isin(["Naive stop", "Source-only", "Eligibility-only", "Full controller"])].copy()
+    repair = summary[summary["policy"].isin(["Random repair", "High-potential repair", "Ours"])].copy()
     controller_labels = ["Naive", "Source-only", "Elig.-only", "Full"]
     controller_colors = [COLORS["gray"], COLORS["green"], COLORS["orange"], COLORS["purple"]]
     repair_labels = ["Random", "High-pot.", "Residual-pot."]
     repair_colors = [COLORS["gray"], COLORS["blue"], COLORS["purple"]]
 
-    fig, axes = plt.subplots(1, 3, figsize=(7.25, 1.78), constrained_layout=True)
-    n_note = {
-        "false_safe_rate_observed": "unsafe fixed stops: n=5",
-        "safe_coverage_seeded_safe": "complete-state perturbations: n=6000",
-    }
+    fig, axes = plt.subplots(1, 3, figsize=(7.25, 1.88), constrained_layout=True)
 
-    for ax, col, title in [
-        (axes[0], "false_safe_rate_observed", "FCR on unsafe\nfixed stops"),
-        (axes[1], "safe_coverage_seeded_safe", "SAFE coverage\non complete states"),
+    unsafe_safe = controller["false_certification_rate_seeded_unsafe"].to_numpy(dtype=float)
+    unsafe_continue = controller["continue_rate_seeded_unsafe"].to_numpy(dtype=float)
+    unsafe_abstain = controller["abstain_rate_seeded_unsafe"].to_numpy(dtype=float)
+    safe_cov = controller["safe_coverage_seeded_safe"].to_numpy(dtype=float)
+
+    for ax, bars, title in [
+        (axes[0], (unsafe_safe, unsafe_continue, unsafe_abstain), "Unsafe states: decision mix"),
+        (axes[1], (safe_cov, np.zeros_like(safe_cov), np.zeros_like(safe_cov)), "Complete states: SAFE coverage"),
     ]:
-        vals = controller[col].to_numpy(dtype=float)
-        x = np.arange(len(vals))
-        ax.bar(x, vals, color=controller_colors, width=0.68)
+        vals0, vals1, vals2 = bars
+        x = np.arange(len(vals0))
+        if ax is axes[0]:
+            ax.bar(x, vals0, color=COLORS["green"], width=0.68, label="SAFE")
+            ax.bar(x, vals1, bottom=vals0, color=COLORS["orange"], width=0.68, label="CONTINUE")
+            ax.bar(x, vals2, bottom=vals0 + vals1, color=COLORS["gray"], width=0.68, label="ABSTAIN")
+            for i, (s, c, a) in enumerate(zip(vals0, vals1, vals2)):
+                if s > 0:
+                    ax.text(i, s + 0.03, f"{s:.2f}", ha="center", va="bottom", fontsize=6.6)
+                if c > 0:
+                    ax.text(i, s + c / 2, f"{c:.2f}", ha="center", va="center", fontsize=6.4, color="white", weight="bold")
+                if a > 0:
+                    ax.text(i, s + c + a / 2, f"{a:.2f}", ha="center", va="center", fontsize=6.4, color="white", weight="bold")
+        else:
+            ax.bar(x, vals0, color=controller_colors, width=0.68)
+            for i, val in enumerate(vals0):
+                ax.text(i, val + 0.03, f"{val:.2f}", ha="center", va="bottom", fontsize=6.6)
         ax.set_title(title, loc="left", fontweight="bold")
         ax.set_xticks(x, controller_labels, rotation=18, ha="right")
         ax.set_ylim(0, 1.08)
@@ -472,26 +916,14 @@ def plot_controller_variant_comparison() -> None:
         ax.set_yticks([0, 0.5, 1.0])
         ax.grid(axis="y", alpha=0.9)
         ax.set_axisbelow(True)
-        ax.text(
-            0.02,
-            0.93,
-            n_note[col],
-            transform=ax.transAxes,
-            ha="left",
-            va="top",
-            fontsize=6.4,
-            color=COLORS["muted"],
-        )
-        for i, val in enumerate(vals):
-            if val > 0 and col == "false_safe_rate_observed":
-                ax.text(i, val + 0.035, f"{val:.2f}", ha="center", va="bottom", fontsize=6.8)
+    axes[0].legend(frameon=False, loc="upper left", bbox_to_anchor=(0.00, 1.02), ncol=3, handlelength=0.9, columnspacing=0.8, fontsize=6.2)
 
     gain = repair["mean_repair_gain_seeded_unsafe"].to_numpy(dtype=float)
     cost = repair["mean_cost_seeded_unsafe"].to_numpy(dtype=float)
     for i, (g, c, label, color) in enumerate(zip(gain, cost, repair_labels, repair_colors)):
         axes[2].scatter(c, g, s=46, color=color, edgecolor="white", linewidth=0.7, zorder=3)
-        axes[2].text(c + 55, g + (7 if i != 0 else -13), label, fontsize=6.8, color=COLORS["ink"], va="center")
-    axes[2].set_title("Repair target variants\nmean gain vs. cost", loc="left", fontweight="bold")
+        axes[2].text(c + 45, g + (7 if i != 0 else -11), label, fontsize=6.7, color=COLORS["ink"], va="center")
+    axes[2].set_title("Repair target variants:\nmean gain vs. cost", loc="left", fontweight="bold")
     axes[2].set_xlabel("mean cost")
     axes[2].set_ylabel("mean new items")
     axes[2].set_xlim(3200, 4550)
@@ -502,6 +934,7 @@ def plot_controller_variant_comparison() -> None:
 
 
 def main() -> None:
+    plot_evidence_condition_controller()
     plot_main_results_overview()
     plot_controller_decision_matrix()
     plot_repair_sensitivity_summary()

@@ -4,11 +4,15 @@ import json
 import math
 import random
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+from experiment_config import load_experiment_config, seeds, task_config
 
 
 ROOT = Path(__file__).resolve().parents[4]
@@ -20,6 +24,12 @@ RESULTS = TASK / "results"
 REPORTS = TASK / "reports"
 
 TASK_ID = "T_blind_code_repo_v1"
+CONFIG = load_experiment_config()
+CODE_CONFIG = task_config(CONFIG, "code_repo_v1")
+VALIDATION_SEEDS = seeds(CONFIG, "validation")
+CHALLENGER_SEEDS = seeds(CONFIG, "challenger") or VALIDATION_SEEDS
+EVAL_RECALL_THRESHOLD = float(CONFIG.get("thresholds", {}).get("eval_only_recall_threshold", 0.90))
+REPAIR_BUDGET = int(CONFIG.get("repair_budgets", {}).get("generated", 4))
 
 
 FILES = {
@@ -318,7 +328,7 @@ def summarize(events: list[dict]) -> pd.DataFrame:
                 "found_true_items": len(found & oracle_ids),
                 "oracle_total": len(oracle_ids),
                 "recall": recall,
-                "false_stop_at_90": bool(recall < 0.90),
+                "false_stop_at_90": bool(recall < EVAL_RECALL_THRESHOLD),
             }
         )
     return pd.DataFrame(rows)
@@ -331,14 +341,14 @@ def run_challenger(base_condition: str, events: list[dict], strategy: str, seed:
     discovery = Counter(base.loc[base["new_item"], "source_route_stratum"])
     all_strata = [f"{source_family(name)}::{route}" for name in FILES for route in ROUTES]
     if strategy == "low_exposure":
-        targets = sorted(all_strata, key=lambda s: (exposure.get(s, 0), s))[:4]
+        targets = sorted(all_strata, key=lambda s: (exposure.get(s, 0), s))[:REPAIR_BUDGET]
     elif strategy == "low_discovery":
-        targets = sorted(all_strata, key=lambda s: (discovery.get(s, 0), s))[:4]
+        targets = sorted(all_strata, key=lambda s: (discovery.get(s, 0), s))[:REPAIR_BUDGET]
     elif strategy == "residual_potential":
         potentials = {s: route_potential(f"{s.split('::', 1)[0]}.py", s.split("::", 1)[1]) for s in all_strata}
-        targets = sorted(all_strata, key=lambda s: (exposure.get(s, 0), -potentials[s], s))[:4]
+        targets = sorted(all_strata, key=lambda s: (exposure.get(s, 0), -potentials[s], s))[:REPAIR_BUDGET]
     elif strategy == "random":
-        targets = random.Random(seed).sample(all_strata, 4)
+        targets = random.Random(seed).sample(all_strata, min(REPAIR_BUDGET, len(all_strata)))
     else:
         raise ValueError(strategy)
 
@@ -474,7 +484,7 @@ def main() -> None:
     rows.append(low_disc)
     _, residual = run_challenger("homogeneous", all_events, "residual_potential")
     rows.append(residual)
-    for seed in range(20):
+    for seed in CHALLENGER_SEEDS:
         _, rand = run_challenger("homogeneous", all_events, "random", seed=seed)
         rows.append(rand)
     challenger = pd.DataFrame(rows)

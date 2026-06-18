@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{2.8pt}
+\caption{Seeded controller decision counts for Figure~\ref{fig:controller_variants}.
+All decision rules are evaluated on the same seeded stop-boundary states; oracle
+labels are used only after decisions are fixed. S/C/A reports
+SAFE/CONTINUE/ABSTAIN counts.}
+\label{tab:main_controller_counts}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+Decision rule & Unsafe & Complete & Unsafe S/C/A & Complete S/C/A & FCR & Safe cov. \\
+\midrule
+Naive stop & 400 & 1200 & 400/0/0 & 1200/0/0 & 1.000 & 1.000 \\
+Source-only & 400 & 1200 & 400/0/0 & 1200/0/0 & 1.000 & 1.000 \\
+Eligibility-only & 400 & 1200 & 0/0/400 & 1200/0/0 & 0.000 & 1.000 \\
+Full & 400 & 1200 & 0/400/0 & 1200/0/0 & 0.000 & 1.000 \\
+\bottomrule
+\end{tabular}}
+\end{table}

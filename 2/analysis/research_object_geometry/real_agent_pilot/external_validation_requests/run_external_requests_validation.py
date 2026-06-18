@@ -6,11 +6,15 @@ import math
 import random
 import re
 import shutil
+import sys
 from collections import Counter
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+from experiment_config import load_experiment_config, seed_count, seeds, thresholds, task_config
 
 
 ROOT = Path(__file__).resolve().parents[4]
@@ -23,7 +27,13 @@ REPORTS = OUT / "reports"
 
 TASK_ID = "T_external_requests_repo_v1"
 REPO_ID = "requests_local_site_package_snapshot"
-N_SEEDS = 200
+CONFIG = load_experiment_config()
+THRESHOLDS = thresholds(CONFIG)
+SAFE_RECALL_MIN = THRESHOLDS["eval_recall"]
+N_SEEDS = seed_count(CONFIG, "validation")
+VALIDATION_SEEDS = seeds(CONFIG, "validation")
+REQUESTS_CONFIG = task_config(CONFIG, "requests")
+REPAIR_BUDGET = int(CONFIG.get("repair_budgets", {}).get("external_requests", 4))
 
 FILES = [
     "adapters.py",
@@ -278,7 +288,7 @@ def summarize_conditions(events: list[dict], oracle_ids: set[str]) -> pd.DataFra
                 "found_true_items": len(found),
                 "oracle_total": len(oracle_ids),
                 "recall": recall,
-                "false_stop_at_90": bool(recall < 0.90),
+                "false_stop_at_90": bool(recall < SAFE_RECALL_MIN),
             }
         )
     return pd.DataFrame(rows)
@@ -318,7 +328,7 @@ def base_counts(base: pd.DataFrame, granularity: str) -> tuple[Counter, Counter]
     return exposure, discovery
 
 
-def select_targets(base: pd.DataFrame, granularity: str, challenger: str, seed: int, budget_k: int = 4) -> list[str]:
+def select_targets(base: pd.DataFrame, granularity: str, challenger: str, seed: int, budget_k: int = REPAIR_BUDGET) -> list[str]:
     universe = all_strata(granularity)
     exposure, discovery = base_counts(base, granularity)
     potentials = {s: route_potential(s, granularity) for s in universe}
@@ -352,7 +362,7 @@ def evaluate_challengers(events: list[dict], oracle_ids: set[str]) -> pd.DataFra
     rows = []
     for granularity in ["source_only", "source_route", "source_route_action"]:
         for challenger in CHALLENGERS:
-            for seed in range(N_SEEDS):
+            for seed in VALIDATION_SEEDS:
                 targets = select_targets(base, granularity, challenger, seed)
                 found = set(base_found)
                 new = set()
@@ -376,7 +386,7 @@ def evaluate_challengers(events: list[dict], oracle_ids: set[str]) -> pd.DataFra
                         "novelty_per_cost": len(new) / cost if cost else 0.0,
                         "cumulative_true_items": cumulative,
                         "cumulative_recall": cumulative / len(oracle_ids),
-                        "false_stop_reduction": int((len(base_found) / len(oracle_ids) < 0.90) and (cumulative / len(oracle_ids) >= 0.90)),
+                        "false_stop_reduction": int((len(base_found) / len(oracle_ids) < SAFE_RECALL_MIN) and (cumulative / len(oracle_ids) >= SAFE_RECALL_MIN)),
                     }
                 )
     return pd.DataFrame(rows)

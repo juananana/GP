@@ -16,6 +16,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+from experiment_config import load_experiment_config, thresholds
+
 
 ROOT = Path(__file__).resolve().parents[4]
 PILOT = ROOT / "analysis" / "research_object_geometry" / "real_agent_pilot"
@@ -26,9 +29,11 @@ FIGURES = OUT / "figures"
 PAPER = ROOT / "paper"
 PAPER_GENERATED = PAPER / "generated"
 
-SAFE_SUPPORT_MIN = 0.75
-SAFE_GINI_MAX = 0.70
-SAFE_RECALL_MIN = 0.90
+CONFIG = load_experiment_config()
+THRESHOLDS = thresholds(CONFIG)
+SAFE_SUPPORT_MIN = THRESHOLDS["tau_support"]
+SAFE_GINI_MAX = THRESHOLDS["tau_gini"]
+SAFE_RECALL_MIN = THRESHOLDS["eval_recall"]
 
 FIG_DPI = 320
 COLORS = {
@@ -547,8 +552,11 @@ def threshold_and_budget_sensitivity() -> tuple[pd.DataFrame, pd.DataFrame]:
         ],
         ignore_index=True,
     )
-    support_grid = [0.50, 0.60, 0.70, 0.75, 0.80, 0.90]
-    gini_grid = [0.50, 0.60, 0.70, 0.80, 0.90]
+    raw_thresholds = CONFIG.get("thresholds", {})
+    support_value = raw_thresholds.get("tau_support", SAFE_SUPPORT_MIN)
+    gini_value = raw_thresholds.get("tau_gini", SAFE_GINI_MAX)
+    support_grid = list(support_value) if isinstance(support_value, list) else [0.50, 0.60, 0.70, float(support_value), 0.80, 0.90]
+    gini_grid = list(gini_value) if isinstance(gini_value, list) else [0.50, 0.60, float(gini_value), 0.80, 0.90]
     rows = []
     for task, task_df in detail.groupby("task"):
         for support_thr in support_grid:
@@ -584,8 +592,8 @@ def threshold_and_budget_sensitivity() -> tuple[pd.DataFrame, pd.DataFrame]:
     url_mod = load_module("external_urllib3_validation", PILOT / "external_validation_v2" / "run_external_validation_v2.py")
     budget = pd.concat(
         [
-            simulate_external_budget(req_mod, "requests", [1, 2, 4, 6, 8]),
-            simulate_external_budget(url_mod, "urllib3", [1, 2, 4, 6, 8]),
+            simulate_external_budget(req_mod, "requests", CONFIG.get("repair_budgets", {}).get("safe_state_validation_budgets", [1, 2, 4, 6, 8])),
+            simulate_external_budget(url_mod, "urllib3", CONFIG.get("repair_budgets", {}).get("safe_state_validation_budgets", [1, 2, 4, 6, 8])),
         ],
         ignore_index=True,
     )
@@ -1655,6 +1663,9 @@ Decision & condition and repair & target distribution \\
 
     supplementary = "\n".join(
         [
+            r"\input{generated/table_controller_decisions.tex}",
+            r"\input{generated/table_per_task_decision_breakdown.tex}",
+            r"\input{generated/table_lightweight_baselines.tex}",
             r"\input{generated/table_chao_proxy.tex}",
             r"\input{generated/table_sensitivity_summary.tex}",
             r"\input{generated/table_oracle_appendix_summary.tex}",

@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering
+\caption{Lightweight external baselines and sanity checks. These are not new
+task suites: source-only is a direct stopping baseline, random/high-potential
+are repair-target baselines under the same budget, and the scalar singleton/Chao
+proxy is a negative control that ignores source-route geometry.}
+\label{tab:lightweight_baselines}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllll}
+\toprule
+Task & Baseline & Measurement & Value & Note \\
+\midrule
+requests & Source-only stop & FCR if accepted & 1.000 & accepts localized route evidence \\
+requests & random expansion & mean repair gain & 45.5 & same budget, post-stop repair \\
+requests & high-potential expansion & mean repair gain & 177.0 & same budget, post-stop repair \\
+requests & residual-potential expansion & mean repair gain & 177.0 & same budget, post-stop repair \\
+urllib3 & Source-only stop & FCR if accepted & 1.000 & accepts localized route evidence \\
+urllib3 & random expansion & mean repair gain & 92.5 & same budget, post-stop repair \\
+urllib3 & high-potential expansion & mean repair gain & 275.0 & same budget, post-stop repair \\
+urllib3 & residual-potential expansion & mean repair gain & 329.0 & same budget, post-stop repair \\
+requests & Singleton/Chao scalar stop & would stop? & no & Chao1=496.0 \\
+urllib3 & Singleton/Chao scalar stop & would stop? & no & Chao1=9180.0 \\
+\bottomrule
+\end{tabular}}
+\end{table*}

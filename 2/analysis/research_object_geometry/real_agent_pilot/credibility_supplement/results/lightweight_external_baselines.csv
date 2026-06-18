@@ -1,0 +1,11 @@
+task,baseline,measurement,value,cost,note
+requests,Source-only stop,FCR if accepted,1.0,,accepts localized route evidence
+requests,random expansion,mean repair gain,45.535,,"same budget, post-stop repair"
+requests,high-potential expansion,mean repair gain,177.0,,"same budget, post-stop repair"
+requests,residual-potential expansion,mean repair gain,177.0,,"same budget, post-stop repair"
+urllib3,Source-only stop,FCR if accepted,1.0,,accepts localized route evidence
+urllib3,random expansion,mean repair gain,92.525,,"same budget, post-stop repair"
+urllib3,high-potential expansion,mean repair gain,275.0,,"same budget, post-stop repair"
+urllib3,residual-potential expansion,mean repair gain,329.0,,"same budget, post-stop repair"
+requests,Singleton/Chao scalar stop,would stop?,0.0,,Chao1=496.0
+urllib3,Singleton/Chao scalar stop,would stop?,0.0,,Chao1=9180.0

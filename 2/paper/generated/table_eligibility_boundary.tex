@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.2pt}
+\caption{Boundary case showing why eligibility is not proof. The state passes
+the source-route eligibility gate, but post-hoc recall remains below the
+completion threshold; repair-aware control therefore returns CONTINUE rather
+than SAFE.}
+\label{tab:eligibility_boundary}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrrrll}
+\toprule
+Task & State & Support & Gini & Recall & Residual+ & Elig.-only & Full \\
+\midrule
+urllib3 & route\_partitioned & 0.800 & 0.647 & 0.835 & yes & SAFE & CONTINUE \\
+\bottomrule
+\end{tabular}}
+\end{table}

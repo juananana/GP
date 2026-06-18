@@ -6,11 +6,15 @@ import math
 import random
 import re
 import shutil
+import sys
 from collections import Counter
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+from experiment_config import load_experiment_config, seed_count, seeds, thresholds, task_config
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,10 +26,15 @@ REPORTS = OUT / "reports"
 
 TASK_ID = "T_external_urllib3_audit_v2"
 REPO_ID = "urllib3_local_site_package_snapshot"
-N_SEEDS = 200
-SAFE_RECALL_MIN = 0.90
-SAFE_SUPPORT_MIN = 0.75
-SAFE_GINI_MAX = 0.70
+CONFIG = load_experiment_config()
+THRESHOLDS = thresholds(CONFIG)
+SAFE_RECALL_MIN = THRESHOLDS["eval_recall"]
+SAFE_SUPPORT_MIN = THRESHOLDS["tau_support"]
+SAFE_GINI_MAX = THRESHOLDS["tau_gini"]
+N_SEEDS = seed_count(CONFIG, "validation")
+VALIDATION_SEEDS = seeds(CONFIG, "validation")
+URLLIB3_CONFIG = task_config(CONFIG, "urllib3")
+DEFAULT_REPAIR_BUDGET = int(CONFIG.get("repair_budgets", {}).get("external_urllib3", 5))
 
 FILES = [
     "connection.py",
@@ -293,7 +302,7 @@ def candidate_items(stratum: str) -> tuple[set[str], int]:
     return ids, len(file_lines(rel))
 
 
-def select_targets(base: pd.DataFrame, strategy: str, seed: int, potential: dict[str, float], budget_k: int = 5) -> list[str]:
+def select_targets(base: pd.DataFrame, strategy: str, seed: int, potential: dict[str, float], budget_k: int = DEFAULT_REPAIR_BUDGET) -> list[str]:
     universe = all_strata()
     exposure = exposure_counts(base)
     max_exp = max([exposure.get(s, 0) for s in universe] + [1])
@@ -355,7 +364,7 @@ def evaluate_challengers(events: list[dict], oracle_ids: set[str], potential: di
     base_state = condition_state(base_exposure, potential)
     rows = []
     for strategy in CHALLENGERS:
-        for seed in range(N_SEEDS):
+        for seed in VALIDATION_SEEDS:
             targets = select_targets(base, strategy, seed, potential)
             found = set(base_found)
             new = set()

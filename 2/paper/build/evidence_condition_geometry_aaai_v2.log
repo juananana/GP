@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  16 JUN 2026 21:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  18 JUN 2026 14:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -805,37 +805,56 @@ C/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 <figures/fig1-1.png, id=12, 1219.55624pt x 596.98032pt>
 File: figures/fig1-1.png Graphic file (type png)
 <use figures/fig1-1.png>
-Package pdftex.def Info: figures/fig1-1.png  used on input line 135.
+Package pdftex.def Info: figures/fig1-1.png  used on input line 136.
 (pdftex.def)             Requested size: 243.91125pt x 119.39394pt.
 
-Underfull \hbox (badness 1377) in paragraph at lines 151--164
+Underfull \hbox (badness 1377) in paragraph at lines 152--165
  \OT1/ptm/b/n/10 (+20) High-recall re-view, ac-tive search, and miss-ing mass.[
 ]
  []
 
 [2 <./figures/fig1-1.png>]
-<figures/fig2-4.png, id=22, 1453.43pt x 1090.0725pt>
-File: figures/fig2-4.png Graphic file (type png)
-<use figures/fig2-4.png>
-Package pdftex.def Info: figures/fig2-4.png  used on input line 297.
-(pdftex.def)             Requested size: 394.59357pt x 295.93692pt.
- [3] [4 <./figures/fig2-4.png (PNG copy)>]
-<figures/main_results_overview.pdf, id=33, 521.54805pt x 177.54282pt>
+<figures/evidence_condition_controller.pdf, id=22, 412.11966pt x 131.31459pt>
+File: figures/evidence_condition_controller.pdf Graphic file (type pdf)
+<use figures/evidence_condition_controller.pdf>
+Package pdftex.def Info: figures/evidence_condition_controller.pdf  used on inp
+ut line 307.
+(pdftex.def)             Requested size: 488.18199pt x 155.55898pt.
+ [3]
+
+LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
+(Font)              using `OT1/ptm/m/sc' instead on input line 404.
+
+
+LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
+(Font)              using `OT1/ptm/m/sc' instead on input line 407.
+
+
+LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
+(Font)              using `OT1/ptm/m/sc' instead on input line 408.
+
+[4 <./figures/evidence_condition_controller.pdf>]
+<figures/main_results_overview.pdf, id=55, 521.39108pt x 177.54282pt>
 File: figures/main_results_overview.pdf Graphic file (type pdf)
 <use figures/main_results_overview.pdf>
 Package pdftex.def Info: figures/main_results_overview.pdf  used on input line 
-487.
-(pdftex.def)             Requested size: 505.89pt x 172.21631pt.
-<figures/controller_variant_comparison.pdf, id=34, 532.30754pt x 137.07162pt>
+537.
+(pdftex.def)             Requested size: 505.89pt x 172.26778pt.
+ [5]
+(generated/table_eligibility_boundary.tex)
+<figures/controller_variant_comparison.pdf, id=59, 532.02034pt x 144.29861pt>
 File: figures/controller_variant_comparison.pdf Graphic file (type pdf)
 <use figures/controller_variant_comparison.pdf>
 Package pdftex.def Info: figures/controller_variant_comparison.pdf  used on inp
-ut line 522.
-(pdftex.def)             Requested size: 505.89pt x 130.27376pt.
- [5]
-(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.bbl [6 <./fi
-gures/main_results_overview.pdf>] [7 <./figures/controller_variant_comparison.p
-df>] [8]) [9
+ut line 575.
+(pdftex.def)             Requested size: 505.89pt x 137.215pt.
+
+(generated/table_main_controller_counts.tex) [6 <./figures/main_results_overvie
+w.pdf>] [7 <./figures/controller_variant_comparison.pdf>]
+(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.bbl [8
+
+]
+[9]) [10
 
 ]
 (E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.aux)
@@ -845,13 +864,13 @@ L3 programming layer <2025-12-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 20597 strings out of 467871
- 400722 string characters out of 5418860
- 835920 words of memory out of 5000000
- 48794 multiletter control sequences out of 15000+600000
- 667737 words of font info for 303 fonts, out of 8000000 for 9000
+ 20637 strings out of 467871
+ 401918 string characters out of 5418860
+ 832964 words of memory out of 5000000
+ 48818 multiletter control sequences out of 15000+600000
+ 670901 words of font info for 311 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,9n,94p,1034b,430s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,10n,94p,1034b,430s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mex10.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
 nts/cm/cmmi10.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -866,9 +885,9 @@ Data/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/EPIC/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/EPIC/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
 Output written on E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaa
-i_v2.pdf (9 pages, 1897383 bytes).
+i_v2.pdf (10 pages, 833456 bytes).
 PDF statistics:
- 139 PDF objects out of 1000 (max. 8388607)
+ 164 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 52769 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 57377 words of extra memory for PDF output out of 61914 (max. 10000000)
 
