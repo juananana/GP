@@ -5,8 +5,8 @@
 ## 0. 当前状态速查
 
 - 实验代码没有全部放在一个单文件里，但主实验代码集中在 `analysis/research_object_geometry/real_agent_pilot/`；配置在 `configs/`；论文图表生成在 `paper/scripts/make_paper_figures.py`。
-- 主文现在同时保留图和表：Figure 3 是 diagnostic evidence，Figure 4 是 controller evaluation；Table 1 是 source-only/source-route ablation，Table 2 是单个 `urllib3` boundary case，Table 3 是 seeded unsafe/complete controller counts。
-- Figure 4 现在不是“全是 1”的比例图，而是 count dashboard：左图只显示 400 个 seeded unsafe states 中各策略输出 unsafe `SAFE`、actionable `CONTINUE`、fail-closed `ABSTAIN` 的数量；`1200/1200` complete-state `SAFE` coverage 写入图内短注和 caption；右图显示 repair gain-cost tradeoff。
+- 主文现在同时保留图和表：Figure 3 是 diagnostic evidence，Figure 4 是 repair cost/frontier evaluation；Table 1 是 source-only/source-route ablation，Table 2 是单个 `urllib3` boundary case，Table 3 是 seeded unsafe/complete controller counts。
+- Figure 4 不再重复 Table 3 的 400/1200 decision counts，而是专门展示成本权衡：左图是 repair budget frontier，右图是主预算点的 gain-cost comparison with uncertainty。Verifier-gate vs Full 的 safe/actionable count 证据由 Table 3 承担。
 - “Verifier-gate vs Full controller”的主结论不是 Full 在 seeded warning denominator 上更安全，而是 Full 同样避免 unsafe `SAFE`，同时把 productive unsafe states 转成可行动的 `CONTINUE`；Verifier-gate 是 fail-closed `ABSTAIN`，不给 source-route diagnosis 或 repair target。
 - 主文已经恢复独立 `Conclusion`；`Related Work` 已改成围绕 stopping、agent/tool workflow、verification/oversight 三条脉络说明本文区别，而不是单纯罗列文献。当前主文 PDF 为 10 页，References 从第 8 页开始，技术内容控制在 7 页内。
 - 当前仍应克制的边界：external repository oracle 是 pattern-defined，不是语义金标准；residual-potential 是启发式 repair target，不是 optimal active search；`SAFE` 是配置预算和 runtime-visible signals 下的 bounded certificate，不是 universal completion guarantee。
@@ -452,10 +452,11 @@ Figure 4 来自：
 - `repair_policy_ci.csv`
 - `controller_variant_comparison.csv`
 
-当前 Figure 4 是 1x2 dashboard：
+当前 Figure 4 是 1x2 repair-cost dashboard：
 
-- left: decision safety/actionability count dashboard。红/橙/灰显示 400 个 seeded unsafe residual-warning states 中被判成 unsafe `SAFE`、actionable `CONTINUE`、fail-closed `ABSTAIN` 的数量；绿色点显示 1200 个 seeded complete states 中被判成 `SAFE` 的数量。早先 rate 版本很多值天然等于 1，容易被误读成“全是 1”；count 版本直接显示 denominator 和 count。
-- right: repair gain-cost tradeoff with error bars。
+- left: budget frontier。读取 `budget_sensitivity.csv`，按 budget=1..8 画 Random、High-potential、Residual-potential 的 mean repair cost vs mean residual items found。
+- right: main-budget gain-cost tradeoff with error bars。读取 `controller_variant_comparison.csv` 和 `repair_policy_ci.csv`，展示论文主配置下三种 repair target 的 gain/cost。
+- decision safety/actionability counts 不再画成图，避免和 Table 3 重复；Table 3 直接给 400 unsafe 与 1200 complete seeded denominators、FCR、safe coverage、`SAFE/CONTINUE/ABSTAIN` counts。
 
 Supplement 表格生成：
 

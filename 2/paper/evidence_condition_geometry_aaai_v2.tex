@@ -451,26 +451,31 @@ target.
 
 \input{generated/table_main_controller_counts.tex}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/controller_variant_comparison.pdf}
-\caption{Controller evaluation on seeded validation states. Left: on 400 seeded
-unsafe residual-positive states, Verifier-gate is safe but fail-closed
-(\abstain{}), while the Full controller is safe and actionable (\cont{}); all
-policies certify \(1200/1200\) seeded complete states as \safe{}. Right: repair
-targeting buys residual evidence at explicit audit cost. These seeded
-denominators differ from the one-state \texttt{urllib3} boundary in
-Figure~\ref{fig:main_results}.}
-\label{fig:controller_variants}
-\end{figure*}
-
 \paragraph{Residual repair gives gain at audit cost.}
 Finally, we vary repair targets. Residual-potential finds \(253.0\) new oracle
 items at mean cost \(4275.5\); random repair finds \(69.0\) at cost \(3481.1\);
 and high-potential finds \(226.0\) at cost \(3824.0\). Repair is therefore the
 cost-bearing mechanism that turns a weak stop into a next action; it is a
-high-yield heuristic here, not an optimal active-search claim. Threshold/budget
-sweeps and a small claim-verification interface sanity check are reported in the
+high-yield heuristic here, not an optimal active-search claim.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/controller_variant_comparison.pdf}
+\caption{Repair cost evaluation. Panel (a) shows budget frontiers: increasing
+post-stop audit budget exposes more residual evidence, with residual- and
+high-potential targeting dominating random repair in these states. Panel (b)
+shows the configured main-budget comparison with uncertainty intervals. Decision
+counts for safe/actionable controller behavior are reported in
+Table~\ref{tab:main_controller_counts}; this figure isolates the cost side of
+the tradeoff.}
+\label{fig:controller_variants}
+\end{figure*}
+
+The full budget sweep in Figure~\ref{fig:controller_variants} shows why this
+result is a cost tradeoff rather than a free safety certificate: higher budgets
+generally expose more residual items, and random repair catches up in
+actionability only after spending more audit effort. Threshold/budget sweeps and
+a small claim-verification interface sanity check are reported in the
 supplement.
 
 The sensitivity sweep supports the same interpretation rather than a new main
@@ -490,15 +495,26 @@ decision counts.
 
 \section{Discussion and Limitations}
 
-The positive result is bounded but operationally useful. A \safe{} decision
-certifies the declared source-route condition under the configured budget and
-runtime-visible signals; it is not a universal guarantee that no further facts
-exist. In practice, support and Gini are stop-time warning signals, threshold and
-budget sweeps set conservatism, and residual repair turns a weak certificate into
-a next audit target. The limitations are real: external repository oracles are
-pattern-defined over frozen snapshots, residual-potential repair is a heuristic
-rather than optimal active search, and the claim-verification pilot is only an
-interface sanity check.
+The main practical use is admission control for completion claims. A workflow
+can continue to use its own search, retrieval, or agent policy, but before
+accepting a stop it exposes the source-route condition that produced the stop.
+Support and Gini then become stop-time warning signals: low support or high
+concentration says the certificate is local, even if the transcript contains no
+new findings. Thresholds and repair budgets set conservatism before deployment,
+and \cont{} decisions provide the next audit target rather than merely refusing
+the stop.
+
+The guarantee is intentionally bounded. A \safe{} decision certifies the
+declared source-route condition under the configured budget and runtime-visible
+signals; it is not a universal guarantee that no further facts exist. The
+external repository oracles are pattern-defined over frozen snapshots, which
+makes scoring reproducible but not equivalent to expert semantic gold labels.
+Residual-potential repair is also a mechanism-aligned heuristic, not an optimal
+active-search theorem. The claim-verification pilot in the supplement is only an
+interface sanity check for human-style routes. These limits are not side issues:
+they define the object being certified. The paper argues for judging completion
+claims by the evidence condition that produced them, not for proving unbounded
+completion.
 
 \section{Conclusion}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  22 JUN 2026 16:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  22 JUN 2026 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -377,12 +377,12 @@ ed _
  []
 
 [2] (generated/table_controller_variant_counts.tex)
-<figures/controller_variant_comparison.pdf, id=14, 524.48615pt x 205.77264pt>
+<figures/controller_variant_comparison.pdf, id=14, 524.76385pt x 203.56001pt>
 File: figures/controller_variant_comparison.pdf Graphic file (type pdf)
 <use figures/controller_variant_comparison.pdf>
 Package pdftex.def Info: figures/controller_variant_comparison.pdf  used on inp
 ut line 207.
-(pdftex.def)             Requested size: 505.89pt x 198.48143pt.
+(pdftex.def)             Requested size: 505.89pt x 196.24158pt.
 <figures/repair_sensitivity_summary.pdf, id=15, 250.53552pt x 174.65202pt>
 File: figures/repair_sensitivity_summary.pdf Graphic file (type pdf)
 <use figures/repair_sensitivity_summary.pdf>
@@ -428,9 +428,9 @@ s/type1/urw/courier/ucrr8a.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fon
 ts/type1/urw/times/utmb8a.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/font
 s/type1/urw/times/utmr8a.pfb>
 Output written on E:\learn3\B\new\2\paper\build\supplementary_material.pdf (7 p
-ages, 153548 bytes).
+ages, 150402 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
+ 97 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  34827 words of extra memory for PDF output out of 35830 (max. 10000000)
 

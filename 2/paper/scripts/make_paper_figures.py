@@ -335,7 +335,6 @@ def plot_main_results_overview() -> None:
     axes[0].scatter(x, ablation["base_recall"], s=28, color=COLORS["red"], marker="D", zorder=4, label="post-hoc recall")
     for i, task in enumerate(tasks):
         gap = float(ablation.loc[task, "source_only_support"] - ablation.loc[task, "source_route_support"])
-        axes[0].plot([i - width / 2, i + width / 2], [1.0, float(ablation.loc[task, "source_route_support"])], color=task_colors[task], lw=0.8, alpha=0.75)
         axes[0].text(i, 1.035, f"{gap:.2f}", ha="center", va="bottom", fontsize=5.8, color=COLORS["muted"])
     axes[0].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
     axes[0].set_title("(a) Source-only illusion", loc="left", fontweight="bold", fontsize=7.2)
@@ -918,56 +917,33 @@ def plot_controller_variant_comparison() -> None:
     set_style()
     summary = controller_variant_summary()
     write_controller_variant_count_table(summary)
-    controller = summary[summary["policy"].isin(["Naive stop", "Source-only", "Verifier-gate", "Eligibility-only", "Full controller"])].copy()
     repair = summary[summary["policy"].isin(["Random repair", "High-potential repair", "Ours"])].copy()
-    controller_labels = ["Naive", "Source-only", "Verifier", "Elig.-only", "Full"]
     repair_labels = ["Random", "High-pot.", "Residual-pot."]
     repair_colors = [COLORS["gray"], COLORS["blue"], COLORS["purple"]]
 
     fig, axes = plt.subplots(1, 2, figsize=(7.15, 2.70), constrained_layout=True)
     axes = axes.ravel()
 
-    x = np.arange(len(controller_labels))
-    unsafe_n = controller["unsafe_denominator"].to_numpy(dtype=float)
-    unsafe_safe = controller["safe_on_unsafe"].to_numpy(dtype=float)
-    unsafe_continue = controller["continue_rate_seeded_unsafe"].to_numpy(dtype=float) * unsafe_n
-    unsafe_abstain = controller["abstain_rate_seeded_unsafe"].to_numpy(dtype=float) * unsafe_n
+    budget = pd.read_csv(RESULTS / "budget_sensitivity.csv")
+    budget = budget[budget["challenger"].isin(["random", "high_potential", "residual_potential"])].copy()
+    label_map = {"random": "Random", "high_potential": "High-potential", "residual_potential": "Residual-potential"}
+    color_map = {"random": COLORS["gray"], "high_potential": COLORS["blue"], "residual_potential": COLORS["purple"]}
 
-    ax = axes[0]
-    ax.bar(x, unsafe_safe, width=0.62, color=COLORS["red"], label="unsafe SAFE")
-    ax.bar(x, unsafe_continue, bottom=unsafe_safe, width=0.62, color=COLORS["orange"], label="actionable CONTINUE")
-    ax.bar(x, unsafe_abstain, bottom=unsafe_safe + unsafe_continue, width=0.62, color=COLORS["gray"], label="fail-closed ABSTAIN")
-    for i, (bad, cont, abst) in enumerate(zip(unsafe_safe, unsafe_continue, unsafe_abstain)):
-        if bad > 0:
-            ax.text(i, bad / 2, f"{int(bad)}\nunsafe\nSAFE", ha="center", va="center", fontsize=5.3, color="white", weight="bold")
-        if cont > 0:
-            ax.text(i, bad + cont / 2, f"{int(cont)}\nCONT.", ha="center", va="center", fontsize=5.8, color="white", weight="bold")
-        if abst > 0:
-            ax.text(i, bad + cont + abst / 2, f"{int(abst)}\nABST.", ha="center", va="center", fontsize=5.8, color="white", weight="bold")
-    ax.text(
-        0.98,
-        0.98,
-        "complete-state SAFE: 1200/1200",
-        transform=ax.transAxes,
-        ha="right",
-        va="top",
-        fontsize=5.6,
-        color=COLORS["green"],
-        bbox=dict(facecolor="white", edgecolor="none", pad=0.5, alpha=0.9),
+    mean_budget = (
+        budget.groupby(["challenger", "budget"], as_index=False)[["mean_cost", "mean_repair_gain", "continue_rate"]]
+        .mean()
+        .sort_values(["challenger", "budget"])
     )
-    ax.set_title("(a) Unsafe states: safe vs actionable", loc="left", fontweight="bold")
-    ax.set_xticks(x, controller_labels, rotation=16, ha="right")
-    ax.set_ylim(0, 440)
-    ax.set_ylabel("count out of 400 unsafe states")
-    ax.legend(
-        frameon=False,
-        loc="upper center",
-        bbox_to_anchor=(0.5, -0.28),
-        ncol=3,
-        fontsize=5.5,
-        handlelength=1.0,
-        columnspacing=0.55,
-    )
+    for challenger in ["random", "high_potential", "residual_potential"]:
+        sub = mean_budget[mean_budget["challenger"] == challenger]
+        axes[0].plot(sub["mean_cost"], sub["mean_repair_gain"], marker="o", markersize=3.0, lw=1.25, color=color_map[challenger], label=label_map[challenger])
+        last = sub.iloc[-1]
+        axes[0].text(float(last["mean_cost"]) + 70, float(last["mean_repair_gain"]), label_map[challenger], fontsize=5.9, va="center", color=color_map[challenger])
+    axes[0].set_title("(a) Budget frontier: gain vs cost", loc="left", fontweight="bold")
+    axes[0].set_xlabel("mean repair cost")
+    axes[0].set_ylabel("mean residual items found")
+    axes[0].set_xlim(350, 9300)
+    axes[0].set_ylim(0, 360)
 
     gain = repair["mean_repair_gain_seeded_unsafe"].to_numpy(dtype=float)
     cost = repair["mean_cost_seeded_unsafe"].to_numpy(dtype=float)
@@ -987,7 +963,7 @@ def plot_controller_variant_comparison() -> None:
         }
         dx, dy = offsets[label]
         axes[1].text(c + dx, g + dy, label, fontsize=6.8, color=COLORS["ink"], va="center")
-    axes[1].set_title("(b) Repair: gain-cost tradeoff", loc="left", fontweight="bold")
+    axes[1].set_title("(b) Main budget point with uncertainty", loc="left", fontweight="bold")
     axes[1].set_xlabel("mean post-stop repair cost")
     axes[1].set_ylabel("mean residual oracle items found")
     axes[1].set_xlim(3200, 4550)
