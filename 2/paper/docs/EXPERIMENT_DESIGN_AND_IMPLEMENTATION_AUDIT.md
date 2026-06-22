@@ -5,9 +5,10 @@
 ## 0. 当前状态速查
 
 - 实验代码没有全部放在一个单文件里，但主实验代码集中在 `analysis/research_object_geometry/real_agent_pilot/`；配置在 `configs/`；论文图表生成在 `paper/scripts/make_paper_figures.py`。
-- Figure 4 现在不是“全是 1”的比例图，而是 count dashboard：左图显示 400 个 seeded unsafe states 中各策略输出 unsafe `SAFE`、`CONTINUE`、`ABSTAIN` 的数量，并用绿色菱形标注 1200 个 complete states 均被判为 `SAFE`；右图显示 repair gain-cost tradeoff。
+- 主文现在同时保留图和表：Figure 3 是 diagnostic evidence，Figure 4 是 controller evaluation；Table 1 是 source-only/source-route ablation，Table 2 是单个 `urllib3` boundary case，Table 3 是 seeded unsafe/complete controller counts。
+- Figure 4 现在不是“全是 1”的比例图，而是 count dashboard：左图只显示 400 个 seeded unsafe states 中各策略输出 unsafe `SAFE`、actionable `CONTINUE`、fail-closed `ABSTAIN` 的数量；`1200/1200` complete-state `SAFE` coverage 写入图内短注和 caption；右图显示 repair gain-cost tradeoff。
 - “Verifier-gate vs Full controller”的主结论不是 Full 在 seeded warning denominator 上更安全，而是 Full 同样避免 unsafe `SAFE`，同时把 productive unsafe states 转成可行动的 `CONTINUE`；Verifier-gate 是 fail-closed `ABSTAIN`，不给 source-route diagnosis 或 repair target。
-- 主文已经恢复独立 `Conclusion`；`Related Work` 已改成围绕 stopping、agent/tool workflow、verification/oversight 三条脉络说明本文区别，而不是单纯罗列文献。
+- 主文已经恢复独立 `Conclusion`；`Related Work` 已改成围绕 stopping、agent/tool workflow、verification/oversight 三条脉络说明本文区别，而不是单纯罗列文献。当前主文 PDF 为 10 页，References 从第 8 页开始，技术内容控制在 7 页内。
 - 当前仍应克制的边界：external repository oracle 是 pattern-defined，不是语义金标准；residual-potential 是启发式 repair target，不是 optimal active search；`SAFE` 是配置预算和 runtime-visible signals 下的 bounded certificate，不是 universal completion guarantee。
 
 ## 1. 实验要验证什么

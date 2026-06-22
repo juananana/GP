@@ -17,17 +17,23 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evidence-condition controller. The controller maps a runtime evidence log, declared source-route scope, and stop proposal to an exposure distribution over the intended source-route space. The support/Gini check is an eligibility test, not a completion proof. If the condition is localized or weak plausible gaps remain, the controller repairs or continues. It returns \textsc  {Safe}{} only when the evidence condition is broad and repair or audit reveals no residual evidence; otherwise it returns \textsc  {Continue}{} or \textsc  {Abstain}{}.}}{4}{}\protected@file@percent }
 \newlabel{fig:controller}{{2}{4}{}{figure.2}{}}
 \@writefile{toc}{\contentsline {paragraph}{Local stop evidence causes false certification.}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Source-only coverage hides route mismatch.}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Source-route geometry exposes the mismatch.}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Eligibility is only a precondition.}{4}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Diagnostic evidence for the stop condition. Source-only exposure looks complete at localized stops, but source-route support reveals route mismatch and low post-hoc recall; numbers above panel (a) are the source-only minus source-route support gaps. The support--Gini view shows how route-partitioned and extended audits move toward the configured eligibility region. The \texttt  {urllib3} boundary is one fixed eligible-but-residual-positive state: support \(0.800\), recall \(0.835\), and 115 missed oracle items before the extended audit reaches full support and recall.}}{5}{}\protected@file@percent }
 \newlabel{fig:main_results}{{3}{5}{}{figure.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Source-only coverage hides route mismatch.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Source-route geometry exposes the mismatch.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Eligibility is only a precondition.}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Full control is safe and actionable.}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Residual repair gives gain at audit cost.}{5}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Source-only versus source-route ablation. Homogeneous agents visit all sources, so a source-only controller would see full source support even when the source-route evidence condition is localized and the stop would be a false certification.}}{6}{}\protected@file@percent }
+\newlabel{tab:source_only_ablation}{{1}{6}{}{table.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Controller evaluation on seeded validation states. Left: on 400 seeded unsafe residual-positive states, Verifier-gate is safe but fail-closed (\textsc  {Abstain}{}), while the Full controller is safe and actionable (\textsc  {Continue}{}); all policies certify \(1200/1200\) seeded complete states as \textsc  {Safe}{}. Right: repair targeting buys residual evidence at explicit audit cost. These seeded denominators differ from the one-state \texttt  {urllib3} boundary in Figure~\ref {fig:main_results}.}}{6}{}\protected@file@percent }
 \newlabel{fig:controller_variants}{{4}{6}{}{figure.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and Limitations}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{6}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Boundary case showing why eligibility is not proof. The state passes the source-route eligibility gate, but post-hoc recall remains below the completion threshold; runtime weak-gap control therefore returns CONTINUE rather than SAFE.}}{6}{}\protected@file@percent }
+\newlabel{tab:eligibility_boundary}{{2}{6}{}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Seeded unsafe/complete controller decision counts. Unsafe and Complete are the seeded denominators; FCR is SAFE-on-unsafe divided by Unsafe, and safe coverage is SAFE-on-complete divided by Complete. These denominators differ from the one-state eligibility boundary in Table~\ref {tab:eligibility_boundary}. Oracle labels are used only after decisions are fixed. S/C/A reports SAFE/CONTINUE/ABSTAIN counts.}}{6}{}\protected@file@percent }
+\newlabel{tab:main_controller_counts}{{3}{6}{}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and Limitations}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{7}{}\protected@file@percent }
 \bibstyle{plainnat}
 \bibdata{references}
 \bibcite{amodei2016concrete}{{1}{2016}{{Amodei et~al.}}{{Amodei, Olah, Steinhardt, Christiano, Schulman, and Man{\'e}}}}
@@ -76,4 +82,4 @@
 \bibcite{yao2022alfworld}{{44}{2022}{{Yao et~al.}}{{Yao, Rao, Hausknecht, and Narasimhan}}}
 \bibcite{yao2023react}{{45}{2023}{{Yao et~al.}}{{Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao}}}
 \bibcite{zhou2024webarena}{{46}{2024}{{Zhou et~al.}}{{Zhou, Xu, Zhu, Zhou, Lo, Sridhar, Cheng, Ou, Bisk, Fried, Alon, and Neubig}}}
-\gdef \@abspage@last{9}
+\gdef \@abspage@last{10}

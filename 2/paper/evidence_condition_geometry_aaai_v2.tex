@@ -362,6 +362,30 @@ with residual candidates), and post-stop repair cost. Config files specify
 seeds, routes, thresholds, budgets, oracle paths, and output paths; full command
 lines, CSV/JSON exports, and denominator tables are in the supplement.
 
+We also fix the comparison units before applying decision rules. The same
+observed stop state is reused across source-only, source-route, eligibility, and
+full-control ablations; the same seeded unsafe and complete-state perturbations
+are reused across decision variants; and repair variants differ only in target
+ordering under the same budget. Thresholds \((\tau_s=0.75,\tau_g=0.70)\) are
+read from configuration, not tuned per task. The post-hoc \(0.90\) recall
+threshold defines evaluation safety labels, but it is not visible to the
+controller. These constraints are important: the experiments are designed to
+stress whether the certificate condition is adequate, not to hand-code a rule
+that recognizes a desired outcome.
+
+The ablation suite separates five questions that would otherwise be confounded.
+The \emph{granularity ablation} compares source-only and source-route exposure
+on identical stops. The \emph{proof-separation ablation} asks whether passing
+the eligibility gate is enough, or whether residual repair is still needed. The
+\emph{decision-rule ablation} compares Naive, Source-only, Verifier-gate,
+Eligibility-only, and Full controllers on the same seeded states. The
+\emph{repair-target ablation} varies Random, High-potential, and
+Residual-potential target ordering without changing the decision rule. The
+\emph{threshold/budget sweep} then changes conservatism and audit budget after
+the main design is fixed. This ordering matters: the paper does not select a
+threshold to make the Full controller win; it first defines what each controller
+can observe, then evaluates the consequences on frozen states.
+
 \paragraph{Local stop evidence causes false certification.}
 We first ask whether ordinary local stop signals are enough for a scope-wide
 completion claim. Homogeneous-route stops touch sources through one repeated
@@ -393,6 +417,8 @@ source-route support is only \(0.20\)--\(0.33\) and recall is
 completion: touching a file through a timeout route does not certify TLS, retry,
 exception, cleanup, or policy routes in that file.
 
+\input{generated/table_source_only_ablation.tex}
+
 \paragraph{Source-route geometry exposes the mismatch.}
 Figure~\ref{fig:main_results} next plots source-route support against exposure
 Gini. Homogeneous stops remain low-support and high-concentration; route-
@@ -410,6 +436,8 @@ support and recall \(1.000\). This denominator is one fixed
 eligible-but-residual-positive \texttt{urllib3} state, not the seeded controller
 validation denominator used below.
 
+\input{generated/table_eligibility_boundary.tex}
+
 \paragraph{Full control is safe and actionable.}
 We then compare Naive, Source-only, Verifier-gate, Eligibility-only, and Full on
 the same seeded unsafe repair states and seeded complete-state perturbations.
@@ -420,6 +448,8 @@ Full controller also has FCR \(0\) and preserves \(1200/1200\) complete-state
 states. Thus the advantage over a generic verifier is actionability:
 \abstain{} refuses certification, whereas \cont{} points to the next audit
 target.
+
+\input{generated/table_main_controller_counts.tex}
 
 \begin{figure*}[t]
 \centering
@@ -442,6 +472,19 @@ cost-bearing mechanism that turns a weak stop into a next action; it is a
 high-yield heuristic here, not an optimal active-search claim. Threshold/budget
 sweeps and a small claim-verification interface sanity check are reported in the
 supplement.
+
+The sensitivity sweep supports the same interpretation rather than a new main
+claim. Varying \(\tau_s,\tau_g\) and repair budget changes the
+\safe{}/\cont{}/\abstain{} mixture and the audit cost, as expected for a
+conservatism knob, but it does not turn source-route eligibility into a
+universal completion guarantee. The small claim-verification pilot is included
+only to check that the interface can be instantiated with human-style routes
+such as support, contradiction, exception paths, configuration defaults, and
+scope boundaries. It is not treated as a benchmark for factuality or semantic
+truth. The main evidence remains the controlled and repository-audit
+denominators above: fixed stop states for diagnostic mismatch, one boundary
+state for eligibility-not-proof, and seeded unsafe/complete perturbations for
+decision counts.
 
 \FloatBarrier
 
