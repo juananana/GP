@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  22 JUN 2026 16:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  22 JUN 2026 16:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -832,52 +832,42 @@ LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
 (Font)              using `OT1/ptm/m/sc' instead on input line 336.
 
 [3]
-Underfull \hbox (badness 1048) in paragraph at lines 359--372
-\OT1/ptm/m/n/10 (+20) clauses over four pol-icy routes; \OT1/pcr/m/n/10 code-re
-po\OT1/ptm/m/n/10 (+20) , 20 risks
- []
-
-
-Underfull \vbox (badness 3449) has occurred while \output is active []
-
- [4 <./figures/fig2-5-2.png>]
-<figures/main_results_overview.pdf, id=34, 525.12611pt x 322.80551pt>
+<figures/main_results_overview.pdf, id=30, 525.08826pt x 219.27097pt>
 File: figures/main_results_overview.pdf Graphic file (type pdf)
 <use figures/main_results_overview.pdf>
 Package pdftex.def Info: figures/main_results_overview.pdf  used on input line 
-427.
-(pdftex.def)             Requested size: 505.89pt x 310.99803pt.
-<figures/controller_variant_comparison.pdf, id=35, 524.74518pt x 223.32605pt>
+376.
+(pdftex.def)             Requested size: 505.89pt x 211.26056pt.
+
+Underfull \vbox (badness 2088) has occurred while \output is active []
+
+ [4 <./figures/fig2-5-2.png>]
+<figures/controller_variant_comparison.pdf, id=35, 524.48615pt x 205.77264pt>
 File: figures/controller_variant_comparison.pdf Graphic file (type pdf)
 <use figures/controller_variant_comparison.pdf>
 Package pdftex.def Info: figures/controller_variant_comparison.pdf  used on inp
-ut line 494.
-(pdftex.def)             Requested size: 505.89pt x 215.31064pt.
-
-Underfull \vbox (badness 3302) has occurred while \output is active []
-
- [5]
-[6 <./figures/main_results_overview.pdf>] [7
+ut line 426.
+(pdftex.def)             Requested size: 505.89pt x 198.48143pt.
+ [5 <./figures/main_results_overview.pdf>] [6
 
  <./figures/controller_variant_comparison.pdf>]
-(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.bbl [8
+(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.bbl [7
 
 ]
-[9]) [10
+[8]) [9
 
-]
-(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.aux)
+] (E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 20617 strings out of 467871
- 401433 string characters out of 5418860
- 834669 words of memory out of 5000000
+ 20620 strings out of 467871
+ 401470 string characters out of 5418860
+ 833667 words of memory out of 5000000
  48816 multiletter control sequences out of 15000+600000
- 664799 words of font info for 301 fonts, out of 8000000 for 9000
+ 664915 words of font info for 303 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,8n,94p,1034b,430s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
@@ -894,9 +884,9 @@ Data/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/EPIC/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/EPIC/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
 Output written on E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaa
-i_v2.pdf (10 pages, 1689805 bytes).
+i_v2.pdf (9 pages, 1677584 bytes).
 PDF statistics:
- 139 PDF objects out of 1000 (max. 8388607)
+ 134 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  44577 words of extra memory for PDF output out of 51595 (max. 10000000)
 

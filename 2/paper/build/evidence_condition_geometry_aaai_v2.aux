@@ -13,26 +13,21 @@
 \@writefile{toc}{\contentsline {section}{\numberline {5}Method}{3}{}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Evidence-Condition Controller}}{3}{}\protected@file@percent }
 \newlabel{alg:controller}{{1}{3}{}{algorithm.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Experiments}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experiments and Results}{3}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evidence-condition controller. The controller maps a runtime evidence log, declared source-route scope, and stop proposal to an exposure distribution over the intended source-route space. The support/Gini check is an eligibility test, not a completion proof. If the condition is localized or weak plausible gaps remain, the controller repairs or continues. It returns \textsc  {Safe}{} only when the evidence condition is broad and repair or audit reveals no residual evidence; otherwise it returns \textsc  {Continue}{} or \textsc  {Abstain}{}.}}{4}{}\protected@file@percent }
 \newlabel{fig:controller}{{2}{4}{}{figure.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{Tasks and states.}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Ablations.}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Reproducibility and leakage control.}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Results}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Local stop signals are not certificates.}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Source-only hides route mismatch.}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Source-route geometry exposes mismatch, not proof.}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Eligibility is only a precondition.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Local stop evidence causes false certification.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Source-only coverage hides route mismatch.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Source-route geometry exposes the mismatch.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Eligibility is only a precondition.}{4}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Diagnostic evidence for the stop condition. Source-only exposure looks complete at localized stops, but source-route support reveals route mismatch and low post-hoc recall; numbers above panel (a) are the source-only minus source-route support gaps. The support--Gini view shows how route-partitioned and extended audits move toward the configured eligibility region. The \texttt  {urllib3} boundary is one fixed eligible-but-residual-positive state: support \(0.800\), recall \(0.835\), and 115 missed oracle items before the extended audit reaches full support and recall.}}{5}{}\protected@file@percent }
+\newlabel{fig:main_results}{{3}{5}{}{figure.3}{}}
 \@writefile{toc}{\contentsline {paragraph}{Full control is safe and actionable.}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Repair cost is an explicit tradeoff.}{5}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Diagnostic chain and granularity ablation. Local homogeneous stops have low source-route support and high concentration; source-only support is misleadingly complete; source-route support/Gini reveal the mismatch; and the \texttt  {urllib3} route-partitioned state is eligible but residual-positive, with recall \(0.835\) below the post-hoc \(0.90\) threshold until extended audit reaches \(1.000\).}}{6}{}\protected@file@percent }
-\newlabel{fig:main_results}{{3}{6}{}{figure.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{Sanity checks.}{6}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Controller evaluation dashboard for safe, actionable, and cost-aware stopping on seeded residual-warning states and seeded complete-state perturbations. The decision panel compares safety and usefulness: verifier-gate is safe on this denominator but fail-closed, while the full controller is safe and actionable on unsafe states with runtime residual candidates. The repair panel compares target rules and budget choices, showing residual-potential as a high-yield but non-optimal repair heuristic.}}{7}{}\protected@file@percent }
-\newlabel{fig:controller_variants}{{4}{7}{}{figure.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion and Limitations}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Residual repair gives gain at audit cost.}{5}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Controller evaluation on seeded validation states. Left: on 400 seeded unsafe residual-positive states, Verifier-gate is safe but fail-closed (\textsc  {Abstain}{}), while the Full controller is safe and actionable (\textsc  {Continue}{}); all policies certify \(1200/1200\) seeded complete states as \textsc  {Safe}{}. Right: repair targeting buys residual evidence at explicit audit cost. These seeded denominators differ from the one-state \texttt  {urllib3} boundary in Figure~\ref {fig:main_results}.}}{6}{}\protected@file@percent }
+\newlabel{fig:controller_variants}{{4}{6}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and Limitations}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{6}{}\protected@file@percent }
 \bibstyle{plainnat}
 \bibdata{references}
 \bibcite{amodei2016concrete}{{1}{2016}{{Amodei et~al.}}{{Amodei, Olah, Steinhardt, Christiano, Schulman, and Man{\'e}}}}
@@ -81,4 +76,4 @@
 \bibcite{yao2022alfworld}{{44}{2022}{{Yao et~al.}}{{Yao, Rao, Hausknecht, and Narasimhan}}}
 \bibcite{yao2023react}{{45}{2023}{{Yao et~al.}}{{Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao}}}
 \bibcite{zhou2024webarena}{{46}{2024}{{Zhou et~al.}}{{Zhou, Xu, Zhu, Zhou, Lo, Sridhar, Cheng, Ou, Bisk, Fried, Alon, and Neubig}}}
-\gdef \@abspage@last{10}
+\gdef \@abspage@last{9}

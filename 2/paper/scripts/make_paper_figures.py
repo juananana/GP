@@ -323,42 +323,31 @@ def plot_main_results_overview() -> None:
     ablation["short_task"] = ablation["task"].map({"policy_docset_v1": "policy-docset", "code_repo_v1": "code-repo", "requests": "requests", "urllib3": "urllib3"})
     ablation = ablation.set_index("short_task").reindex(tasks)
 
-    fig, axes = plt.subplots(2, 2, figsize=(7.15, 4.35), constrained_layout=True)
+    fig, axes = plt.subplots(1, 3, figsize=(7.15, 2.70), constrained_layout=True)
     axes = axes.ravel()
     task_colors = {"policy-docset": COLORS["blue"], "code-repo": COLORS["teal"], "requests": COLORS["orange"], "urllib3": COLORS["purple"]}
     markers = {"homogeneous": "o", "route_partitioned": "s", "extended_audit": "^"}
     x = np.arange(len(tasks))
 
-    axes[0].plot(x, base["support"], color=COLORS["gray"], marker="o", lw=1.3, label="homogeneous support")
-    axes[0].plot(x, base["gini"], color=COLORS["red"], marker="D", lw=1.1, label="homogeneous Gini")
-    for i, task in enumerate(tasks):
-        axes[0].scatter(i, base.loc[task, "support"], s=34, color=task_colors[task], edgecolor="white", linewidth=0.7, zorder=3)
-    axes[0].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
-    axes[0].set_title("(a) Localized exposure at stop", loc="left", fontweight="bold")
-    axes[0].set_ylim(0, 1.05)
-    axes[0].set_xticks(x, labels, rotation=18, ha="right")
-    axes[0].set_ylabel("support / Gini")
-    axes[0].legend(frameon=False, loc="upper left", handlelength=1.1)
-
     width = 0.26
-    axes[1].bar(x - width / 2, ablation["source_only_support"], width, label="source-only", color=COLORS["green"], alpha=0.90)
-    axes[1].bar(x + width / 2, ablation["source_route_support"], width, label="source-route", color=COLORS["purple"], alpha=0.90)
+    axes[0].bar(x - width / 2, ablation["source_only_support"], width, label="source-only support", color=COLORS["green"], alpha=0.90)
+    axes[0].bar(x + width / 2, ablation["source_route_support"], width, label="source-route support", color=COLORS["purple"], alpha=0.90)
+    axes[0].scatter(x, ablation["base_recall"], s=28, color=COLORS["red"], marker="D", zorder=4, label="post-hoc recall")
     for i, task in enumerate(tasks):
         gap = float(ablation.loc[task, "source_only_support"] - ablation.loc[task, "source_route_support"])
-        axes[1].plot([i - width / 2, i + width / 2], [1.0, float(ablation.loc[task, "source_route_support"])], color=task_colors[task], lw=0.9, alpha=0.85)
-        axes[1].text(i, 1.03, f"-{gap:.2f}", ha="center", va="bottom", fontsize=6.2, color=COLORS["muted"])
-    axes[1].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
-    axes[1].set_title("(b) Source-only illusion", loc="left", fontweight="bold")
-    axes[1].set_ylim(0, 1.12)
-    axes[1].set_xticks(x, labels, rotation=18, ha="right")
-    axes[1].set_ylabel("support")
-    axes[1].legend(frameon=False, loc="lower left", handlelength=1.1)
+        axes[0].plot([i - width / 2, i + width / 2], [1.0, float(ablation.loc[task, "source_route_support"])], color=task_colors[task], lw=0.8, alpha=0.75)
+        axes[0].text(i, 1.035, f"{gap:.2f}", ha="center", va="bottom", fontsize=5.8, color=COLORS["muted"])
+    axes[0].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[0].set_title("(a) Source-only illusion", loc="left", fontweight="bold", fontsize=7.2)
+    axes[0].set_ylim(0, 1.13)
+    axes[0].set_xticks(x, labels, rotation=18, ha="right")
+    axes[0].set_ylabel("support / recall")
 
     condition_order = ["homogeneous", "route_partitioned", "extended_audit"]
     for condition in condition_order:
         sub = overview[overview["condition"] == condition]
         for _, row in sub.iterrows():
-            axes[2].scatter(
+            axes[1].scatter(
                 row["support"],
                 row["gini"],
                 s=42,
@@ -369,66 +358,41 @@ def plot_main_results_overview() -> None:
                 zorder=3,
                 alpha=0.95,
             )
-    axes[2].axvline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
-    axes[2].axhline(THRESHOLDS["tau_gini"], color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
-    axes[2].fill_between([SAFE_SUPPORT_MIN, 1.02], 0, THRESHOLDS["tau_gini"], color=COLORS["green_light"], alpha=0.55, zorder=0)
-    axes[2].set_title("(c) Source-route diagnosis", loc="left", fontweight="bold")
-    axes[2].set_xlim(0, 1.04)
-    axes[2].set_ylim(0, 1.02)
-    axes[2].set_xlabel("source-route support")
-    axes[2].set_ylabel("exposure Gini")
+    axes[1].axvline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[1].axhline(THRESHOLDS["tau_gini"], color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[1].fill_between([SAFE_SUPPORT_MIN, 1.02], 0, THRESHOLDS["tau_gini"], color=COLORS["green_light"], alpha=0.55, zorder=0)
+    axes[1].set_title("(b) Source-route diagnosis", loc="left", fontweight="bold", fontsize=7.2)
+    axes[1].set_xlim(0, 1.04)
+    axes[1].set_ylim(0, 1.02)
+    axes[1].set_xlabel("source-route support")
+    axes[1].set_ylabel("exposure Gini")
     handles = [
         plt.Line2D([0], [0], marker=markers[c], color="none", markerfacecolor=COLORS["gray"], markeredgecolor="white", markersize=6, label=c.replace("_", "-"))
         for c in condition_order
     ]
-    axes[2].legend(handles=handles, frameon=False, loc="lower left", handlelength=0.8)
+    axes[1].legend(handles=handles, frameon=False, loc="lower left", handlelength=0.8, fontsize=5.8)
 
-    plot_df = overview.copy()
-    plot_df["residual_yield"] = np.maximum(0.0, SAFE_RECALL_MIN - plot_df["recall"].astype(float))
-    for condition in condition_order:
-        sub = plot_df[plot_df["condition"] == condition]
-        for _, row in sub.iterrows():
-            axes[3].scatter(
-                row["support"],
-                row["recall"],
-                s=36 + 120 * float(row["residual_yield"]),
-                color=task_colors[row["task"]],
-                marker=markers[condition],
-                edgecolor="white",
-                linewidth=0.75,
-                alpha=0.95,
-                zorder=3,
-            )
     if "urllib3" in broad.index and "urllib3" in extended.index:
         u0 = broad.loc["urllib3"]
         u1 = extended.loc["urllib3"]
-        axes[3].annotate(
-            "eligible + residual",
-            xy=(float(u0["support"]), float(u0["recall"])),
-            xytext=(0.46, 0.72),
-            arrowprops=dict(arrowstyle="->", lw=0.75, color=COLORS["muted"]),
-            fontsize=6.6,
-            color=COLORS["ink"],
-        )
-        axes[3].annotate(
-            "extended audit",
-            xy=(float(u1["support"]), float(u1["recall"])),
-            xytext=(0.73, 0.98),
-            arrowprops=dict(arrowstyle="->", lw=0.75, color=COLORS["muted"]),
-            fontsize=6.6,
-            color=COLORS["ink"],
-        )
-    axes[3].axhline(SAFE_RECALL_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
-    axes[3].axvline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
-    axes[3].set_title("(d) Eligibility is not proof", loc="left", fontweight="bold")
-    axes[3].set_xlim(0, 1.04)
-    axes[3].set_ylim(0, 1.05)
-    axes[3].set_xlabel("source-route support")
-    axes[3].set_ylabel("bounded-oracle recall")
+        axes[2].plot([float(u0["support"]), float(u1["support"])], [float(u0["recall"]), float(u1["recall"])], color=COLORS["purple"], lw=1.2, zorder=2)
+        axes[2].scatter(float(u0["support"]), float(u0["recall"]), s=58, color=COLORS["orange"], marker="s", edgecolor="white", linewidth=0.8, zorder=3, label="eligible boundary")
+        axes[2].scatter(float(u1["support"]), float(u1["recall"]), s=58, color=COLORS["green"], marker="^", edgecolor="white", linewidth=0.8, zorder=3, label="extended audit")
+        axes[2].text(float(u0["support"]) + 0.012, float(u0["recall"]) + 0.010, "115 missed", ha="left", va="bottom", fontsize=6.0, color=COLORS["muted"])
+    axes[2].axhline(SAFE_RECALL_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[2].axvline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[2].set_title("(c) Eligibility boundary", loc="left", fontweight="bold", fontsize=7.2)
+    axes[2].set_xlim(0.66, 1.03)
+    axes[2].set_ylim(0.78, 1.02)
+    axes[2].set_xlabel("urllib3 support")
+    axes[2].set_ylabel("bounded-oracle recall")
+    axes[2].legend(frameon=False, loc="lower right", handlelength=0.8, fontsize=5.8)
 
     for ax in axes:
         ax.grid(axis="y", alpha=0.9)
         ax.set_axisbelow(True)
+    handles0, labels0 = axes[0].get_legend_handles_labels()
+    fig.legend(handles0, labels0, frameon=False, loc="lower center", bbox_to_anchor=(0.30, -0.08), ncol=3, fontsize=5.8, handlelength=1.0, columnspacing=0.8)
     save(fig, "main_results_overview")
 
 
@@ -960,22 +924,19 @@ def plot_controller_variant_comparison() -> None:
     repair_labels = ["Random", "High-pot.", "Residual-pot."]
     repair_colors = [COLORS["gray"], COLORS["blue"], COLORS["purple"]]
 
-    fig, axes = plt.subplots(1, 2, figsize=(7.15, 2.95), constrained_layout=True)
+    fig, axes = plt.subplots(1, 2, figsize=(7.15, 2.70), constrained_layout=True)
     axes = axes.ravel()
 
     x = np.arange(len(controller_labels))
     unsafe_n = controller["unsafe_denominator"].to_numpy(dtype=float)
-    safe_n = controller["safe_denominator"].to_numpy(dtype=float)
     unsafe_safe = controller["safe_on_unsafe"].to_numpy(dtype=float)
     unsafe_continue = controller["continue_rate_seeded_unsafe"].to_numpy(dtype=float) * unsafe_n
     unsafe_abstain = controller["abstain_rate_seeded_unsafe"].to_numpy(dtype=float) * unsafe_n
-    safe_on_safe = controller["safe_on_safe"].to_numpy(dtype=float)
 
     ax = axes[0]
-    ax.bar(x, unsafe_safe, width=0.62, color=COLORS["red"], label="unsafe states: SAFE")
-    ax.bar(x, unsafe_continue, bottom=unsafe_safe, width=0.62, color=COLORS["orange"], label="unsafe states: CONTINUE")
-    ax.bar(x, unsafe_abstain, bottom=unsafe_safe + unsafe_continue, width=0.62, color=COLORS["gray"], label="unsafe states: ABSTAIN")
-    ax.scatter(x, safe_on_safe, color=COLORS["green"], marker="D", s=26, zorder=4, label="complete states: SAFE")
+    ax.bar(x, unsafe_safe, width=0.62, color=COLORS["red"], label="unsafe SAFE")
+    ax.bar(x, unsafe_continue, bottom=unsafe_safe, width=0.62, color=COLORS["orange"], label="actionable CONTINUE")
+    ax.bar(x, unsafe_abstain, bottom=unsafe_safe + unsafe_continue, width=0.62, color=COLORS["gray"], label="fail-closed ABSTAIN")
     for i, (bad, cont, abst) in enumerate(zip(unsafe_safe, unsafe_continue, unsafe_abstain)):
         if bad > 0:
             ax.text(i, bad / 2, f"{int(bad)}\nunsafe\nSAFE", ha="center", va="center", fontsize=5.3, color="white", weight="bold")
@@ -983,40 +944,29 @@ def plot_controller_variant_comparison() -> None:
             ax.text(i, bad + cont / 2, f"{int(cont)}\nCONT.", ha="center", va="center", fontsize=5.8, color="white", weight="bold")
         if abst > 0:
             ax.text(i, bad + cont + abst / 2, f"{int(abst)}\nABST.", ha="center", va="center", fontsize=5.8, color="white", weight="bold")
-    ax.axhline(400, color="#374151", lw=0.65, ls="--")
-    ax.text(-0.45, 408, "unsafe denominator = 400", fontsize=5.7, color=COLORS["muted"], va="bottom")
     ax.text(
-        4.45,
-        1288,
-        "complete SAFE: 1200/1200\nfor all policies",
+        0.98,
+        0.98,
+        "complete-state SAFE: 1200/1200",
+        transform=ax.transAxes,
         ha="right",
         va="top",
         fontsize=5.6,
         color=COLORS["green"],
         bbox=dict(facecolor="white", edgecolor="none", pad=0.5, alpha=0.9),
     )
-    ax.set_title("(a) Decision counts: safe vs actionable", loc="left", fontweight="bold")
+    ax.set_title("(a) Unsafe states: safe vs actionable", loc="left", fontweight="bold")
     ax.set_xticks(x, controller_labels, rotation=16, ha="right")
-    ax.set_ylim(0, 1320)
-    ax.set_ylabel("seeded-state count")
-    ax.text(
-        2,
-        1060,
-        "Verifier/eligibility: safe on warned states, but fail closed",
-        ha="center",
-        va="center",
-        fontsize=5.6,
-        color=COLORS["muted"],
-        bbox=dict(facecolor="white", edgecolor="none", pad=0.4, alpha=0.86),
-    )
+    ax.set_ylim(0, 440)
+    ax.set_ylabel("count out of 400 unsafe states")
     ax.legend(
         frameon=False,
         loc="upper center",
-        bbox_to_anchor=(0.5, -0.24),
-        ncol=2,
+        bbox_to_anchor=(0.5, -0.28),
+        ncol=3,
         fontsize=5.5,
         handlelength=1.0,
-        columnspacing=0.8,
+        columnspacing=0.55,
     )
 
     gain = repair["mean_repair_gain_seeded_unsafe"].to_numpy(dtype=float)
