@@ -162,6 +162,21 @@ Figure~3 and Figure~4 are regenerated from fixed CSV outputs by
 \path{paper/generated/table_controller_variant_counts.tex}, which is the count
 table used below.
 
+\section*{Controller Certificate Proof Sketch}
+
+Proposition~2 in the main paper is a semantic statement about
+Algorithm~1, not a guarantee that the open world contains no further evidence.
+The algorithm first computes source-route support and exposure concentration
+from runtime-visible logs. If the eligibility predicate fails and no repair
+budget remains, the only possible return is \abstain{}. If repair is run, any
+residual evidence found by the fixed runtime-visible repair rule immediately
+forces \cont{}. The only branch returning \safe{} is reached after eligibility is
+true and the budgeted repair/audit has produced no residual evidence. Therefore
+the returned label has the stated bounded meaning: \safe{} certifies the
+declared evidence condition under the fixed budget and runtime-visible repair
+rule; \cont{} records productive residual evidence; and \abstain{} records the
+absence of a defensible certificate under budget.
+
 \section*{Controller Variant Details}
 
 Figure~\ref{fig:controller_variant_comparison} compares decision policies on the
@@ -175,6 +190,12 @@ The main figure reports seeded unsafe-state FCR and seeded safe-state coverage.
 The observed fixed stop states remain the boundary states from which these
 seeded validations are derived; they are summarized in
 Table~\ref{tab:controller_decisions}.
+Table~\ref{tab:eligibility_boundary} has a different denominator: it isolates
+the single eligible-but-residual-positive \texttt{urllib3} boundary state.
+Tables~\ref{tab:main_controller_counts} and
+\ref{tab:controller_variant_counts} use seeded unsafe and complete-state
+denominators. These tables should therefore be read as complementary evidence,
+not as directly comparable ratios over the same sample.
 
 \input{generated/table_controller_variant_counts.tex}
 

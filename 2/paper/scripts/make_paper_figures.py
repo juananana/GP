@@ -656,8 +656,8 @@ Policy & Unsafe denom. & Safe denom. & SAFE-on-unsafe & SAFE-on-safe
 \centering
 \small
 \setlength{\tabcolsep}{2.8pt}
-\caption{Seeded unsafe/complete controller decision counts for
-Figure~\ref{fig:controller_variants}. Unsafe and Complete are the seeded
+\caption{Seeded unsafe/complete controller decision counts. Unsafe and Complete
+are the seeded
 denominators; FCR is SAFE-on-unsafe divided by Unsafe, and safe coverage is
 SAFE-on-complete divided by Complete. These denominators differ from the
 one-state eligibility boundary in Table~\ref{tab:eligibility_boundary}. Oracle
@@ -960,23 +960,43 @@ def plot_controller_variant_comparison() -> None:
     unsafe_abstain = controller["abstain_rate_seeded_unsafe"].to_numpy(dtype=float)
     safe_cov = controller["safe_coverage_seeded_safe"].to_numpy(dtype=float)
 
-    axes[0].bar(x, fcr, color=controller_colors, width=0.64)
-    for i, val in enumerate(fcr):
-        axes[0].text(i, min(1.03, val + 0.035), f"{val:.2f}", ha="center", va="bottom", fontsize=6.6)
-    axes[0].set_title("(a) False certification on seeded unsafe states", loc="left", fontweight="bold")
+    width = 0.32
+    axes[0].bar(x - width / 2, fcr, color=COLORS["red"], width=width, label="FCR")
+    axes[0].bar(x + width / 2, safe_cov, color=COLORS["green"], width=width, label="safe coverage")
+    for i, bad in enumerate(fcr):
+        if bad >= 0.5:
+            axes[0].text(i - width / 2, 1.02, "FCR=1", ha="center", va="bottom", fontsize=5.9)
+        else:
+            axes[0].text(i - width / 2, 0.055, "0", ha="center", va="bottom", fontsize=5.9, color=COLORS["red"])
+    axes[0].text(
+        0.98,
+        0.12,
+        "safe coverage=1.0\nfor all variants",
+        transform=axes[0].transAxes,
+        ha="right",
+        va="bottom",
+        fontsize=5.8,
+        color=COLORS["green"],
+        bbox=dict(facecolor="white", edgecolor="none", pad=0.7, alpha=0.82),
+    )
+    axes[0].set_title("(a) Safety: FCR and SAFE coverage", loc="left", fontweight="bold")
     axes[0].set_xticks(x, controller_labels, rotation=18, ha="right")
-    axes[0].set_ylim(0, 1.08)
-    axes[0].set_ylabel("FCR")
+    axes[0].set_ylim(0, 1.12)
+    axes[0].set_ylabel("rate")
+    axes[0].legend(frameon=False, loc="upper right", ncol=2, handlelength=0.9, columnspacing=0.8, fontsize=6.1)
 
-    width = 0.25
-    axes[1].bar(x - width, safe_cov, width, color=COLORS["green"], label="safe coverage")
-    axes[1].bar(x, unsafe_continue, width, color=COLORS["orange"], label="CONTINUE on unsafe")
-    axes[1].bar(x + width, unsafe_abstain, width, color=COLORS["gray"], label="ABSTAIN on unsafe")
-    axes[1].set_title("(b) Coverage and conservatism", loc="left", fontweight="bold")
+    axes[1].bar(x, unsafe_continue, width=0.62, color=COLORS["orange"], label="actionable CONTINUE")
+    axes[1].bar(x, unsafe_abstain, bottom=unsafe_continue, width=0.62, color=COLORS["gray"], label="fail-closed ABSTAIN")
+    for i, (cont, abst) in enumerate(zip(unsafe_continue, unsafe_abstain)):
+        if cont > 0:
+            axes[1].text(i, cont / 2, f"{cont:.2f}", ha="center", va="center", fontsize=6.3, color="white", weight="bold")
+        if abst > 0:
+            axes[1].text(i, cont + abst / 2, f"{abst:.2f}", ha="center", va="center", fontsize=6.3, color="white", weight="bold")
+    axes[1].set_title("(b) Usefulness: action vs fail-closed", loc="left", fontweight="bold")
     axes[1].set_xticks(x, controller_labels, rotation=18, ha="right")
     axes[1].set_ylim(0, 1.08)
-    axes[1].set_ylabel("rate")
-    axes[1].legend(frameon=False, loc="upper center", ncol=3, bbox_to_anchor=(0.50, 1.02), handlelength=0.9, columnspacing=0.7, fontsize=6.3)
+    axes[1].set_ylabel("unsafe-state decision rate")
+    axes[1].legend(frameon=False, loc="upper center", ncol=2, bbox_to_anchor=(0.50, 1.02), handlelength=0.9, columnspacing=0.8, fontsize=6.3)
 
     gain = repair["mean_repair_gain_seeded_unsafe"].to_numpy(dtype=float)
     cost = repair["mean_cost_seeded_unsafe"].to_numpy(dtype=float)
@@ -990,7 +1010,7 @@ def plot_controller_variant_comparison() -> None:
         axes[2].errorbar(c, g, yerr=[[low], [high]], fmt="none", ecolor="#374151", elinewidth=0.75, capsize=2, zorder=2)
         axes[2].scatter(c, g, s=52, color=color, edgecolor="white", linewidth=0.7, zorder=3)
         axes[2].text(c + 45, g + (7 if i != 0 else -11), label, fontsize=6.7, color=COLORS["ink"], va="center")
-    axes[2].set_title("(c) Repair gain-cost tradeoff", loc="left", fontweight="bold")
+    axes[2].set_title("(c) Cost: repair gain per target rule", loc="left", fontweight="bold")
     axes[2].set_xlabel("mean cost")
     axes[2].set_ylabel("mean new items")
     axes[2].set_xlim(3200, 4550)
@@ -1019,7 +1039,7 @@ def plot_controller_variant_comparison() -> None:
             alpha=0.88,
             label=f"{policy.replace('_', '-')} / {task}",
         )
-    axes[3].set_title("(d) Threshold/budget safety-cost frontier", loc="left", fontweight="bold")
+    axes[3].set_title("(d) Frontier: budget, recall, zero FCR", loc="left", fontweight="bold")
     axes[3].set_xlabel("mean repair cost")
     axes[3].set_ylabel("mean cumulative recall")
     axes[3].set_ylim(0.05, 1.02)
