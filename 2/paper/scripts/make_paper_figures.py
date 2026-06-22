@@ -947,11 +947,10 @@ def plot_controller_variant_comparison() -> None:
     controller = summary[summary["policy"].isin(["Naive stop", "Source-only", "Verifier-gate", "Eligibility-only", "Full controller"])].copy()
     repair = summary[summary["policy"].isin(["Random repair", "High-potential repair", "Ours"])].copy()
     controller_labels = ["Naive", "Source-only", "Verifier", "Elig.-only", "Full"]
-    controller_colors = [COLORS["gray"], COLORS["green"], COLORS["red"], COLORS["orange"], COLORS["purple"]]
     repair_labels = ["Random", "High-pot.", "Residual-pot."]
     repair_colors = [COLORS["gray"], COLORS["blue"], COLORS["purple"]]
 
-    fig, axes = plt.subplots(2, 2, figsize=(7.15, 4.45), constrained_layout=True)
+    fig, axes = plt.subplots(1, 2, figsize=(7.15, 2.78), constrained_layout=True)
     axes = axes.ravel()
 
     x = np.arange(len(controller_labels))
@@ -960,43 +959,41 @@ def plot_controller_variant_comparison() -> None:
     unsafe_abstain = controller["abstain_rate_seeded_unsafe"].to_numpy(dtype=float)
     safe_cov = controller["safe_coverage_seeded_safe"].to_numpy(dtype=float)
 
-    width = 0.32
-    axes[0].bar(x - width / 2, fcr, color=COLORS["red"], width=width, label="FCR")
-    axes[0].bar(x + width / 2, safe_cov, color=COLORS["green"], width=width, label="safe coverage")
-    for i, bad in enumerate(fcr):
-        if bad >= 0.5:
-            axes[0].text(i - width / 2, 1.02, "FCR=1", ha="center", va="bottom", fontsize=5.9)
-        else:
-            axes[0].text(i - width / 2, 0.055, "0", ha="center", va="bottom", fontsize=5.9, color=COLORS["red"])
-    axes[0].text(
-        0.98,
-        0.12,
-        "safe coverage=1.0\nfor all variants",
-        transform=axes[0].transAxes,
-        ha="right",
-        va="bottom",
-        fontsize=5.8,
-        color=COLORS["green"],
-        bbox=dict(facecolor="white", edgecolor="none", pad=0.7, alpha=0.82),
-    )
-    axes[0].set_title("(a) Safety: FCR and SAFE coverage", loc="left", fontweight="bold")
-    axes[0].set_xticks(x, controller_labels, rotation=18, ha="right")
-    axes[0].set_ylim(0, 1.12)
-    axes[0].set_ylabel("rate")
-    axes[0].legend(frameon=False, loc="upper right", ncol=2, handlelength=0.9, columnspacing=0.8, fontsize=6.1)
-
-    axes[1].bar(x, unsafe_continue, width=0.62, color=COLORS["orange"], label="actionable CONTINUE")
-    axes[1].bar(x, unsafe_abstain, bottom=unsafe_continue, width=0.62, color=COLORS["gray"], label="fail-closed ABSTAIN")
-    for i, (cont, abst) in enumerate(zip(unsafe_continue, unsafe_abstain)):
+    ax = axes[0]
+    ax.bar(x, fcr, width=0.62, color=COLORS["red"], label="unsafe SAFE / FCR")
+    ax.bar(x, unsafe_continue, bottom=fcr, width=0.62, color=COLORS["orange"], label="actionable CONTINUE")
+    ax.bar(x, unsafe_abstain, bottom=fcr + unsafe_continue, width=0.62, color=COLORS["gray"], label="fail-closed ABSTAIN")
+    ax.plot(x, safe_cov, color=COLORS["green"], marker="D", markersize=4.5, lw=1.0, label="safe-state coverage")
+    for i, (bad, cont, abst) in enumerate(zip(fcr, unsafe_continue, unsafe_abstain)):
+        if bad > 0:
+            ax.text(i, bad / 2, "unsafe\nSAFE", ha="center", va="center", fontsize=5.4, color="white", weight="bold")
         if cont > 0:
-            axes[1].text(i, cont / 2, f"{cont:.2f}", ha="center", va="center", fontsize=6.3, color="white", weight="bold")
+            ax.text(i, bad + cont / 2, "CONT.", ha="center", va="center", fontsize=5.8, color="white", weight="bold")
         if abst > 0:
-            axes[1].text(i, cont + abst / 2, f"{abst:.2f}", ha="center", va="center", fontsize=6.3, color="white", weight="bold")
-    axes[1].set_title("(b) Usefulness: action vs fail-closed", loc="left", fontweight="bold")
-    axes[1].set_xticks(x, controller_labels, rotation=18, ha="right")
-    axes[1].set_ylim(0, 1.08)
-    axes[1].set_ylabel("unsafe-state decision rate")
-    axes[1].legend(frameon=False, loc="upper center", ncol=2, bbox_to_anchor=(0.50, 1.02), handlelength=0.9, columnspacing=0.8, fontsize=6.3)
+            ax.text(i, bad + cont + abst / 2, "ABST.", ha="center", va="center", fontsize=5.8, color="white", weight="bold")
+    ax.set_title("(a) Decision: safe vs actionable", loc="left", fontweight="bold")
+    ax.set_xticks(x, controller_labels, rotation=16, ha="right")
+    ax.set_ylim(0, 1.16)
+    ax.set_ylabel("seeded-state decision rate")
+    ax.text(
+        2,
+        1.07,
+        "Verifier/eligibility gates are safe but fail closed",
+        ha="center",
+        va="center",
+        fontsize=5.8,
+        color=COLORS["muted"],
+        bbox=dict(facecolor="white", edgecolor="none", pad=0.4, alpha=0.86),
+    )
+    ax.legend(
+        frameon=False,
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.28),
+        ncol=2,
+        fontsize=5.7,
+        handlelength=1.0,
+        columnspacing=0.8,
+    )
 
     gain = repair["mean_repair_gain_seeded_unsafe"].to_numpy(dtype=float)
     cost = repair["mean_cost_seeded_unsafe"].to_numpy(dtype=float)
@@ -1007,55 +1004,20 @@ def plot_controller_variant_comparison() -> None:
         ci_rows = repair_ci[repair_ci["challenger"] == key]
         low = max(0.0, g - float(ci_rows["new_true_ci95_low"].mean()))
         high = max(0.0, float(ci_rows["new_true_ci95_high"].mean()) - g)
-        axes[2].errorbar(c, g, yerr=[[low], [high]], fmt="none", ecolor="#374151", elinewidth=0.75, capsize=2, zorder=2)
-        axes[2].scatter(c, g, s=52, color=color, edgecolor="white", linewidth=0.7, zorder=3)
-        axes[2].text(c + 45, g + (7 if i != 0 else -11), label, fontsize=6.7, color=COLORS["ink"], va="center")
-    axes[2].set_title("(c) Cost: repair gain per target rule", loc="left", fontweight="bold")
-    axes[2].set_xlabel("mean cost")
-    axes[2].set_ylabel("mean new items")
-    axes[2].set_xlim(3200, 4550)
-    axes[2].set_ylim(40, 280)
-
-    frontier_path = RESULTS / "unified_safety_cost_frontier.csv"
-    if frontier_path.exists():
-        frontier = pd.read_csv(frontier_path)
-    else:
-        budget = pd.read_csv(RESULTS / "budget_sensitivity.csv")
-        frontier = budget.rename(columns={"false_certification_rate": "fcr", "mean_cost": "repair_cost", "mean_repair_gain": "repair_gain"})
-        frontier["table"] = "budget_sweep"
-        frontier["policy"] = frontier["challenger"]
-    frontier = frontier[(frontier["table"] == "budget_sweep") & (frontier["policy"].isin(["random", "high_potential", "residual_potential"]))]
-    markers = {"requests": "o", "urllib3": "s"}
-    line_colors = {"random": COLORS["gray"], "high_potential": COLORS["blue"], "residual_potential": COLORS["purple"]}
-    for (policy, task), sub in frontier.groupby(["policy", "task"]):
-        sub = sub.sort_values("budget")
-        axes[3].plot(
-            sub["repair_cost"],
-            sub["mean_cumulative_recall"],
-            color=line_colors[policy],
-            marker=markers.get(task, "o"),
-            lw=1.0,
-            ms=4,
-            alpha=0.88,
-            label=f"{policy.replace('_', '-')} / {task}",
-        )
-    axes[3].set_title("(d) Frontier: budget, recall, zero FCR", loc="left", fontweight="bold")
-    axes[3].set_xlabel("mean repair cost")
-    axes[3].set_ylabel("mean cumulative recall")
-    axes[3].set_ylim(0.05, 1.02)
-    axes[3].text(
-        0.03,
-        0.96,
-        "FCR=0 across plotted budget sweep",
-        transform=axes[3].transAxes,
-        fontsize=6.2,
-        color=COLORS["muted"],
-        ha="left",
-        va="top",
-        bbox=dict(facecolor="white", edgecolor="none", pad=0.8, alpha=0.80),
-    )
-    axes[3].legend(frameon=False, loc="lower right", fontsize=5.7, handlelength=1.1, ncol=1)
-
+        axes[1].errorbar(c, g, yerr=[[low], [high]], fmt="none", ecolor="#374151", elinewidth=0.85, capsize=2, zorder=2)
+        axes[1].scatter(c, g, s=68, color=color, edgecolor="white", linewidth=0.8, zorder=3)
+        offsets = {
+            "Random": (42, -14),
+            "High-pot.": (42, -16),
+            "Residual-pot.": (42, 10),
+        }
+        dx, dy = offsets[label]
+        axes[1].text(c + dx, g + dy, label, fontsize=6.8, color=COLORS["ink"], va="center")
+    axes[1].set_title("(b) Repair: gain-cost tradeoff", loc="left", fontweight="bold")
+    axes[1].set_xlabel("mean post-stop repair cost")
+    axes[1].set_ylabel("mean residual oracle items found")
+    axes[1].set_xlim(3200, 4550)
+    axes[1].set_ylim(40, 285)
     for ax in axes:
         ax.grid(alpha=0.9)
         ax.set_axisbelow(True)

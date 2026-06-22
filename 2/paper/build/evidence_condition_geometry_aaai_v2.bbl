@@ -1,4 +1,4 @@
-\begin{thebibliography}{43}
+\begin{thebibliography}{46}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -97,6 +97,30 @@ Roman Garnett, Yamuna Krishnamurthy, Xuehan Xiong, Jeff Schneider, and Richard
 \newblock Bayesian optimal active search and surveying.
 \newblock In \emph{Proceedings of the 29th International Conference on Machine
   Learning}, pages 843--850, 2012.
+
+\bibitem[Gehrmann et~al.(2021)Gehrmann, Adewumi, Aggarwal, Ammanamanchi,
+  Anuoluwapo, Bosselut, Chandu, Clinciu, Das, Dhole, Du, Durmus, Du{\v{s}}ek,
+  Emezue, Gangal, Garbacea, Hashimoto, Hou, Jernite, Jhamtani, Ji, Jolly, Kale,
+  Kasai, Khashabi, Kovatchev, Krishna, Kumar, Ladhak, Luan, Maddela, Mahajan,
+  Mille, Nadeem, Narayan, Nikolaev, Niu, Perez-Beltrachini, Peskov, Prabhumoye,
+  Rastogi, Rogers, Sedoc, Sellam, Shah, Shimorina, Su, Tang, Tian, Toledo,
+  van~der Lee, Vashishtha, Vu, Xu, Yang, Zhao, and Zhou]{gehrmann2023repair}
+Sebastian Gehrmann, Tosin Adewumi, Karmanya Aggarwal, Pranav Ammanamanchi,
+  Aremu Anuoluwapo, Antoine Bosselut, Khyathi~Raghavi Chandu, Miruna Clinciu,
+  Dipanjan Das, Kaustubh Dhole, Wanyu Du, Esin Durmus, Ondrej Du{\v{s}}ek,
+  Chris Emezue, Varun Gangal, Cristina Garbacea, Tatsunori Hashimoto, Yufang
+  Hou, Yacine Jernite, Harsh Jhamtani, Yangfeng Ji, Shailza Jolly, Mihir Kale,
+  Jungo Kasai, Daniel Khashabi, Venelin Kovatchev, Kalpesh Krishna, Alok Kumar,
+  Faisal Ladhak, Yi~Luan, Mounica Maddela, Khyathi Mahajan, Simon Mille, Moin
+  Nadeem, Shashi Narayan, Vitaly Nikolaev, Tong Niu, Laura Perez-Beltrachini,
+  Denis Peskov, Shrimai Prabhumoye, Abhinav Rastogi, Anna Rogers, Jo{\~a}o
+  Sedoc, Thibault Sellam, Diptesh~Kanojia Shah, Anastasia Shimorina, Yixuan Su,
+  Alex Tang, Yi-Lin Tian, Ronen Toledo, Chris van~der Lee, Siddharth
+  Vashishtha, Thuy-Trang Vu, Wei Xu, Diyi Yang, Jie Zhao, and Chunting Zhou.
+\newblock The gem benchmark: Natural language generation, its evaluation and
+  metrics.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  9:\penalty0 137--160, 2021.
 
 \bibitem[Good(1953)]{good1953population}
 I.~J. Good.
@@ -285,6 +309,20 @@ James Thorne, Andreas Vlachos, Christos Christodoulopoulos, and Arpit Mittal.
 \newblock Fever: A large-scale dataset for fact extraction and verification.
 \newblock In \emph{Proceedings of the 2018 Conference of the North American
   Chapter of the Association for Computational Linguistics}, 2018.
+
+\bibitem[Voorhees(2002)]{voorhees2002overview}
+Ellen~M. Voorhees.
+\newblock Overview of the trec 2002 question answering track.
+\newblock In \emph{Proceedings of the Eleventh Text REtrieval Conference},
+  2002.
+
+\bibitem[Wallace et~al.(2010)Wallace, Trikalinos, Lau, Brodley, and
+  Schmid]{wallace2010active}
+Byron~C. Wallace, Thomas~A. Trikalinos, Joseph Lau, Carla Brodley, and
+  Christopher~H. Schmid.
+\newblock Active learning for biomedical citation screening.
+\newblock In \emph{Proceedings of the 16th ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}, 2010.
 
 \bibitem[Wang et~al.(2024)Wang, Xie, Jiang, Mandlekar, Xiao, Zhu, Fan, and
   Anandkumar]{wang2024voyager}
