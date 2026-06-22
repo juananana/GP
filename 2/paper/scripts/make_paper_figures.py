@@ -351,8 +351,10 @@ def plot_main_results_overview() -> None:
     )
     axes[0].scatter(x, ablation["base_recall"], s=34, color=COLORS["red"], marker="D", zorder=4, label="post-hoc recall")
     for i, task in enumerate(tasks):
-        gap = float(ablation.loc[task, "source_only_support"] - ablation.loc[task, "source_route_support"])
-        axes[0].text(i, 1.030, f"gap {gap:.2f}", ha="center", va="bottom", fontsize=6.2, color=COLORS["muted"])
+        source_only = float(ablation.loc[task, "source_only_support"])
+        source_route = float(ablation.loc[task, "source_route_support"])
+        axes[0].text(i - width / 2, source_only + 0.022, f"{source_only:.2f}", ha="center", va="bottom", fontsize=6.0, color=COLORS["muted"])
+        axes[0].text(i + width / 2, source_route + 0.022, f"{source_route:.2f}", ha="center", va="bottom", fontsize=6.0, color=COLORS["muted"])
     axes[0].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
     axes[0].set_title("(a) Source-only exposure can look complete", loc="left", fontweight="bold")
     axes[0].set_ylim(0, 1.18)

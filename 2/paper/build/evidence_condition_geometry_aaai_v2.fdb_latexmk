@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/evidence_condition_geometry_aaai_v2"] 1782119898.84426 "build/evidence_condition_geometry_aaai_v2.aux" "build/evidence_condition_geometry_aaai_v2.bbl" "build/evidence_condition_geometry_aaai_v2" 1782120036.92714 0
+["bibtex build/evidence_condition_geometry_aaai_v2"] 1782119898.84426 "build/evidence_condition_geometry_aaai_v2.aux" "build/evidence_condition_geometry_aaai_v2.bbl" "build/evidence_condition_geometry_aaai_v2" 1782130468.92306 0
   "./references.bib" 1781614298 17144 e005a1422257aebe7c9f339567d6201a ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/bibtex/bst/natbib/plainnat.bst" 1284455456 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "build/evidence_condition_geometry_aaai_v2.aux" 1782120036 12701 c54eaa653aea1c883aad150aed692934 "pdflatex"
+  "build/evidence_condition_geometry_aaai_v2.aux" 1782130467 12701 c54eaa653aea1c883aad150aed692934 "pdflatex"
   (generated)
   "build/evidence_condition_geometry_aaai_v2.bbl"
   "build/evidence_condition_geometry_aaai_v2.blg"
   (rewritten before read)
-["pdflatex"] 1782120033.42938 "evidence_condition_geometry_aaai_v2.tex" "build/evidence_condition_geometry_aaai_v2.pdf" "evidence_condition_geometry_aaai_v2" 1782120036.92765 0
+["pdflatex"] 1782130465.2494 "evidence_condition_geometry_aaai_v2.tex" "build/evidence_condition_geometry_aaai_v2.pdf" "evidence_condition_geometry_aaai_v2" 1782130468.92359 0
   "C:/Users/EPIC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1780896214 187664 65fa417f6850b604c49bfafe76826e39 ""
   "C:/Users/EPIC/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1777468269 13333003 58a3959649c331c5cf391f4df9906e74 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -185,15 +185,15 @@
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/tools/array.sty" 1761901070 15651 9d7c62df82cb29a555c00550babfe364 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/EPIC/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "build/evidence_condition_geometry_aaai_v2.aux" 1782120036 12701 c54eaa653aea1c883aad150aed692934 "pdflatex"
+  "build/evidence_condition_geometry_aaai_v2.aux" 1782130467 12701 c54eaa653aea1c883aad150aed692934 "pdflatex"
   "build/evidence_condition_geometry_aaai_v2.bbl" 1782119899 19482 e6c9b094c77fe6e78ffed086d935bca1 "bibtex build/evidence_condition_geometry_aaai_v2"
   "evidence_condition_geometry_aaai_v2.tex" 1782119751 31949 992e4cf3871af0650667dd4a9a4e7644 ""
-  "figures/controller_variant_comparison.pdf" 1782120005 22258 641307126d4daf2fd144c5162fdc4fb9 ""
+  "figures/controller_variant_comparison.pdf" 1782130453 22258 3c71f7d8906c5b46868b0ce928f1c2d0 ""
   "figures/fig1-1.png" 1781614004 580995 2334f15041766208c452d2a7f24455a7 ""
   "figures/fig2-5-2.png" 1782025651 880540 e5bdead781d0162ddec4c7f98b94ce23 ""
-  "figures/main_results_overview.pdf" 1782120001 23231 70de782e47d9c78a9cfcc4d96daa9d12 ""
-  "generated/table_eligibility_boundary.tex" 1782120004 622 3710e9dd16565a1f364b47d39a3d5a9a ""
-  "generated/table_main_controller_counts.tex" 1782120003 1064 28eafcd16b9583d53bd5c24002f40e91 ""
+  "figures/main_results_overview.pdf" 1782130451 23039 15350770e323401e6a2e5579c0012d54 ""
+  "generated/table_eligibility_boundary.tex" 1782130452 622 3710e9dd16565a1f364b47d39a3d5a9a ""
+  "generated/table_main_controller_counts.tex" 1782130452 1064 28eafcd16b9583d53bd5c24002f40e91 ""
   "generated/table_source_only_ablation.tex" 1782119997 871 d23f268e66ac2380e7890b9eaf3171d2 ""
   (generated)
   "build/evidence_condition_geometry_aaai_v2.aux"
