@@ -1,0 +1,71 @@
+{
+  "config_path": "E:\\learn3\\B\\new\\2\\configs\\full_200seed.yaml",
+  "thresholds": {
+    "tau_support": 0.75,
+    "tau_gini": 0.7,
+    "eval_only_recall_threshold": 0.9
+  },
+  "exports": {
+    "decision_variants": {
+      "csv": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_decision_variants.csv",
+      "json": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_decision_variants.json"
+    },
+    "repair_variants": {
+      "csv": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_repair_variants.csv",
+      "json": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_repair_variants.json"
+    },
+    "controller_count_table": {
+      "csv": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_controller_count_table.csv",
+      "json": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_controller_count_table.json"
+    },
+    "localization_risk_trend": {
+      "csv": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_localization_risk_trend.csv",
+      "json": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_localization_risk_trend.json"
+    },
+    "threshold_budget_sweep": {
+      "csv": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_threshold_budget_sweep.csv",
+      "json": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_threshold_budget_sweep.json"
+    },
+    "safety_cost_frontier": {
+      "csv": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_safety_cost_frontier.csv",
+      "json": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_safety_cost_frontier.json"
+    },
+    "state_metrics": {
+      "csv": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_state_metrics.csv",
+      "json": "analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/unified_state_metrics.json"
+    }
+  },
+  "runtime_visible_fields": [
+    "task_id",
+    "repo_id",
+    "run_id",
+    "condition",
+    "agent_id",
+    "round_id",
+    "event_id",
+    "timestamp",
+    "query_text",
+    "tool_name",
+    "action_type",
+    "source_path",
+    "source_family",
+    "search_route",
+    "source_route_stratum",
+    "discovered_item_id",
+    "new_item",
+    "self_reported_completion",
+    "self_reported_confidence",
+    "stop_reason",
+    "token_or_cost",
+    "notes"
+  ],
+  "posthoc_oracle_only_fields": [
+    "oracle_label",
+    "oracle_bucket",
+    "oracle_total",
+    "recall",
+    "bounded_oracle_recall",
+    "undiscovered_true_item_count",
+    "hidden_missing_mass"
+  ]
+}

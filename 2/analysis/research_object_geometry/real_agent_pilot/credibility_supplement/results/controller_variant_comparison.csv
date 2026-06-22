@@ -1,6 +1,7 @@
 policy,unsafe_denominator,safe_denominator,safe_on_unsafe,safe_on_safe,continue_on_safe,abstain_on_safe,false_certification_rate_seeded_unsafe,safe_coverage_seeded_safe,continue_rate_seeded_unsafe,abstain_rate_seeded_unsafe,mean_repair_gain_seeded_unsafe,mean_cost_seeded_unsafe
 Naive stop,400,1200,400,1200,0,0,1.0,1.0,0.0,0.0,,
 Source-only,400,1200,400,1200,0,0,1.0,1.0,0.0,0.0,,
+Verifier-gate,400,1200,0,1200,0,0,0.0,1.0,0.0,1.0,,
 Eligibility-only,400,1200,0,1200,0,0,0.0,1.0,0.0,1.0,,
 Full controller,400,1200,0,1200,0,0,0.0,1.0,1.0,0.0,253.0,4275.5
 Random repair,400,1200,0,1200,0,0,0.0,1.0,0.9925,0.0075,69.03,3481.135

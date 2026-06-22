@@ -7,7 +7,7 @@ from typing import Any
 import yaml
 
 
-ROOT = Path(__file__).resolve().parents[4]
+ROOT = Path(__file__).resolve().parents[3]
 PILOT = ROOT / "analysis" / "research_object_geometry" / "real_agent_pilot"
 CONFIG_DIR = ROOT / "configs"
 DEFAULT_CONFIG = CONFIG_DIR / "full_200seed.yaml"

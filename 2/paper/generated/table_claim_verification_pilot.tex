@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\caption{Small claim-verification pilot with human-style audit routes. Routes
+are support, contradiction, exception-path, config-default, and scope-boundary.
+This deterministic pilot is a scoped sanity check for completion control, not a
+human-annotated benchmark. S/C/A reports SAFE/CONTINUE/ABSTAIN counts.}
+\label{tab:claim_verification_pilot}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrrrr}
+\toprule
+Policy & Unsafe & Safe & Unsafe S/C/A & Safe S/C/A & FCR & Safe cov. & Cost \\
+\midrule
+Naive stop & 4 & 2 & 4/0/0 & 2/0/0 & 1.000 & 1.000 & 0.0 \\
+Source-only & 4 & 2 & 4/0/0 & 2/0/0 & 1.000 & 1.000 & 0.0 \\
+Verifier-gate & 4 & 2 & 0/0/4 & 1/0/1 & 0.000 & 0.500 & 0.0 \\
+Eligibility-only & 4 & 2 & 1/0/3 & 2/0/0 & 0.250 & 1.000 & 0.0 \\
+Full controller & 4 & 2 & 0/4/0 & 2/0/0 & 0.000 & 1.000 & 3.5 \\
+\bottomrule
+\end{tabular}}
+\end{table}

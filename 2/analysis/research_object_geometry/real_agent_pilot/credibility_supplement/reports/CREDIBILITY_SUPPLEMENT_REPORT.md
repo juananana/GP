@@ -9,9 +9,9 @@
 | requests       | seeded repairs           | 1200 |               0 |              1200 |      0 |       1199 |         1 |                          0 |                       0 |             nan |       0.000833333 |            122.992 |     2854.58 |
 | urllib3        | seeded repairs           | 1000 |               0 |              1000 |      0 |        998 |         2 |                          0 |                       0 |             nan |       0.002       |            204.987 |     4831.82 |
 | external repos | seeded repairs           | 2200 |               0 |              2200 |      0 |       2197 |         3 |                          0 |                       0 |             nan |       0.00136364  |            160.262 |     3753.33 |
-| requests       | seeded safe states       | 3000 |            3000 |                 0 |   3000 |          0 |         0 |                          0 |                       0 |               1 |       0           |              0     |     3041.16 |
-| urllib3        | seeded safe states       | 3000 |            3000 |                 0 |   3000 |          0 |         0 |                          0 |                       0 |               1 |       0           |              0     |     3678.22 |
-| external repos | seeded safe states       | 6000 |            6000 |                 0 |   6000 |          0 |         0 |                          0 |                       0 |               1 |       0           |              0     |     3359.69 |
+| requests       | seeded safe states       | 3000 |            3000 |                 0 |   3000 |          0 |         0 |                          0 |                       0 |               1 |       0           |              0     |     3252.53 |
+| urllib3        | seeded safe states       | 3000 |            3000 |                 0 |   3000 |          0 |         0 |                          0 |                       0 |               1 |       0           |              0     |     3933.75 |
+| external repos | seeded safe states       | 6000 |            6000 |                 0 |   6000 |          0 |         0 |                          0 |                       0 |               1 |       0           |              0     |     3593.14 |
 
 ## Source-Only vs Source-Route
 
@@ -35,8 +35,8 @@
 |:---------|:----------|:------------------|:----------------------|:---------------------|----------:|-------------------:|
 | requests | threshold | 0.000-0.000       | 0.995-1.000           | 0.000-0.005          |         0 |            2854.58 |
 | urllib3  | threshold | 0.000-0.000       | 0.990-1.000           | 0.000-0.010          |         0 |            4831.82 |
-| requests | budget    | 0.000-0.000       | 0.635-1.000           | 0.000-0.365          |         0 |            2966.37 |
-| urllib3  | budget    | 0.000-0.000       | 0.640-1.000           | 0.000-0.360          |         0 |            4036.51 |
+| requests | budget    | 0.000-0.000       | 0.635-1.000           | 0.000-0.365          |         0 |            3179.02 |
+| urllib3  | budget    | 0.000-0.000       | 0.640-1.000           | 0.000-0.360          |         0 |            4323.46 |
 
 ## Budget Sensitivity Summary
 
@@ -44,13 +44,19 @@
 |:---------|---------:|----------:|------------:|------------:|
 | requests |        1 |         0 |     29.8358 |     729.437 |
 | requests |        2 |         0 |     63.8683 |    1570.61  |
+| requests |        3 |         0 |    104.837  |    2288.1   |
 | requests |        4 |         0 |    122.657  |    2880.96  |
+| requests |        5 |         0 |    138.448  |    3534.92  |
 | requests |        6 |         0 |    151.572  |    4190.57  |
+| requests |        7 |         0 |    159.208  |    4777.28  |
 | requests |        8 |         0 |    168.085  |    5460.25  |
 | urllib3  |        1 |         0 |     46.38   |     773.691 |
 | urllib3  |        2 |         0 |     93.098  |    1768.75  |
+| urllib3  |        3 |         0 |    116.293  |    2644.52  |
 | urllib3  |        4 |         0 |    164.478  |    3726.71  |
+| urllib3  |        5 |         0 |    204.704  |    4813.81  |
 | urllib3  |        6 |         0 |    235.692  |    5896.08  |
+| urllib3  |        7 |         0 |    275.208  |    6946.86  |
 | urllib3  |        8 |         0 |    302.03   |    8017.3   |
 
 ## Chao/Singleton Scalar Proxy
@@ -118,8 +124,8 @@
 
 | task     | condition         | order_budget_sweep    |   runs |   safe |   continue |   abstain |   false_certification_rate |   safe_coverage |   repair_gain |   mean_cost | cost_range   |
 |:---------|:------------------|:----------------------|-------:|-------:|-----------:|----------:|---------------------------:|----------------:|--------------:|------------:|:-------------|
-| requests | route_partitioned | 5 orders; budgets 1-8 |   3000 |   3000 |          0 |         0 |                          0 |               1 |             0 |     3041.16 | 157-7647     |
-| urllib3  | extended_audit    | 5 orders; budgets 1-8 |   3000 |   3000 |          0 |         0 |                          0 |               1 |             0 |     3678.22 | 275-9072     |
+| requests | route_partitioned | 5 orders; budgets 1-8 |   3000 |   3000 |          0 |         0 |                          0 |               1 |             0 |     3252.53 | 157-7647     |
+| urllib3  | extended_audit    | 5 orders; budgets 1-8 |   3000 |   3000 |          0 |         0 |                          0 |               1 |             0 |     3933.75 | 275-9072     |
 
 ## Oracle Sanity Check
 

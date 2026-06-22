@@ -1,3 +1,3 @@
 task,condition,order_budget_sweep,runs,safe,continue,abstain,false_certification_rate,safe_coverage,repair_gain,mean_cost,cost_range
-requests,route_partitioned,5 orders; budgets 1-8,3000,3000,0,0,0.0,1.0,0.0,3041.1573333333336,157-7647
-urllib3,extended_audit,5 orders; budgets 1-8,3000,3000,0,0,0.0,1.0,0.0,3678.222,275-9072
+requests,route_partitioned,5 orders; budgets 1-8,3000,3000,0,0,0.0,1.0,0.0,3252.529,157-7647
+urllib3,extended_audit,5 orders; budgets 1-8,3000,3000,0,0,0.0,1.0,0.0,3933.748666666667,275-9072

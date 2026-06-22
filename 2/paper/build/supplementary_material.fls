@@ -106,7 +106,6 @@ INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ot1pcr.fd
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ot1pcr.fd
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ot1pcr.fd
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\courier\pcrr7t.tfm
-INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmrc7t.tfm
 OUTPUT E:\learn3\B\new\2\paper\build\supplementary_material.pdf
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmr7t.vf
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
@@ -122,6 +121,10 @@ INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmb7t.vf
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb8r.tfm
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\courier\pcrr7t.vf
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\courier\pcrr8r.tfm
+INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmrc7t.tfm
+INPUT .\generated\table_controller_variant_counts.tex
+INPUT .\generated\table_controller_variant_counts.tex
+INPUT generated\table_controller_variant_counts.tex
 INPUT .\figures\controller_variant_comparison.pdf
 INPUT .\figures\controller_variant_comparison.pdf
 INPUT .\figures\controller_variant_comparison.pdf
@@ -137,6 +140,15 @@ INPUT .\figures\repair_sensitivity_summary.pdf
 INPUT .\generated\supplementary_tables.tex
 INPUT .\generated\supplementary_tables.tex
 INPUT generated\supplementary_tables.tex
+INPUT .\generated\table_controller_decisions.tex
+INPUT .\generated\table_controller_decisions.tex
+INPUT generated\table_controller_decisions.tex
+INPUT .\generated\table_per_task_decision_breakdown.tex
+INPUT .\generated\table_per_task_decision_breakdown.tex
+INPUT generated\table_per_task_decision_breakdown.tex
+INPUT .\generated\table_lightweight_baselines.tex
+INPUT .\generated\table_lightweight_baselines.tex
+INPUT generated\table_lightweight_baselines.tex
 INPUT .\generated\table_chao_proxy.tex
 INPUT .\generated\table_chao_proxy.tex
 INPUT generated\table_chao_proxy.tex

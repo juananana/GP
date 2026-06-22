@@ -1,0 +1,31 @@
+policy,claim_id,decision
+Naive stop,c1,SAFE
+Naive stop,c2,SAFE
+Naive stop,c3,SAFE
+Naive stop,c4,SAFE
+Naive stop,c5,SAFE
+Naive stop,c6,SAFE
+Source-only,c1,SAFE
+Source-only,c2,SAFE
+Source-only,c3,SAFE
+Source-only,c4,SAFE
+Source-only,c5,SAFE
+Source-only,c6,SAFE
+Verifier-gate,c1,ABSTAIN
+Verifier-gate,c2,ABSTAIN
+Verifier-gate,c3,ABSTAIN
+Verifier-gate,c4,ABSTAIN
+Verifier-gate,c5,SAFE
+Verifier-gate,c6,ABSTAIN
+Eligibility-only,c1,ABSTAIN
+Eligibility-only,c2,ABSTAIN
+Eligibility-only,c3,SAFE
+Eligibility-only,c4,ABSTAIN
+Eligibility-only,c5,SAFE
+Eligibility-only,c6,SAFE
+Full controller,c1,CONTINUE
+Full controller,c2,CONTINUE
+Full controller,c3,CONTINUE
+Full controller,c4,CONTINUE
+Full controller,c5,SAFE
+Full controller,c6,SAFE

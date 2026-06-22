@@ -2,8 +2,11 @@
 \centering
 \small
 \setlength{\tabcolsep}{2.8pt}
-\caption{Seeded controller decision counts for Figure~\ref{fig:controller_variants}.
-All decision rules are evaluated on the same seeded stop-boundary states; oracle
+\caption{Seeded unsafe/complete controller decision counts for
+Figure~\ref{fig:controller_variants}. Unsafe and Complete are the seeded
+denominators; FCR is SAFE-on-unsafe divided by Unsafe, and safe coverage is
+SAFE-on-complete divided by Complete. These denominators differ from the
+one-state eligibility boundary in Table~\ref{tab:eligibility_boundary}. Oracle
 labels are used only after decisions are fixed. S/C/A reports
 SAFE/CONTINUE/ABSTAIN counts.}
 \label{tab:main_controller_counts}
@@ -14,6 +17,7 @@ Decision rule & Unsafe & Complete & Unsafe S/C/A & Complete S/C/A & FCR & Safe c
 \midrule
 Naive stop & 400 & 1200 & 400/0/0 & 1200/0/0 & 1.000 & 1.000 \\
 Source-only & 400 & 1200 & 400/0/0 & 1200/0/0 & 1.000 & 1.000 \\
+Verifier-gate & 400 & 1200 & 0/0/400 & 1200/0/0 & 0.000 & 1.000 \\
 Eligibility-only & 400 & 1200 & 0/0/400 & 1200/0/0 & 0.000 & 1.000 \\
 Full & 400 & 1200 & 0/400/0 & 1200/0/0 & 0.000 & 1.000 \\
 \bottomrule

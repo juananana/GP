@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
-from experiment_config import load_experiment_config, thresholds
+from experiment_config import load_experiment_config, seeds, thresholds
 
 
 ROOT = Path(__file__).resolve().parents[4]
@@ -282,10 +282,15 @@ def build_condition_decision_rows() -> list[dict[str, Any]]:
                 {
                     "task": task,
                     "condition": condition,
+                    "state_type": "fixed_stop_state",
+                    "seed": -1,
+                    "budget": 0,
                     "decision": decision,
                     "recall": recall,
                     "support": support,
                     "gini": gini,
+                    "residual_warning": bool(productive),
+                    "unresolved_warning": False,
                     "repair_gain": 0.0,
                     "cost": 0.0,
                 }
@@ -309,10 +314,15 @@ def build_requests_repair_rows() -> list[dict[str, Any]]:
             {
                 "task": "requests",
                 "condition": f"repair:{row['challenger']}",
+                "state_type": "seeded_unsafe_repair",
+                "seed": int(row.get("seed", -1)),
+                "budget": int(row.get("budget", CONFIG.get("repair_budgets", {}).get("external_requests", 4))),
                 "decision": decision,
                 "recall": float(row["cumulative_recall"]),
                 "support": float(row["after_support_ratio"]),
                 "gini": float(row["after_exposure_gini"]),
+                "residual_warning": bool(gain > 0),
+                "unresolved_warning": False,
                 "repair_gain": float(row["new_true_items"]),
                 "cost": float(row["cost"]),
             }
@@ -328,10 +338,15 @@ def build_urllib3_repair_rows() -> list[dict[str, Any]]:
             {
                 "task": "urllib3",
                 "condition": f"repair:{row['challenger']}",
+                "state_type": "seeded_unsafe_repair",
+                "seed": int(row.get("seed", -1)),
+                "budget": int(row.get("budget", CONFIG.get("repair_budgets", {}).get("external_urllib3", 5))),
                 "decision": str(row["decision"]),
                 "recall": float(row["cumulative_recall"]),
                 "support": float(row["after_support_ratio"]),
                 "gini": float(row["after_exposure_gini"]),
+                "residual_warning": bool(float(row["new_true_items"]) > 0),
+                "unresolved_warning": False,
                 "repair_gain": float(row["new_true_items"]),
                 "cost": float(row["cost"]),
             }
@@ -350,10 +365,15 @@ def controller_decision_table(safe_state_detail: pd.DataFrame | None = None) -> 
                 {
                     "task": row["task"],
                     "condition": f"safe_state:{row['condition']}:{row['challenger']}",
+                    "state_type": "seeded_safe_complete",
+                    "seed": int(row.get("seed", -1)),
+                    "budget": int(row.get("budget", -1)),
                     "decision": row["decision"],
                     "recall": float(row["cumulative_recall"]),
                     "support": float(row["after_support_ratio"]),
                     "gini": float(row["after_exposure_gini"]),
+                    "residual_warning": bool(float(row["repair_gain"]) > 0),
+                    "unresolved_warning": False,
                     "repair_gain": float(row["repair_gain"]),
                     "cost": float(row["cost"]),
                 }
@@ -408,6 +428,287 @@ def source_only_ablation() -> pd.DataFrame:
     out = pd.DataFrame(rows)
     out.to_csv(RESULTS / "source_only_vs_source_route.csv", index=False)
     return out
+
+
+def verifier_gate_decision(row: pd.Series | dict[str, Any]) -> str:
+    unresolved = bool(row.get("unresolved_warning", False))
+    residual = bool(row.get("residual_warning", False))
+    return "ABSTAIN" if unresolved or residual else "SAFE"
+
+
+def _json_records(df: pd.DataFrame, path: Path) -> None:
+    path.write_text(json.dumps(df.to_dict(orient="records"), separators=(",", ":")), encoding="utf-8")
+
+
+def _state_frame(detail: pd.DataFrame, safe_state_detail: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for _, row in detail.iterrows():
+        challenger = ""
+        if str(row["condition"]).startswith("repair:"):
+            challenger = str(row["condition"]).split(":", 1)[1]
+        rows.append(
+            {
+                "task": row["task"],
+                "condition": row["condition"],
+                "state_type": row.get("state_type", "fixed_stop_state"),
+                "seed": int(row.get("seed", -1)),
+                "budget": int(row.get("budget", 0)),
+                "challenger": challenger,
+                "full_decision": row["decision"],
+                "recall": float(row["recall"]),
+                "support": float(row["support"]),
+                "gini": float(row["gini"]),
+                "repair_gain": float(row["repair_gain"]),
+                "repair_cost": float(row["cost"]),
+                "residual_warning": bool(row.get("residual_warning", float(row["repair_gain"]) > 0)),
+                "unresolved_warning": bool(row.get("unresolved_warning", False)),
+            }
+        )
+    for _, row in safe_state_detail.iterrows():
+        rows.append(
+            {
+                "task": row["task"],
+                "condition": f"safe_state:{row['condition']}:{row['challenger']}",
+                "state_type": "seeded_safe_complete",
+                "seed": int(row["seed"]),
+                "budget": int(row["budget"]),
+                "challenger": row["challenger"],
+                "full_decision": row["decision"],
+                "recall": float(row["cumulative_recall"]),
+                "support": float(row["after_support_ratio"]),
+                "gini": float(row["after_exposure_gini"]),
+                "repair_gain": float(row["repair_gain"]),
+                "repair_cost": float(row["cost"]),
+                "residual_warning": bool(float(row["repair_gain"]) > 0),
+                "unresolved_warning": False,
+            }
+        )
+    states = pd.DataFrame(rows)
+    states["oracle_safe"] = states["recall"] >= SAFE_RECALL_MIN
+    states["geometry_ok"] = (states["support"] >= SAFE_SUPPORT_MIN) & (states["gini"] <= SAFE_GINI_MAX)
+    states.to_csv(RESULTS / "unified_state_metrics.csv", index=False)
+    _json_records(states, RESULTS / "unified_state_metrics.json")
+    return states
+
+
+def _decision_variant_metrics(states: pd.DataFrame) -> pd.DataFrame:
+    scoped = states[
+        (
+            states["state_type"].isin(["fixed_stop_state", "seeded_unsafe_repair"])
+            & (~states["condition"].astype(str).str.startswith("repair:") | (states["challenger"] == "residual_potential"))
+        )
+        | ((states["state_type"] == "seeded_safe_complete") & (states["challenger"] == "residual_potential"))
+    ].copy()
+
+    def decisions(policy: str, frame: pd.DataFrame) -> pd.Series:
+        if policy in {"Naive stop", "Source-only"}:
+            return pd.Series(["SAFE"] * len(frame), index=frame.index)
+        if policy == "Verifier-gate":
+            return frame.apply(verifier_gate_decision, axis=1)
+        if policy == "Eligibility-only":
+            return pd.Series(np.where(frame["geometry_ok"], "SAFE", "ABSTAIN"), index=frame.index)
+        if policy == "Full controller":
+            return frame["full_decision"]
+        raise ValueError(policy)
+
+    rows = []
+    policies = ["Naive stop", "Source-only", "Eligibility-only", "Verifier-gate", "Full controller"]
+    for policy in policies:
+        d = decisions(policy, scoped)
+        for (task, state_type), sub_idx in scoped.groupby(["task", "state_type"]).groups.items():
+            idx = list(sub_idx)
+            sub = scoped.loc[idx]
+            sub_decision = d.loc[idx]
+            unsafe = ~sub["oracle_safe"]
+            safe = sub["oracle_safe"]
+            rows.append(
+                {
+                    "table": "decision_variants",
+                    "task": task,
+                    "policy": policy,
+                    "state_type": state_type,
+                    "seed": "mixed",
+                    "budget": "mixed",
+                    "n": int(len(sub)),
+                    "unsafe_n": int(unsafe.sum()),
+                    "safe_n": int(safe.sum()),
+                    "safe_count": int((sub_decision == "SAFE").sum()),
+                    "continue_count": int((sub_decision == "CONTINUE").sum()),
+                    "abstain_count": int((sub_decision == "ABSTAIN").sum()),
+                    "safe_on_unsafe": int(((sub_decision == "SAFE") & unsafe).sum()),
+                    "safe_on_safe": int(((sub_decision == "SAFE") & safe).sum()),
+                    "fcr": float(((sub_decision == "SAFE") & unsafe).sum() / unsafe.sum()) if unsafe.sum() else math.nan,
+                    "safe_coverage": float(((sub_decision == "SAFE") & safe).sum() / safe.sum()) if safe.sum() else math.nan,
+                    "continue_rate": float((sub_decision == "CONTINUE").mean()) if len(sub) else math.nan,
+                    "abstain_rate": float((sub_decision == "ABSTAIN").mean()) if len(sub) else math.nan,
+                    "repair_gain": float(sub["repair_gain"].mean()),
+                    "repair_cost": float(sub["repair_cost"].mean()),
+                }
+            )
+    out = pd.DataFrame(rows)
+    out.to_csv(RESULTS / "unified_decision_variants.csv", index=False)
+    _json_records(out, RESULTS / "unified_decision_variants.json")
+    return out
+
+
+def _repair_variant_metrics(states: pd.DataFrame) -> pd.DataFrame:
+    scoped = states[
+        states["state_type"].isin(["seeded_unsafe_repair", "seeded_safe_complete"])
+        & states["challenger"].isin(["random", "high_potential", "residual_potential"])
+    ].copy()
+    rows = []
+    for (task, challenger, state_type), sub in scoped.groupby(["task", "challenger", "state_type"]):
+        decision = sub["full_decision"]
+        unsafe = ~sub["oracle_safe"]
+        safe = sub["oracle_safe"]
+        rows.append(
+            {
+                "table": "repair_variants",
+                "task": task,
+                "policy": challenger,
+                "state_type": state_type,
+                "seed": "mixed",
+                "budget": "mixed",
+                "n": int(len(sub)),
+                "safe_count": int((decision == "SAFE").sum()),
+                "continue_count": int((decision == "CONTINUE").sum()),
+                "abstain_count": int((decision == "ABSTAIN").sum()),
+                "fcr": float(((decision == "SAFE") & unsafe).sum() / unsafe.sum()) if unsafe.sum() else math.nan,
+                "safe_coverage": float(((decision == "SAFE") & safe).sum() / safe.sum()) if safe.sum() else math.nan,
+                "continue_rate": float((decision == "CONTINUE").mean()),
+                "abstain_rate": float((decision == "ABSTAIN").mean()),
+                "repair_gain": float(sub["repair_gain"].mean()),
+                "repair_cost": float(sub["repair_cost"].mean()),
+            }
+        )
+    out = pd.DataFrame(rows)
+    out.to_csv(RESULTS / "unified_repair_variants.csv", index=False)
+    _json_records(out, RESULTS / "unified_repair_variants.json")
+    return out
+
+
+def _localization_risk_trend(source_ablation: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for _, row in source_ablation.iterrows():
+        rows.append(
+            {
+                "table": "localization_risk_trend",
+                "task": row["task"],
+                "policy": "homogeneous stop",
+                "state_type": "fixed_stop_state",
+                "seed": -1,
+                "budget": 0,
+                "source_only_support": float(row["source_only_support"]),
+                "source_route_support": float(row["source_route_support"]),
+                "support_gap": float(row["source_only_support"] - row["source_route_support"]),
+                "gini": float(row["source_route_gini"]),
+                "fcr": float(row["base_recall"] < SAFE_RECALL_MIN),
+                "safe_coverage": math.nan,
+                "continue_rate": math.nan,
+                "abstain_rate": math.nan,
+                "repair_gain": math.nan,
+                "repair_cost": math.nan,
+                "residual_yield": float(max(0.0, SAFE_RECALL_MIN - float(row["base_recall"]))),
+                "recall": float(row["base_recall"]),
+            }
+        )
+    out = pd.DataFrame(rows)
+    out.to_csv(RESULTS / "unified_localization_risk_trend.csv", index=False)
+    _json_records(out, RESULTS / "unified_localization_risk_trend.json")
+    return out
+
+
+def _safety_cost_frontier(threshold: pd.DataFrame, budget: pd.DataFrame) -> pd.DataFrame:
+    threshold_rows = threshold.copy()
+    threshold_rows["table"] = "threshold_sweep"
+    threshold_rows["policy"] = threshold_rows["challenger"]
+    threshold_rows["state_type"] = "seeded_unsafe_repair"
+    threshold_rows["seed"] = "mixed"
+    threshold_rows["budget"] = "fixed"
+    threshold_rows = threshold_rows.rename(columns={"false_certification_rate": "fcr", "mean_repair_gain": "repair_gain", "mean_cost": "repair_cost"})
+
+    budget_rows = budget.copy()
+    budget_rows["table"] = "budget_sweep"
+    budget_rows["policy"] = budget_rows["challenger"]
+    budget_rows["state_type"] = "seeded_unsafe_repair"
+    budget_rows["seed"] = "mixed"
+    budget_rows = budget_rows.rename(columns={"false_certification_rate": "fcr", "mean_repair_gain": "repair_gain", "mean_cost": "repair_cost"})
+
+    keep = ["table", "task", "policy", "state_type", "seed", "budget", "fcr", "safe_coverage", "safe_rate", "continue_rate", "abstain_rate", "repair_gain", "repair_cost", "mean_cumulative_recall"]
+    for frame in [threshold_rows, budget_rows]:
+        if "safe_coverage" not in frame:
+            frame["safe_coverage"] = math.nan
+        if "safe_rate" not in frame:
+            frame["safe_rate"] = math.nan
+    out = pd.concat([threshold_rows[keep], budget_rows[keep]], ignore_index=True)
+    out.to_csv(RESULTS / "unified_threshold_budget_sweep.csv", index=False)
+    _json_records(out, RESULTS / "unified_threshold_budget_sweep.json")
+
+    frontier = (
+        out[out["policy"].isin(["residual_potential", "high_potential", "random"])]
+        .groupby(["table", "task", "policy", "budget"], as_index=False)
+        .agg(
+            fcr=("fcr", "mean"),
+            safe_coverage=("safe_coverage", "mean"),
+            continue_rate=("continue_rate", "mean"),
+            abstain_rate=("abstain_rate", "mean"),
+            repair_gain=("repair_gain", "mean"),
+            repair_cost=("repair_cost", "mean"),
+            mean_cumulative_recall=("mean_cumulative_recall", "mean"),
+        )
+    )
+    frontier["state_type"] = "seeded_unsafe_repair"
+    frontier["seed"] = "mixed"
+    frontier.to_csv(RESULTS / "unified_safety_cost_frontier.csv", index=False)
+    _json_records(frontier, RESULTS / "unified_safety_cost_frontier.json")
+    return frontier
+
+
+def unified_result_exports(
+    controller: pd.DataFrame,
+    source_ablation: pd.DataFrame,
+    threshold: pd.DataFrame,
+    budget: pd.DataFrame,
+    safe_state_detail: pd.DataFrame,
+) -> dict[str, pd.DataFrame]:
+    detail = pd.read_csv(RESULTS / "controller_decision_detail.csv")
+    states = _state_frame(detail, safe_state_detail)
+    exports = {
+        "decision_variants": _decision_variant_metrics(states),
+        "repair_variants": _repair_variant_metrics(states),
+        "controller_count_table": controller.copy(),
+        "localization_risk_trend": _localization_risk_trend(source_ablation),
+        "threshold_budget_sweep": _safety_cost_frontier(threshold, budget),
+    }
+    controller.to_csv(RESULTS / "unified_controller_count_table.csv", index=False)
+    _json_records(controller, RESULTS / "unified_controller_count_table.json")
+    manifest = {
+        "config_path": CONFIG.get("_config_path"),
+        "thresholds": {
+            "tau_support": SAFE_SUPPORT_MIN,
+            "tau_gini": SAFE_GINI_MAX,
+            "eval_only_recall_threshold": SAFE_RECALL_MIN,
+        },
+        "exports": {
+            name: {
+                "csv": str((RESULTS / f"unified_{name}.csv").relative_to(ROOT)).replace("\\", "/"),
+                "json": str((RESULTS / f"unified_{name}.json").relative_to(ROOT)).replace("\\", "/"),
+            }
+            for name in [
+                "decision_variants",
+                "repair_variants",
+                "controller_count_table",
+                "localization_risk_trend",
+                "threshold_budget_sweep",
+                "safety_cost_frontier",
+                "state_metrics",
+            ]
+        },
+        "runtime_visible_fields": CONFIG.get("runtime_visible_fields", []),
+        "posthoc_oracle_only_fields": CONFIG.get("posthoc_oracle_only_fields", []),
+    }
+    (RESULTS / "unified_results_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    return exports
 
 
 def chao_scalar_proxy() -> pd.DataFrame:
@@ -1067,20 +1368,19 @@ def workflow_pilot_summary(agent_validation: pd.DataFrame) -> pd.DataFrame:
 
 
 def seeded_safe_state_validation() -> pd.DataFrame:
+    validation_budgets = CONFIG.get("repair_budgets", {}).get("safe_state_validation_budgets", [1, 2, 4, 6, 8])
     specs = [
         (
             "requests",
             "route_partitioned",
             PILOT / "external_validation_requests" / "run_external_requests_validation.py",
-            120,
-            [1, 2, 4, 6, 8],
+            validation_budgets,
         ),
         (
             "urllib3",
             "extended_audit",
             PILOT / "external_validation_v2" / "run_external_validation_v2.py",
-            120,
-            [1, 2, 4, 6, 8],
+            validation_budgets,
         ),
     ]
     rows = []
@@ -1098,7 +1398,7 @@ def seeded_safe_state_validation() -> pd.DataFrame:
             return sorted(universe, key=lambda s: (-(1.0 - exposure.get(s, 0) / max_exp) * potential[s], s))
         return list(rng.permutation(universe))
 
-    for task, condition, script, n_seeds, budgets in specs:
+    for task, condition, script, budgets in specs:
         module = load_module(f"safe_state_{task}", script)
         module.ensure_dirs()
         module.write_snapshot()
@@ -1119,9 +1419,16 @@ def seeded_safe_state_validation() -> pd.DataFrame:
         base_found = df_discovered_true(base, oracle_ids)
         base_recall = len(base_found) / len(oracle_ids)
         assert base_recall >= SAFE_RECALL_MIN
+        challengers = [c for c in module.CHALLENGERS if c in {"random", "low_exposure", "high_potential", "residual_potential", "free_search_continuation"}]
+        raw_seed_value = CONFIG.get("seeds", {}).get("safe_state", [])
+        if isinstance(raw_seed_value, int):
+            total_cells = max(1, len(specs) * len(challengers) * len(budgets))
+            seed_values = list(range(max(1, raw_seed_value // total_cells)))
+        else:
+            seed_values = seeds(CONFIG, "safe_state")
         for budget in budgets:
-            for challenger in [c for c in module.CHALLENGERS if c in {"random", "low_exposure", "high_potential", "residual_potential", "free_search_continuation"}]:
-                for seed in range(n_seeds):
+            for challenger in challengers:
+                for seed in seed_values:
                     order = order_targets(challenger, universe, exposure, potential, seed)
                     targets = order[:budget]
                     found = set(base_found)
@@ -1764,6 +2071,7 @@ def main() -> None:
     chao = chao_scalar_proxy()
     threshold, budget = threshold_and_budget_sensitivity()
     sensitivity = sensitivity_summary(threshold, budget)
+    unified_result_exports(controller, source_ablation, threshold, budget, safe_state_detail)
     repair_ci = repair_policy_ci()
     plot_main_results_overview(source_ablation)
     plot_controller_decision_matrix(controller)

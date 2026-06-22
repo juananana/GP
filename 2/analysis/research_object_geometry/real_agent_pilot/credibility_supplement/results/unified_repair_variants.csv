@@ -1,0 +1,13 @@
+table,task,policy,state_type,seed,budget,n,safe_count,continue_count,abstain_count,fcr,safe_coverage,continue_rate,abstain_rate,repair_gain,repair_cost
+repair_variants,requests,high_potential,seeded_safe_complete,mixed,mixed,600,600,0,0,,1.0,0.0,0.0,0.0,3857.0
+repair_variants,requests,high_potential,seeded_unsafe_repair,mixed,mixed,200,0,200,0,0.0,,1.0,0.0,177.0,3262.0
+repair_variants,requests,random,seeded_safe_complete,mixed,mixed,600,600,0,0,,1.0,0.0,0.0,0.0,3156.26
+repair_variants,requests,random,seeded_unsafe_repair,mixed,mixed,200,0,199,1,0.0,,0.995,0.005,45.535,2737.025
+repair_variants,requests,residual_potential,seeded_safe_complete,mixed,mixed,600,600,0,0,,1.0,0.0,0.0,0.0,4044.75
+repair_variants,requests,residual_potential,seeded_unsafe_repair,mixed,mixed,200,0,200,0,0.0,,1.0,0.0,177.0,3262.0
+repair_variants,urllib3,high_potential,seeded_safe_complete,mixed,mixed,600,600,0,0,,1.0,0.0,0.0,0.0,3985.0
+repair_variants,urllib3,high_potential,seeded_unsafe_repair,mixed,mixed,200,0,200,0,0.0,,1.0,0.0,275.0,4386.0
+repair_variants,urllib3,random,seeded_safe_complete,mixed,mixed,600,600,0,0,,1.0,0.0,0.0,0.0,3793.4966666666664
+repair_variants,urllib3,random,seeded_unsafe_repair,mixed,mixed,200,0,198,2,0.0,,0.99,0.01,92.525,4225.245
+repair_variants,urllib3,residual_potential,seeded_safe_complete,mixed,mixed,600,600,0,0,,1.0,0.0,0.0,0.0,5316.75
+repair_variants,urllib3,residual_potential,seeded_unsafe_repair,mixed,mixed,200,0,200,0,0.0,,1.0,0.0,329.0,5289.0

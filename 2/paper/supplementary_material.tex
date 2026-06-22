@@ -122,8 +122,8 @@ only after trajectories, route assignments, repair orderings, and challenger
 choices have been fixed.
 
 \paragraph{Commands.}
-Set \texttt{EVIDENCE\_CONFIG=2/configs/main\_3seed.yaml} for a lightweight run
-or \texttt{EVIDENCE\_CONFIG=2/configs/full\_200seed.yaml} for the seeded
+Set \texttt{EVIDENCE\_CONFIG=configs/main\_3seed.yaml} for a lightweight run
+or \texttt{EVIDENCE\_CONFIG=configs/full\_200seed.yaml} for the seeded
 validation reported in the paper. From \path{2/}, run:
 \begin{verbatim}
 P=analysis/research_object_geometry/real_agent_pilot
@@ -134,7 +134,7 @@ python $P/external_validation_v2/run_external_validation_v2.py
 python $P/credibility_supplement/run_credibility_supplement.py
 python paper/scripts/make_paper_figures.py
 \end{verbatim}
-Use \texttt{EVIDENCE\_CONFIG=2/configs/sensitivity.yaml} before the supplement
+Use \texttt{EVIDENCE\_CONFIG=configs/sensitivity.yaml} before the supplement
 assembler for the threshold and budget sweeps.
 
 \paragraph{Outputs and figures.}
@@ -142,6 +142,18 @@ Experiment ledgers are written as JSONL under task-specific \path{logs/}
 directories, and aggregate CSV files are written under task-specific
 \path{results/} directories and
 \path{analysis/research_object_geometry/real_agent_pilot/credibility_supplement/results/}.
+The supplement assembler also writes a unified CSV/JSON export family:
+\path{unified_decision_variants.*}, \path{unified_repair_variants.*},
+\path{unified_controller_count_table.*},
+\path{unified_localization_risk_trend.*},
+\path{unified_threshold_budget_sweep.*},
+\path{unified_safety_cost_frontier.*}, and
+\path{unified_state_metrics.*}. Each unified table carries the task, policy,
+state type, seed or mixed-seed indicator, budget or mixed-budget indicator, FCR,
+safe coverage, \cont{}/\abstain{} rates, repair gain, and repair cost whenever
+the metric is defined. \path{unified_results_manifest.json} records the config
+path, thresholds, export locations, runtime-visible fields, and post-hoc-only
+fields.
 Figure~3 and Figure~4 are regenerated from fixed CSV outputs by
 \path{paper/scripts/make_paper_figures.py}, which writes
 \path{paper/figures/main_results_overview.pdf},
@@ -156,7 +168,9 @@ Figure~\ref{fig:controller_variant_comparison} compares decision policies on the
 same fixed bounded-audit states used in the main paper. This is a policy
 ablation, not a new task suite: oracle labels are used only after decisions are
 fixed to compute false-\safe{} rate, safe-state coverage, decision rates, and
-repair gain/cost.
+repair gain/cost. The generic Verifier-gate baseline uses only
+unresolved-warning and residual-warning bits; it never reads source-route
+support, Gini, oracle totals, recall, or undiscovered true-item counts.
 The main figure reports seeded unsafe-state FCR and seeded safe-state coverage.
 The observed fixed stop states remain the boundary states from which these
 seeded validations are derived; they are summarized in

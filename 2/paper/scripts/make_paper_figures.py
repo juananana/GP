@@ -317,65 +317,114 @@ def plot_main_results_overview() -> None:
     ablation = pd.read_csv(RESULTS / "source_only_vs_source_route.csv")
     tasks = ["policy-docset", "code-repo", "requests", "urllib3"]
     labels = ["policy-docset", "code-repo", "requests", "urllib3"]
-    x = np.arange(len(tasks))
     base = overview[overview["condition"] == "homogeneous"].set_index("task").reindex(tasks)
     broad = overview[overview["condition"] == "route_partitioned"].set_index("task").reindex(tasks)
     extended = overview[overview["condition"] == "extended_audit"].set_index("task")
     ablation["short_task"] = ablation["task"].map({"policy_docset_v1": "policy-docset", "code_repo_v1": "code-repo", "requests": "requests", "urllib3": "urllib3"})
     ablation = ablation.set_index("short_task").reindex(tasks)
 
-    fig, axes = plt.subplots(1, 3, figsize=(7.10, 2.34), constrained_layout=True)
-    width = 0.32
-    axes[0].bar(x - width / 2, base["support"], width, label="homogeneous", color=COLORS["gray"])
-    axes[0].bar(x + width / 2, broad["support"], width, label="route-partitioned", color=COLORS["blue"])
-    axes[0].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.9)
-    axes[0].text(
-        0.98,
-        SAFE_SUPPORT_MIN + 0.035,
-        rf"$\tau_s={SAFE_SUPPORT_MIN:.2f}$",
-        transform=axes[0].get_yaxis_transform(),
-        color=COLORS["red"],
-        fontsize=6.7,
-        ha="right",
-    )
-    axes[0].set_title("(a) Support eligibility", loc="left", fontweight="bold")
+    fig, axes = plt.subplots(2, 2, figsize=(7.15, 4.35), constrained_layout=True)
+    axes = axes.ravel()
+    task_colors = {"policy-docset": COLORS["blue"], "code-repo": COLORS["teal"], "requests": COLORS["orange"], "urllib3": COLORS["purple"]}
+    markers = {"homogeneous": "o", "route_partitioned": "s", "extended_audit": "^"}
+    x = np.arange(len(tasks))
+
+    axes[0].plot(x, base["support"], color=COLORS["gray"], marker="o", lw=1.3, label="homogeneous support")
+    axes[0].plot(x, base["gini"], color=COLORS["red"], marker="D", lw=1.1, label="homogeneous Gini")
+    for i, task in enumerate(tasks):
+        axes[0].scatter(i, base.loc[task, "support"], s=34, color=task_colors[task], edgecolor="white", linewidth=0.7, zorder=3)
+    axes[0].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[0].set_title("(a) Localized exposure at stop", loc="left", fontweight="bold")
     axes[0].set_ylim(0, 1.05)
-    axes[0].set_xticks(x, labels, rotation=22, ha="right")
-    axes[0].set_ylabel("source-route support")
+    axes[0].set_xticks(x, labels, rotation=18, ha="right")
+    axes[0].set_ylabel("support / Gini")
     axes[0].legend(frameon=False, loc="upper left", handlelength=1.1)
 
-    axes[1].bar(x - width / 2, ablation["source_only_support"], width, label="source-only", color=COLORS["green"])
-    axes[1].bar(x + width / 2, ablation["source_route_support"], width, label="source-route", color=COLORS["purple"])
-    axes[1].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.9)
-    axes[1].set_title("(b) Route granularity matters", loc="left", fontweight="bold")
-    axes[1].set_ylim(0, 1.05)
-    axes[1].set_xticks(x, labels, rotation=22, ha="right")
-    axes[1].text(3.42, 0.985, "source-only", color=COLORS["green"], fontsize=6.8, ha="right", va="top", bbox=dict(facecolor="white", edgecolor="none", pad=0.6, alpha=0.85))
-    axes[1].text(3.42, 0.205, "source-route", color=COLORS["purple"], fontsize=6.8, ha="right", va="bottom", bbox=dict(facecolor="white", edgecolor="none", pad=0.6, alpha=0.85))
+    width = 0.26
+    axes[1].bar(x - width / 2, ablation["source_only_support"], width, label="source-only", color=COLORS["green"], alpha=0.90)
+    axes[1].bar(x + width / 2, ablation["source_route_support"], width, label="source-route", color=COLORS["purple"], alpha=0.90)
+    for i, task in enumerate(tasks):
+        gap = float(ablation.loc[task, "source_only_support"] - ablation.loc[task, "source_route_support"])
+        axes[1].plot([i - width / 2, i + width / 2], [1.0, float(ablation.loc[task, "source_route_support"])], color=task_colors[task], lw=0.9, alpha=0.85)
+        axes[1].text(i, 1.03, f"-{gap:.2f}", ha="center", va="bottom", fontsize=6.2, color=COLORS["muted"])
+    axes[1].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[1].set_title("(b) Source-only illusion", loc="left", fontweight="bold")
+    axes[1].set_ylim(0, 1.12)
+    axes[1].set_xticks(x, labels, rotation=18, ha="right")
+    axes[1].set_ylabel("support")
+    axes[1].legend(frameon=False, loc="lower left", handlelength=1.1)
 
-    vals = [
-        float(broad.loc["urllib3", "recall"]),
-        float(extended.loc["urllib3", "recall"]) if "urllib3" in extended.index else np.nan,
+    condition_order = ["homogeneous", "route_partitioned", "extended_audit"]
+    for condition in condition_order:
+        sub = overview[overview["condition"] == condition]
+        for _, row in sub.iterrows():
+            axes[2].scatter(
+                row["support"],
+                row["gini"],
+                s=42,
+                color=task_colors[row["task"]],
+                marker=markers[condition],
+                edgecolor="white",
+                linewidth=0.75,
+                zorder=3,
+                alpha=0.95,
+            )
+    axes[2].axvline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[2].axhline(THRESHOLDS["tau_gini"], color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[2].fill_between([SAFE_SUPPORT_MIN, 1.02], 0, THRESHOLDS["tau_gini"], color=COLORS["green_light"], alpha=0.55, zorder=0)
+    axes[2].set_title("(c) Source-route diagnosis", loc="left", fontweight="bold")
+    axes[2].set_xlim(0, 1.04)
+    axes[2].set_ylim(0, 1.02)
+    axes[2].set_xlabel("source-route support")
+    axes[2].set_ylabel("exposure Gini")
+    handles = [
+        plt.Line2D([0], [0], marker=markers[c], color="none", markerfacecolor=COLORS["gray"], markeredgecolor="white", markersize=6, label=c.replace("_", "-"))
+        for c in condition_order
     ]
-    axes[2].bar([0, 1], vals, 0.50, color=[COLORS["orange"], COLORS["green"]])
-    axes[2].axhline(SAFE_RECALL_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.9)
-    axes[2].text(0, vals[0] + 0.025, f"{vals[0]:.3f}", ha="center", va="bottom", fontsize=7.0, color=COLORS["ink"])
-    axes[2].text(1, vals[1] - 0.040, f"{vals[1]:.3f}", ha="center", va="top", fontsize=7.0, color="#FFFFFF", weight="bold")
-    axes[2].text(
-        0.02,
-        0.97,
-        f"{SAFE_RECALL_MIN:.2f} post-hoc threshold",
-        transform=axes[2].transAxes,
-        color=COLORS["red"],
-        fontsize=6.5,
-        ha="left",
-        va="top",
-        bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.85),
-    )
-    axes[2].set_title("(c) Eligible is not complete", loc="left", fontweight="bold")
-    axes[2].set_ylim(0, 1.05)
-    axes[2].set_xticks([0, 1], ["route-\npartitioned", "extended\naudit"])
-    axes[2].set_ylabel("bounded-oracle recall")
+    axes[2].legend(handles=handles, frameon=False, loc="lower left", handlelength=0.8)
+
+    plot_df = overview.copy()
+    plot_df["residual_yield"] = np.maximum(0.0, SAFE_RECALL_MIN - plot_df["recall"].astype(float))
+    for condition in condition_order:
+        sub = plot_df[plot_df["condition"] == condition]
+        for _, row in sub.iterrows():
+            axes[3].scatter(
+                row["support"],
+                row["recall"],
+                s=36 + 120 * float(row["residual_yield"]),
+                color=task_colors[row["task"]],
+                marker=markers[condition],
+                edgecolor="white",
+                linewidth=0.75,
+                alpha=0.95,
+                zorder=3,
+            )
+    if "urllib3" in broad.index and "urllib3" in extended.index:
+        u0 = broad.loc["urllib3"]
+        u1 = extended.loc["urllib3"]
+        axes[3].annotate(
+            "eligible + residual",
+            xy=(float(u0["support"]), float(u0["recall"])),
+            xytext=(0.46, 0.72),
+            arrowprops=dict(arrowstyle="->", lw=0.75, color=COLORS["muted"]),
+            fontsize=6.6,
+            color=COLORS["ink"],
+        )
+        axes[3].annotate(
+            "extended audit",
+            xy=(float(u1["support"]), float(u1["recall"])),
+            xytext=(0.73, 0.98),
+            arrowprops=dict(arrowstyle="->", lw=0.75, color=COLORS["muted"]),
+            fontsize=6.6,
+            color=COLORS["ink"],
+        )
+    axes[3].axhline(SAFE_RECALL_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[3].axvline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
+    axes[3].set_title("(d) Eligibility is not proof", loc="left", fontweight="bold")
+    axes[3].set_xlim(0, 1.04)
+    axes[3].set_ylim(0, 1.05)
+    axes[3].set_xlabel("source-route support")
+    axes[3].set_ylabel("bounded-oracle recall")
 
     for ax in axes:
         ax.grid(axis="y", alpha=0.9)
@@ -484,6 +533,9 @@ def controller_variant_summary() -> pd.DataFrame:
     geom_safe = (residual_safe["after_support_ratio"] >= SAFE_SUPPORT_MIN) & (residual_safe["after_exposure_gini"] <= THRESHOLDS["tau_gini"])
     rows.append(decision_counts("Naive stop", residual_unsafe, residual_safe, pd.Series(["SAFE"] * len(residual_unsafe)), pd.Series(["SAFE"] * len(residual_safe)), np.nan, np.nan))
     rows.append(decision_counts("Source-only", residual_unsafe, residual_safe, pd.Series(["SAFE"] * len(residual_unsafe)), pd.Series(["SAFE"] * len(residual_safe)), np.nan, np.nan))
+    verifier_unsafe = pd.Series(np.where(residual_unsafe["repair_gain"].to_numpy(dtype=float) > 0, "ABSTAIN", "SAFE"))
+    verifier_safe = pd.Series(np.where(residual_safe["repair_gain"].to_numpy(dtype=float) > 0, "ABSTAIN", "SAFE"))
+    rows.append(decision_counts("Verifier-gate", residual_unsafe, residual_safe, verifier_unsafe, verifier_safe, np.nan, np.nan))
     rows.append(decision_counts("Eligibility-only", residual_unsafe, residual_safe, pd.Series(np.where(geom_unsafe, "SAFE", "ABSTAIN")), pd.Series(np.where(geom_safe, "SAFE", "ABSTAIN")), np.nan, np.nan))
     rows.append(decision_counts("Full controller", residual_unsafe, residual_safe, residual_unsafe["decision"].reset_index(drop=True), residual_safe["decision"].reset_index(drop=True), float(residual_unsafe["repair_gain"].mean()), float(residual_unsafe["cost"].mean())))
 
@@ -546,9 +598,12 @@ def write_controller_variant_count_table(summary: pd.DataFrame) -> None:
 \centering
 \caption{Controller variant count table. Unsafe denominators are seeded
 oracle-unsafe repair states; safe denominators are seeded oracle-safe complete
-states. Oracle safety labels are used only for post-hoc scoring. Decision
-variants are evaluated on the residual-potential seeded state set; repair
-target variants use the same seeds and budgets with their named target rule.}
+states, so these denominators differ from the one-state eligibility boundary in
+the main text. FCR is SAFE-on-unsafe divided by the unsafe denominator; safe
+coverage is SAFE-on-safe divided by the safe denominator. Oracle safety labels
+are used only for post-hoc scoring. Decision variants are evaluated on the
+residual-potential seeded state set; repair target variants use the same seeds
+and budgets with their named target rule.}
 \label{tab:controller_variant_counts}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrrrrrr}
@@ -563,10 +618,10 @@ Policy & Unsafe denom. & Safe denom. & SAFE-on-unsafe & SAFE-on-safe
 """
     (PAPER / "generated" / "table_controller_variant_counts.tex").write_text(text.strip() + "\n", encoding="utf-8")
 
-    main = summary[summary["policy"].isin(["Naive stop", "Source-only", "Eligibility-only", "Full controller"])].copy()
+    main = summary[summary["policy"].isin(["Naive stop", "Source-only", "Verifier-gate", "Eligibility-only", "Full controller"])].copy()
     main["policy"] = pd.Categorical(
         main["policy"],
-        categories=["Naive stop", "Source-only", "Eligibility-only", "Full controller"],
+        categories=["Naive stop", "Source-only", "Verifier-gate", "Eligibility-only", "Full controller"],
         ordered=True,
     )
     main = main.sort_values("policy")
@@ -601,8 +656,11 @@ Policy & Unsafe denom. & Safe denom. & SAFE-on-unsafe & SAFE-on-safe
 \centering
 \small
 \setlength{\tabcolsep}{2.8pt}
-\caption{Seeded controller decision counts for Figure~\ref{fig:controller_variants}.
-All decision rules are evaluated on the same seeded stop-boundary states; oracle
+\caption{Seeded unsafe/complete controller decision counts for
+Figure~\ref{fig:controller_variants}. Unsafe and Complete are the seeded
+denominators; FCR is SAFE-on-unsafe divided by Unsafe, and safe coverage is
+SAFE-on-complete divided by Complete. These denominators differ from the
+one-state eligibility boundary in Table~\ref{tab:eligibility_boundary}. Oracle
 labels are used only after decisions are fixed. S/C/A reports
 SAFE/CONTINUE/ABSTAIN counts.}
 \label{tab:main_controller_counts}
@@ -642,6 +700,18 @@ def write_per_task_decision_breakdown() -> None:
     policies = [
         ("Naive stop", lambda df: pd.Series(["SAFE"] * len(df), index=df.index)),
         ("Source-only", lambda df: pd.Series(["SAFE"] * len(df), index=df.index)),
+        (
+            "Verifier-gate",
+            lambda df: pd.Series(
+                np.where(
+                    df.get("residual_warning", pd.Series([False] * len(df), index=df.index)).astype(bool)
+                    | df.get("unresolved_warning", pd.Series([False] * len(df), index=df.index)).astype(bool),
+                    "ABSTAIN",
+                    "SAFE",
+                ),
+                index=df.index,
+            ),
+        ),
         ("Eligibility-only", lambda df: pd.Series(np.where(df["geometry_ok"], "SAFE", "ABSTAIN"), index=df.index)),
         ("Full controller", lambda df: df["decision"]),
     ]
@@ -874,62 +944,101 @@ def plot_controller_variant_comparison() -> None:
     set_style()
     summary = controller_variant_summary()
     write_controller_variant_count_table(summary)
-    controller = summary[summary["policy"].isin(["Naive stop", "Source-only", "Eligibility-only", "Full controller"])].copy()
+    controller = summary[summary["policy"].isin(["Naive stop", "Source-only", "Verifier-gate", "Eligibility-only", "Full controller"])].copy()
     repair = summary[summary["policy"].isin(["Random repair", "High-potential repair", "Ours"])].copy()
-    controller_labels = ["Naive", "Source-only", "Elig.-only", "Full"]
-    controller_colors = [COLORS["gray"], COLORS["green"], COLORS["orange"], COLORS["purple"]]
+    controller_labels = ["Naive", "Source-only", "Verifier", "Elig.-only", "Full"]
+    controller_colors = [COLORS["gray"], COLORS["green"], COLORS["red"], COLORS["orange"], COLORS["purple"]]
     repair_labels = ["Random", "High-pot.", "Residual-pot."]
     repair_colors = [COLORS["gray"], COLORS["blue"], COLORS["purple"]]
 
-    fig, axes = plt.subplots(1, 3, figsize=(7.25, 1.88), constrained_layout=True)
+    fig, axes = plt.subplots(2, 2, figsize=(7.15, 4.45), constrained_layout=True)
+    axes = axes.ravel()
 
-    unsafe_safe = controller["false_certification_rate_seeded_unsafe"].to_numpy(dtype=float)
+    x = np.arange(len(controller_labels))
+    fcr = controller["false_certification_rate_seeded_unsafe"].to_numpy(dtype=float)
     unsafe_continue = controller["continue_rate_seeded_unsafe"].to_numpy(dtype=float)
     unsafe_abstain = controller["abstain_rate_seeded_unsafe"].to_numpy(dtype=float)
     safe_cov = controller["safe_coverage_seeded_safe"].to_numpy(dtype=float)
 
-    for ax, bars, title in [
-        (axes[0], (unsafe_safe, unsafe_continue, unsafe_abstain), "Unsafe states: decision mix"),
-        (axes[1], (safe_cov, np.zeros_like(safe_cov), np.zeros_like(safe_cov)), "Complete states: SAFE coverage"),
-    ]:
-        vals0, vals1, vals2 = bars
-        x = np.arange(len(vals0))
-        if ax is axes[0]:
-            ax.bar(x, vals0, color=COLORS["green"], width=0.68, label="SAFE")
-            ax.bar(x, vals1, bottom=vals0, color=COLORS["orange"], width=0.68, label="CONTINUE")
-            ax.bar(x, vals2, bottom=vals0 + vals1, color=COLORS["gray"], width=0.68, label="ABSTAIN")
-            for i, (s, c, a) in enumerate(zip(vals0, vals1, vals2)):
-                if s > 0:
-                    ax.text(i, s + 0.03, f"{s:.2f}", ha="center", va="bottom", fontsize=6.6)
-                if c > 0:
-                    ax.text(i, s + c / 2, f"{c:.2f}", ha="center", va="center", fontsize=6.4, color="white", weight="bold")
-                if a > 0:
-                    ax.text(i, s + c + a / 2, f"{a:.2f}", ha="center", va="center", fontsize=6.4, color="white", weight="bold")
-        else:
-            ax.bar(x, vals0, color=controller_colors, width=0.68)
-            for i, val in enumerate(vals0):
-                ax.text(i, val + 0.03, f"{val:.2f}", ha="center", va="bottom", fontsize=6.6)
-        ax.set_title(title, loc="left", fontweight="bold")
-        ax.set_xticks(x, controller_labels, rotation=18, ha="right")
-        ax.set_ylim(0, 1.08)
-        ax.set_ylabel("rate")
-        ax.set_yticks([0, 0.5, 1.0])
-        ax.grid(axis="y", alpha=0.9)
-        ax.set_axisbelow(True)
-    axes[0].legend(frameon=False, loc="upper left", bbox_to_anchor=(0.00, 1.02), ncol=3, handlelength=0.9, columnspacing=0.8, fontsize=6.2)
+    axes[0].bar(x, fcr, color=controller_colors, width=0.64)
+    for i, val in enumerate(fcr):
+        axes[0].text(i, min(1.03, val + 0.035), f"{val:.2f}", ha="center", va="bottom", fontsize=6.6)
+    axes[0].set_title("(a) False certification on seeded unsafe states", loc="left", fontweight="bold")
+    axes[0].set_xticks(x, controller_labels, rotation=18, ha="right")
+    axes[0].set_ylim(0, 1.08)
+    axes[0].set_ylabel("FCR")
+
+    width = 0.25
+    axes[1].bar(x - width, safe_cov, width, color=COLORS["green"], label="safe coverage")
+    axes[1].bar(x, unsafe_continue, width, color=COLORS["orange"], label="CONTINUE on unsafe")
+    axes[1].bar(x + width, unsafe_abstain, width, color=COLORS["gray"], label="ABSTAIN on unsafe")
+    axes[1].set_title("(b) Coverage and conservatism", loc="left", fontweight="bold")
+    axes[1].set_xticks(x, controller_labels, rotation=18, ha="right")
+    axes[1].set_ylim(0, 1.08)
+    axes[1].set_ylabel("rate")
+    axes[1].legend(frameon=False, loc="upper center", ncol=3, bbox_to_anchor=(0.50, 1.02), handlelength=0.9, columnspacing=0.7, fontsize=6.3)
 
     gain = repair["mean_repair_gain_seeded_unsafe"].to_numpy(dtype=float)
     cost = repair["mean_cost_seeded_unsafe"].to_numpy(dtype=float)
+    repair_map = {"Random": "random", "High-pot.": "high_potential", "Residual-pot.": "residual_potential"}
+    repair_ci = pd.read_csv(RESULTS / "repair_policy_ci.csv")
     for i, (g, c, label, color) in enumerate(zip(gain, cost, repair_labels, repair_colors)):
-        axes[2].scatter(c, g, s=46, color=color, edgecolor="white", linewidth=0.7, zorder=3)
+        key = repair_map[label]
+        ci_rows = repair_ci[repair_ci["challenger"] == key]
+        low = max(0.0, g - float(ci_rows["new_true_ci95_low"].mean()))
+        high = max(0.0, float(ci_rows["new_true_ci95_high"].mean()) - g)
+        axes[2].errorbar(c, g, yerr=[[low], [high]], fmt="none", ecolor="#374151", elinewidth=0.75, capsize=2, zorder=2)
+        axes[2].scatter(c, g, s=52, color=color, edgecolor="white", linewidth=0.7, zorder=3)
         axes[2].text(c + 45, g + (7 if i != 0 else -11), label, fontsize=6.7, color=COLORS["ink"], va="center")
-    axes[2].set_title("Repair target variants:\nmean gain vs. cost", loc="left", fontweight="bold")
+    axes[2].set_title("(c) Repair gain-cost tradeoff", loc="left", fontweight="bold")
     axes[2].set_xlabel("mean cost")
     axes[2].set_ylabel("mean new items")
     axes[2].set_xlim(3200, 4550)
     axes[2].set_ylim(40, 280)
-    axes[2].grid(alpha=0.9)
-    axes[2].set_axisbelow(True)
+
+    frontier_path = RESULTS / "unified_safety_cost_frontier.csv"
+    if frontier_path.exists():
+        frontier = pd.read_csv(frontier_path)
+    else:
+        budget = pd.read_csv(RESULTS / "budget_sensitivity.csv")
+        frontier = budget.rename(columns={"false_certification_rate": "fcr", "mean_cost": "repair_cost", "mean_repair_gain": "repair_gain"})
+        frontier["table"] = "budget_sweep"
+        frontier["policy"] = frontier["challenger"]
+    frontier = frontier[(frontier["table"] == "budget_sweep") & (frontier["policy"].isin(["random", "high_potential", "residual_potential"]))]
+    markers = {"requests": "o", "urllib3": "s"}
+    line_colors = {"random": COLORS["gray"], "high_potential": COLORS["blue"], "residual_potential": COLORS["purple"]}
+    for (policy, task), sub in frontier.groupby(["policy", "task"]):
+        sub = sub.sort_values("budget")
+        axes[3].plot(
+            sub["repair_cost"],
+            sub["mean_cumulative_recall"],
+            color=line_colors[policy],
+            marker=markers.get(task, "o"),
+            lw=1.0,
+            ms=4,
+            alpha=0.88,
+            label=f"{policy.replace('_', '-')} / {task}",
+        )
+    axes[3].set_title("(d) Threshold/budget safety-cost frontier", loc="left", fontweight="bold")
+    axes[3].set_xlabel("mean repair cost")
+    axes[3].set_ylabel("mean cumulative recall")
+    axes[3].set_ylim(0.05, 1.02)
+    axes[3].text(
+        0.03,
+        0.96,
+        "FCR=0 across plotted budget sweep",
+        transform=axes[3].transAxes,
+        fontsize=6.2,
+        color=COLORS["muted"],
+        ha="left",
+        va="top",
+        bbox=dict(facecolor="white", edgecolor="none", pad=0.8, alpha=0.80),
+    )
+    axes[3].legend(frameon=False, loc="lower right", fontsize=5.7, handlelength=1.1, ncol=1)
+
+    for ax in axes:
+        ax.grid(alpha=0.9)
+        ax.set_axisbelow(True)
     save(fig, "controller_variant_comparison")
 
 

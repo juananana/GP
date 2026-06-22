@@ -1,0 +1,41 @@
+table,task,policy,state_type,seed,budget,n,unsafe_n,safe_n,safe_count,continue_count,abstain_count,safe_on_unsafe,safe_on_safe,fcr,safe_coverage,continue_rate,abstain_rate,repair_gain,repair_cost
+decision_variants,code_repo_v1,Naive stop,fixed_stop_state,mixed,mixed,2,1,1,2,0,0,1,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,policy_docset_v1,Naive stop,fixed_stop_state,mixed,mixed,2,1,1,2,0,0,1,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,requests,Naive stop,fixed_stop_state,mixed,mixed,2,1,1,2,0,0,1,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,requests,Naive stop,seeded_safe_complete,mixed,mixed,600,0,600,600,0,0,0,600,,1.0,0.0,0.0,0.0,4044.75
+decision_variants,requests,Naive stop,seeded_unsafe_repair,mixed,mixed,200,200,0,200,0,0,200,0,1.0,,0.0,0.0,177.0,3262.0
+decision_variants,urllib3,Naive stop,fixed_stop_state,mixed,mixed,3,2,1,3,0,0,2,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,urllib3,Naive stop,seeded_safe_complete,mixed,mixed,600,0,600,600,0,0,0,600,,1.0,0.0,0.0,0.0,5316.75
+decision_variants,urllib3,Naive stop,seeded_unsafe_repair,mixed,mixed,200,200,0,200,0,0,200,0,1.0,,0.0,0.0,329.0,5289.0
+decision_variants,code_repo_v1,Source-only,fixed_stop_state,mixed,mixed,2,1,1,2,0,0,1,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,policy_docset_v1,Source-only,fixed_stop_state,mixed,mixed,2,1,1,2,0,0,1,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,requests,Source-only,fixed_stop_state,mixed,mixed,2,1,1,2,0,0,1,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,requests,Source-only,seeded_safe_complete,mixed,mixed,600,0,600,600,0,0,0,600,,1.0,0.0,0.0,0.0,4044.75
+decision_variants,requests,Source-only,seeded_unsafe_repair,mixed,mixed,200,200,0,200,0,0,200,0,1.0,,0.0,0.0,177.0,3262.0
+decision_variants,urllib3,Source-only,fixed_stop_state,mixed,mixed,3,2,1,3,0,0,2,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,urllib3,Source-only,seeded_safe_complete,mixed,mixed,600,0,600,600,0,0,0,600,,1.0,0.0,0.0,0.0,5316.75
+decision_variants,urllib3,Source-only,seeded_unsafe_repair,mixed,mixed,200,200,0,200,0,0,200,0,1.0,,0.0,0.0,329.0,5289.0
+decision_variants,code_repo_v1,Eligibility-only,fixed_stop_state,mixed,mixed,2,1,1,1,0,1,0,1,0.0,1.0,0.0,0.5,0.0,0.0
+decision_variants,policy_docset_v1,Eligibility-only,fixed_stop_state,mixed,mixed,2,1,1,1,0,1,0,1,0.0,1.0,0.0,0.5,0.0,0.0
+decision_variants,requests,Eligibility-only,fixed_stop_state,mixed,mixed,2,1,1,1,0,1,0,1,0.0,1.0,0.0,0.5,0.0,0.0
+decision_variants,requests,Eligibility-only,seeded_safe_complete,mixed,mixed,600,0,600,600,0,0,0,600,,1.0,0.0,0.0,0.0,4044.75
+decision_variants,requests,Eligibility-only,seeded_unsafe_repair,mixed,mixed,200,200,0,0,0,200,0,0,0.0,,0.0,1.0,177.0,3262.0
+decision_variants,urllib3,Eligibility-only,fixed_stop_state,mixed,mixed,3,2,1,2,0,1,1,1,0.5,1.0,0.0,0.3333333333333333,0.0,0.0
+decision_variants,urllib3,Eligibility-only,seeded_safe_complete,mixed,mixed,600,0,600,600,0,0,0,600,,1.0,0.0,0.0,0.0,5316.75
+decision_variants,urllib3,Eligibility-only,seeded_unsafe_repair,mixed,mixed,200,200,0,0,0,200,0,0,0.0,,0.0,1.0,329.0,5289.0
+decision_variants,code_repo_v1,Verifier-gate,fixed_stop_state,mixed,mixed,2,1,1,2,0,0,1,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,policy_docset_v1,Verifier-gate,fixed_stop_state,mixed,mixed,2,1,1,2,0,0,1,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,requests,Verifier-gate,fixed_stop_state,mixed,mixed,2,1,1,2,0,0,1,1,1.0,1.0,0.0,0.0,0.0,0.0
+decision_variants,requests,Verifier-gate,seeded_safe_complete,mixed,mixed,600,0,600,600,0,0,0,600,,1.0,0.0,0.0,0.0,4044.75
+decision_variants,requests,Verifier-gate,seeded_unsafe_repair,mixed,mixed,200,200,0,0,0,200,0,0,0.0,,0.0,1.0,177.0,3262.0
+decision_variants,urllib3,Verifier-gate,fixed_stop_state,mixed,mixed,3,2,1,2,0,1,1,1,0.5,1.0,0.0,0.3333333333333333,0.0,0.0
+decision_variants,urllib3,Verifier-gate,seeded_safe_complete,mixed,mixed,600,0,600,600,0,0,0,600,,1.0,0.0,0.0,0.0,5316.75
+decision_variants,urllib3,Verifier-gate,seeded_unsafe_repair,mixed,mixed,200,200,0,0,0,200,0,0,0.0,,0.0,1.0,329.0,5289.0
+decision_variants,code_repo_v1,Full controller,fixed_stop_state,mixed,mixed,2,1,1,1,1,0,0,1,0.0,1.0,0.5,0.0,0.0,0.0
+decision_variants,policy_docset_v1,Full controller,fixed_stop_state,mixed,mixed,2,1,1,1,1,0,0,1,0.0,1.0,0.5,0.0,0.0,0.0
+decision_variants,requests,Full controller,fixed_stop_state,mixed,mixed,2,1,1,1,1,0,0,1,0.0,1.0,0.5,0.0,0.0,0.0
+decision_variants,requests,Full controller,seeded_safe_complete,mixed,mixed,600,0,600,600,0,0,0,600,,1.0,0.0,0.0,0.0,4044.75
+decision_variants,requests,Full controller,seeded_unsafe_repair,mixed,mixed,200,200,0,0,200,0,0,0,0.0,,1.0,0.0,177.0,3262.0
+decision_variants,urllib3,Full controller,fixed_stop_state,mixed,mixed,3,2,1,1,2,0,0,1,0.0,1.0,0.6666666666666666,0.0,0.0,0.0
+decision_variants,urllib3,Full controller,seeded_safe_complete,mixed,mixed,600,0,600,600,0,0,0,600,,1.0,0.0,0.0,0.0,5316.75
+decision_variants,urllib3,Full controller,seeded_unsafe_repair,mixed,mixed,200,200,0,0,200,0,0,0,0.0,,1.0,0.0,329.0,5289.0

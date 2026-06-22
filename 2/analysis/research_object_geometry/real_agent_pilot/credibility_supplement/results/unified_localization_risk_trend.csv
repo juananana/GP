@@ -1,0 +1,5 @@
+table,task,policy,state_type,seed,budget,source_only_support,source_route_support,support_gap,gini,fcr,safe_coverage,continue_rate,abstain_rate,repair_gain,repair_cost,residual_yield,recall
+localization_risk_trend,policy_docset_v1,homogeneous stop,fixed_stop_state,-1,0,1.0,0.25,0.75,0.7708333333333333,1.0,,,,,,0.19166666666666665,0.7083333333333334
+localization_risk_trend,code_repo_v1,homogeneous stop,fixed_stop_state,-1,0,1.0,0.3333333333333333,0.6666666666666667,0.75,1.0,,,,,,0.6000000000000001,0.3
+localization_risk_trend,requests,homogeneous stop,fixed_stop_state,-1,0,1.0,0.25,0.75,0.8885135135135134,1.0,,,,,,0.7959731543624161,0.1040268456375839
+localization_risk_trend,urllib3,homogeneous stop,fixed_stop_state,-1,0,1.0,0.2,0.8,0.915130023640662,1.0,,,,,,0.7068669527896996,0.1931330472103004

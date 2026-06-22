@@ -2,9 +2,12 @@
 \centering
 \caption{Controller variant count table. Unsafe denominators are seeded
 oracle-unsafe repair states; safe denominators are seeded oracle-safe complete
-states. Oracle safety labels are used only for post-hoc scoring. Decision
-variants are evaluated on the residual-potential seeded state set; repair
-target variants use the same seeds and budgets with their named target rule.}
+states, so these denominators differ from the one-state eligibility boundary in
+the main text. FCR is SAFE-on-unsafe divided by the unsafe denominator; safe
+coverage is SAFE-on-safe divided by the safe denominator. Oracle safety labels
+are used only for post-hoc scoring. Decision variants are evaluated on the
+residual-potential seeded state set; repair target variants use the same seeds
+and budgets with their named target rule.}
 \label{tab:controller_variant_counts}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrrrrrr}
@@ -14,6 +17,7 @@ Policy & Unsafe denom. & Safe denom. & SAFE-on-unsafe & SAFE-on-safe
 \midrule
 Naive stop & 400 & 1200 & 400 & 1200 & 1.000 & 1.000 & 0.000 & 0.000 & -- & -- \\
 Source-only & 400 & 1200 & 400 & 1200 & 1.000 & 1.000 & 0.000 & 0.000 & -- & -- \\
+Verifier-gate & 400 & 1200 & 0 & 1200 & 0.000 & 1.000 & 0.000 & 1.000 & -- & -- \\
 Eligibility-only & 400 & 1200 & 0 & 1200 & 0.000 & 1.000 & 0.000 & 1.000 & -- & -- \\
 Full controller & 400 & 1200 & 0 & 1200 & 0.000 & 1.000 & 1.000 & 0.000 & 253.0 & 4275.5 \\
 Random repair & 400 & 1200 & 0 & 1200 & 0.000 & 1.000 & 0.993 & 0.007 & 69.0 & 3481.1 \\

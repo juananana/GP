@@ -1,17 +1,21 @@
 task,policy,unsafe_n,safe_n,safe_on_unsafe,fcr,safe_coverage,continue_rate,abstain_rate
 policy_docset_v1,Naive stop,1,1,1,1.0,1.0,0.0,0.0
 policy_docset_v1,Source-only,1,1,1,1.0,1.0,0.0,0.0
+policy_docset_v1,Verifier-gate,1,1,1,1.0,1.0,0.0,0.0
 policy_docset_v1,Eligibility-only,1,1,0,0.0,1.0,0.0,0.5
 policy_docset_v1,Full controller,1,1,0,0.0,1.0,0.5,0.0
 code_repo_v1,Naive stop,1,1,1,1.0,1.0,0.0,0.0
 code_repo_v1,Source-only,1,1,1,1.0,1.0,0.0,0.0
+code_repo_v1,Verifier-gate,1,1,1,1.0,1.0,0.0,0.0
 code_repo_v1,Eligibility-only,1,1,0,0.0,1.0,0.0,0.5
 code_repo_v1,Full controller,1,1,0,0.0,1.0,0.5,0.0
 requests,Naive stop,1,1,1,1.0,1.0,0.0,0.0
 requests,Source-only,1,1,1,1.0,1.0,0.0,0.0
+requests,Verifier-gate,1,1,1,1.0,1.0,0.0,0.0
 requests,Eligibility-only,1,1,0,0.0,1.0,0.0,0.5
 requests,Full controller,1,1,0,0.0,1.0,0.5,0.0
 urllib3,Naive stop,2,1,2,1.0,1.0,0.0,0.0
 urllib3,Source-only,2,1,2,1.0,1.0,0.0,0.0
+urllib3,Verifier-gate,2,1,1,0.5,1.0,0.0,0.3333333333333333
 urllib3,Eligibility-only,2,1,1,0.5,1.0,0.0,0.3333333333333333
 urllib3,Full controller,2,1,0,0.0,1.0,0.6666666666666666,0.0

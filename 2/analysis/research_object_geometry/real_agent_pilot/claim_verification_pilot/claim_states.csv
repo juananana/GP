@@ -1,0 +1,7 @@
+claim_id,oracle_safe,source_support,source_route_support,gini,residual_positive,verifier_warning,repair_cost
+c1,false,1.0,0.20,0.86,true,true,3
+c2,false,1.0,0.40,0.78,true,true,2
+c3,false,1.0,0.80,0.64,true,true,5
+c4,false,1.0,0.60,0.74,true,true,4
+c5,true,1.0,1.00,0.20,false,false,4
+c6,true,1.0,0.80,0.62,false,true,3

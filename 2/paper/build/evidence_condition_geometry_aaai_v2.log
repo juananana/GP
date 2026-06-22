@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  18 JUN 2026 14:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  22 JUN 2026 13:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -631,6 +631,8 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip65
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
+) (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/placeins\placeins.sty
+Package: placeins 2005/04/18  v 2.2
 )
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibra
 ryarrows.meta.code.tex
@@ -662,7 +664,7 @@ File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
 \c@proposition=\count340
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 4
-4.
+5.
 
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -674,20 +676,20 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 ) (E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.aux)
 \openout1 = `evidence_condition_geometry_aaai_v2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -722,13 +724,13 @@ LaTeX Font Info:    ... okay on input line 44.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 44.
-Package microtype Info: Applying patch `item' on input line 44.
-Package microtype Info: Applying patch `toc' on input line 44.
-Package microtype Info: Applying patch `eqnum' on input line 44.
-Package microtype Info: Applying patch `footnote' on input line 44.
-Package microtype Info: Applying patch `verbatim' on input line 44.
-LaTeX Info: Redefining \microtypesetup on input line 44.
+LaTeX Info: Redefining \microtypecontext on input line 45.
+Package microtype Info: Applying patch `item' on input line 45.
+Package microtype Info: Applying patch `toc' on input line 45.
+Package microtype Info: Applying patch `eqnum' on input line 45.
+Package microtype Info: Applying patch `footnote' on input line 45.
+Package microtype Info: Applying patch `verbatim' on input line 45.
+LaTeX Info: Redefining \microtypesetup on input line 45.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -774,7 +776,7 @@ Package caption Info: End \AtBeginDocument code.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
 
  (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -782,7 +784,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
 
 
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -792,7 +794,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 6
-2.
+3.
 
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
@@ -805,56 +807,65 @@ C/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 <figures/fig1-1.png, id=12, 1219.55624pt x 596.98032pt>
 File: figures/fig1-1.png Graphic file (type png)
 <use figures/fig1-1.png>
-Package pdftex.def Info: figures/fig1-1.png  used on input line 136.
+Package pdftex.def Info: figures/fig1-1.png  used on input line 137.
 (pdftex.def)             Requested size: 243.91125pt x 119.39394pt.
 
-Underfull \hbox (badness 1377) in paragraph at lines 152--165
+Underfull \hbox (badness 1377) in paragraph at lines 153--166
  \OT1/ptm/b/n/10 (+20) High-recall re-view, ac-tive search, and miss-ing mass.[
 ]
  []
 
 [2 <./figures/fig1-1.png>]
-<figures/evidence_condition_controller.pdf, id=22, 412.11966pt x 131.31459pt>
-File: figures/evidence_condition_controller.pdf Graphic file (type pdf)
-<use figures/evidence_condition_controller.pdf>
-Package pdftex.def Info: figures/evidence_condition_controller.pdf  used on inp
-ut line 307.
-(pdftex.def)             Requested size: 488.18199pt x 155.55898pt.
+<figures/fig2-5-2.png, id=21, 1238.37656pt x 621.82312pt>
+File: figures/fig2-5-2.png Graphic file (type png)
+<use figures/fig2-5-2.png>
+Package pdftex.def Info: figures/fig2-5-2.png  used on input line 320.
+(pdftex.def)             Requested size: 505.89pt x 254.01927pt.
  [3]
+Underfull \vbox (badness 3919) has occurred while \output is active []
+
+ [4 <./figures/fig2-5-2.png>]
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 404.
+(Font)              using `OT1/ptm/m/sc' instead on input line 418.
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 407.
+(Font)              using `OT1/ptm/m/sc' instead on input line 421.
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 408.
+(Font)              using `OT1/ptm/m/sc' instead on input line 422.
 
-[4 <./figures/evidence_condition_controller.pdf>]
-<figures/main_results_overview.pdf, id=55, 521.39108pt x 177.54282pt>
+[5]
+<figures/main_results_overview.pdf, id=37, 525.12611pt x 322.80551pt>
 File: figures/main_results_overview.pdf Graphic file (type pdf)
 <use figures/main_results_overview.pdf>
 Package pdftex.def Info: figures/main_results_overview.pdf  used on input line 
-537.
-(pdftex.def)             Requested size: 505.89pt x 172.26778pt.
- [5]
-(generated/table_eligibility_boundary.tex)
-<figures/controller_variant_comparison.pdf, id=59, 532.02034pt x 144.29861pt>
+594.
+(pdftex.def)             Requested size: 505.89pt x 310.99803pt.
+ [6] (generated/table_eligibility_boundary.tex)
+<figures/controller_variant_comparison.pdf, id=41, 521.30452pt x 330.03253pt>
 File: figures/controller_variant_comparison.pdf Graphic file (type pdf)
 <use figures/controller_variant_comparison.pdf>
 Package pdftex.def Info: figures/controller_variant_comparison.pdf  used on inp
-ut line 575.
-(pdftex.def)             Requested size: 505.89pt x 137.215pt.
+ut line 660.
+(pdftex.def)             Requested size: 505.89pt x 320.28224pt.
 
-(generated/table_main_controller_counts.tex) [6 <./figures/main_results_overvie
-w.pdf>] [7 <./figures/controller_variant_comparison.pdf>]
-(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.bbl [8
+(generated/table_main_controller_counts.tex)
+(generated/table_claim_verification_pilot.tex
+Underfull \hbox (badness 1472) in paragraph at lines 8--8
+\OT1/ptm/m/n/10 (+20) trol, not a human-annotated bench-mark. S/C/A re-ports
+ []
+
+) (generated/table_sensitivity_summary.tex) [7] [8 <./figures/main_results_over
+view.pdf>] [9 <./figures/controller_variant_comparison.pdf>] [10
 
 ]
-[9]) [10
+(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.bbl [11
+
+]
+[12]) [13
 
 ]
 (E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.aux)
@@ -864,11 +875,11 @@ L3 programming layer <2025-12-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 20637 strings out of 467871
- 401918 string characters out of 5418860
- 832964 words of memory out of 5000000
- 48818 multiletter control sequences out of 15000+600000
- 670901 words of font info for 311 fonts, out of 8000000 for 9000
+ 20708 strings out of 467871
+ 403344 string characters out of 5418860
+ 842156 words of memory out of 5000000
+ 48849 multiletter control sequences out of 15000+600000
+ 672553 words of font info for 333 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,10n,94p,1034b,430s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
@@ -885,9 +896,9 @@ Data/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/EPIC/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/EPIC/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
 Output written on E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaa
-i_v2.pdf (10 pages, 833456 bytes).
+i_v2.pdf (13 pages, 1705939 bytes).
 PDF statistics:
- 164 PDF objects out of 1000 (max. 8388607)
+ 154 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  57377 words of extra memory for PDF output out of 61914 (max. 10000000)
 
