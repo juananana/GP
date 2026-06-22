@@ -317,32 +317,70 @@ def plot_main_results_overview() -> None:
     ablation = pd.read_csv(RESULTS / "source_only_vs_source_route.csv")
     tasks = ["policy-docset", "code-repo", "requests", "urllib3"]
     labels = ["policy-docset", "code-repo", "requests", "urllib3"]
-    base = overview[overview["condition"] == "homogeneous"].set_index("task").reindex(tasks)
-    broad = overview[overview["condition"] == "route_partitioned"].set_index("task").reindex(tasks)
-    extended = overview[overview["condition"] == "extended_audit"].set_index("task")
     ablation["short_task"] = ablation["task"].map({"policy_docset_v1": "policy-docset", "code_repo_v1": "code-repo", "requests": "requests", "urllib3": "urllib3"})
     ablation = ablation.set_index("short_task").reindex(tasks)
 
-    fig, axes = plt.subplots(1, 3, figsize=(7.15, 2.70), constrained_layout=True)
+    fig, axes = plt.subplots(1, 2, figsize=(7.15, 2.65), constrained_layout=True)
     axes = axes.ravel()
     task_colors = {"policy-docset": COLORS["blue"], "code-repo": COLORS["teal"], "requests": COLORS["orange"], "urllib3": COLORS["purple"]}
+    condition_order = ["homogeneous", "route_partitioned", "extended_audit"]
     markers = {"homogeneous": "o", "route_partitioned": "s", "extended_audit": "^"}
+    condition_labels = {"homogeneous": "localized stop", "route_partitioned": "route-partitioned", "extended_audit": "extended audit"}
     x = np.arange(len(tasks))
 
-    width = 0.26
-    axes[0].bar(x - width / 2, ablation["source_only_support"], width, label="source-only support", color=COLORS["green"], alpha=0.90)
-    axes[0].bar(x + width / 2, ablation["source_route_support"], width, label="source-route support", color=COLORS["purple"], alpha=0.90)
-    axes[0].scatter(x, ablation["base_recall"], s=28, color=COLORS["red"], marker="D", zorder=4, label="post-hoc recall")
+    width = 0.30
+    axes[0].bar(
+        x - width / 2,
+        ablation["source_only_support"],
+        width,
+        label="source-only support",
+        color=COLORS["green"],
+        alpha=0.88,
+        edgecolor="white",
+        linewidth=0.7,
+    )
+    axes[0].bar(
+        x + width / 2,
+        ablation["source_route_support"],
+        width,
+        label="source-route support",
+        color=COLORS["purple"],
+        alpha=0.88,
+        edgecolor="white",
+        linewidth=0.7,
+    )
+    axes[0].scatter(x, ablation["base_recall"], s=34, color=COLORS["red"], marker="D", zorder=4, label="post-hoc recall")
     for i, task in enumerate(tasks):
         gap = float(ablation.loc[task, "source_only_support"] - ablation.loc[task, "source_route_support"])
-        axes[0].text(i, 1.035, f"{gap:.2f}", ha="center", va="bottom", fontsize=5.8, color=COLORS["muted"])
+        axes[0].text(i, 1.030, f"gap {gap:.2f}", ha="center", va="bottom", fontsize=6.2, color=COLORS["muted"])
     axes[0].axhline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
-    axes[0].set_title("(a) Source-only illusion", loc="left", fontweight="bold", fontsize=7.2)
-    axes[0].set_ylim(0, 1.13)
+    axes[0].set_title("(a) Source-only exposure can look complete", loc="left", fontweight="bold")
+    axes[0].set_ylim(0, 1.18)
     axes[0].set_xticks(x, labels, rotation=18, ha="right")
     axes[0].set_ylabel("support / recall")
+    handles0, labels0 = axes[0].get_legend_handles_labels()
 
-    condition_order = ["homogeneous", "route_partitioned", "extended_audit"]
+    axes[1].fill_between(
+        [SAFE_SUPPORT_MIN, 1.02],
+        0,
+        THRESHOLDS["tau_gini"],
+        color=COLORS["green_light"],
+        alpha=0.62,
+        zorder=0,
+        label="eligible region",
+    )
+    for task in tasks:
+        sub = overview[overview["task"] == task].set_index("condition").reindex(condition_order)
+        sub = sub.dropna(subset=["support", "gini"])
+        if len(sub) > 1:
+            axes[1].plot(
+                sub["support"],
+                sub["gini"],
+                color=task_colors[task],
+                lw=0.8,
+                alpha=0.38,
+                zorder=1,
+            )
     for condition in condition_order:
         sub = overview[overview["condition"] == condition]
         for _, row in sub.iterrows():
@@ -357,41 +395,49 @@ def plot_main_results_overview() -> None:
                 zorder=3,
                 alpha=0.95,
             )
+            if condition == "homogeneous":
+                axes[1].text(
+                    row["support"] + 0.014,
+                    min(0.985, row["gini"] + 0.018),
+                    row["task"].split("-")[0],
+                    fontsize=5.8,
+                    color=task_colors[row["task"]],
+                    ha="left",
+                    va="bottom",
+                )
     axes[1].axvline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
     axes[1].axhline(THRESHOLDS["tau_gini"], color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
-    axes[1].fill_between([SAFE_SUPPORT_MIN, 1.02], 0, THRESHOLDS["tau_gini"], color=COLORS["green_light"], alpha=0.55, zorder=0)
-    axes[1].set_title("(b) Source-route diagnosis", loc="left", fontweight="bold", fontsize=7.2)
+    axes[1].annotate(
+        "more complete\nless concentrated",
+        xy=(0.92, 0.40),
+        xytext=(0.46, 0.18),
+        arrowprops=dict(arrowstyle="->", lw=0.8, color=COLORS["muted"]),
+        fontsize=6.3,
+        color=COLORS["muted"],
+        ha="center",
+        va="center",
+    )
+    axes[1].set_title("(b) Source-route geometry diagnoses the stop", loc="left", fontweight="bold")
     axes[1].set_xlim(0, 1.04)
     axes[1].set_ylim(0, 1.02)
     axes[1].set_xlabel("source-route support")
     axes[1].set_ylabel("exposure Gini")
-    handles = [
-        plt.Line2D([0], [0], marker=markers[c], color="none", markerfacecolor=COLORS["gray"], markeredgecolor="white", markersize=6, label=c.replace("_", "-"))
+    marker_handles = [
+        plt.Line2D([0], [0], marker=markers[c], color="none", markerfacecolor=COLORS["gray"], markeredgecolor="white", markersize=6, label=condition_labels[c])
         for c in condition_order
     ]
-    axes[1].legend(handles=handles, frameon=False, loc="lower left", handlelength=0.8, fontsize=5.8)
-
-    if "urllib3" in broad.index and "urllib3" in extended.index:
-        u0 = broad.loc["urllib3"]
-        u1 = extended.loc["urllib3"]
-        axes[2].plot([float(u0["support"]), float(u1["support"])], [float(u0["recall"]), float(u1["recall"])], color=COLORS["purple"], lw=1.2, zorder=2)
-        axes[2].scatter(float(u0["support"]), float(u0["recall"]), s=58, color=COLORS["orange"], marker="s", edgecolor="white", linewidth=0.8, zorder=3, label="eligible boundary")
-        axes[2].scatter(float(u1["support"]), float(u1["recall"]), s=58, color=COLORS["green"], marker="^", edgecolor="white", linewidth=0.8, zorder=3, label="extended audit")
-        axes[2].text(float(u0["support"]) + 0.012, float(u0["recall"]) + 0.010, "115 missed", ha="left", va="bottom", fontsize=6.0, color=COLORS["muted"])
-    axes[2].axhline(SAFE_RECALL_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
-    axes[2].axvline(SAFE_SUPPORT_MIN, color=COLORS["red"], linestyle=(0, (4, 2)), linewidth=0.85)
-    axes[2].set_title("(c) Eligibility boundary", loc="left", fontweight="bold", fontsize=7.2)
-    axes[2].set_xlim(0.66, 1.03)
-    axes[2].set_ylim(0.78, 1.02)
-    axes[2].set_xlabel("urllib3 support")
-    axes[2].set_ylabel("bounded-oracle recall")
-    axes[2].legend(frameon=False, loc="lower right", handlelength=0.8, fontsize=5.8)
+    task_handles = [
+        plt.Line2D([0], [0], marker="o", color="none", markerfacecolor=task_colors[t], markeredgecolor="white", markersize=5.5, label=labels[i])
+        for i, t in enumerate(tasks)
+    ]
+    leg1 = axes[1].legend(handles=marker_handles, frameon=False, loc="upper right", handlelength=0.8, fontsize=6.1)
+    axes[1].add_artist(leg1)
+    axes[1].legend(handles=task_handles, frameon=False, loc="lower left", handlelength=0.8, fontsize=5.9, ncol=2, columnspacing=0.6)
 
     for ax in axes:
         ax.grid(axis="y", alpha=0.9)
         ax.set_axisbelow(True)
-    handles0, labels0 = axes[0].get_legend_handles_labels()
-    fig.legend(handles0, labels0, frameon=False, loc="lower center", bbox_to_anchor=(0.30, -0.08), ncol=3, fontsize=5.8, handlelength=1.0, columnspacing=0.8)
+    fig.legend(handles0, labels0, frameon=False, loc="lower center", bbox_to_anchor=(0.29, -0.055), ncol=3, fontsize=6.5, handlelength=1.0, columnspacing=0.9)
     save(fig, "main_results_overview")
 
 
@@ -917,17 +963,25 @@ def plot_controller_variant_comparison() -> None:
     set_style()
     summary = controller_variant_summary()
     write_controller_variant_count_table(summary)
-    repair = summary[summary["policy"].isin(["Random repair", "High-potential repair", "Ours"])].copy()
-    repair_labels = ["Random", "High-pot.", "Residual-pot."]
-    repair_colors = [COLORS["gray"], COLORS["blue"], COLORS["purple"]]
-
-    fig, axes = plt.subplots(1, 2, figsize=(7.15, 2.70), constrained_layout=True)
-    axes = axes.ravel()
 
     budget = pd.read_csv(RESULTS / "budget_sensitivity.csv")
     budget = budget[budget["challenger"].isin(["random", "high_potential", "residual_potential"])].copy()
     label_map = {"random": "Random", "high_potential": "High-potential", "residual_potential": "Residual-potential"}
     color_map = {"random": COLORS["gray"], "high_potential": COLORS["blue"], "residual_potential": COLORS["purple"]}
+
+    fig, ax = plt.subplots(figsize=(7.15, 2.85), constrained_layout=True)
+
+    for challenger in ["random", "high_potential", "residual_potential"]:
+        task_sub = budget[budget["challenger"] == challenger].sort_values(["task", "budget"])
+        for _, sub in task_sub.groupby("task"):
+            ax.plot(
+                sub["mean_cost"],
+                sub["mean_repair_gain"],
+                color=color_map[challenger],
+                lw=0.7,
+                alpha=0.20,
+                zorder=1,
+            )
 
     mean_budget = (
         budget.groupby(["challenger", "budget"], as_index=False)[["mean_cost", "mean_repair_gain", "continue_rate"]]
@@ -936,41 +990,69 @@ def plot_controller_variant_comparison() -> None:
     )
     for challenger in ["random", "high_potential", "residual_potential"]:
         sub = mean_budget[mean_budget["challenger"] == challenger]
-        axes[0].plot(sub["mean_cost"], sub["mean_repair_gain"], marker="o", markersize=3.0, lw=1.25, color=color_map[challenger], label=label_map[challenger])
-        last = sub.iloc[-1]
-        axes[0].text(float(last["mean_cost"]) + 70, float(last["mean_repair_gain"]), label_map[challenger], fontsize=5.9, va="center", color=color_map[challenger])
-    axes[0].set_title("(a) Budget frontier: gain vs cost", loc="left", fontweight="bold")
-    axes[0].set_xlabel("mean repair cost")
-    axes[0].set_ylabel("mean residual items found")
-    axes[0].set_xlim(350, 9300)
-    axes[0].set_ylim(0, 360)
+        ax.plot(
+            sub["mean_cost"],
+            sub["mean_repair_gain"],
+            marker="o",
+            markersize=4.0,
+            lw=1.55,
+            color=color_map[challenger],
+            label=label_map[challenger],
+            zorder=3,
+        )
+        for budget_id in [1, 4, 8]:
+            point = sub[sub["budget"] == budget_id]
+            if point.empty:
+                continue
+            row = point.iloc[0]
+            ax.text(
+                float(row["mean_cost"]),
+                float(row["mean_repair_gain"]) + (8 if challenger != "random" else -11),
+                str(budget_id),
+                fontsize=6.0,
+                color=color_map[challenger],
+                ha="center",
+                va="center",
+                zorder=4,
+            )
 
-    gain = repair["mean_repair_gain_seeded_unsafe"].to_numpy(dtype=float)
-    cost = repair["mean_cost_seeded_unsafe"].to_numpy(dtype=float)
-    repair_map = {"Random": "random", "High-pot.": "high_potential", "Residual-pot.": "residual_potential"}
-    repair_ci = pd.read_csv(RESULTS / "repair_policy_ci.csv")
-    for i, (g, c, label, color) in enumerate(zip(gain, cost, repair_labels, repair_colors)):
-        key = repair_map[label]
-        ci_rows = repair_ci[repair_ci["challenger"] == key]
-        low = max(0.0, g - float(ci_rows["new_true_ci95_low"].mean()))
-        high = max(0.0, float(ci_rows["new_true_ci95_high"].mean()) - g)
-        axes[1].errorbar(c, g, yerr=[[low], [high]], fmt="none", ecolor="#374151", elinewidth=0.85, capsize=2, zorder=2)
-        axes[1].scatter(c, g, s=68, color=color, edgecolor="white", linewidth=0.8, zorder=3)
-        offsets = {
-            "Random": (42, -14),
-            "High-pot.": (42, -16),
-            "Residual-pot.": (42, 10),
-        }
-        dx, dy = offsets[label]
-        axes[1].text(c + dx, g + dy, label, fontsize=6.8, color=COLORS["ink"], va="center")
-    axes[1].set_title("(b) Main budget point with uncertainty", loc="left", fontweight="bold")
-    axes[1].set_xlabel("mean post-stop repair cost")
-    axes[1].set_ylabel("mean residual oracle items found")
-    axes[1].set_xlim(3200, 4550)
-    axes[1].set_ylim(40, 285)
-    for ax in axes:
-        ax.grid(alpha=0.9)
-        ax.set_axisbelow(True)
+    main_points = summary[summary["policy"].isin(["Random repair", "High-potential repair", "Ours"])].copy()
+    main_style = {
+        "Random repair": ("random", "Random main"),
+        "High-potential repair": ("high_potential", "High-pot. main"),
+        "Ours": ("residual_potential", "Residual-pot. main"),
+    }
+    for row in main_points.itertuples():
+        challenger, _ = main_style[row.policy]
+        ax.scatter(
+            float(row.mean_cost_seeded_unsafe),
+            float(row.mean_repair_gain_seeded_unsafe),
+            marker="*",
+            s=92,
+            color=color_map[challenger],
+            edgecolor="white",
+            linewidth=0.8,
+            zorder=5,
+        )
+
+    ax.annotate(
+        "higher audit budget",
+        xy=(7850, 338),
+        xytext=(5450, 318),
+        arrowprops=dict(arrowstyle="->", lw=0.8, color=COLORS["muted"]),
+        fontsize=6.7,
+        color=COLORS["muted"],
+        ha="center",
+    )
+    ax.text(0.015, 0.94, "numbers mark budgets 1, 4, 8; stars are the configured main-budget points", transform=ax.transAxes, fontsize=6.4, color=COLORS["muted"], va="top")
+    ax.set_title("Repair frontier: residual evidence found versus audit cost", loc="left", fontweight="bold")
+    ax.set_xlabel("mean post-stop repair cost")
+    ax.set_ylabel("mean residual oracle items found")
+    ax.set_xlim(350, 8850)
+    ax.set_ylim(0, 365)
+    ax.grid(alpha=0.9)
+    ax.set_axisbelow(True)
+    ax.legend(frameon=False, loc="lower right", ncol=3, handlelength=1.3, columnspacing=1.0)
     save(fig, "controller_variant_comparison")
 
 

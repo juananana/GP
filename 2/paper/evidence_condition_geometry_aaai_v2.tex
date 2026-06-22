@@ -386,6 +386,28 @@ the main design is fixed. This ordering matters: the paper does not select a
 threshold to make the Full controller win; it first defines what each controller
 can observe, then evaluates the consequences on frozen states.
 
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.5pt}
+\caption{Ablation and comparison map. Each row fixes the compared unit before
+scoring; oracle labels are used only after decisions are made. Detailed
+per-seed/per-task exports are provided as CSV/JSON in the supplement.}
+\label{tab:ablation_map}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{0.18\textwidth}p{0.24\textwidth}p{0.21\textwidth}p{0.29\textwidth}}
+\toprule
+Question & Compared policies or conditions & Denominator & Main observed outcome \\
+\midrule
+Granularity & Source-only vs. source-route exposure & Four identical localized fixed stops & Source-only support is \(1.0\) for all tasks, but source-route support is \(0.20\)--\(0.33\) and all source-only \safe{} decisions would be false certifications. \\
+Proof separation & Eligibility-only vs. Full controller & One eligible-but-residual-positive \texttt{urllib3} fixed state & Eligibility-only returns \safe{} at support \(0.800\), Gini \(0.647\); Full returns \cont{} because runtime weak-gap evidence remains. \\
+Decision rule & Naive, Source-only, Verifier-gate, Eligibility-only, Full & 400 seeded unsafe repair states and 1200 seeded complete states & Naive and Source-only have FCR \(1.0\); Verifier-gate and Eligibility-only are safe but fail closed; Full has FCR \(0\), safe coverage \(1.0\), and \cont{} rate \(1.0\) on unsafe states. \\
+Repair target & Random, High-potential, Residual-potential & Same seeded unsafe repair states under fixed budgets & Residual-potential finds 253.0 residual oracle items at cost 4275.5; random finds 69.0 at cost 3481.1; high-potential finds 226.0 at cost 3824.0. \\
+Sensitivity & Threshold and budget sweeps & Same external seeded states, varying \(\tau_s,\tau_g\) or budget & Sweeps change \safe{}/\cont{}/\abstain{} mix and repair cost; max FCR remains \(0\) in the reported external sweep. \\
+\bottomrule
+\end{tabular}}
+\end{table*}
+
 \paragraph{Local stop evidence causes false certification.}
 We first ask whether ordinary local stop signals are enough for a scope-wide
 completion claim. Homogeneous-route stops touch sources through one repeated
@@ -398,14 +420,14 @@ completion.
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/main_results_overview.pdf}
-\caption{Diagnostic evidence for the stop condition. Source-only exposure looks
-complete at localized stops, but source-route support reveals route mismatch and
-low post-hoc recall; numbers above panel (a) are the source-only minus
-source-route support gaps. The support--Gini view shows how route-partitioned and
-extended audits move toward the configured eligibility region. The
-\texttt{urllib3} boundary is one fixed eligible-but-residual-positive state:
-support \(0.800\), recall \(0.835\), and 115 missed oracle items before the
-extended audit reaches full support and recall.}
+\caption{Diagnostic evidence for the stop condition. Panel (a) compares the same
+localized stop under source-only and source-route accounting: every task appears
+fully covered at the source level, but route support and post-hoc recall remain
+low. Panel (b) shows the geometric diagnosis: localized stops occupy the
+low-support/high-concentration region, while route-partitioned and extended
+audits move toward the configured eligibility region. The separate
+\texttt{urllib3} boundary case is reported in Table~\ref{tab:eligibility_boundary}
+because its denominator is one fixed eligible-but-residual-positive state.}
 \label{fig:main_results}
 \end{figure*}
 
@@ -424,7 +446,10 @@ Figure~\ref{fig:main_results} next plots source-route support against exposure
 Gini. Homogeneous stops remain low-support and high-concentration; route-
 partitioned and extended audits broaden support and reduce concentration. The
 claim is diagnostic, not absolute: source-route geometry exposes a weak stop
-condition that scalar source coverage misses.
+condition that scalar source coverage misses. The figure should be read as a
+stop-time warning plot: movement to the lower-right means that evidence is both
+less localized and less concentrated, not that semantic completeness has been
+proved.
 
 \paragraph{Eligibility is only a precondition.}
 \texttt{urllib3} supplies the boundary case. Its route-partitioned state covers
@@ -461,22 +486,22 @@ high-yield heuristic here, not an optimal active-search claim.
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/controller_variant_comparison.pdf}
-\caption{Repair cost evaluation. Panel (a) shows budget frontiers: increasing
-post-stop audit budget exposes more residual evidence, with residual- and
-high-potential targeting dominating random repair in these states. Panel (b)
-shows the configured main-budget comparison with uncertainty intervals. Decision
-counts for safe/actionable controller behavior are reported in
-Table~\ref{tab:main_controller_counts}; this figure isolates the cost side of
-the tradeoff.}
+\caption{Repair cost frontier. Each curve averages the same seeded unsafe repair
+states over the two external repositories; faint traces show per-repository
+frontiers. Numbers mark budgets 1, 4, and 8, and stars mark the configured
+main-budget points used in Table~\ref{tab:main_controller_counts}. The plot is a
+cost-side complement to the decision table: residual-potential repair exposes
+more residual evidence than random repair, but it spends more audit budget.}
 \label{fig:controller_variants}
 \end{figure*}
 
 The full budget sweep in Figure~\ref{fig:controller_variants} shows why this
-result is a cost tradeoff rather than a free safety certificate: higher budgets
-generally expose more residual items, and random repair catches up in
-actionability only after spending more audit effort. Threshold/budget sweeps and
-a small claim-verification interface sanity check are reported in the
-supplement.
+result is a cost tradeoff rather than a free safety certificate. The important
+object is the frontier, not any single vertical comparison: as budget increases,
+all policies can expose more residual evidence, but the residual-potential and
+high-potential orderings reach useful residual yield earlier than random repair.
+Threshold/budget sweeps and a small claim-verification interface sanity check
+are reported in the supplement.
 
 The sensitivity sweep supports the same interpretation rather than a new main
 claim. Varying \(\tau_s,\tau_g\) and repair budget changes the
@@ -503,6 +528,27 @@ concentration says the certificate is local, even if the transcript contains no
 new findings. Thresholds and repair budgets set conservatism before deployment,
 and \cont{} decisions provide the next audit target rather than merely refusing
 the stop.
+
+The experiments are designed around this operational reading. Figure~\ref{fig:main_results}
+does not claim that a lower Gini score is a semantic proof; it shows why source
+coverage alone is the wrong unit for judging a stop. Table~\ref{tab:eligibility_boundary}
+then gives the deliberately narrow boundary case: one \texttt{urllib3} state
+passes the configured support/Gini eligibility test, yet residual runtime
+candidates remain, so the full controller keeps the audit open. Finally,
+Table~\ref{tab:main_controller_counts} separates safety from usefulness on a
+seeded denominator: the verifier-gate is safe in the presence of residual
+warnings, but it is fail-closed and does not choose a source-route target. This
+is the core distinction between a generic verifier and the proposed controller.
+
+The repair frontier supplies the cost side of the same story. A \cont{} decision
+is only useful if it can be translated into a next audit action; the
+residual-potential heuristic does that by prioritizing under-exposed strata with
+runtime potential. The evidence is positive but bounded: residual-potential is
+not uniformly cheapest, and high-potential targeting is competitive on some
+budgets. This is why the controller should be read as a configurable audit loop
+rather than an automatic proof engine. Practitioners can choose stricter
+thresholds to reduce premature \safe{} decisions, lower budgets to limit audit
+cost, or higher budgets when the cost of a false completion claim is high.
 
 The guarantee is intentionally bounded. A \safe{} decision certifies the
 declared source-route condition under the configured budget and runtime-visible
