@@ -22,6 +22,16 @@ tasks:
       - timeout_route
       - exception_route
       - compat_route
+    conditions:
+      homogeneous:
+        - timeout_route
+        - timeout_route
+        - timeout_route
+      route_partitioned:
+        - tls_route
+        - timeout_route
+        - exception_route
+        - compat_route
   urllib3:
     condition: extended_audit
     routes:
@@ -30,6 +40,22 @@ tasks:
       - tls_route
       - exception_route
       - cleanup_route
+    conditions:
+      homogeneous:
+        - timeout_route
+        - timeout_route
+        - timeout_route
+      route_partitioned:
+        - timeout_route
+        - retry_route
+        - tls_route
+        - exception_route
+      extended_audit:
+        - timeout_route
+        - retry_route
+        - tls_route
+        - exception_route
+        - cleanup_route
 
 oracle_paths:
   requests: analysis/research_object_geometry/real_agent_pilot/external_validation_requests/logs/oracle_items.jsonl

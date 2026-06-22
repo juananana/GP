@@ -5,44 +5,44 @@ Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: plainnat.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-You've used 43 entries,
+You've used 46 entries,
             2773 wiz_defined-function locations,
-            780 strings with 15836 characters,
-and the built_in function-call counts, 29180 in all, are:
-= -- 2172
-> -- 3018
-< -- 16
-+ -- 1010
-- -- 966
-* -- 2688
-:= -- 4726
-add.period$ -- 129
-call.type$ -- 43
-change.case$ -- 450
-chr.to.int$ -- 42
-cite$ -- 86
-duplicate$ -- 995
-empty$ -- 1673
-format.name$ -- 1020
-if$ -- 5855
+            796 strings with 17534 characters,
+and the built_in function-call counts, 33252 in all, are:
+= -- 2446
+> -- 3592
+< -- 17
++ -- 1202
+- -- 1155
+* -- 3120
+:= -- 5423
+add.period$ -- 138
+call.type$ -- 46
+change.case$ -- 522
+chr.to.int$ -- 45
+cite$ -- 92
+duplicate$ -- 1063
+empty$ -- 1794
+format.name$ -- 1212
+if$ -- 6628
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 42
-newline$ -- 223
-num.names$ -- 172
-pop$ -- 997
+missing$ -- 45
+newline$ -- 238
+num.names$ -- 184
+pop$ -- 1148
 preamble$ -- 1
-purify$ -- 407
+purify$ -- 476
 quote$ -- 0
-skip$ -- 895
+skip$ -- 994
 stack$ -- 0
-substring$ -- 281
-swap$ -- 107
+substring$ -- 312
+swap$ -- 112
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 473
+type$ -- 506
 warning$ -- 0
-while$ -- 150
+while$ -- 161
 width$ -- 0
-write$ -- 534
+write$ -- 571

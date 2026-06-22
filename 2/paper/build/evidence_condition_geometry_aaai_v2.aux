@@ -1,70 +1,37 @@
 \relax 
+\citation{grossman2011technology,cormack2014evaluation,cormack2015multi,cormack2016engineering,grossman2016trec,roegiest2015trec,voorhees2002overview,wallace2010active,lewis1994sequential,settles2009active,garnett2012bayesian,attenberg2011beat,good1953population,chao1984nonparametric,chao2014species}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
-\citation{grossman2011technology,cormack2014evaluation,cormack2015multi,cormack2016engineering,grossman2016trec,roegiest2015trec}
-\citation{lewis1994sequential,settles2009active,garnett2012bayesian,attenberg2011beat}
-\citation{good1953population,chao1984nonparametric,chao2014species}
-\citation{yao2023react,schick2023toolformer,nakano2021webgpt,qin2024toolllm,wu2023autogen,park2023generative,shinn2024reflexion,madaan2023selfrefine,wang2024voyager}
-\citation{yao2022alfworld,deng2024mind2web,zhou2024webarena,liu2024agentbench,jimenez2024swebench,hendrycks2021measuring,liang2022holistic,srivastava2023beyond,lin2022truthfulqa,thorne2018fever,gao2023rarr,min2023factscore,schuster2021get}
-\citation{dietterich2000ensemble,cobbe2021training,wang2023selfconsistency}
-\citation{amodei2016concrete,christiano2017deep,irving2018ai,leike2018scalable,hendrycks2021unsolved}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Certificate mismatch from local stop evidence. A workflow may observe no-new findings, agreement, or a stable summary under evidence condition \(U\). Promoting that stop proposal to a completion claim over \(\Omega \) is unsafe when \(U\neq  \Omega \); the unobserved source-route strata are not certified.}}{2}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Certificate mismatch from local stop evidence. A workflow may observe no-new findings, agreement, or a stable summary under evidence condition \(U\). Promoting that stop proposal to a completion claim over \(\Omega \) is unsafe when \(U\neq  \Omega \); the unobserved source-route strata are not certified.}}{1}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:mismatch}{{1}{2}{}{figure.1}{}}
+\newlabel{fig:mismatch}{{1}{1}{}{figure.1}{}}
+\citation{yao2023react,schick2023toolformer,nakano2021webgpt,qin2024toolllm,wu2023autogen,park2023generative,wang2024voyager,deng2024mind2web,zhou2024webarena,liu2024agentbench,yao2022alfworld,jimenez2024swebench,shinn2024reflexion,madaan2023selfrefine}
+\citation{hendrycks2021measuring,liang2022holistic,srivastava2023beyond,lin2022truthfulqa,thorne2018fever,gao2023rarr,min2023factscore,schuster2021get,gehrmann2023repair}
+\citation{dietterich2000ensemble,cobbe2021training,wang2023selfconsistency,amodei2016concrete,christiano2017deep,irving2018ai,leike2018scalable,hendrycks2021unsolved}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{High-recall review, active search, and missing mass.}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Agent workflows and verification.}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Verify-gated completion and admission control.}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Agreement, audit agents, and oversight.}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Coverage and stopping criteria.}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Problem Setting}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Evidence-Condition Geometry}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Evidence-Condition Geometry}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5}Method}{3}{}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Evidence-Condition Controller}}{3}{}\protected@file@percent }
+\newlabel{alg:controller}{{1}{3}{}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experiments}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tasks and states.}{3}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evidence-condition controller. The controller maps a runtime evidence log, declared source-route scope, and stop proposal to an exposure distribution over the intended source-route space. The support/Gini check is an eligibility test, not a completion proof. If the condition is localized or weak plausible gaps remain, the controller repairs or continues. It returns \textsc  {Safe}{} only when the evidence condition is broad and repair or audit reveals no residual evidence; otherwise it returns \textsc  {Continue}{} or \textsc  {Abstain}{}.}}{4}{}\protected@file@percent }
 \newlabel{fig:controller}{{2}{4}{}{figure.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Source-Route Exposure Estimation}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Eligibility Gate}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Residual-Evidence Repair}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}\textsc  {Safe}{}/\textsc  {Continue}{}/\textsc  {Abstain}{} Decision Rule}{4}{}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Evidence-Condition Controller}}{5}{}\protected@file@percent }
-\newlabel{alg:controller}{{1}{5}{}{algorithm.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Experiments}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Generalization axes.}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Tasks.}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Workflow conditions.}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Compared policies and ablations.}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Seeds, budgets, thresholds, and cost.}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Reproducibility and leakage control.}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Credibility checks.}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Results}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Local stop signals are not certificates.}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Source-only hides route mismatch.}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Source-route geometry exposes mismatch.}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Eligibility is only a precondition.}{6}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Experimental coverage. SR strata denote source-route strata; oracles are used only for post-hoc scoring.}}{7}{}\protected@file@percent }
-\newlabel{tab:coverage}{{1}{7}{}{table.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Boundary case showing why eligibility is not proof. The state passes the source-route eligibility gate, but post-hoc recall remains below the completion threshold; repair-aware control therefore returns CONTINUE rather than SAFE.}}{7}{}\protected@file@percent }
-\newlabel{tab:eligibility_boundary}{{2}{7}{}{table.2}{}}
-\@writefile{toc}{\contentsline {paragraph}{Residual repair closes the stop-decision loop.}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Repair policy comparison.}{7}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Seeded unsafe/complete controller decision counts for Figure~\ref {fig:controller_variants}. Unsafe and Complete are the seeded denominators; FCR is SAFE-on-unsafe divided by Unsafe, and safe coverage is SAFE-on-complete divided by Complete. These denominators differ from the one-state eligibility boundary in Table~\ref {tab:eligibility_boundary}. Oracle labels are used only after decisions are fixed. S/C/A reports SAFE/CONTINUE/ABSTAIN counts.}}{7}{}\protected@file@percent }
-\newlabel{tab:main_controller_counts}{{3}{7}{}{table.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{Small claim-verification pilot.}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Sensitivity and audit checks.}{7}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Diagnostic chain and granularity ablation. Local homogeneous stops have low source-route support and high concentration; source-only support is misleadingly complete; source-route support/Gini reveal the mismatch; and the \texttt  {urllib3} route-partitioned state is eligible but residual-positive, with recall \(0.835\) below the post-hoc \(0.90\) threshold until extended audit reaches \(1.000\).}}{8}{}\protected@file@percent }
-\newlabel{fig:main_results}{{3}{8}{}{figure.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Small claim-verification pilot with human-style audit routes. Routes are support, contradiction, exception-path, config-default, and scope-boundary. This deterministic pilot is a scoped sanity check for completion control, not a human-annotated benchmark. S/C/A reports SAFE/CONTINUE/ABSTAIN counts.}}{8}{}\protected@file@percent }
-\newlabel{tab:claim_verification_pilot}{{4}{8}{}{table.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Sensitivity sweep numeric summary. Ranges aggregate threshold settings or repair-budget settings within each external task.}}{8}{}\protected@file@percent }
-\newlabel{tab:sensitivity_summary}{{5}{8}{}{table.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Controller evaluation dashboard. Decision-rule variants are scored on the same seeded unsafe repair states and seeded complete-state perturbations; the Verifier-gate baseline uses only unresolved/residual warnings and no source-route geometry. Repair-target variants keep the full decision rule fixed. The frontier panel shows how budget choices trade post-stop cost for cumulative recall while keeping FCR at zero in this sweep. Table~\ref {tab:eligibility_boundary} isolates the eligible-but-residual-positive boundary case.}}{9}{}\protected@file@percent }
-\newlabel{fig:controller_variants}{{4}{9}{}{figure.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion}{9}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{What the validation establishes.}{9}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Practical use of the controller.}{9}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Costs and boundaries.}{9}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Reproducibility and auditability.}{9}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}Limitations}{10}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ablations.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility and leakage control.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Results}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Local stop signals are not certificates.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Source-only hides route mismatch.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Source-route geometry exposes mismatch, not proof.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Eligibility is only a precondition.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Full control is safe and actionable.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Repair cost is an explicit tradeoff.}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sanity checks.}{5}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Diagnostic chain and granularity ablation. Local homogeneous stops have low source-route support and high concentration; source-only support is misleadingly complete; source-route support/Gini reveal the mismatch; and the \texttt  {urllib3} route-partitioned state is eligible but residual-positive, with recall \(0.835\) below the post-hoc \(0.90\) threshold until extended audit reaches \(1.000\).}}{6}{}\protected@file@percent }
+\newlabel{fig:main_results}{{3}{6}{}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Controller evaluation dashboard for safe, actionable, and cost-aware stopping on seeded residual-warning states and seeded complete-state perturbations. The decision panel compares safety and usefulness: verifier-gate is safe on this denominator but fail-closed, while the full controller is safe and actionable on unsafe states with runtime residual candidates. The repair panel compares target rules and budget choices, showing residual-potential as a high-yield but non-optimal repair heuristic.}}{6}{}\protected@file@percent }
+\newlabel{fig:controller_variants}{{4}{6}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion and Limitations}{7}{}\protected@file@percent }
 \bibstyle{plainnat}
 \bibdata{references}
 \bibcite{amodei2016concrete}{{1}{2016}{{Amodei et~al.}}{{Amodei, Olah, Steinhardt, Christiano, Schulman, and Man{\'e}}}}
@@ -80,34 +47,37 @@
 \bibcite{dietterich2000ensemble}{{11}{2000}{{Dietterich}}{{}}}
 \bibcite{gao2023rarr}{{12}{2023}{{Gao et~al.}}{{Gao, Dai, Pasupat, Chen, Chaganty, Fan, Zhao, Lao, Lee, Juan, and Guu}}}
 \bibcite{garnett2012bayesian}{{13}{2012}{{Garnett et~al.}}{{Garnett, Krishnamurthy, Xiong, Schneider, and Mann}}}
-\bibcite{good1953population}{{14}{1953}{{Good}}{{}}}
-\bibcite{grossman2011technology}{{15}{2011}{{Grossman and Cormack}}{{}}}
-\bibcite{grossman2016trec}{{16}{2016}{{Grossman et~al.}}{{Grossman, Cormack, and Roegiest}}}
-\bibcite{hendrycks2021measuring}{{17}{2021{a}}{{Hendrycks et~al.}}{{Hendrycks, Burns, Basart, Zou, Mazeika, Song, and Steinhardt}}}
-\bibcite{hendrycks2021unsolved}{{18}{2021{b}}{{Hendrycks et~al.}}{{Hendrycks, Carlini, Schulman, and Steinhardt}}}
-\bibcite{irving2018ai}{{19}{2018}{{Irving et~al.}}{{Irving, Christiano, and Amodei}}}
-\bibcite{jimenez2024swebench}{{20}{2024}{{Jimenez et~al.}}{{Jimenez, Yang, Wettig, Yao, Pei, Press, and Narasimhan}}}
-\bibcite{leike2018scalable}{{21}{2018}{{Leike et~al.}}{{Leike, Krueger, Everitt, Martic, Maini, and Legg}}}
-\bibcite{lewis1994sequential}{{22}{1994}{{Lewis and Gale}}{{}}}
-\bibcite{liang2022holistic}{{23}{2022}{{Liang et~al.}}{{Liang, Bommasani, Lee, Tsipras, Soylu, Yasunaga, Zhang, Narayanan, Wu, Kumar, Newman, Yuan, Yan, Zhang, Cosgrove, Manning, R{\'e}, Acosta-Navas, Hudson, Zelikman, Durmus, Ladhak, Rong, Ren, Yao, Wang, Santhanam, Orr, Zheng, Yuksekgonul, Suzgun, Kim, Guha, Chatterji, Khattab, Henderson, Huang, Chi, Xie, Santurkar, Ganguli, Hashimoto, Icard, Zhang, Chaudhary, Wang, Li, Mai, Zhang, and Koreeda}}}
-\bibcite{lin2022truthfulqa}{{24}{2022}{{Lin et~al.}}{{Lin, Hilton, and Evans}}}
-\bibcite{liu2024agentbench}{{25}{2024}{{Liu et~al.}}{{Liu, Yu, Zhang, Xu, Lei, Lai, Gu, Ding, Men, Yang, Zhang, Deng, Zeng, Du, Zhang, Shen, Zhang, Su, Sun, Huang, and Tang}}}
-\bibcite{madaan2023selfrefine}{{26}{2023}{{Madaan et~al.}}{{Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe, Alon, Dziri, Prabhumoye, Yang, Welleck, Majumder, Gupta, Yazdanbakhsh, and Clark}}}
-\bibcite{min2023factscore}{{27}{2023}{{Min et~al.}}{{Min, Krishna, Lyu, Lewis, Yih, Koh, Iyyer, Zettlemoyer, and Hajishirzi}}}
-\bibcite{nakano2021webgpt}{{28}{2021}{{Nakano et~al.}}{{Nakano, Hilton, Balaji, Wu, Ouyang, Kim, Hesse, Jain, Kosaraju, Saunders, Jiang, Cobbe, Eloundou, Krueger, Button, Knight, Chess, and Schulman}}}
-\bibcite{park2023generative}{{29}{2023}{{Park et~al.}}{{Park, O'Brien, Cai, Morris, Liang, and Bernstein}}}
-\bibcite{qin2024toolllm}{{30}{2024}{{Qin et~al.}}{{Qin, Liang, Ye, Zhu, Yan, Lu, Lin, Cong, Tang, Qian, Zhao, Hong, Tian, Xie, Zhou, Gerstein, Li, Liu, and Sun}}}
-\bibcite{roegiest2015trec}{{31}{2015}{{Roegiest et~al.}}{{Roegiest, Cormack, and Grossman}}}
-\bibcite{schick2023toolformer}{{32}{2023}{{Schick et~al.}}{{Schick, Dwivedi-Yu, Dess{\`i}, Raileanu, Lomeli, Hambro, Zettlemoyer, Cancedda, and Scialom}}}
-\bibcite{schuster2021get}{{33}{2021}{{Schuster et~al.}}{{Schuster, Fisch, and Barzilay}}}
-\bibcite{settles2009active}{{34}{2009}{{Settles}}{{}}}
-\bibcite{shinn2024reflexion}{{35}{2024}{{Shinn et~al.}}{{Shinn, Cassano, Gopinath, Narasimhan, and Yao}}}
-\bibcite{srivastava2023beyond}{{36}{2023}{{Srivastava et~al.}}{{}}}
-\bibcite{thorne2018fever}{{37}{2018}{{Thorne et~al.}}{{Thorne, Vlachos, Christodoulopoulos, and Mittal}}}
-\bibcite{wang2024voyager}{{38}{2024}{{Wang et~al.}}{{Wang, Xie, Jiang, Mandlekar, Xiao, Zhu, Fan, and Anandkumar}}}
-\bibcite{wang2023selfconsistency}{{39}{2023}{{Wang et~al.}}{{Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery, and Zhou}}}
-\bibcite{wu2023autogen}{{40}{2023}{{Wu et~al.}}{{Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang, Liu, Awadallah, White, Burger, and Wang}}}
-\bibcite{yao2022alfworld}{{41}{2022}{{Yao et~al.}}{{Yao, Rao, Hausknecht, and Narasimhan}}}
-\bibcite{yao2023react}{{42}{2023}{{Yao et~al.}}{{Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao}}}
-\bibcite{zhou2024webarena}{{43}{2024}{{Zhou et~al.}}{{Zhou, Xu, Zhu, Zhou, Lo, Sridhar, Cheng, Ou, Bisk, Fried, Alon, and Neubig}}}
-\gdef \@abspage@last{13}
+\bibcite{gehrmann2023repair}{{14}{2021}{{Gehrmann et~al.}}{{Gehrmann, Adewumi, Aggarwal, Ammanamanchi, Anuoluwapo, Bosselut, Chandu, Clinciu, Das, Dhole, Du, Durmus, Du{\v {s}}ek, Emezue, Gangal, Garbacea, Hashimoto, Hou, Jernite, Jhamtani, Ji, Jolly, Kale, Kasai, Khashabi, Kovatchev, Krishna, Kumar, Ladhak, Luan, Maddela, Mahajan, Mille, Nadeem, Narayan, Nikolaev, Niu, Perez-Beltrachini, Peskov, Prabhumoye, Rastogi, Rogers, Sedoc, Sellam, Shah, Shimorina, Su, Tang, Tian, Toledo, van~der Lee, Vashishtha, Vu, Xu, Yang, Zhao, and Zhou}}}
+\bibcite{good1953population}{{15}{1953}{{Good}}{{}}}
+\bibcite{grossman2011technology}{{16}{2011}{{Grossman and Cormack}}{{}}}
+\bibcite{grossman2016trec}{{17}{2016}{{Grossman et~al.}}{{Grossman, Cormack, and Roegiest}}}
+\bibcite{hendrycks2021measuring}{{18}{2021{a}}{{Hendrycks et~al.}}{{Hendrycks, Burns, Basart, Zou, Mazeika, Song, and Steinhardt}}}
+\bibcite{hendrycks2021unsolved}{{19}{2021{b}}{{Hendrycks et~al.}}{{Hendrycks, Carlini, Schulman, and Steinhardt}}}
+\bibcite{irving2018ai}{{20}{2018}{{Irving et~al.}}{{Irving, Christiano, and Amodei}}}
+\bibcite{jimenez2024swebench}{{21}{2024}{{Jimenez et~al.}}{{Jimenez, Yang, Wettig, Yao, Pei, Press, and Narasimhan}}}
+\bibcite{leike2018scalable}{{22}{2018}{{Leike et~al.}}{{Leike, Krueger, Everitt, Martic, Maini, and Legg}}}
+\bibcite{lewis1994sequential}{{23}{1994}{{Lewis and Gale}}{{}}}
+\bibcite{liang2022holistic}{{24}{2022}{{Liang et~al.}}{{Liang, Bommasani, Lee, Tsipras, Soylu, Yasunaga, Zhang, Narayanan, Wu, Kumar, Newman, Yuan, Yan, Zhang, Cosgrove, Manning, R{\'e}, Acosta-Navas, Hudson, Zelikman, Durmus, Ladhak, Rong, Ren, Yao, Wang, Santhanam, Orr, Zheng, Yuksekgonul, Suzgun, Kim, Guha, Chatterji, Khattab, Henderson, Huang, Chi, Xie, Santurkar, Ganguli, Hashimoto, Icard, Zhang, Chaudhary, Wang, Li, Mai, Zhang, and Koreeda}}}
+\bibcite{lin2022truthfulqa}{{25}{2022}{{Lin et~al.}}{{Lin, Hilton, and Evans}}}
+\bibcite{liu2024agentbench}{{26}{2024}{{Liu et~al.}}{{Liu, Yu, Zhang, Xu, Lei, Lai, Gu, Ding, Men, Yang, Zhang, Deng, Zeng, Du, Zhang, Shen, Zhang, Su, Sun, Huang, and Tang}}}
+\bibcite{madaan2023selfrefine}{{27}{2023}{{Madaan et~al.}}{{Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe, Alon, Dziri, Prabhumoye, Yang, Welleck, Majumder, Gupta, Yazdanbakhsh, and Clark}}}
+\bibcite{min2023factscore}{{28}{2023}{{Min et~al.}}{{Min, Krishna, Lyu, Lewis, Yih, Koh, Iyyer, Zettlemoyer, and Hajishirzi}}}
+\bibcite{nakano2021webgpt}{{29}{2021}{{Nakano et~al.}}{{Nakano, Hilton, Balaji, Wu, Ouyang, Kim, Hesse, Jain, Kosaraju, Saunders, Jiang, Cobbe, Eloundou, Krueger, Button, Knight, Chess, and Schulman}}}
+\bibcite{park2023generative}{{30}{2023}{{Park et~al.}}{{Park, O'Brien, Cai, Morris, Liang, and Bernstein}}}
+\bibcite{qin2024toolllm}{{31}{2024}{{Qin et~al.}}{{Qin, Liang, Ye, Zhu, Yan, Lu, Lin, Cong, Tang, Qian, Zhao, Hong, Tian, Xie, Zhou, Gerstein, Li, Liu, and Sun}}}
+\bibcite{roegiest2015trec}{{32}{2015}{{Roegiest et~al.}}{{Roegiest, Cormack, and Grossman}}}
+\bibcite{schick2023toolformer}{{33}{2023}{{Schick et~al.}}{{Schick, Dwivedi-Yu, Dess{\`i}, Raileanu, Lomeli, Hambro, Zettlemoyer, Cancedda, and Scialom}}}
+\bibcite{schuster2021get}{{34}{2021}{{Schuster et~al.}}{{Schuster, Fisch, and Barzilay}}}
+\bibcite{settles2009active}{{35}{2009}{{Settles}}{{}}}
+\bibcite{shinn2024reflexion}{{36}{2024}{{Shinn et~al.}}{{Shinn, Cassano, Gopinath, Narasimhan, and Yao}}}
+\bibcite{srivastava2023beyond}{{37}{2023}{{Srivastava et~al.}}{{}}}
+\bibcite{thorne2018fever}{{38}{2018}{{Thorne et~al.}}{{Thorne, Vlachos, Christodoulopoulos, and Mittal}}}
+\bibcite{voorhees2002overview}{{39}{2002}{{Voorhees}}{{}}}
+\bibcite{wallace2010active}{{40}{2010}{{Wallace et~al.}}{{Wallace, Trikalinos, Lau, Brodley, and Schmid}}}
+\bibcite{wang2024voyager}{{41}{2024}{{Wang et~al.}}{{Wang, Xie, Jiang, Mandlekar, Xiao, Zhu, Fan, and Anandkumar}}}
+\bibcite{wang2023selfconsistency}{{42}{2023}{{Wang et~al.}}{{Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery, and Zhou}}}
+\bibcite{wu2023autogen}{{43}{2023}{{Wu et~al.}}{{Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang, Liu, Awadallah, White, Burger, and Wang}}}
+\bibcite{yao2022alfworld}{{44}{2022}{{Yao et~al.}}{{Yao, Rao, Hausknecht, and Narasimhan}}}
+\bibcite{yao2023react}{{45}{2023}{{Yao et~al.}}{{Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao}}}
+\bibcite{zhou2024webarena}{{46}{2024}{{Zhou et~al.}}{{Zhou, Xu, Zhu, Zhou, Lo, Sridhar, Cheng, Ou, Bisk, Fried, Alon, and Neubig}}}
+\gdef \@abspage@last{10}

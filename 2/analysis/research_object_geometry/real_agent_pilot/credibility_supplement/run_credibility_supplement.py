@@ -224,13 +224,25 @@ def gini(values: list[float]) -> float:
     return float((2 * np.sum(np.arange(1, n + 1) * x) / (n * x.sum())) - (n + 1) / n)
 
 
-def state_decision(recall: float, support: float, gini: float, productive: bool = False) -> str:
+def runtime_controller_decision(
+    support: float,
+    gini: float,
+    *,
+    weak_plausible_gap: int | float = 0,
+    runtime_residual_items: int | float = 0,
+) -> str:
     geometry_ok = support >= SAFE_SUPPORT_MIN and gini <= SAFE_GINI_MAX
-    if geometry_ok and not productive:
-        return "SAFE"
-    if productive or recall < SAFE_RECALL_MIN:
+    if runtime_residual_items > 0 or weak_plausible_gap > 0:
         return "CONTINUE"
+    if geometry_ok:
+        return "SAFE"
     return "ABSTAIN"
+
+
+def require_runtime_residual(row: pd.Series | dict[str, Any], *, context: str) -> float:
+    if "runtime_residual_items" not in row:
+        raise KeyError(f"runtime_residual_items is required for runtime decision in {context}")
+    return float(row["runtime_residual_items"])
 
 
 def aggregate_decisions(rows: list[dict[str, Any]], label: str, task_group: str) -> dict[str, Any]:
@@ -276,8 +288,13 @@ def build_condition_decision_rows() -> list[dict[str, Any]]:
             support = float(row.get("source_route_coverage_ratio", row.get("support_ratio")))
             gini = float(row["exposure_gini"])
             recall = float(row["recall"])
-            productive = task == "urllib3" and condition == "route_partitioned"
-            decision = state_decision(recall, support, gini, productive=productive)
+            weak_gap = float(row.get("weak_plausible_gap", 0))
+            decision = str(
+                row.get(
+                    "controller_decision",
+                    runtime_controller_decision(support, gini, weak_plausible_gap=weak_gap),
+                )
+            )
             rows.append(
                 {
                     "task": task,
@@ -289,8 +306,10 @@ def build_condition_decision_rows() -> list[dict[str, Any]]:
                     "recall": recall,
                     "support": support,
                     "gini": gini,
-                    "residual_warning": bool(productive),
+                    "residual_warning": False,
                     "unresolved_warning": False,
+                    "runtime_residual_items": 0.0,
+                    "weak_plausible_gap": weak_gap,
                     "repair_gain": 0.0,
                     "cost": 0.0,
                 }
@@ -303,11 +322,12 @@ def build_requests_repair_rows() -> list[dict[str, Any]]:
     rows = []
     for _, row in detail.iterrows():
         condition_ok = float(row["after_support_ratio"]) >= SAFE_SUPPORT_MIN and float(row["after_exposure_gini"]) <= SAFE_GINI_MAX
-        gain = int(row["new_true_items"])
-        if condition_ok and gain == 0:
-            decision = "SAFE"
-        elif gain > 0:
+        runtime_residual = int(require_runtime_residual(row, context="requests repair rows"))
+        weak_gap = int(row.get("after_weak_plausible_gap", 0))
+        if runtime_residual > 0:
             decision = "CONTINUE"
+        elif condition_ok and weak_gap == 0:
+            decision = "SAFE"
         else:
             decision = "ABSTAIN"
         rows.append(
@@ -321,8 +341,10 @@ def build_requests_repair_rows() -> list[dict[str, Any]]:
                 "recall": float(row["cumulative_recall"]),
                 "support": float(row["after_support_ratio"]),
                 "gini": float(row["after_exposure_gini"]),
-                "residual_warning": bool(gain > 0),
+                "residual_warning": bool(runtime_residual > 0),
                 "unresolved_warning": False,
+                "runtime_residual_items": float(runtime_residual),
+                "weak_plausible_gap": float(weak_gap),
                 "repair_gain": float(row["new_true_items"]),
                 "cost": float(row["cost"]),
             }
@@ -334,6 +356,7 @@ def build_urllib3_repair_rows() -> list[dict[str, Any]]:
     detail = pd.read_csv(PILOT / "external_validation_v2" / "results" / "controller_challenger_detailed.csv")
     rows = []
     for _, row in detail.iterrows():
+        runtime_residual = require_runtime_residual(row, context="urllib3 repair rows")
         rows.append(
             {
                 "task": "urllib3",
@@ -345,8 +368,10 @@ def build_urllib3_repair_rows() -> list[dict[str, Any]]:
                 "recall": float(row["cumulative_recall"]),
                 "support": float(row["after_support_ratio"]),
                 "gini": float(row["after_exposure_gini"]),
-                "residual_warning": bool(float(row["new_true_items"]) > 0),
+                "residual_warning": bool(runtime_residual > 0),
                 "unresolved_warning": False,
+                "runtime_residual_items": runtime_residual,
+                "weak_plausible_gap": float(row.get("after_weak_plausible_gap", 0)),
                 "repair_gain": float(row["new_true_items"]),
                 "cost": float(row["cost"]),
             }
@@ -372,8 +397,10 @@ def controller_decision_table(safe_state_detail: pd.DataFrame | None = None) -> 
                     "recall": float(row["cumulative_recall"]),
                     "support": float(row["after_support_ratio"]),
                     "gini": float(row["after_exposure_gini"]),
-                    "residual_warning": bool(float(row["repair_gain"]) > 0),
+                    "residual_warning": bool(require_runtime_residual(row, context="seeded safe rows") > 0),
                     "unresolved_warning": False,
+                    "runtime_residual_items": require_runtime_residual(row, context="seeded safe rows"),
+                    "weak_plausible_gap": float(row.get("after_weak_plausible_gap", 0)),
                     "repair_gain": float(row["repair_gain"]),
                     "cost": float(row["cost"]),
                 }
@@ -446,6 +473,7 @@ def _state_frame(detail: pd.DataFrame, safe_state_detail: pd.DataFrame) -> pd.Da
         challenger = ""
         if str(row["condition"]).startswith("repair:"):
             challenger = str(row["condition"]).split(":", 1)[1]
+        runtime_residual = require_runtime_residual(row, context="unified state metrics")
         rows.append(
             {
                 "task": row["task"],
@@ -460,11 +488,14 @@ def _state_frame(detail: pd.DataFrame, safe_state_detail: pd.DataFrame) -> pd.Da
                 "gini": float(row["gini"]),
                 "repair_gain": float(row["repair_gain"]),
                 "repair_cost": float(row["cost"]),
-                "residual_warning": bool(row.get("residual_warning", float(row["repair_gain"]) > 0)),
+                "runtime_residual_items": runtime_residual,
+                "weak_plausible_gap": float(row.get("weak_plausible_gap", 0)),
+                "residual_warning": bool(row.get("residual_warning", runtime_residual > 0)),
                 "unresolved_warning": bool(row.get("unresolved_warning", False)),
             }
         )
     for _, row in safe_state_detail.iterrows():
+        runtime_residual = require_runtime_residual(row, context="unified safe-state metrics")
         rows.append(
             {
                 "task": row["task"],
@@ -479,7 +510,9 @@ def _state_frame(detail: pd.DataFrame, safe_state_detail: pd.DataFrame) -> pd.Da
                 "gini": float(row["after_exposure_gini"]),
                 "repair_gain": float(row["repair_gain"]),
                 "repair_cost": float(row["cost"]),
-                "residual_warning": bool(float(row["repair_gain"]) > 0),
+                "runtime_residual_items": runtime_residual,
+                "weak_plausible_gap": float(row.get("after_weak_plausible_gap", 0)),
+                "residual_warning": bool(runtime_residual > 0),
                 "unresolved_warning": False,
             }
         )
@@ -632,9 +665,28 @@ def _safety_cost_frontier(threshold: pd.DataFrame, budget: pd.DataFrame) -> pd.D
     budget_rows["policy"] = budget_rows["challenger"]
     budget_rows["state_type"] = "seeded_unsafe_repair"
     budget_rows["seed"] = "mixed"
+    budget_rows["support_threshold"] = math.nan
+    budget_rows["gini_threshold"] = math.nan
     budget_rows = budget_rows.rename(columns={"false_certification_rate": "fcr", "mean_repair_gain": "repair_gain", "mean_cost": "repair_cost"})
 
-    keep = ["table", "task", "policy", "state_type", "seed", "budget", "fcr", "safe_coverage", "safe_rate", "continue_rate", "abstain_rate", "repair_gain", "repair_cost", "mean_cumulative_recall"]
+    keep = [
+        "table",
+        "task",
+        "policy",
+        "state_type",
+        "seed",
+        "budget",
+        "support_threshold",
+        "gini_threshold",
+        "fcr",
+        "safe_coverage",
+        "safe_rate",
+        "continue_rate",
+        "abstain_rate",
+        "repair_gain",
+        "repair_cost",
+        "mean_cumulative_recall",
+    ]
     for frame in [threshold_rows, budget_rows]:
         if "safe_coverage" not in frame:
             frame["safe_coverage"] = math.nan
@@ -772,6 +824,7 @@ def simulate_external_budget(module: Any, task_name: str, budgets: list[int]) ->
         universe = module_universe(module)
         candidate_cache = {s: module_candidate_items(module, s) for s in universe}
     base_found = df_discovered_true(base, oracle_ids)
+    base_runtime_seen = set(base.loc[base["new_item"], "discovered_item_id"].dropna())
     base_exposure = df_exposure_counts(base)
     exposure = Counter(base_exposure)
     discovery = Counter(base.loc[base["new_item"], "source_route_stratum"])
@@ -801,6 +854,8 @@ def simulate_external_budget(module: Any, task_name: str, budgets: list[int]) ->
             for seed in range(module.N_SEEDS):
                 targets = targets_for(challenger, seed, budget)
                 found = set(base_found)
+                runtime_seen = set(base_runtime_seen)
+                runtime_residual = set()
                 new = set()
                 repaired = Counter(base_exposure)
                 cost = 0
@@ -808,14 +863,16 @@ def simulate_external_budget(module: Any, task_name: str, budgets: list[int]) ->
                     repaired[target] += 1
                     ids, target_cost = candidate_cache[target]
                     cost += target_cost
+                    runtime_residual |= ids - runtime_seen
+                    runtime_seen |= ids
                     new |= (ids & oracle_ids) - found
                     found |= ids & oracle_ids
                 after = df_condition_state(repaired, universe, potential)
                 condition_ok = after["support_ratio"] >= SAFE_SUPPORT_MIN and after["exposure_gini"] <= SAFE_GINI_MAX
-                if condition_ok and len(new) == 0 and after["weak_plausible_gap"] == 0:
-                    decision = "SAFE"
-                elif len(new) > 0:
+                if len(runtime_residual) > 0:
                     decision = "CONTINUE"
+                elif condition_ok and after["weak_plausible_gap"] == 0:
+                    decision = "SAFE"
                 else:
                     decision = "ABSTAIN"
                 recall = len(found) / len(oracle_ids)
@@ -831,10 +888,12 @@ def simulate_external_budget(module: Any, task_name: str, budgets: list[int]) ->
                         "continue": decision == "CONTINUE",
                         "abstain": decision == "ABSTAIN",
                         "cost": cost,
+                        "runtime_residual_items": len(runtime_residual),
                         "repair_gain": len(new),
                         "cumulative_recall": recall,
                         "after_support_ratio": after["support_ratio"],
                         "after_exposure_gini": after["exposure_gini"],
+                        "after_weak_plausible_gap": after["weak_plausible_gap"],
                     }
                 )
     return pd.DataFrame(rows)
@@ -848,8 +907,8 @@ def threshold_and_budget_sensitivity() -> tuple[pd.DataFrame, pd.DataFrame]:
     req_detail["task"] = "requests"
     detail = pd.concat(
         [
-            req_detail[["task", "challenger", "seed", "after_support_ratio", "after_exposure_gini", "new_true_items", "cost", "cumulative_recall"]],
-            url_detail[["task", "challenger", "seed", "after_support_ratio", "after_exposure_gini", "new_true_items", "cost", "cumulative_recall"]],
+            req_detail[["task", "challenger", "seed", "after_support_ratio", "after_exposure_gini", "runtime_residual_items", "new_true_items", "cost", "cumulative_recall"]],
+            url_detail[["task", "challenger", "seed", "after_support_ratio", "after_exposure_gini", "runtime_residual_items", "new_true_items", "cost", "cumulative_recall"]],
         ],
         ignore_index=True,
     )
@@ -864,8 +923,9 @@ def threshold_and_budget_sensitivity() -> tuple[pd.DataFrame, pd.DataFrame]:
             for gini_thr in gini_grid:
                 for challenger, sub in task_df.groupby("challenger"):
                     condition_ok = (sub["after_support_ratio"] >= support_thr) & (sub["after_exposure_gini"] <= gini_thr)
-                    safe = condition_ok & (sub["new_true_items"] == 0)
-                    cont = sub["new_true_items"] > 0
+                    runtime_residual = sub["runtime_residual_items"].astype(float) > 0
+                    safe = condition_ok & ~runtime_residual
+                    cont = runtime_residual
                     abstain = ~(safe | cont)
                     false_cert = safe & (sub["cumulative_recall"] < SAFE_RECALL_MIN)
                     rows.append(
@@ -1030,11 +1090,12 @@ def _condition_frame_for_overview() -> pd.DataFrame:
             row = sub.iloc[0]
             support = float(row.get("source_route_coverage_ratio", row.get("support_ratio")))
             recall = float(row["recall"])
-            decision = state_decision(
-                recall,
-                support,
-                float(row["exposure_gini"]),
-                productive=(task == "urllib3" and condition == "route_partitioned"),
+            weak_gap = float(row.get("weak_plausible_gap", 0))
+            decision = str(
+                row.get(
+                    "controller_decision",
+                    runtime_controller_decision(support, float(row["exposure_gini"]), weak_plausible_gap=weak_gap),
+                )
             )
             rows.append(
                 {
@@ -1432,6 +1493,8 @@ def seeded_safe_state_validation() -> pd.DataFrame:
                     order = order_targets(challenger, universe, exposure, potential, seed)
                     targets = order[:budget]
                     found = set(base_found)
+                    runtime_seen = set(base.loc[base["new_item"], "discovered_item_id"].dropna())
+                    runtime_residual = set()
                     repaired = Counter(exposure)
                     cost = 0
                     new = set()
@@ -1439,13 +1502,15 @@ def seeded_safe_state_validation() -> pd.DataFrame:
                         repaired[target] += 1
                         ids, target_cost = candidate_cache[target]
                         cost += target_cost
+                        runtime_residual |= ids - runtime_seen
+                        runtime_seen |= ids
                         new |= (ids & oracle_ids) - found
                         found |= ids & oracle_ids
                     after = df_condition_state(repaired, universe, potential)
-                    if after["support_ratio"] >= SAFE_SUPPORT_MIN and after["exposure_gini"] <= SAFE_GINI_MAX and after["weak_plausible_gap"] == 0:
-                        decision = "SAFE"
-                    elif len(new) > 0:
+                    if len(runtime_residual) > 0:
                         decision = "CONTINUE"
+                    elif after["support_ratio"] >= SAFE_SUPPORT_MIN and after["exposure_gini"] <= SAFE_GINI_MAX and after["weak_plausible_gap"] == 0:
+                        decision = "SAFE"
                     else:
                         decision = "ABSTAIN"
                     rows.append(
@@ -1461,11 +1526,13 @@ def seeded_safe_state_validation() -> pd.DataFrame:
                             "continue": decision == "CONTINUE",
                             "abstain": decision == "ABSTAIN",
                             "safe_coverage": float(decision == "SAFE"),
+                            "runtime_residual_items": len(runtime_residual),
                             "repair_gain": len(new),
                             "cost": cost,
                             "cumulative_recall": len(found) / len(oracle_ids),
                             "after_support_ratio": after["support_ratio"],
                             "after_exposure_gini": after["exposure_gini"],
+                            "after_weak_plausible_gap": after["weak_plausible_gap"],
                         }
                     )
     out = pd.DataFrame(rows)

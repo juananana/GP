@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  22 JUN 2026 13:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  22 JUN 2026 15:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -376,18 +376,18 @@ _ threshold _ budget _ sweep . *$\OT1/ptm/m/n/10 (+20) , $\OT1/pcr/m/n/10 unifi
 ed _
  []
 
-(generated/table_controller_variant_counts.tex)
-<figures/controller_variant_comparison.pdf, id=11, 521.30452pt x 330.03253pt>
+[2] (generated/table_controller_variant_counts.tex)
+<figures/controller_variant_comparison.pdf, id=14, 524.692pt x 212.24248pt>
 File: figures/controller_variant_comparison.pdf Graphic file (type pdf)
 <use figures/controller_variant_comparison.pdf>
 Package pdftex.def Info: figures/controller_variant_comparison.pdf  used on inp
-ut line 183.
-(pdftex.def)             Requested size: 505.89pt x 320.28224pt.
-<figures/repair_sensitivity_summary.pdf, id=12, 250.53552pt x 174.65202pt>
+ut line 207.
+(pdftex.def)             Requested size: 505.89pt x 204.6378pt.
+<figures/repair_sensitivity_summary.pdf, id=15, 250.53552pt x 174.65202pt>
 File: figures/repair_sensitivity_summary.pdf Graphic file (type pdf)
 <use figures/repair_sensitivity_summary.pdf>
 Package pdftex.def Info: figures/repair_sensitivity_summary.pdf  used on input 
-line 195.
+line 219.
 (pdftex.def)             Requested size: 505.89pt x 352.66638pt.
 
 (generated/supplementary_tables.tex (generated/table_controller_decisions.tex)
@@ -403,8 +403,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--24
 T =
  []
 
-)) [2] [3] [4 <./figures/controller_variant_comparison.pdf>] [5 <./figures/repa
-ir_sensitivity_summary.pdf>] [6] [7] [8]
+)) [3 <./figures/controller_variant_comparison.pdf>] [4 <./figures/repair_sensi
+tivity_summary.pdf>] [5] [6] [7]
 (E:\learn3\B\new\2\paper\build\supplementary_material.aux)
  ***********
 LaTeX2e <2025-11-01>
@@ -412,11 +412,11 @@ L3 programming layer <2025-12-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 6704 strings out of 467871
- 115182 string characters out of 5418860
- 617536 words of memory out of 5000000
+ 6721 strings out of 467871
+ 115329 string characters out of 5418860
+ 610819 words of memory out of 5000000
  35353 multiletter control sequences out of 15000+600000
- 648585 words of font info for 155 fonts, out of 8000000 for 9000
+ 649386 words of font info for 167 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,12n,65p,1021b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
@@ -427,10 +427,10 @@ c/amsfonts/cm/cmr10.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type
 s/type1/urw/courier/ucrr8a.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fon
 ts/type1/urw/times/utmb8a.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/font
 s/type1/urw/times/utmr8a.pfb>
-Output written on E:\learn3\B\new\2\paper\build\supplementary_material.pdf (8 p
-ages, 156857 bytes).
+Output written on E:\learn3\B\new\2\paper\build\supplementary_material.pdf (7 p
+ages, 153600 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
+ 95 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  34827 words of extra memory for PDF output out of 35830 (max. 10000000)
 

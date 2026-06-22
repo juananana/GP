@@ -529,12 +529,17 @@ def controller_variant_summary() -> pd.DataFrame:
     rows = []
     residual_unsafe = unsafe_repairs[unsafe_repairs["condition"] == "repair:residual_potential"].copy()
     residual_safe = safe_states[safe_states["challenger"] == "residual_potential"].copy()
+    for name, frame in [("residual unsafe repairs", residual_unsafe), ("residual safe states", residual_safe)]:
+        if "runtime_residual_items" not in frame.columns:
+            raise KeyError(f"runtime_residual_items is required for verifier-gate comparison in {name}")
     geom_unsafe = (residual_unsafe["support"] >= SAFE_SUPPORT_MIN) & (residual_unsafe["gini"] <= THRESHOLDS["tau_gini"])
     geom_safe = (residual_safe["after_support_ratio"] >= SAFE_SUPPORT_MIN) & (residual_safe["after_exposure_gini"] <= THRESHOLDS["tau_gini"])
     rows.append(decision_counts("Naive stop", residual_unsafe, residual_safe, pd.Series(["SAFE"] * len(residual_unsafe)), pd.Series(["SAFE"] * len(residual_safe)), np.nan, np.nan))
     rows.append(decision_counts("Source-only", residual_unsafe, residual_safe, pd.Series(["SAFE"] * len(residual_unsafe)), pd.Series(["SAFE"] * len(residual_safe)), np.nan, np.nan))
-    verifier_unsafe = pd.Series(np.where(residual_unsafe["repair_gain"].to_numpy(dtype=float) > 0, "ABSTAIN", "SAFE"))
-    verifier_safe = pd.Series(np.where(residual_safe["repair_gain"].to_numpy(dtype=float) > 0, "ABSTAIN", "SAFE"))
+    unsafe_residual_signal = residual_unsafe["runtime_residual_items"].to_numpy(dtype=float) > 0
+    safe_residual_signal = residual_safe["runtime_residual_items"].to_numpy(dtype=float) > 0
+    verifier_unsafe = pd.Series(np.where(unsafe_residual_signal, "ABSTAIN", "SAFE"))
+    verifier_safe = pd.Series(np.where(safe_residual_signal, "ABSTAIN", "SAFE"))
     rows.append(decision_counts("Verifier-gate", residual_unsafe, residual_safe, verifier_unsafe, verifier_safe, np.nan, np.nan))
     rows.append(decision_counts("Eligibility-only", residual_unsafe, residual_safe, pd.Series(np.where(geom_unsafe, "SAFE", "ABSTAIN")), pd.Series(np.where(geom_safe, "SAFE", "ABSTAIN")), np.nan, np.nan))
     rows.append(decision_counts("Full controller", residual_unsafe, residual_safe, residual_unsafe["decision"].reset_index(drop=True), residual_safe["decision"].reset_index(drop=True), float(residual_unsafe["repair_gain"].mean()), float(residual_unsafe["cost"].mean())))
@@ -790,12 +795,17 @@ def write_eligibility_boundary_table() -> None:
     observed["geometry_ok"] = (observed["support"] >= SAFE_SUPPORT_MIN) & (observed["gini"] <= THRESHOLDS["tau_gini"])
     boundary = observed[observed["geometry_ok"] & ~observed["oracle_safe"]].copy()
 
-    oracle_totals = {
-        "policy_docset_v1": 24,
-        "code_repo_v1": 20,
-        "requests": 298,
-        "urllib3": 699,
-    }
+    oracle_totals = {}
+    for task, path in [
+        ("policy_docset_v1", PILOT / "blind_tasks" / "policy_docset_v1" / "results" / "condition_metrics.csv"),
+        ("code_repo_v1", PILOT / "blind_tasks" / "code_repo_v1" / "results" / "condition_metrics.csv"),
+        ("requests", PILOT / "external_validation_requests" / "results" / "external_requests_condition_metrics.csv"),
+        ("urllib3", PILOT / "external_validation_v2" / "results" / "condition_summary.csv"),
+    ]:
+        if path.exists():
+            frame = pd.read_csv(path)
+            if "oracle_total" in frame:
+                oracle_totals[task] = float(frame["oracle_total"].iloc[0])
     tex_rows = []
     csv_rows = []
     for _, row in boundary.iterrows():
@@ -810,7 +820,7 @@ def write_eligibility_boundary_table() -> None:
                 "support": row["support"],
                 "gini": row["gini"],
                 "recall": row["recall"],
-                "residual_positive": True,
+                "runtime_gap_positive": bool(row.get("weak_plausible_gap", 0) > 0 or row["decision"] == "CONTINUE"),
                 "posthoc_missed_items": missed,
                 "eligibility_only_decision": eligibility_decision,
                 "full_controller_decision": full_decision,
@@ -839,13 +849,13 @@ def write_eligibility_boundary_table() -> None:
 \setlength{\tabcolsep}{3.2pt}
 \caption{Boundary case showing why eligibility is not proof. The state passes
 the source-route eligibility gate, but post-hoc recall remains below the
-completion threshold; repair-aware control therefore returns CONTINUE rather
-than SAFE.}
+completion threshold; runtime weak-gap control therefore returns CONTINUE
+rather than SAFE.}
 \label{tab:eligibility_boundary}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{llrrrrll}
 \toprule
-Task & State & Support & Gini & Recall & Residual+ & Elig.-only & Full \\
+Task & State & Support & Gini & Recall & Gap+ & Elig.-only & Full \\
 \midrule
 """ + "\n".join(tex_rows) + r"""
 \bottomrule

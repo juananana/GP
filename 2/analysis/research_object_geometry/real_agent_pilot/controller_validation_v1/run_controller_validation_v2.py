@@ -3,12 +3,15 @@ from __future__ import annotations
 import json
 import math
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+from experiment_config import load_experiment_config, thresholds, task_config
 
 ROOT = Path(__file__).resolve().parents[1]
 EXT = ROOT / "external_validation_requests"
@@ -17,9 +20,11 @@ RESULTS = OUT / "results"
 REPORTS = OUT / "reports"
 
 FILES = ["adapters", "api", "auth", "models", "sessions", "utils"]
-ROUTES = ["tls_route", "timeout_route", "exception_route", "compat_route"]
 GRANULARITY = "source_route"
-RECALL_SAFE_MIN = 0.90
+CONFIG = load_experiment_config()
+THRESHOLDS = thresholds(CONFIG)
+REQUESTS_CONFIG = task_config(CONFIG, "requests")
+RECALL_SAFE_MIN = THRESHOLDS["eval_recall"]
 
 ROUTE_PATTERNS = {
     "tls_route": re.compile(r"\b(verify|cert|ssl|SSL|TLS|cert_verify|ca_bundle|DEFAULT_CA_BUNDLE_PATH)\b"),
@@ -27,6 +32,11 @@ ROUTE_PATTERNS = {
     "exception_route": re.compile(r"\b(except|raise|RetryError|SSLError|ConnectionError|Timeout|TooManyRedirects)\b"),
     "compat_route": re.compile(r"\b(deprecated|compat|super_len|basestring|builtin_str|to_native_string|unicode_is_ascii)\b", re.I),
 }
+
+ROUTES = list(REQUESTS_CONFIG.get("routes", ROUTE_PATTERNS.keys()))
+UNKNOWN_ROUTES = [route for route in ROUTES if route not in ROUTE_PATTERNS]
+if UNKNOWN_ROUTES:
+    raise ValueError(f"unknown requests route(s) in config: {UNKNOWN_ROUTES}")
 
 
 def ensure_dirs() -> None:
@@ -101,10 +111,14 @@ def repair_exposure(base_exposure: Counter, targets: str) -> Counter:
 
 def controller_decision(row: pd.Series, support_thr: float, gini_thr: float) -> str:
     condition_ok = float(row["after_support_ratio"]) >= support_thr and float(row["after_exposure_gini"]) <= gini_thr
-    if condition_ok and int(row["new_true_items"]) == 0:
-        return "SAFE"
-    if int(row["new_true_items"]) > 0:
+    if "runtime_residual_items" not in row:
+        raise KeyError("runtime_residual_items is required for controller decisions")
+    runtime_residual = int(row["runtime_residual_items"])
+    support_gap_remaining = int(row.get("weak_plausible_gap_after", row.get("after_weak_plausible_gap", 0)))
+    if runtime_residual > 0:
         return "CONTINUE"
+    if condition_ok and support_gap_remaining == 0:
+        return "SAFE"
     return "ABSTAIN"
 
 
@@ -154,8 +168,11 @@ def overlap_analysis(detailed: pd.DataFrame, base: pd.DataFrame, potential: dict
 
 def threshold_sweep(controller_detail: pd.DataFrame) -> pd.DataFrame:
     rows = []
-    support_grid = [0.25, 0.33, 0.40, 0.50, 0.67, 0.75, 0.90, 1.00]
-    gini_grid = [0.60, 0.70, 0.80, 0.90]
+    raw_thresholds = CONFIG.get("thresholds", {})
+    support_value = raw_thresholds.get("tau_support", THRESHOLDS["tau_support"])
+    gini_value = raw_thresholds.get("tau_gini", THRESHOLDS["tau_gini"])
+    support_grid = list(support_value) if isinstance(support_value, list) else [0.25, 0.33, 0.40, 0.50, 0.67, float(support_value), 0.90, 1.00]
+    gini_grid = list(gini_value) if isinstance(gini_value, list) else [0.60, float(gini_value), 0.80, 0.90]
     for support_thr in support_grid:
         for gini_thr in gini_grid:
             for challenger, sub in controller_detail.groupby("challenger"):
@@ -203,6 +220,8 @@ def build_controller_detail(detailed: pd.DataFrame, base: pd.DataFrame, potentia
                 "after_exposure_gini": after["exposure_gini"],
                 "support_expansion": after["support_size"] - before["support_size"],
                 "support_gap_reduction": before["weak_plausible_gap"] - after["weak_plausible_gap"],
+                "after_weak_plausible_gap": after["weak_plausible_gap"],
+                "runtime_residual_items": int(row["runtime_residual_items"]),
                 "new_true_items": int(row["new_true_items"]),
                 "cost": int(row["cost"]),
                 "cumulative_recall": float(row["cumulative_recall"]),
@@ -232,7 +251,7 @@ def matched_perturbation_v2(events: pd.DataFrame, oracle: set[str], potential: d
     for state_name, note, frame, evidence_still_appearing in states:
         found = discovered_true(frame, oracle)
         condition = condition_state(exposure_counts(frame), potential)
-        geometry_eligible = condition["support_ratio"] >= 0.75 and condition["exposure_gini"] <= 0.70
+        geometry_eligible = condition["support_ratio"] >= THRESHOLDS["tau_support"] and condition["exposure_gini"] <= THRESHOLDS["tau_gini"]
         if geometry_eligible and not evidence_still_appearing:
             decision = "SAFE"
         elif evidence_still_appearing:

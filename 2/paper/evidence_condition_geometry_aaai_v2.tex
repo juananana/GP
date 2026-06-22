@@ -363,11 +363,13 @@ and source-route exposure. The \emph{proof-separation ablation} compares
 eligibility-only with the full repair-aware controller. The \emph{decision-rule
 ablation} compares Naive stop, Source-only, Verifier-gate, Eligibility-only, and
 Full. The generic Verifier-gate ignores source-route geometry and returns
-\safe{} only when no unresolved or residual warning remains; otherwise it fails
-closed to \abstain{}. The \emph{repair-target ablation} compares Random,
-High-potential, and Residual-potential targets under the full rule. The
-\emph{threshold/budget sensitivity} sweep varies \(\tau_s,\tau_g\) and repair
-budget to expose safety-cost choices.
+\safe{} only when no explicit unresolved or residual warning remains; otherwise
+it fails closed to \abstain{}. This warning-only baseline tests whether
+fail-closed verification can replace geometric diagnosis. The
+\emph{repair-target ablation} compares Random, High-potential, and
+Residual-potential targets under the full rule. The \emph{threshold/budget
+sensitivity} sweep varies \(\tau_s,\tau_g\) and repair budget to expose
+safety-cost choices.
 
 \paragraph{Reproducibility and leakage control.}
 Generated tasks use repair budget 4; \texttt{requests} and \texttt{urllib3} use
@@ -387,13 +389,16 @@ controller counts answer different questions.
 
 \section{Results}
 
-The main result is a safety-usefulness-cost tradeoff. The full controller avoids
-unsafe \safe{} decisions like a conservative verifier gate, but unlike a
-fail-closed verifier it returns actionable \cont{} when residual evidence points
-to the next audit target. We organize the evidence as a diagnostic chain: local
-stop signals \(\rightarrow\) source-only illusion \(\rightarrow\) source-route
-mismatch \(\rightarrow\) eligibility is not proof \(\rightarrow\) residual repair
-closes the loop.
+The main result is a safety-usefulness-cost tradeoff. Source-route geometry is
+needed before repair: a generic verifier with no explicit warning has no basis
+for rejecting localized fixed stops. After residual repair exposes runtime
+candidate evidence, a fail-closed verifier can also avoid unsafe \safe{}, but it
+returns opaque \abstain{} rather than an audit target. The full controller
+returns actionable \cont{} when residual evidence points to the next source-route
+target. We organize the evidence as a diagnostic chain: local stop signals
+\(\rightarrow\) source-only illusion \(\rightarrow\) source-route mismatch
+\(\rightarrow\) eligibility is not proof \(\rightarrow\) residual repair closes
+the loop.
 
 \paragraph{Local stop signals are not certificates.}
 Figure~\ref{fig:main_results} begins with the failure mode. Across all four
@@ -440,10 +445,11 @@ stop-time warning signal.
 \paragraph{Eligibility is only a precondition.}
 Route-partitioned evidence improves eligibility, but it is not proof. In
 \texttt{urllib3}, route-partitioned exposure covers 24/30 strata and passes the
-gate, yet recall remains below threshold and repair finds residual evidence; the
-controller returns \cont{}, not \safe{}. This is a single fixed boundary case:
-support is \(0.800\), Gini is \(0.647\), recall is \(0.835\), and the post-hoc
-oracle still contains 115 missed items. Its denominator is one
+gate. However, six runtime-plausible strata remain weakly exposed, so the full
+controller returns \cont{}, not \safe{}; post-hoc scoring then confirms why this
+refusal matters. This is a single fixed boundary case: support is \(0.800\),
+Gini is \(0.647\), recall is \(0.835\), and the post-hoc oracle still contains
+115 missed items. Its denominator is one
 eligible-but-residual-positive \texttt{urllib3} state,
 whereas the seeded controller counts in the supplement use unsafe-state and
 complete-state denominators. The two denominators must not be mixed. The
@@ -454,15 +460,18 @@ certify it.
 \paragraph{Full control is safe and actionable.}
 Figure~\ref{fig:controller_variants} evaluates decision rules on the same seeded
 unsafe repair states and seeded complete-state perturbations. Naive and
-source-only rules certify unsafe local stops. Verifier-gate avoids unsafe
-\safe{} decisions by failing closed to \abstain{} whenever warnings remain, but
-it does not identify the under-covered source-route condition or a repair
-target. The full controller keeps FCR at zero in the seeded external validation,
+source-only rules certify unsafe local stops. On fixed stops with no explicit
+residual warning, the generic Verifier-gate also has no geometric reason to
+refuse; this is why source-route diagnosis is needed. On the seeded
+residual-warning states in Figure~\ref{fig:controller_variants}, Verifier-gate
+avoids unsafe \safe{} decisions by failing closed to \abstain{}, but it still
+does not identify the under-covered source-route condition or a repair target.
+The full controller keeps FCR at zero in the seeded external validation,
 preserves safe coverage on 1200 seeded complete states, and converts all 400
 productive seeded unsafe repair states into \cont{} rather than opaque
-\abstain{}. The contrast with verifier-gate is sharp: both have FCR \(0\), but
-verifier-gate has unsafe-state \abstain{} rate \(1.0\), while the full
-controller has unsafe-state \cont{} rate \(1.0\). This is the practical
+\abstain{}. The contrast with verifier-gate is sharp on this denominator: both
+have FCR \(0\), but verifier-gate has unsafe-state \abstain{} rate \(1.0\), while
+the full controller has unsafe-state \cont{} rate \(1.0\). This is the practical
 difference: \abstain{} says ``do not certify,'' while \cont{} says where the
 audit should continue. This validates the safety and usefulness part of the
 chain.
@@ -471,11 +480,12 @@ chain.
 \centering
 \includegraphics[width=\textwidth]{figures/controller_variant_comparison.pdf}
 \caption{Controller evaluation dashboard for safe, actionable, and cost-aware
-stopping. The decision panel compares safety and usefulness: verifier-gate is
-safe but fail-closed, while the full controller is safe and actionable on
-productive unsafe states. The repair panel compares target rules and budget
-choices, showing residual-potential as a high-yield but non-optimal repair
-heuristic.}
+stopping on seeded residual-warning states and seeded complete-state
+perturbations. The decision panel compares safety and usefulness: verifier-gate
+is safe on this denominator but fail-closed, while the full controller is safe
+and actionable on unsafe states with runtime residual candidates. The repair
+panel compares target rules and budget choices, showing residual-potential as a
+high-yield but non-optimal repair heuristic.}
 \label{fig:controller_variants}
 \end{figure*}
 
@@ -501,12 +511,12 @@ auditable next action.
 A small deterministic claim-verification pilot uses human-style routes
 (support, contradiction, exception-path, config-default, and scope-boundary) only
 as an interface sanity check, not as a main benchmark. It shows the same pattern:
-Verifier-gate can avoid unsafe \safe{} by abstaining, while the full controller
-uses source-route diagnosis and residual repair to avoid false certification
-without giving up safe coverage in this pilot. Additional oracle sanity,
-leakage, safe-state, and sensitivity checks are in the supplement. This
-validates the final link: residual repair converts an eligible stop into a
-closed \safe{}/\cont{}/\abstain{} decision rather than a bare metric threshold.
+warning-only gating can refuse warned states, while the full controller uses
+source-route diagnosis and residual repair to avoid false certification without
+giving up safe coverage in this pilot. Additional oracle sanity, leakage,
+safe-state, and sensitivity checks are in the supplement. This validates the
+final link: residual repair converts an eligible stop into a closed
+\safe{}/\cont{}/\abstain{} decision rather than a bare metric threshold.
 
 \FloatBarrier
 

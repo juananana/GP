@@ -10,12 +10,12 @@
 2. Evidence condition 必须包含 source-route geometry，也就是证据来自哪些 source，以及通过哪些 route 得到。
 3. Source-only coverage 可能造成 illusion：文件/来源看起来都覆盖了，但 route 分布过窄。
 4. Eligibility 只是考虑 `SAFE` 的前提，不是 proof；如果 repair 找到 residual evidence，就应当 `CONTINUE`。
-5. Full controller 的价值是“安全 + 可行动 + 成本权衡”：它不是只 fail closed，而是在 productive unsafe states 上返回 `CONTINUE` 并给出下一步 audit target。
+5. Full controller 的价值是“安全 + 可行动 + 成本权衡”：它不是只 fail closed，而是在带 runtime residual candidates 的 unsafe states 上返回 `CONTINUE` 并给出下一步 audit target。
 
 因此实验主问题是：
 
 - Safety: controller 是否避免在 oracle-unsafe 状态输出 `SAFE`，即降低 false certification rate (FCR)。
-- Usefulness/actionability: 和 generic verifier-gate 相比，Full controller 是否把 productive unsafe states 转成 actionable `CONTINUE`，而不是 opaque `ABSTAIN`。
+- Usefulness/actionability: 和 generic verifier-gate 相比，Full controller 是否把带 runtime residual candidates 的 unsafe states 转成 actionable `CONTINUE`，而不是 opaque `ABSTAIN`。
 - Cost: residual repair 是否以显式 audit cost 换来 residual evidence yield，且这个 repair 策略不是被夸张成 optimal active search。
 - Diagnostic chain: 从 local stop signals 到 source-only illusion，再到 source-route mismatch、eligibility-not-proof、residual repair closed loop，实验是否每一环都有证据支撑。
 
@@ -151,35 +151,24 @@
 1. 从 ledger 中计算 source-route exposure。
 2. 计算 support、Gini、weak plausible gap 等 evidence-condition features。
 3. 判断 source-route eligibility：`support >= tau_support` 且 `gini <= tau_gini`。
-4. 若 eligibility 不满足，或存在 unresolved/residual warning，则不直接 `SAFE`。
+4. 若 eligibility 不满足，或存在 runtime weak-plausible gap/residual warning，则不直接 `SAFE`。
 5. 在有预算时运行 repair policy，选择 target strata。
-6. 如果 repair 发现 residual evidence，返回 `CONTINUE` 并记录 target。
-7. 如果 eligibility 满足且 budgeted repair 没有发现 residual evidence，返回 `SAFE`。
-8. 如果没有证书且 repair 没有 productive target，返回 `ABSTAIN`。
+6. 如果 repair 产生此前未见过的 runtime candidate evidence，返回 `CONTINUE` 并记录 target。
+7. 如果 eligibility 满足、weak gap 为 0、且 budgeted repair 没有 runtime residual candidate，返回 `SAFE`。
+8. 如果没有证书且 repair 没有 productive runtime target，返回 `ABSTAIN`。
 
-在 `credibility_supplement/run_credibility_supplement.py` 中，聚合层的 `state_decision` 是：
+当前实现中，controller 决策已经拆成 runtime-only decision 和 post-hoc scoring。聚合层使用的 `runtime_controller_decision` 是：
 
 ```python
 geometry_ok = support >= SAFE_SUPPORT_MIN and gini <= SAFE_GINI_MAX
-if geometry_ok and not productive:
-    return "SAFE"
-if productive or recall < SAFE_RECALL_MIN:
+if runtime_residual_items > 0 or weak_plausible_gap > 0:
     return "CONTINUE"
+if geometry_ok:
+    return "SAFE"
 return "ABSTAIN"
 ```
 
-审查注意：这个函数在聚合/绘图层对 fixed observed states 做诊断性标注时读入了 `recall`，而 `recall` 是 post-hoc 字段。它不应被解释为实际 runtime controller 的可见决策规则。更严谨的解释是：
-
-- fixed observed states 用 recall 标记它们 post-hoc 是否 unsafe，用于诊断 chain；
-- seeded repair decision 使用 repair 是否发现 new true items、support/Gini、cost 等固定后结果进行 scoring；
-- 论文叙述必须坚持：runtime controller 不访问 recall/oracle total/undiscovered true items。
-
-如果要进一步消除审稿风险，建议把 `state_decision` 拆成两个函数：
-
-- `runtime_controller_decision(runtime_state, repair_result)`
-- `posthoc_oracle_label(state)`
-
-这样代码层面也不会混用 recall。
+`recall`、`new_true_items`、`oracle_total`、`posthoc_missed_items` 只用于事后评分和诊断表述。fixed observed states 上，post-hoc recall 可以说明某个状态是否 unsafe，但不能决定 `SAFE/CONTINUE/ABSTAIN`。seeded repair states 上，`runtime_residual_items` 表示 repair 扫描产生的此前未见候选证据数量；`new_true_items` 表示这些候选中事后被 oracle 标成 true 的数量。
 
 ## 8. Baselines 和五类消融
 
@@ -211,7 +200,7 @@ return "ABSTAIN"
 核心目的：
 
 - 证明 eligibility 是 precondition，而不是 proof。
-- `urllib3` route_partitioned boundary: support=0.800，Gini=0.647，eligibility-only 会 `SAFE`，但 post-hoc recall=0.835 且 missed items=115，Full controller 因 residual positive 返回 `CONTINUE`。
+- `urllib3` route_partitioned boundary: support=0.800，Gini=0.647，eligibility-only 会 `SAFE`，但仍有 6 个 runtime weak-plausible strata；Full controller 因 weak-gap signal 返回 `CONTINUE`，post-hoc recall=0.835 和 missed items=115 只用于证明该拒绝认证是必要的。
 
 结果：
 
@@ -237,16 +226,17 @@ return "ABSTAIN"
 - Naive stop: 所有 stop proposal 都 `SAFE`。
 - Source-only: 忽略 route geometry，实质上对这些 seeded states 也会 `SAFE`。
 - Eligibility-only: `geometry_ok` 就 `SAFE`，否则 `ABSTAIN`。
-- Verifier-gate: 不使用 source-route geometry，只看 `unresolved_warning` 或 `residual_warning`；有 warning 就 `ABSTAIN`，否则 `SAFE`。
-- Full controller: 使用 source-route diagnosis 和 residual repair；productive residual evidence 时返回 `CONTINUE`。
+- Verifier-gate: 不使用 source-route geometry，只看显式 `unresolved_warning` 或 `residual_warning`；有 warning 就 `ABSTAIN`，否则 `SAFE`。不能用 support/Gini/weak-gap 派生 warning。
+- Full controller: 使用 source-route diagnosis 和 residual repair；存在 runtime weak gap 或 runtime residual candidates 时返回 `CONTINUE`。
 
 关键结果：
 
 - Naive 和 Source-only 在 seeded unsafe states 上 FCR=1.0。
-- Verifier-gate 和 Full controller FCR=0。
-- Verifier-gate unsafe-state `ABSTAIN` rate=1.0。
+- 在 seeded residual-warning unsafe states 上，Verifier-gate 和 Full controller FCR=0。
+- 在同一 seeded denominator 上，Verifier-gate unsafe-state `ABSTAIN` rate=1.0。
 - Full controller unsafe-state `CONTINUE` rate=1.0。
 - Full controller 与 Verifier-gate 的差别不是更安全，而是更 actionable。
+- 在 fixed stop states 上，如果没有显式 warning，Verifier-gate 没有 source-route geometry 可用，因此会像普通 stop gate 一样误 `SAFE` localized unsafe stops；这正是 source-route diagnosis 必要性的证据，不应把 verifier-gate 描述成所有 denominator 上都安全。
 
 ### 8.4 Repair-Target Ablation
 
@@ -317,13 +307,14 @@ return "ABSTAIN" if unresolved or residual else "SAFE"
 
 它的作用：
 
-- 可以避免 unsafe `SAFE`，因此 safety 上可以和 Full controller 一样 FCR=0。
+- 在 seeded residual-warning unsafe states 上可以避免 unsafe `SAFE`，因此在 Figure 4 的 seeded denominator 上和 Full controller 一样 FCR=0。
 - 但是它不会告诉 audit 应该继续到哪个 source-route stratum。
-- 在 productive unsafe states 上它 fail closed 为 `ABSTAIN`，而 Full controller 返回 `CONTINUE`。
+- 在带 runtime residual candidates 的 unsafe states 上它 fail closed 为 `ABSTAIN`，而 Full controller 返回 `CONTINUE`。
+- 在没有显式 warning 的 fixed stop states 上，它不能靠 source-route support/Gini 拒绝 unsafe stop；这部分由 granularity/proof-separation ablation 说明。
 
 论文中应强调：
 
-- Full controller 的优势不是“Verifier-gate 会不安全”。
+- Full controller 的优势不是“Verifier-gate 在 residual-warning denominator 上会不安全”。
 - Full controller 的优势是 safe + actionable：同样避免 false certification，但把 residual-positive states 变成下一步 audit action。
 
 ## 10. Repair 实验
@@ -517,8 +508,8 @@ latexmk -pdf -interaction=nonstopmode -outdir=build supplementary_material.tex
 主要结果可以简写为：
 
 1. Homogeneous local stops 产生 source-only illusion。source-only support 可以看起来是 1.0，但 source-route support 和 Gini 暴露 route mismatch。
-2. `urllib3` boundary 证明 eligibility is not proof：support=0.800、Gini=0.647 已通过 eligibility，但 recall=0.835 且 missed items=115，Full controller 应 `CONTINUE`。
-3. Decision ablation 证明 Full controller 与 Verifier-gate 的区别是 actionability：二者 FCR=0，但 Verifier-gate 对 unsafe states 全部 `ABSTAIN`，Full controller 对 400 productive unsafe states 全部 `CONTINUE`。
+2. `urllib3` boundary 证明 eligibility is not proof：support=0.800、Gini=0.647 已通过 eligibility，但仍有 6 个 runtime weak-plausible strata；post-hoc recall=0.835 且 missed items=115。
+3. Decision ablation 证明 Full controller 与 Verifier-gate 的区别是 actionability：二者 FCR=0，但 Verifier-gate 对 seeded unsafe repair states 全部 `ABSTAIN`，Full controller 对 400 个带 runtime residual candidates 的 seeded unsafe states 全部 `CONTINUE`。
 4. Repair ablation 证明 residual-potential high-yield but higher-cost，不是免费 certificate。
 5. Threshold/budget sweep 说明 conservatism 可调，在当前 external validation sweep 中未产生 false certification。
 
@@ -526,23 +517,24 @@ latexmk -pdf -interaction=nonstopmode -outdir=build supplementary_material.tex
 
 ### 16.1 Post-hoc recall 是否混入 runtime decision
 
-这是最重要的审计点。代码中聚合/绘图层的 `state_decision` 对 fixed stop states 使用 `recall < SAFE_RECALL_MIN` 返回 `CONTINUE`，这在实验解释上必须视为 post-hoc diagnostic label，而不是 runtime controller 可见规则。
+这是最重要的审计点，目前已做过一次修复：旧的 `state_decision(recall, productive)` 已删除，聚合/绘图层改为 `runtime_controller_decision(support, gini, weak_plausible_gap, runtime_residual_items)`。`recall` 仍保留在结果表中，但只用于 oracle-safe/unsafe denominator、FCR、safe coverage、missed item 等 post-hoc scoring。
 
 建议检查：
 
 - 主文是否没有说 controller 运行时用 recall。
-- Figure/Table caption 是否没有暗示 fixed observed state 决策是 runtime-only。
-- 是否需要重构代码，把 runtime decision 和 posthoc label 分开。
+- Figure/Table caption 是否清楚说明 post-hoc recall 是 evaluation-only。
+- 新增字段 `runtime_residual_items` 是否完整传递到 controller detail、unified exports、Figure 4 生成脚本。
 
 ### 16.2 Verifier-gate 的 warning 定义是否公平
 
-Verifier-gate 使用 `unresolved_warning` 和 `residual_warning`。当前 residual warning 多来自 repair gain > 0 或 manually marked productive boundary。
+Verifier-gate 使用显式 `unresolved_warning` 和 `residual_warning`。当前 residual warning 来自 runtime residual candidates，不来自 oracle-positive `repair_gain`；fixed-state weak-gap 是 Full controller 的 source-route diagnosis signal，不再喂给 Verifier-gate。
 
 建议检查：
 
 - warning 是否太强，是否等价于“已经知道 residual positive”。
 - 如果 verifier-gate 在实际运行中也需要 repair 才知道 residual warning，那么它的 cost 是否应计入。
 - 论文中是否清楚说明 Verifier-gate 是 generic fail-closed baseline，不给 source-route target。
+- 论文中是否清楚说明 Verifier-gate 只在 seeded residual-warning denominator 上 FCR=0，不代表它能解决 un-warned fixed stop localization。
 
 ### 16.3 Fixed stop states 与 seeded states 的 denominator
 
@@ -618,8 +610,8 @@ Repair cost 在不同任务/脚本中可能由 candidate lines、scan cost、ext
 
 最值得做的三项加固：
 
-1. 重构 `state_decision`：把 runtime controller decision 和 post-hoc diagnostic label 分离，避免审稿人抓住 recall 可见性问题。
-2. 为 Verifier-gate 增加 cost accounting：如果 residual warning 需要 repair 才能产生，就给 verifier-gate 明确同等 repair cost 或说明它是 warning-only admission baseline。
-3. 写一个 automated leakage test：扫描 controller/repair ranking 函数调用链，断言不可访问 `oracle_label`、`oracle_total`、`recall`、`undiscovered_true_item_count`。
+1. 为 Verifier-gate 增加 cost accounting：如果 residual warning 需要 repair 才能产生，就给 verifier-gate 明确同等 repair cost 或说明它是 warning-only admission baseline。
+2. 写一个 automated leakage test：扫描 controller/repair ranking 函数调用链，断言不可访问 `oracle_label`、`oracle_total`、`recall`、`undiscovered_true_item_count`。
+3. 把 legacy script 中仍写死的 file/pattern 常量进一步迁入 config，降低配置外设定的空间；routes 和 condition route lists 当前已在 config 中声明。
 
 这三项不会改变论文主线，但会显著提高实验逻辑的可审计性。

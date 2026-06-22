@@ -122,6 +122,8 @@ INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb8r.t
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\courier\pcrr7t.vf
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\courier\pcrr8r.tfm
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmrc7t.tfm
+INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmrc7t.vf
+INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
 INPUT .\generated\table_controller_variant_counts.tex
 INPUT .\generated\table_controller_variant_counts.tex
 INPUT generated\table_controller_variant_counts.tex
@@ -175,8 +177,6 @@ INPUT .\generated\table_oracle_route_examples.tex
 INPUT generated\table_oracle_route_examples.tex
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmr7t.tfm
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\courier\pcrr7t.tfm
-INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmrc7t.vf
-INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmr7t.vf
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
 INPUT C:\Users\EPIC\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\courier\pcrr7t.vf

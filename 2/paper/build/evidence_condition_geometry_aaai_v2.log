@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  22 JUN 2026 13:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.29)  22 JUN 2026 15:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -799,73 +799,67 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 6
 (C:\Users\EPIC\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-[1{C:/Users/EPIC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/EPI
-C/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
-
-
-]
-<figures/fig1-1.png, id=12, 1219.55624pt x 596.98032pt>
+<figures/fig1-1.png, id=4, 1219.55624pt x 596.98032pt>
 File: figures/fig1-1.png Graphic file (type png)
 <use figures/fig1-1.png>
-Package pdftex.def Info: figures/fig1-1.png  used on input line 137.
+Package pdftex.def Info: figures/fig1-1.png  used on input line 113.
 (pdftex.def)             Requested size: 243.91125pt x 119.39394pt.
 
-Underfull \hbox (badness 1377) in paragraph at lines 153--166
- \OT1/ptm/b/n/10 (+20) High-recall re-view, ac-tive search, and miss-ing mass.[
-]
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[2 <./figures/fig1-1.png>]
-<figures/fig2-5-2.png, id=21, 1238.37656pt x 621.82312pt>
+ [1{C:/Users/EPIC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/EP
+IC/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
+
+
+ <./figures/fig1-1.png>]
+[2]
+<figures/fig2-5-2.png, id=26, 1238.37656pt x 621.82312pt>
 File: figures/fig2-5-2.png Graphic file (type png)
 <use figures/fig2-5-2.png>
-Package pdftex.def Info: figures/fig2-5-2.png  used on input line 320.
+Package pdftex.def Info: figures/fig2-5-2.png  used on input line 262.
 (pdftex.def)             Requested size: 505.89pt x 254.01927pt.
- [3]
-Underfull \vbox (badness 3919) has occurred while \output is active []
-
- [4 <./figures/fig2-5-2.png>]
-
-LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 418.
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 421.
+(Font)              using `OT1/ptm/m/sc' instead on input line 319.
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 422.
+(Font)              using `OT1/ptm/m/sc' instead on input line 322.
 
-[5]
-<figures/main_results_overview.pdf, id=37, 525.12611pt x 322.80551pt>
+
+LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
+(Font)              using `OT1/ptm/m/sc' instead on input line 323.
+
+
+Underfull \hbox (badness 1048) in paragraph at lines 346--359
+\OT1/ptm/m/n/10 (+20) clauses over four pol-icy routes; \OT1/pcr/m/n/10 code-re
+po\OT1/ptm/m/n/10 (+20) , 20 risks
+ []
+
+[3] [4 <./figures/fig2-5-2.png>]
+<figures/main_results_overview.pdf, id=34, 525.12611pt x 322.80551pt>
 File: figures/main_results_overview.pdf Graphic file (type pdf)
 <use figures/main_results_overview.pdf>
 Package pdftex.def Info: figures/main_results_overview.pdf  used on input line 
-594.
+414.
 (pdftex.def)             Requested size: 505.89pt x 310.99803pt.
- [6] (generated/table_eligibility_boundary.tex)
-<figures/controller_variant_comparison.pdf, id=41, 521.30452pt x 330.03253pt>
+<figures/controller_variant_comparison.pdf, id=35, 524.692pt x 212.24248pt>
 File: figures/controller_variant_comparison.pdf Graphic file (type pdf)
 <use figures/controller_variant_comparison.pdf>
 Package pdftex.def Info: figures/controller_variant_comparison.pdf  used on inp
-ut line 660.
-(pdftex.def)             Requested size: 505.89pt x 320.28224pt.
+ut line 481.
+(pdftex.def)             Requested size: 505.89pt x 204.6378pt.
+ [5] [6 <./figures/main_results_overview.pdf> <./figures/controller_variant_com
+parison.pdf>] [7
 
-(generated/table_main_controller_counts.tex)
-(generated/table_claim_verification_pilot.tex
-Underfull \hbox (badness 1472) in paragraph at lines 8--8
-\OT1/ptm/m/n/10 (+20) trol, not a human-annotated bench-mark. S/C/A re-ports
- []
 
-) (generated/table_sensitivity_summary.tex) [7] [8 <./figures/main_results_over
-view.pdf>] [9 <./figures/controller_variant_comparison.pdf>] [10
 
 ]
-(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.bbl [11
+(E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.bbl [8
 
 ]
-[12]) [13
+[9]) [10
 
 ]
 (E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaai_v2.aux)
@@ -875,13 +869,13 @@ L3 programming layer <2025-12-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 20708 strings out of 467871
- 403344 string characters out of 5418860
- 842156 words of memory out of 5000000
- 48849 multiletter control sequences out of 15000+600000
- 672553 words of font info for 333 fonts, out of 8000000 for 9000
+ 20617 strings out of 467871
+ 401437 string characters out of 5418860
+ 834669 words of memory out of 5000000
+ 48816 multiletter control sequences out of 15000+600000
+ 664799 words of font info for 301 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,94p,1034b,430s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,8n,94p,1034b,430s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mex10.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
 nts/cm/cmmi10.pfb><C:/Users/EPIC/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -896,9 +890,9 @@ Data/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/EPIC/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/EPIC/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
 Output written on E:\learn3\B\new\2\paper\build\evidence_condition_geometry_aaa
-i_v2.pdf (13 pages, 1705939 bytes).
+i_v2.pdf (10 pages, 1687993 bytes).
 PDF statistics:
- 154 PDF objects out of 1000 (max. 8388607)
+ 139 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 57377 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 44577 words of extra memory for PDF output out of 51595 (max. 10000000)
 

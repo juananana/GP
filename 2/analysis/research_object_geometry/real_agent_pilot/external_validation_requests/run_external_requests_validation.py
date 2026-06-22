@@ -51,19 +51,25 @@ ROUTES = {
     "compat_route": re.compile(r"\b(deprecated|compat|super_len|basestring|builtin_str|to_native_string|unicode_is_ascii)\b", re.I),
 }
 
-CONDITIONS = {
-    "homogeneous": [
-        ("H1", "timeout_route", FILES),
-        ("H2", "timeout_route", FILES),
-        ("H3", "timeout_route", FILES),
-    ],
-    "route_partitioned": [
-        ("R1", "tls_route", FILES),
-        ("R2", "timeout_route", FILES),
-        ("R3", "exception_route", FILES),
-        ("R4", "compat_route", FILES),
-    ],
-}
+def configured_conditions() -> dict[str, list[tuple[str, str, list[str]]]]:
+    route_design = REQUESTS_CONFIG.get(
+        "conditions",
+        {
+            "homogeneous": ["timeout_route"],
+            "route_partitioned": ["tls_route", "timeout_route", "exception_route", "compat_route"],
+        },
+    )
+    conditions: dict[str, list[tuple[str, str, list[str]]]] = {}
+    for condition, routes in route_design.items():
+        unknown = [route for route in routes if route not in ROUTES]
+        if unknown:
+            raise ValueError(f"unknown requests route(s) in config: {unknown}")
+        prefix = condition[:1].upper()
+        conditions[condition] = [(f"{prefix}{i}", route, FILES) for i, route in enumerate(routes, start=1)]
+    return conditions
+
+
+CONDITIONS = configured_conditions()
 
 CHALLENGERS = [
     "random",
@@ -359,17 +365,22 @@ def evaluate_challengers(events: list[dict], oracle_ids: set[str]) -> pd.DataFra
     df = pd.DataFrame(events)
     base = df[df["condition"] == "homogeneous"].copy()
     base_found = set(base.loc[base["new_item"], "discovered_item_id"].dropna()) & oracle_ids
+    base_runtime_seen = set(base.loc[base["new_item"], "discovered_item_id"].dropna())
     rows = []
     for granularity in ["source_only", "source_route", "source_route_action"]:
         for challenger in CHALLENGERS:
             for seed in VALIDATION_SEEDS:
                 targets = select_targets(base, granularity, challenger, seed)
                 found = set(base_found)
+                runtime_seen = set(base_runtime_seen)
+                runtime_residual = set()
                 new = set()
                 cost = 0
                 for target in targets:
                     ids, c = candidate_items(target, granularity)
                     cost += c
+                    runtime_residual |= ids - runtime_seen
+                    runtime_seen |= ids
                     new |= (ids & oracle_ids) - found
                     found |= ids & oracle_ids
                 cumulative = len(base_found) + len(new)
@@ -381,6 +392,7 @@ def evaluate_challengers(events: list[dict], oracle_ids: set[str]) -> pd.DataFra
                         "targets": ";".join(targets),
                         "base_true_items": len(base_found),
                         "oracle_total": len(oracle_ids),
+                        "runtime_residual_items": len(runtime_residual),
                         "new_true_items": len(new),
                         "cost": cost,
                         "novelty_per_cost": len(new) / cost if cost else 0.0,

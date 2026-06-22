@@ -186,16 +186,19 @@ fixed to compute false-\safe{} rate, safe-state coverage, decision rates, and
 repair gain/cost. The generic Verifier-gate baseline uses only
 unresolved-warning and residual-warning bits; it never reads source-route
 support, Gini, oracle totals, recall, or undiscovered true-item counts.
-The main figure reports seeded unsafe-state FCR and seeded safe-state coverage.
+Because those warning bits are explicit runtime signals, Verifier-gate is not
+allowed to derive warnings from support or Gini. Thus it is a strong fail-closed
+comparison on seeded residual-warning states, but it is not a replacement for
+source-route diagnosis on un-warned fixed stops. The main figure reports seeded
+unsafe-state FCR and seeded safe-state coverage.
 The observed fixed stop states remain the boundary states from which these
 seeded validations are derived; they are summarized in
 Table~\ref{tab:controller_decisions}.
-Table~\ref{tab:eligibility_boundary} has a different denominator: it isolates
-the single eligible-but-residual-positive \texttt{urllib3} boundary state.
-Tables~\ref{tab:main_controller_counts} and
-\ref{tab:controller_variant_counts} use seeded unsafe and complete-state
-denominators. These tables should therefore be read as complementary evidence,
-not as directly comparable ratios over the same sample.
+The main-paper boundary case has a different denominator: it isolates the single
+eligible-but-residual-positive \texttt{urllib3} boundary state. The controller
+count tables below use seeded unsafe and complete-state denominators. These
+tables should therefore be read as complementary evidence, not as directly
+comparable ratios over the same sample.
 
 \input{generated/table_controller_variant_counts.tex}
 
@@ -206,7 +209,7 @@ not as directly comparable ratios over the same sample.
 control accept seeded unsafe states. The full controller and repair-enabled
 variants avoid SAFE on seeded unsafe repair states while preserving SAFE
 coverage on seeded complete states. Source-route eligibility alone is evaluated
-separately on the broad-but-productive \texttt{urllib3} fixed boundary in the
+separately on the weak-gap \texttt{urllib3} fixed boundary in the
 main text.}
 \label{fig:controller_variant_comparison}
 \end{figure*}

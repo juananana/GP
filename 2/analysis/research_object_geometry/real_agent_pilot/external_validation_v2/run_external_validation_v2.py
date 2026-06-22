@@ -53,26 +53,26 @@ ROUTES = {
     "cleanup_route": re.compile(r"\b(close|release_conn|drain_conn|shutdown|finally|with\s+|__exit__)\b"),
 }
 
-CONDITIONS = {
-    "homogeneous": [
-        ("H1", "timeout_route", FILES),
-        ("H2", "timeout_route", FILES),
-        ("H3", "timeout_route", FILES),
-    ],
-    "route_partitioned": [
-        ("R1", "timeout_route", FILES),
-        ("R2", "retry_route", FILES),
-        ("R3", "tls_route", FILES),
-        ("R4", "exception_route", FILES),
-    ],
-    "extended_audit": [
-        ("E1", "timeout_route", FILES),
-        ("E2", "retry_route", FILES),
-        ("E3", "tls_route", FILES),
-        ("E4", "exception_route", FILES),
-        ("E5", "cleanup_route", FILES),
-    ],
-}
+def configured_conditions() -> dict[str, list[tuple[str, str, list[str]]]]:
+    route_design = URLLIB3_CONFIG.get(
+        "conditions",
+        {
+            "homogeneous": ["timeout_route"],
+            "route_partitioned": ["timeout_route", "retry_route", "tls_route", "exception_route"],
+            "extended_audit": ["timeout_route", "retry_route", "tls_route", "exception_route", "cleanup_route"],
+        },
+    )
+    conditions: dict[str, list[tuple[str, str, list[str]]]] = {}
+    for condition, routes in route_design.items():
+        unknown = [route for route in routes if route not in ROUTES]
+        if unknown:
+            raise ValueError(f"unknown urllib3 route(s) in config: {unknown}")
+        prefix = condition[:1].upper()
+        conditions[condition] = [(f"{prefix}{i}", route, FILES) for i, route in enumerate(routes, start=1)]
+    return conditions
+
+
+CONDITIONS = configured_conditions()
 
 CHALLENGERS = [
     "random",
@@ -361,12 +361,15 @@ def evaluate_challengers(events: list[dict], oracle_ids: set[str], potential: di
     base = df[df["condition"] == "homogeneous"].copy()
     base_exposure = exposure_counts(base)
     base_found = discovered_true(base, oracle_ids)
+    base_runtime_seen = set(base.loc[base["new_item"], "discovered_item_id"].dropna())
     base_state = condition_state(base_exposure, potential)
     rows = []
     for strategy in CHALLENGERS:
         for seed in VALIDATION_SEEDS:
             targets = select_targets(base, strategy, seed, potential)
             found = set(base_found)
+            runtime_seen = set(base_runtime_seen)
+            runtime_residual = set()
             new = set()
             cost = 0
             repaired = Counter(base_exposure)
@@ -374,14 +377,16 @@ def evaluate_challengers(events: list[dict], oracle_ids: set[str], potential: di
                 repaired[target] += 1
                 ids, c = candidate_items(target)
                 cost += c
+                runtime_residual |= ids - runtime_seen
+                runtime_seen |= ids
                 new |= (ids & oracle_ids) - found
                 found |= ids & oracle_ids
             after = condition_state(repaired, potential)
             condition_ok = after["support_ratio"] >= SAFE_SUPPORT_MIN and after["exposure_gini"] <= SAFE_GINI_MAX
-            if condition_ok and after["weak_plausible_gap"] == 0 and len(new) == 0:
-                decision = "SAFE"
-            elif len(new) > 0:
+            if len(runtime_residual) > 0:
                 decision = "CONTINUE"
+            elif condition_ok and after["weak_plausible_gap"] == 0:
+                decision = "SAFE"
             else:
                 decision = "ABSTAIN"
             cumulative_recall = len(found) / len(oracle_ids)
@@ -396,6 +401,7 @@ def evaluate_challengers(events: list[dict], oracle_ids: set[str], potential: di
                     "after_exposure_gini": after["exposure_gini"],
                     "support_expansion": after["support_size"] - base_state["support_size"],
                     "support_gap_reduction": base_state["weak_plausible_gap"] - after["weak_plausible_gap"],
+                    "runtime_residual_items": len(runtime_residual),
                     "new_true_items": len(new),
                     "new_evidence_per_cost": len(new) / cost if cost else 0.0,
                     "cost": cost,
