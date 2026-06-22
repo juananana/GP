@@ -4,10 +4,10 @@ import importlib.util
 import json
 import math
 import random
-import re
 import shutil
 import sys
 from collections import Counter
+from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
@@ -15,6 +15,7 @@ import pandas as pd
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from experiment_config import load_experiment_config, seed_count, seeds, thresholds, task_config
+from task_inventory import load_task_inventory, route_patterns, source_family_map, source_files
 
 
 ROOT = Path(__file__).resolve().parents[4]
@@ -35,21 +36,10 @@ VALIDATION_SEEDS = seeds(CONFIG, "validation")
 REQUESTS_CONFIG = task_config(CONFIG, "requests")
 REPAIR_BUDGET = int(CONFIG.get("repair_budgets", {}).get("external_requests", 4))
 
-FILES = [
-    "adapters.py",
-    "api.py",
-    "auth.py",
-    "models.py",
-    "sessions.py",
-    "utils.py",
-]
-
-ROUTES = {
-    "tls_route": re.compile(r"\b(verify|cert|ssl|SSL|TLS|cert_verify|ca_bundle|DEFAULT_CA_BUNDLE_PATH)\b"),
-    "timeout_route": re.compile(r"\b(timeout|Timeout|connect timeout|read timeout)\b", re.I),
-    "exception_route": re.compile(r"\b(except|raise|RetryError|SSLError|ConnectionError|Timeout|TooManyRedirects)\b"),
-    "compat_route": re.compile(r"\b(deprecated|compat|super_len|basestring|builtin_str|to_native_string|unicode_is_ascii)\b", re.I),
-}
+INVENTORY = load_task_inventory("requests")
+FILES = source_files(INVENTORY)
+SOURCE_FAMILIES = source_family_map(INVENTORY)
+ROUTES = route_patterns(INVENTORY)
 
 def configured_conditions() -> dict[str, list[tuple[str, str, list[str]]]]:
     route_design = REQUESTS_CONFIG.get(
@@ -100,17 +90,19 @@ def write_snapshot() -> None:
 
 
 def source_family(filename: str) -> str:
-    return filename.removesuffix(".py")
+    return SOURCE_FAMILIES[filename]
 
 
 def item_id(filename: str, route: str, lineno: int) -> str:
     return f"{source_family(filename)}:{route}:{lineno}"
 
 
-def file_lines(filename: str) -> list[str]:
+@lru_cache(maxsize=None)
+def file_lines(filename: str) -> tuple[str, ...]:
     return (SNAPSHOT / filename).read_text(encoding="utf-8", errors="ignore").splitlines()
 
 
+@lru_cache(maxsize=None)
 def route_matches(filename: str, route: str) -> list[tuple[int, str]]:
     pattern = ROUTES[route]
     rows = []

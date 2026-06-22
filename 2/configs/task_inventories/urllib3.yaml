@@ -1,0 +1,44 @@
+task_id: T_external_urllib3_audit_v2
+inventory_id: urllib3_pattern_inventory_v1
+adapter_name: python_package_regex_audit
+sources:
+  - source_id: connection.py
+    source_family: connection
+    source_path: connection.py
+  - source_id: connectionpool.py
+    source_family: connectionpool
+    source_path: connectionpool.py
+  - source_id: poolmanager.py
+    source_family: poolmanager
+    source_path: poolmanager.py
+  - source_id: response.py
+    source_family: response
+    source_path: response.py
+  - source_id: util/retry.py
+    source_family: util_retry
+    source_path: util/retry.py
+  - source_id: util/timeout.py
+    source_family: util_timeout
+    source_path: util/timeout.py
+routes:
+  - route_id: timeout_route
+    route_type: regex
+    description: Timeout objects and connect/read timeout handling.
+    definition: '(?i)\b(timeout|Timeout|connect_timeout|read_timeout|_connect_timeout|_read_timeout)\b'
+  - route_id: retry_route
+    route_type: regex
+    description: Retry configuration, increments, and backoff handling.
+    definition: '\b(retry|Retry|retries|increment|backoff|status_forcelist)\b'
+  - route_id: tls_route
+    route_type: regex
+    description: TLS, certificate, hostname, and CA verification handling.
+    definition: '\b(ssl|SSL|TLS|cert|certificate|verify|assert_hostname|ca_certs|cert_reqs)\b'
+  - route_id: exception_route
+    route_type: regex
+    description: Exception classes and error paths.
+    definition: '\b(except|raise|Error|TimeoutError|SSLError|ProxyError|HTTPError|MaxRetryError)\b'
+  - route_id: cleanup_route
+    route_type: regex
+    description: Connection cleanup, release, close, and context-manager paths.
+    definition: '\b(close|release_conn|drain_conn|shutdown|finally|with\s+|__exit__)\b'
+

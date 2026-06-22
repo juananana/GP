@@ -4,10 +4,10 @@ import importlib.util
 import json
 import math
 import random
-import re
 import shutil
 import sys
 from collections import Counter
+from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
@@ -15,6 +15,7 @@ import pandas as pd
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from experiment_config import load_experiment_config, seed_count, seeds, thresholds, task_config
+from task_inventory import load_task_inventory, route_patterns, source_family_map, source_files
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,22 +37,10 @@ VALIDATION_SEEDS = seeds(CONFIG, "validation")
 URLLIB3_CONFIG = task_config(CONFIG, "urllib3")
 DEFAULT_REPAIR_BUDGET = int(CONFIG.get("repair_budgets", {}).get("external_urllib3", 5))
 
-FILES = [
-    "connection.py",
-    "connectionpool.py",
-    "poolmanager.py",
-    "response.py",
-    "util/retry.py",
-    "util/timeout.py",
-]
-
-ROUTES = {
-    "timeout_route": re.compile(r"\b(timeout|Timeout|connect_timeout|read_timeout|_connect_timeout|_read_timeout)\b", re.I),
-    "retry_route": re.compile(r"\b(retry|Retry|retries|increment|backoff|status_forcelist)\b"),
-    "tls_route": re.compile(r"\b(ssl|SSL|TLS|cert|certificate|verify|assert_hostname|ca_certs|cert_reqs)\b"),
-    "exception_route": re.compile(r"\b(except|raise|Error|TimeoutError|SSLError|ProxyError|HTTPError|MaxRetryError)\b"),
-    "cleanup_route": re.compile(r"\b(close|release_conn|drain_conn|shutdown|finally|with\s+|__exit__)\b"),
-}
+INVENTORY = load_task_inventory("urllib3")
+FILES = source_files(INVENTORY)
+SOURCE_FAMILIES = source_family_map(INVENTORY)
+ROUTES = route_patterns(INVENTORY)
 
 def configured_conditions() -> dict[str, list[tuple[str, str, list[str]]]]:
     route_design = URLLIB3_CONFIG.get(
@@ -104,7 +93,7 @@ def write_snapshot() -> None:
 
 
 def source_family(rel: str) -> str:
-    return rel.removesuffix(".py").replace("/", "_").replace("\\", "_")
+    return SOURCE_FAMILIES[rel]
 
 
 def rel_from_source_family(family: str) -> str:
@@ -114,10 +103,12 @@ def rel_from_source_family(family: str) -> str:
     raise KeyError(family)
 
 
-def file_lines(rel: str) -> list[str]:
+@lru_cache(maxsize=None)
+def file_lines(rel: str) -> tuple[str, ...]:
     return (SNAPSHOT / rel).read_text(encoding="utf-8", errors="ignore").splitlines()
 
 
+@lru_cache(maxsize=None)
 def route_matches(rel: str, route: str) -> list[tuple[int, str]]:
     pattern = ROUTES[route]
     return [(i, line.strip()) for i, line in enumerate(file_lines(rel), start=1) if pattern.search(line)]

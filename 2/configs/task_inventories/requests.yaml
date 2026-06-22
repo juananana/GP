@@ -1,0 +1,40 @@
+task_id: T_external_requests_repo_v1
+inventory_id: requests_pattern_inventory_v1
+adapter_name: python_package_regex_audit
+sources:
+  - source_id: adapters.py
+    source_family: adapters
+    source_path: adapters.py
+  - source_id: api.py
+    source_family: api
+    source_path: api.py
+  - source_id: auth.py
+    source_family: auth
+    source_path: auth.py
+  - source_id: models.py
+    source_family: models
+    source_path: models.py
+  - source_id: sessions.py
+    source_family: sessions
+    source_path: sessions.py
+  - source_id: utils.py
+    source_family: utils
+    source_path: utils.py
+routes:
+  - route_id: tls_route
+    route_type: regex
+    description: TLS, certificate, and verification handling.
+    definition: '\b(verify|cert|ssl|SSL|TLS|cert_verify|ca_bundle|DEFAULT_CA_BUNDLE_PATH)\b'
+  - route_id: timeout_route
+    route_type: regex
+    description: Timeout configuration and timeout errors.
+    definition: '(?i)\b(timeout|Timeout|connect timeout|read timeout)\b'
+  - route_id: exception_route
+    route_type: regex
+    description: Exception and error propagation paths.
+    definition: '\b(except|raise|RetryError|SSLError|ConnectionError|Timeout|TooManyRedirects)\b'
+  - route_id: compat_route
+    route_type: regex
+    description: Compatibility and deprecation pathways.
+    definition: '(?i)\b(deprecated|compat|super_len|basestring|builtin_str|to_native_string|unicode_is_ascii)\b'
+

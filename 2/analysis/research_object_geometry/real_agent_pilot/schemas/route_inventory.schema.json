@@ -32,7 +32,11 @@
           "route_id": {"type": "string"},
           "route_type": {"type": "string"},
           "description": {"type": "string"},
-          "definition": {"type": "string"}
+          "definition": {"type": "string"},
+          "flags": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
         },
         "additionalProperties": false
       }
@@ -40,4 +44,3 @@
   },
   "additionalProperties": false
 }
-
