@@ -14,24 +14,25 @@
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Evidence-Condition Controller}}{3}{}\protected@file@percent }
 \newlabel{alg:controller}{{1}{3}{}{algorithm.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Experiments}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Tasks and states.}{3}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evidence-condition controller. The controller maps a runtime evidence log, declared source-route scope, and stop proposal to an exposure distribution over the intended source-route space. The support/Gini check is an eligibility test, not a completion proof. If the condition is localized or weak plausible gaps remain, the controller repairs or continues. It returns \textsc  {Safe}{} only when the evidence condition is broad and repair or audit reveals no residual evidence; otherwise it returns \textsc  {Continue}{} or \textsc  {Abstain}{}.}}{4}{}\protected@file@percent }
 \newlabel{fig:controller}{{2}{4}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Tasks and states.}{4}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Ablations.}{4}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Reproducibility and leakage control.}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Results}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Results}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Local stop signals are not certificates.}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Source-only hides route mismatch.}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Source-route geometry exposes mismatch, not proof.}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Eligibility is only a precondition.}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Full control is safe and actionable.}{5}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Repair cost is an explicit tradeoff.}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Sanity checks.}{5}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Diagnostic chain and granularity ablation. Local homogeneous stops have low source-route support and high concentration; source-only support is misleadingly complete; source-route support/Gini reveal the mismatch; and the \texttt  {urllib3} route-partitioned state is eligible but residual-positive, with recall \(0.835\) below the post-hoc \(0.90\) threshold until extended audit reaches \(1.000\).}}{6}{}\protected@file@percent }
 \newlabel{fig:main_results}{{3}{6}{}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Controller evaluation dashboard for safe, actionable, and cost-aware stopping on seeded residual-warning states and seeded complete-state perturbations. The decision panel compares safety and usefulness: verifier-gate is safe on this denominator but fail-closed, while the full controller is safe and actionable on unsafe states with runtime residual candidates. The repair panel compares target rules and budget choices, showing residual-potential as a high-yield but non-optimal repair heuristic.}}{6}{}\protected@file@percent }
-\newlabel{fig:controller_variants}{{4}{6}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Sanity checks.}{6}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Controller evaluation dashboard for safe, actionable, and cost-aware stopping on seeded residual-warning states and seeded complete-state perturbations. The decision panel compares safety and usefulness: verifier-gate is safe on this denominator but fail-closed, while the full controller is safe and actionable on unsafe states with runtime residual candidates. The repair panel compares target rules and budget choices, showing residual-potential as a high-yield but non-optimal repair heuristic.}}{7}{}\protected@file@percent }
+\newlabel{fig:controller_variants}{{4}{7}{}{figure.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {8}Discussion and Limitations}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{7}{}\protected@file@percent }
 \bibstyle{plainnat}
 \bibdata{references}
 \bibcite{amodei2016concrete}{{1}{2016}{{Amodei et~al.}}{{Amodei, Olah, Steinhardt, Christiano, Schulman, and Man{\'e}}}}

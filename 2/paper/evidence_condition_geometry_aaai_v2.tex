@@ -123,35 +123,48 @@ condition that produced them, not by stop signals alone.
 
 \section{Related Work}
 
-High-recall review, total recall, active search, and review stopping rules ask
-how to retrieve more positives, estimate remaining mass, or decide whether a
-review has saturated under budget \citep{grossman2011technology,
-cormack2014evaluation,cormack2015multi,cormack2016engineering,
-grossman2016trec,roegiest2015trec,voorhees2002overview,wallace2010active,
-lewis1994sequential,settles2009active,garnett2012bayesian,attenberg2011beat,
-good1953population,chao1984nonparametric,chao2014species}. Our controller is
-not given oracle totals, recall, hidden missing mass, or unseen true-item counts.
-It asks a different stop-time question: whether the runtime evidence condition
-matches the declared source-route scope of the completion claim.
+Our work sits between three literatures that usually treat stopping, evidence,
+and verification separately. High-recall review, total recall, active search, and
+review stopping rules ask how to retrieve more positives, estimate remaining
+mass, or decide whether a review has saturated under budget
+\citep{grossman2011technology,cormack2014evaluation,cormack2015multi,
+cormack2016engineering,grossman2016trec,roegiest2015trec,voorhees2002overview,
+wallace2010active,lewis1994sequential,settles2009active,garnett2012bayesian,
+attenberg2011beat,good1953population,chao1984nonparametric,chao2014species}.
+Those methods are closest in spirit to our concern with false stopping, but they
+often reason with review protocols, sampling assumptions, prevalence estimates,
+or post-hoc recall targets. Our controller is deliberately poorer at runtime: it
+is not given oracle totals, hidden missing mass, post-hoc recall, or unseen
+true-item counts. It therefore asks a narrower certificate question: whether the
+observed evidence condition is broad enough to support the declared source-route
+scope of the completion claim.
 
-Tool-using, web, code, and multi-agent systems allocate work across tools,
-agents, memories, searches, and intermediate states \citep{yao2023react,
-schick2023toolformer,nakano2021webgpt,qin2024toolllm,wu2023autogen,
-park2023generative,wang2024voyager,deng2024mind2web,zhou2024webarena,
-liu2024agentbench,yao2022alfworld,jimenez2024swebench,shinn2024reflexion,
-madaan2023selfrefine}. Benchmarks and factuality systems evaluate final task
-success, answer support, or post-hoc correctness \citep{hendrycks2021measuring,
+A second line of work studies tool-using, web, code, and multi-agent systems that
+allocate work across searches, tools, memories, repositories, and intermediate
+states \citep{yao2023react,schick2023toolformer,nakano2021webgpt,
+qin2024toolllm,wu2023autogen,park2023generative,wang2024voyager,
+deng2024mind2web,zhou2024webarena,liu2024agentbench,yao2022alfworld,
+jimenez2024swebench,shinn2024reflexion,madaan2023selfrefine}. These systems make
+our failure mode more common: a workflow may cover many sources but only through a
+narrow route, or may repeat one local route until the transcript appears stable.
+Benchmarks and factuality systems then evaluate final task success, answer
+support, or post-hoc correctness \citep{hendrycks2021measuring,
 liang2022holistic,srivastava2023beyond,lin2022truthfulqa,thorne2018fever,
-gao2023rarr,min2023factscore,schuster2021get,gehrmann2023repair}. Verification
-and admission-control pipelines can fail closed when a checker reports
-unresolved warnings. We use such a verifier-gate as a baseline. The distinction
-is the certificate object: evidence-condition control diagnoses where the stop
-certificate is weak and uses repair to produce actionable \cont{} decisions, not
-only reject or abstain. This connects to reliability and oversight concerns
+gao2023rarr,min2023factscore,schuster2021get,gehrmann2023repair}. We instead
+evaluate the stop certificate itself: what condition produced it, and what action
+should follow when that condition is weak.
+
+Finally, verification and oversight methods can reject unsupported outputs or
+fail closed when a checker reports unresolved warnings
 \citep{dietterich2000ensemble,cobbe2021training,wang2023selfconsistency,
 amodei2016concrete,christiano2017deep,irving2018ai,leike2018scalable,
-hendrycks2021unsolved}, but targets a narrower operational failure: locally
-conditioned evidence being promoted to a global completion certificate.
+hendrycks2021unsolved}. We include a generic verifier-gate for exactly this
+reason. Its limitation is not that abstention is unsafe; abstention is often the
+right conservative answer. Its limitation is that a warning-only gate does not say
+which source-route condition is missing or where the next audit should go.
+Evidence-condition control treats the stop claim as a structured certificate:
+diagnose the source-route geometry, repair weak plausible strata, and return
+\safe{}, \cont{}, or \abstain{} with an operational meaning.
 
 \section{Problem Setting}
 
@@ -520,31 +533,26 @@ final link: residual repair converts an eligible stop into a closed
 
 \FloatBarrier
 
-\clearpage
 \section{Discussion and Limitations}
 
-The positive result is bounded but operationally useful. A \safe{} decision means
-that the declared source-route condition is eligible and that budgeted repair
-did not reveal residual evidence; it is not a universal guarantee that no
-further facts exist. In practice, support and Gini act as stop-time warning
-signals, threshold and budget sweeps set conservatism before deployment, and
-residual repair turns a weak certificate into a next audit target. The
-\safe{}/\cont{}/\abstain{} interface is useful precisely because it distinguishes
-certified stops, productive continuation, and conservative refusal.
+The positive result is bounded but operationally useful. A \safe{} decision
+certifies the declared source-route condition under the configured budget and
+runtime-visible signals; it is not a universal guarantee that no further facts
+exist. In practice, support and Gini are stop-time warning signals, threshold and
+budget sweeps set conservatism, and residual repair turns a weak certificate into
+a next audit target. The limitations are real: external repository oracles are
+pattern-defined over frozen snapshots, residual-potential repair is a heuristic
+rather than optimal active search, and the claim-verification pilot is only an
+interface sanity check.
 
-The limitations are real. External repository oracles are pattern-defined over
-frozen snapshots, not human semantic gold labels. They stress certificate logic
-at realistic scale, but they do not prove that an expert would agree with every
-completion boundary. Residual-potential repair is also a heuristic, not an
-optimal active-search policy. The comparison with high-potential repair is
-therefore intentionally modest: residual-potential is mechanism-aligned and
-high-yield in these states, but it is not a theorem about the best next action.
-The claim-verification pilot is only a small interface sanity check.
+\section{Conclusion}
 
-These limits sharpen the main point. Local stop signals are not completion
-certificates. In bounded audit workflows, the defensible question is whether the
-evidence condition supporting the stop matches the declared scope and whether
-residual repair can convert uncertainty into an actionable next audit step.
+Local stop signals are not completion certificates. Source-route exposure
+geometry makes the evidence condition of a stop proposal visible; residual repair
+then turns uncertainty into \safe{}, actionable \cont{}, or conservative
+\abstain{}. The contribution is intentionally bounded, but it closes a practical
+loop: judge completion claims by the condition that produced them, not by stop
+signals alone.
 
 \clearpage
 \bibliographystyle{plainnat}

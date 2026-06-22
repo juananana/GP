@@ -2,6 +2,14 @@
 
 本文档用于逐项审查论文实验和方法实现是否自洽。它不是论文正文的宣传性叙述，而是把实验是怎么构造、怎么运行、怎么评分、怎么导出图表，以及哪些地方最容易误读或出问题写清楚。所有路径均相对于仓库中的 `2/` 目录，除非另有说明。
 
+## 0. 当前状态速查
+
+- 实验代码没有全部放在一个单文件里，但主实验代码集中在 `analysis/research_object_geometry/real_agent_pilot/`；配置在 `configs/`；论文图表生成在 `paper/scripts/make_paper_figures.py`。
+- Figure 4 现在不是“全是 1”的比例图，而是 count dashboard：左图显示 400 个 seeded unsafe states 中各策略输出 unsafe `SAFE`、`CONTINUE`、`ABSTAIN` 的数量，并用绿色菱形标注 1200 个 complete states 均被判为 `SAFE`；右图显示 repair gain-cost tradeoff。
+- “Verifier-gate vs Full controller”的主结论不是 Full 在 seeded warning denominator 上更安全，而是 Full 同样避免 unsafe `SAFE`，同时把 productive unsafe states 转成可行动的 `CONTINUE`；Verifier-gate 是 fail-closed `ABSTAIN`，不给 source-route diagnosis 或 repair target。
+- 主文已经恢复独立 `Conclusion`；`Related Work` 已改成围绕 stopping、agent/tool workflow、verification/oversight 三条脉络说明本文区别，而不是单纯罗列文献。
+- 当前仍应克制的边界：external repository oracle 是 pattern-defined，不是语义金标准；residual-potential 是启发式 repair target，不是 optimal active search；`SAFE` 是配置预算和 runtime-visible signals 下的 bounded certificate，不是 universal completion guarantee。
+
 ## 1. 实验要验证什么
 
 论文主张不是“系统可以普遍保证 completion”，而是一个更窄的 bounded completion-audit 命题：
@@ -44,6 +52,15 @@
 - `paper/scripts/make_paper_figures.py`
 
 配置读取由 `analysis/research_object_geometry/real_agent_pilot/experiment_config.py` 完成。默认配置是 `configs/full_200seed.yaml`，也可以通过环境变量 `EVIDENCE_CONFIG` 指定。
+
+实验代码不是全部挤在一个单文件里，但主实验代码集中在一个主目录：
+
+- 核心实验目录：`analysis/research_object_geometry/real_agent_pilot/`。这里包含 generated tasks、external requests/urllib3 validation、controller validation、claim-verification sanity check、结果聚合器。
+- 配置目录：`configs/`。seeds、thresholds、budgets、routes、condition route lists、oracle paths、output paths 在这里声明。
+- 论文图表生成：`paper/scripts/make_paper_figures.py`。它不重新定义实验逻辑，只读取已经导出的结果表并生成 Figure 3/4 与 LaTeX 表。
+- 论文输出：`paper/generated/`、`paper/figures/`、`paper/build/`。
+
+如果只想审查“实验如何产生”，优先看 `real_agent_pilot/` 和 `configs/`；如果想审查“论文图表如何从结果写入论文”，再看 `paper/scripts/make_paper_figures.py`。
 
 ## 3. 配置文件
 
@@ -436,7 +453,7 @@ Figure 4 来自：
 
 当前 Figure 4 是 1x2 dashboard：
 
-- left: decision safety/actionability, stacked unsafe `SAFE`, actionable `CONTINUE`, fail-closed `ABSTAIN`, plus safe-state coverage line。
+- left: decision safety/actionability count dashboard。红/橙/灰显示 400 个 seeded unsafe residual-warning states 中被判成 unsafe `SAFE`、actionable `CONTINUE`、fail-closed `ABSTAIN` 的数量；绿色点显示 1200 个 seeded complete states 中被判成 `SAFE` 的数量。早先 rate 版本很多值天然等于 1，容易被误读成“全是 1”；count 版本直接显示 denominator 和 count。
 - right: repair gain-cost tradeoff with error bars。
 
 Supplement 表格生成：

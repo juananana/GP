@@ -960,47 +960,61 @@ def plot_controller_variant_comparison() -> None:
     repair_labels = ["Random", "High-pot.", "Residual-pot."]
     repair_colors = [COLORS["gray"], COLORS["blue"], COLORS["purple"]]
 
-    fig, axes = plt.subplots(1, 2, figsize=(7.15, 2.78), constrained_layout=True)
+    fig, axes = plt.subplots(1, 2, figsize=(7.15, 2.95), constrained_layout=True)
     axes = axes.ravel()
 
     x = np.arange(len(controller_labels))
-    fcr = controller["false_certification_rate_seeded_unsafe"].to_numpy(dtype=float)
-    unsafe_continue = controller["continue_rate_seeded_unsafe"].to_numpy(dtype=float)
-    unsafe_abstain = controller["abstain_rate_seeded_unsafe"].to_numpy(dtype=float)
-    safe_cov = controller["safe_coverage_seeded_safe"].to_numpy(dtype=float)
+    unsafe_n = controller["unsafe_denominator"].to_numpy(dtype=float)
+    safe_n = controller["safe_denominator"].to_numpy(dtype=float)
+    unsafe_safe = controller["safe_on_unsafe"].to_numpy(dtype=float)
+    unsafe_continue = controller["continue_rate_seeded_unsafe"].to_numpy(dtype=float) * unsafe_n
+    unsafe_abstain = controller["abstain_rate_seeded_unsafe"].to_numpy(dtype=float) * unsafe_n
+    safe_on_safe = controller["safe_on_safe"].to_numpy(dtype=float)
 
     ax = axes[0]
-    ax.bar(x, fcr, width=0.62, color=COLORS["red"], label="unsafe SAFE / FCR")
-    ax.bar(x, unsafe_continue, bottom=fcr, width=0.62, color=COLORS["orange"], label="actionable CONTINUE")
-    ax.bar(x, unsafe_abstain, bottom=fcr + unsafe_continue, width=0.62, color=COLORS["gray"], label="fail-closed ABSTAIN")
-    ax.plot(x, safe_cov, color=COLORS["green"], marker="D", markersize=4.5, lw=1.0, label="safe-state coverage")
-    for i, (bad, cont, abst) in enumerate(zip(fcr, unsafe_continue, unsafe_abstain)):
+    ax.bar(x, unsafe_safe, width=0.62, color=COLORS["red"], label="unsafe states: SAFE")
+    ax.bar(x, unsafe_continue, bottom=unsafe_safe, width=0.62, color=COLORS["orange"], label="unsafe states: CONTINUE")
+    ax.bar(x, unsafe_abstain, bottom=unsafe_safe + unsafe_continue, width=0.62, color=COLORS["gray"], label="unsafe states: ABSTAIN")
+    ax.scatter(x, safe_on_safe, color=COLORS["green"], marker="D", s=26, zorder=4, label="complete states: SAFE")
+    for i, (bad, cont, abst) in enumerate(zip(unsafe_safe, unsafe_continue, unsafe_abstain)):
         if bad > 0:
-            ax.text(i, bad / 2, "unsafe\nSAFE", ha="center", va="center", fontsize=5.4, color="white", weight="bold")
+            ax.text(i, bad / 2, f"{int(bad)}\nunsafe\nSAFE", ha="center", va="center", fontsize=5.3, color="white", weight="bold")
         if cont > 0:
-            ax.text(i, bad + cont / 2, "CONT.", ha="center", va="center", fontsize=5.8, color="white", weight="bold")
+            ax.text(i, bad + cont / 2, f"{int(cont)}\nCONT.", ha="center", va="center", fontsize=5.8, color="white", weight="bold")
         if abst > 0:
-            ax.text(i, bad + cont + abst / 2, "ABST.", ha="center", va="center", fontsize=5.8, color="white", weight="bold")
-    ax.set_title("(a) Decision: safe vs actionable", loc="left", fontweight="bold")
+            ax.text(i, bad + cont + abst / 2, f"{int(abst)}\nABST.", ha="center", va="center", fontsize=5.8, color="white", weight="bold")
+    ax.axhline(400, color="#374151", lw=0.65, ls="--")
+    ax.text(-0.45, 408, "unsafe denominator = 400", fontsize=5.7, color=COLORS["muted"], va="bottom")
+    ax.text(
+        4.45,
+        1288,
+        "complete SAFE: 1200/1200\nfor all policies",
+        ha="right",
+        va="top",
+        fontsize=5.6,
+        color=COLORS["green"],
+        bbox=dict(facecolor="white", edgecolor="none", pad=0.5, alpha=0.9),
+    )
+    ax.set_title("(a) Decision counts: safe vs actionable", loc="left", fontweight="bold")
     ax.set_xticks(x, controller_labels, rotation=16, ha="right")
-    ax.set_ylim(0, 1.16)
-    ax.set_ylabel("seeded-state decision rate")
+    ax.set_ylim(0, 1320)
+    ax.set_ylabel("seeded-state count")
     ax.text(
         2,
-        1.07,
-        "Verifier/eligibility gates are safe but fail closed",
+        1060,
+        "Verifier/eligibility: safe on warned states, but fail closed",
         ha="center",
         va="center",
-        fontsize=5.8,
+        fontsize=5.6,
         color=COLORS["muted"],
         bbox=dict(facecolor="white", edgecolor="none", pad=0.4, alpha=0.86),
     )
     ax.legend(
         frameon=False,
         loc="upper center",
-        bbox_to_anchor=(0.5, -0.28),
+        bbox_to_anchor=(0.5, -0.24),
         ncol=2,
-        fontsize=5.7,
+        fontsize=5.5,
         handlelength=1.0,
         columnspacing=0.8,
     )
