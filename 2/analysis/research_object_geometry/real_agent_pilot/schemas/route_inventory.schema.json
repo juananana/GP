@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Condition Route Inventory",
+  "type": "object",
+  "required": ["task_id", "inventory_id", "sources", "routes"],
+  "properties": {
+    "task_id": {"type": "string"},
+    "inventory_id": {"type": "string"},
+    "frozen_at": {"type": "string"},
+    "adapter_name": {"type": "string"},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "source_family"],
+        "properties": {
+          "source_id": {"type": "string"},
+          "source_family": {"type": "string"},
+          "source_path": {"type": "string"},
+          "source_locator": {"type": "string"},
+          "content_hash": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["route_id", "route_type", "definition"],
+        "properties": {
+          "route_id": {"type": "string"},
+          "route_type": {"type": "string"},
+          "description": {"type": "string"},
+          "definition": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
+

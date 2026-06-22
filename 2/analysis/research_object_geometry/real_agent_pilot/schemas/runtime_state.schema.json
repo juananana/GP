@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Condition Runtime State",
+  "type": "object",
+  "required": [
+    "task_id",
+    "trajectory_id",
+    "stop_state_id",
+    "support",
+    "gini",
+    "runtime_residual_items"
+  ],
+  "properties": {
+    "task_id": {"type": "string"},
+    "trajectory_id": {"type": "string"},
+    "stop_state_id": {"type": "string"},
+    "inventory_id": {"type": "string"},
+    "condition": {"type": "string"},
+    "state_type": {"type": "string"},
+    "support": {"type": "number", "minimum": 0, "maximum": 1},
+    "gini": {"type": "number", "minimum": 0, "maximum": 1},
+    "weak_plausible_gap": {"type": "number", "minimum": 0},
+    "runtime_residual_items": {"type": "number", "minimum": 0},
+    "unresolved_warning": {"type": "boolean"},
+    "residual_warning": {"type": "boolean"},
+    "cost_so_far": {"type": "number", "minimum": 0}
+  },
+  "not": {
+    "anyOf": [
+      {"required": ["oracle_label"]},
+      {"required": ["oracle_total"]},
+      {"required": ["recall"]},
+      {"required": ["bounded_oracle_recall"]},
+      {"required": ["undiscovered_true_item_count"]},
+      {"required": ["hidden_missing_mass"]},
+      {"required": ["new_true_items"]}
+    ]
+  },
+  "additionalProperties": false
+}
+

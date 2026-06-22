@@ -12,6 +12,7 @@ import pandas as pd
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from experiment_config import load_experiment_config, thresholds, task_config
+from runtime_contracts import require_runtime_residual, runtime_decision_view
 
 ROOT = Path(__file__).resolve().parents[1]
 EXT = ROOT / "external_validation_requests"
@@ -110,11 +111,10 @@ def repair_exposure(base_exposure: Counter, targets: str) -> Counter:
 
 
 def controller_decision(row: pd.Series, support_thr: float, gini_thr: float) -> str:
-    condition_ok = float(row["after_support_ratio"]) >= support_thr and float(row["after_exposure_gini"]) <= gini_thr
-    if "runtime_residual_items" not in row:
-        raise KeyError("runtime_residual_items is required for controller decisions")
-    runtime_residual = int(row["runtime_residual_items"])
-    support_gap_remaining = int(row.get("weak_plausible_gap_after", row.get("after_weak_plausible_gap", 0)))
+    runtime = runtime_decision_view(row, context="controller v2 decision")
+    condition_ok = float(runtime["after_support_ratio"]) >= support_thr and float(runtime["after_exposure_gini"]) <= gini_thr
+    runtime_residual = int(require_runtime_residual(runtime, context="controller v2 decision"))
+    support_gap_remaining = int(runtime.get("weak_plausible_gap_after", runtime.get("after_weak_plausible_gap", 0)))
     if runtime_residual > 0:
         return "CONTINUE"
     if condition_ok and support_gap_remaining == 0:

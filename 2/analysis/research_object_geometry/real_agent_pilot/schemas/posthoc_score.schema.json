@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Condition Post-hoc Score",
+  "type": "object",
+  "required": ["task_id", "runtime_decision_id", "oracle_id"],
+  "properties": {
+    "task_id": {"type": "string"},
+    "runtime_decision_id": {"type": "string"},
+    "oracle_id": {"type": "string"},
+    "success": {"type": "boolean"},
+    "oracle_total": {"type": "number", "minimum": 0},
+    "found_true_items": {"type": "number", "minimum": 0},
+    "new_true_items": {"type": "number", "minimum": 0},
+    "recall": {"type": "number", "minimum": 0, "maximum": 1},
+    "bounded_oracle_recall": {"type": "number", "minimum": 0, "maximum": 1},
+    "undiscovered_true_item_count": {"type": "number", "minimum": 0},
+    "false_certification": {"type": "boolean"},
+    "safe_coverage_label": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}
+

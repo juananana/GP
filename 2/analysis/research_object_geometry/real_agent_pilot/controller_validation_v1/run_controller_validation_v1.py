@@ -3,12 +3,21 @@ from __future__ import annotations
 import json
 import math
 import re
+import warnings
 from collections import Counter
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
+warnings.warn(
+    "run_controller_validation_v1.py is legacy and must not be used for main "
+    "runtime-controller claims because its decision() function consumes "
+    "post-hoc new_true_items. Use run_controller_validation_v2.py or the "
+    "refactored runtime pipeline instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 EXT = ROOT / "external_validation_requests"

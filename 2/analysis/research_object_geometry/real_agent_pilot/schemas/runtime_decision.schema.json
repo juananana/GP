@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Condition Runtime Decision",
+  "type": "object",
+  "required": ["task_id", "runtime_state_id", "controller_version", "policy", "decision"],
+  "properties": {
+    "task_id": {"type": "string"},
+    "runtime_state_id": {"type": "string"},
+    "controller_version": {"type": "string"},
+    "policy": {"type": "string"},
+    "decision": {"enum": ["SAFE", "CONTINUE", "ABSTAIN"]},
+    "diagnosis": {"type": "string"},
+    "repair_targets": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "not": {
+    "anyOf": [
+      {"required": ["oracle_label"]},
+      {"required": ["oracle_total"]},
+      {"required": ["recall"]},
+      {"required": ["bounded_oracle_recall"]},
+      {"required": ["undiscovered_true_item_count"]},
+      {"required": ["hidden_missing_mass"]},
+      {"required": ["new_true_items"]}
+    ]
+  },
+  "additionalProperties": false
+}
+

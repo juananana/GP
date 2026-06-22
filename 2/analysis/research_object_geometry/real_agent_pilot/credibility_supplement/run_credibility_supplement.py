@@ -18,6 +18,7 @@ import pandas as pd
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from experiment_config import load_experiment_config, seeds, thresholds
+from runtime_contracts import require_runtime_residual, runtime_decision_view
 
 
 ROOT = Path(__file__).resolve().parents[4]
@@ -89,7 +90,6 @@ def run_existing_experiments() -> None:
         PILOT / "scripts" / "run_blind_policy_task.py",
         PILOT / "scripts" / "run_blind_code_task.py",
         PILOT / "external_validation_requests" / "run_external_requests_validation.py",
-        PILOT / "controller_validation_v1" / "run_controller_validation_v1.py",
         PILOT / "controller_validation_v1" / "run_controller_validation_v2.py",
         PILOT / "external_validation_v2" / "run_external_validation_v2.py",
     ]
@@ -237,12 +237,6 @@ def runtime_controller_decision(
     if geometry_ok:
         return "SAFE"
     return "ABSTAIN"
-
-
-def require_runtime_residual(row: pd.Series | dict[str, Any], *, context: str) -> float:
-    if "runtime_residual_items" not in row:
-        raise KeyError(f"runtime_residual_items is required for runtime decision in {context}")
-    return float(row["runtime_residual_items"])
 
 
 def aggregate_decisions(rows: list[dict[str, Any]], label: str, task_group: str) -> dict[str, Any]:
@@ -458,8 +452,9 @@ def source_only_ablation() -> pd.DataFrame:
 
 
 def verifier_gate_decision(row: pd.Series | dict[str, Any]) -> str:
-    unresolved = bool(row.get("unresolved_warning", False))
-    residual = bool(row.get("residual_warning", False))
+    runtime = runtime_decision_view(row, context="verifier-gate decision")
+    unresolved = bool(runtime.get("unresolved_warning", False))
+    residual = bool(runtime.get("residual_warning", False))
     return "ABSTAIN" if unresolved or residual else "SAFE"
 
 
