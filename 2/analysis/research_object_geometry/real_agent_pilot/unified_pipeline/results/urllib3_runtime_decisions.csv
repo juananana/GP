@@ -1,0 +1,4 @@
+task,task_id,runtime_state_id,controller_version,policy,decision,diagnosis
+urllib3,T_external_urllib3_audit_v2,urllib3:extended_audit:fixed_stop,evidence_condition_unified_v1,Full controller,SAFE,source-route geometry eligible with no runtime residual warning
+urllib3,T_external_urllib3_audit_v2,urllib3:homogeneous:fixed_stop,evidence_condition_unified_v1,Full controller,CONTINUE,runtime residual or unvisited plausible source-route strata
+urllib3,T_external_urllib3_audit_v2,urllib3:route_partitioned:fixed_stop,evidence_condition_unified_v1,Full controller,CONTINUE,runtime residual or unvisited plausible source-route strata

@@ -1,0 +1,3 @@
+repo,snapshot_version,oracle_total,item_granularity,dedup_logic,routes,source_route_strata_with_items
+requests,2.32.5,298,line-level source-route evidence occurrence,"deduplicate by source_family, route, and line number item_id",4,18
+urllib3,2.5.0,699,line-level source-route evidence occurrence,"deduplicate by source_family, route, and line number item_id",5,24

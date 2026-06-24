@@ -1,0 +1,4 @@
+task,task_id,trajectory_id,stop_state_id,inventory_id,condition,state_type,n_events,n_agents,support_size,support,gini,weak_plausible_gap,runtime_residual_items,residual_warning,unresolved_warning,runtime_discovered_items
+urllib3,T_external_urllib3_audit_v2,T_external_urllib3_audit_v2_extended_audit,urllib3:extended_audit:fixed_stop,urllib3_pattern_inventory_v1,extended_audit,fixed_stop_state,734,5,30,1.0,0.5502057613168723,0,0,False,False,699
+urllib3,T_external_urllib3_audit_v2,T_external_urllib3_audit_v2_homogeneous,urllib3:homogeneous:fixed_stop,urllib3_pattern_inventory_v1,homogeneous,fixed_stop_state,426,3,6,0.2,0.9151300236406619,24,0,False,True,135
+urllib3,T_external_urllib3_audit_v2,T_external_urllib3_audit_v2_route_partitioned,urllib3:route_partitioned:fixed_stop,urllib3_pattern_inventory_v1,route_partitioned,fixed_stop_state,612,4,24,0.8,0.6471491228070174,6,0,False,True,584

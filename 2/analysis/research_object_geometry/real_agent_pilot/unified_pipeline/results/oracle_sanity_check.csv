@@ -1,0 +1,10 @@
+repo,route,sample_n,positive_n,ambiguous_n,sample_precision,notes
+requests,compat_route,8,8,0,1.0,line-level oracle-positive sample
+requests,exception_route,8,8,0,1.0,line-level oracle-positive sample
+requests,timeout_route,8,8,0,1.0,line-level oracle-positive sample
+requests,tls_route,8,8,0,1.0,line-level oracle-positive sample
+urllib3,cleanup_route,8,7,1,0.875,line-level oracle-positive sample
+urllib3,exception_route,8,8,0,1.0,line-level oracle-positive sample
+urllib3,retry_route,8,8,0,1.0,line-level oracle-positive sample
+urllib3,timeout_route,8,8,0,1.0,line-level oracle-positive sample
+urllib3,tls_route,8,8,0,1.0,line-level oracle-positive sample

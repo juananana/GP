@@ -1,0 +1,6 @@
+task,task_id,runtime_decision_id,oracle_id,condition,state_type,decision,success,oracle_total,found_true_items,recall,false_certification,safe_coverage_label
+requests,T_external_requests_repo_v1,requests:homogeneous:fixed_stop,requests:pattern_oracle,homogeneous,fixed_stop_state,CONTINUE,False,298,31,0.1040268456375839,False,False
+requests,T_external_requests_repo_v1,requests:route_partitioned:fixed_stop,requests:pattern_oracle,route_partitioned,fixed_stop_state,SAFE,True,298,298,1.0,False,True
+urllib3,T_external_urllib3_audit_v2,urllib3:extended_audit:fixed_stop,urllib3:pattern_oracle,extended_audit,fixed_stop_state,SAFE,True,699,699,1.0,False,True
+urllib3,T_external_urllib3_audit_v2,urllib3:homogeneous:fixed_stop,urllib3:pattern_oracle,homogeneous,fixed_stop_state,CONTINUE,False,699,135,0.19313304721030042,False,False
+urllib3,T_external_urllib3_audit_v2,urllib3:route_partitioned:fixed_stop,urllib3:pattern_oracle,route_partitioned,fixed_stop_state,CONTINUE,False,699,584,0.8354792560801144,False,False
